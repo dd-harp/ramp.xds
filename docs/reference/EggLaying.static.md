@@ -1,6 +1,6 @@
-# Compute eggs laid
+# Compute eggs laid in aquatic habitats
 
-Computes eggs laid for an autonomous model
+Compute egg laying when the laying matrix doesn't change.
 
 ## Usage
 

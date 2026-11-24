@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_psi}
 \alias{F_psi}
-\title{Set up for}
+\title{Compute the baseline maturation rate (\strong{L})}
 \usage{
 F_psi(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_psi(t, xds_obj, s)
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-Set up an object
-to compute
+Compute the baseline maturation rate.
 }
 \keyword{internal}

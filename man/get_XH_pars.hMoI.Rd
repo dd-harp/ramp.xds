@@ -12,12 +12,14 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+a named \link{list} of parameter values
 }
 \description{
+Return the parameters for the \code{hMoI} module as a named list.
+}
+\note{
 Parameter values for the \eqn{i^{th}} host are
-stored as \code{xds_obj$XH_obj[[i]]}. This returns the stored parameter
-values as a list.
+stored as \code{xds_obj$XH_obj[[i]]}.
 }
 \section{Parameters}{
 
@@ -32,6 +34,8 @@ values as a list.
 }
 
 \seealso{
+\link{make_XH_obj_hMoI}, \link{change_XH_pars.hMoI}
+
 \link{hMoI}, \link{make_XH_obj_hMoI}
 }
 \keyword{internal}

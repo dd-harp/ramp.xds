@@ -21,7 +21,7 @@ ode_to_dde = function(xds_obj){
 
 #' @title Compute as DDE
 #' @description If `class(xds_obj$xde) == "dts"`, don't change anything.
-#' @param xds_obj an **`xds`** model object
+#' @inheritParams ode_to_dde
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -31,7 +31,7 @@ ode_to_dde.dts = function(xds_obj){
 
 #' @title Compute as DDE
 #' @description Switch to `dde` if any module's skill set indicates a delay.
-#' @param xds_obj an **`xds`** model object
+#' @inheritParams ode_to_dde
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -52,7 +52,7 @@ ode_to_dde.ode = function(xds_obj){
 
 #' @title Compute as DDE
 #' @description Leave `dde` unchanged.
-#' @param xds_obj an **`xds`** model object
+#' @inheritParams ode_to_dde
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export

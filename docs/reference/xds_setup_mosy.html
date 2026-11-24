@@ -19,7 +19,7 @@ can be solved by xds_solve.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +133,7 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 
 
 <dt id="arg-membership">membership<a class="anchor" aria-label="anchor" href="#arg-membership"></a></dt>
-<dd><p>is a vector that describes the patch where each aquatic habitat is found</p></dd>
+<dd><p>the habitat membership vector or <a href="habitat_vector.html">habitat_vector</a></p></dd>
 
 
 <dt id="arg-hpop">HPop<a class="anchor" aria-label="anchor" href="#arg-hpop"></a></dt>
@@ -172,15 +172,17 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This is a modified version of <a href="xds_setup.html">xds_setup</a> that streamlines setup
 for models without parasite / pathogen infection
-dynamics. It sets</p>
-<p><code>class(xds_obj$frame) = 'mosy'</code></p>
-<p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
-and parse outputs. The solver ignores infection dynamics (the <strong>X</strong> and <strong>Y</strong> processes).
+dynamics.</p>
+<p>The solver ignores infection dynamics (the <strong>X</strong> and <strong>Y</strong> processes).
 A trivial <strong>XH</strong> component is set up to handle human/host population density.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p><a href="xds_setup.html">xds_setup</a> calls <a href="make_xds_object_template.html">make_xds_object_template</a>, which returns an object template with
+    <p>It sets</p>
+<p><code>class(xds_obj$frame) = 'mosy'</code></p>
+<p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
+and parse outputs.</p>
+<p><a href="xds_setup.html">xds_setup</a> calls <a href="make_xds_object_template.html">make_xds_object_template</a>, which returns an object template with
 a properly configured interface for blood feeding
 and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
     </div>
@@ -201,7 +203,7 @@ and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
 
 
 <p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
-<li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
+<li><p><code>membership</code> - the habitat membership vector (see <a href="habitat_vector.html">habitat_vector</a>)</p></li>
 </ul><p>During setup:</p><ul><li><p>The structural parameter <code>nHabitats</code> is set to <code>length(membership)</code></p></li>
 <li><p>The structural parameter <code>nStrata</code> is set to <code>nPatches</code></p></li>
 <li><p><code>nPatches</code> is checked and set to <code>max(membership, nPatches)</code></p></li>
@@ -214,14 +216,17 @@ and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
 
 <p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:</p><ul><li><p><code>searchQ</code> the habitat search weights (see <a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a>)</p></li>
 <li><p><code>Koptions</code> sets up a mosquito dispersal matrix (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></li>
-</ul></div>
+</ul><p>Human/host populations are represented by a trivial <strong>XH</strong> module.
+See <a href="human_availability.html">human_availability</a> and <a href="blood_feeding.html">blood_feeding</a> for their role in mosquito
+blood feeding.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
 <ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
 <li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
-<li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
+<li><p>Advanced Setup: <a href="xds_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a></p></li>
 <li><p>Internals: <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>,
 <a href="xds_object.html">xds_object</a>, <a href="make_xds_object_template.html">make_xds_object_template</a></p></li>

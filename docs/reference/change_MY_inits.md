@@ -1,6 +1,7 @@
 # Change initial values (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+Change initial values for the selected **MY** module using the values
+supplied in `options`.
 
 ## Usage
 

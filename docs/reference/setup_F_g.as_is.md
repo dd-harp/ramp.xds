@@ -1,6 +1,7 @@
-# Set up static mosquito mortality rate
+# Set up static mosquito mortality rate (**MY**)
 
-Set up supplied static mosquito mortality rates.
+Set up supplied static mosquito mortality rates from `options$g` or a
+numeric `name`. Values in `options$g` take precedence.
 
 ## Usage
 
@@ -13,7 +14,7 @@ setup_F_g(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a mosquito mortality rate or setup method name
 
 - xds_obj:
 

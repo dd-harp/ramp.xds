@@ -15,7 +15,7 @@ Models for heterogeneous biting are constructed
 by passing \emph{blood search weights} for human population
 strata, \eqn{w}. If the time spent in a patch
 is \eqn{\theta}, then
-the availability of humans in that patch is is:
+the availability of humans in that patch is:
 \deqn{W_j = \sum_i w_i \theta_{i,j} H_i.}
 The fraction of bites received by the \eqn{i^{th}}
 stratum in patch \eqn{j} is:

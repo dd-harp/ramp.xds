@@ -7,7 +7,7 @@
 change_blood_traps(blood_traps, xds_obj, s = 1)
 }
 \arguments{
-\item{blood_traps}{a blood_traps}
+\item{blood_traps}{a numeric vector of patch-level availability}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,5 @@ change_blood_traps(blood_traps, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the blood_traps for the \eqn{s^{th}} vector species, and
-trigger updates for the \code{XY} interface.
+Set blood trap availability for vector species \code{s}.
 }

@@ -1,7 +1,9 @@
-# Set up F_eip from options
+# Set up F_eip (**MY**)
 
 If an options list is passed as the first argument, use its `name` field
-to select the setup method.
+to select the setup method. If `name` is NULL, use the `no_setup`
+method. Pass the list as `options` to
+[setup_F_eip](https://dd-harp.github.io/ramp.xds/reference/setup_F_eip.md).
 
 ## Usage
 

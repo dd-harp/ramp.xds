@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{get_skillset_MY.basicM}
 \alias{get_skillset_MY.basicM}
-\title{The skill set}
+\title{Get the skill set for \code{basicM} (\strong{MY})}
 \usage{
 \method{get_skillset_MY}{basicM}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 the \strong{MY} module skill set, as a list
 }
 \description{
-The skill set
+Return the capabilities and compatibilities of the \code{basicM} module as a list.
 }
 \keyword{internal}

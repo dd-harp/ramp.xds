@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up random values for ovitrap availability
+Set up random values for ovitrap availability.
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
-# Set new X parameter values
+# Set new V initial values
 
-This method dispatches on the type of `xds_obj$V_obj[[s]]`.
+This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 
 ## Usage
 
@@ -20,7 +20,7 @@ change_V_inits(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the auxiliary-variable module index
 
 ## Value
 

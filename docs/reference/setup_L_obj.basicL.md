@@ -1,6 +1,6 @@
-# Set up `basicL` (**L**)
+# Set up the module object for `basicL` (**L**)
 
-This sets up a `basicL` model object for the **L** module for the
+This sets up a `basicL` module object for the **L** component and the
 \\(s^{th}\\) vector species
 
 - the object is created by

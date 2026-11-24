@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-nb.R
 \name{setup_exposure.nb}
 \alias{setup_exposure.nb}
-\title{Set up a nbson model for Exposure and Infection}
+\title{Set up a negative binomial model for Exposure and Infection}
 \usage{
 \method{setup_exposure}{nb}(EHname, xds_obj, options = list(), i = 1)
 }
@@ -19,7 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a nbson model for Exposure and Infection
+Set up a negative binomial model for Exposure and Infection
 }
 \seealso{
 Also, see \link{F_foi.nb} and \link{F_ar.nb}

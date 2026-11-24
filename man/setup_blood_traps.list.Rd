@@ -2,18 +2,18 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{setup_blood_traps.list}
 \alias{setup_blood_traps.list}
-\title{Set up a blood_traps}
+\title{Set up blood traps}
 \usage{
 \method{setup_blood_traps}{list}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
@@ -22,9 +22,9 @@ an \strong{\code{xds}} model object
 If an options list is passed
 as the first argument, then set
 \itemize{
-\item \code{OBHname = name$name}
+\item \code{BTname = name$name}
 \item \code{options = name}
-and call \code{setup_blood_traps(OBHname, xds_obj, options, s)}
+and call \code{setup_blood_traps(BTname, xds_obj, options, s)}
 }
 }
 \keyword{internal}

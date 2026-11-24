@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{F_pfpr_by_lm}
 \alias{F_pfpr_by_lm}
-\title{Compute the prevalence of infection by light microscopy}
+\title{Compute observed prevalence by light microscopy}
 \usage{
 F_pfpr_by_lm(vars, XH_obj)
 }
@@ -15,6 +15,9 @@ F_pfpr_by_lm(vars, XH_obj)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
+Compute observed prevalence by light microscopy
+}
+\note{
 This method dispatches on the type of \code{XH_obj}.
 }
 \keyword{internal}

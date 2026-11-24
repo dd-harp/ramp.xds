@@ -1,9 +1,9 @@
-# Set up a visitors
+# Set up visitors
 
 Implements the "random" case for
 [setup_visitors](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.md).
 See
-[make_visitors_random](https://dd-harp.github.io/ramp.xds/reference/make_visitors_random.md)
+[make_visitors_random](https://dd-harp.github.io/ramp.xds/reference/make_visitors_random.md).
 
 ## Usage
 
@@ -16,7 +16,7 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 
@@ -28,7 +28,7 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

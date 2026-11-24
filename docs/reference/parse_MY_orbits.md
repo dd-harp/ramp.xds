@@ -1,7 +1,7 @@
 # Parse outputs (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj`. It computes the
-variables by name and returns a named list.
+Parse the model state outputs for the selected **MY** module and return
+the results as a named list.
 
 ## Usage
 
@@ -13,7 +13,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) of outputs from deSolve
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -25,4 +25,4 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html)
+a [list](https://rdrr.io/r/base/list.html)

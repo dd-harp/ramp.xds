@@ -17,5 +17,8 @@ change_V_inits(xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
+Set new V initial values
+}
+\note{
 This method dispatches on the type of \code{xds_obj$V_obj[[i]]}.
 }

@@ -1,6 +1,7 @@
-# Make type2 egg batch rates
+# Make type 2 oviposition rate port (**MY**)
 
-Set up a type2 vector
+Build a configuration object for a type 2 oviposition rate response to
+water availability.
 
 ## Usage
 
@@ -20,7 +21,8 @@ make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 
 - vx:
 
-  the maximum laying
+  the maximum oviposition rate: the maximum number of egg batches laid
+  in each patch, per mosquito, per day
 
 - sv:
 
@@ -28,4 +30,5 @@ make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 
 ## Value
 
-an object to set up egg batch rates
+a configuration object for
+[F_nu.type2](https://dd-harp.github.io/ramp.xds/reference/F_nu.type2.md)

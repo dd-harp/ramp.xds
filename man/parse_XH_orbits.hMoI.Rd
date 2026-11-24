@@ -7,7 +7,7 @@
 \method{parse_XH_orbits}{hMoI}(outputs, xds_obj, i)
 }
 \arguments{
-\item{outputs}{an output matrix returned by \link[deSolve:deSolve]{deSolve}}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,8 +17,14 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_XH_orbits} for the \code{hMoI} model.
+Extract the model state outputs for the \code{hMoI} module
+from \code{outputs} and return them by name in a list.
+Return \code{m1}, \code{m2}, and a matrix \code{H} with one row per output time and
+\code{nStrata[i]} columns.
 The fixed population parameter \code{H} is repeated across output times.
+}
+\note{
+Variable indices are stored at \code{xds_obj$XH_obj[[i]]$ix}.
 }
 \seealso{
 \link{hMoI}

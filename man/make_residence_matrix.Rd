@@ -9,12 +9,12 @@ make_residence_matrix(nPatches, residence)
 \arguments{
 \item{nPatches}{the number of patches}
 
-\item{residence}{the residence matrix}
+\item{residence}{a residence vector of patch indices, one per population stratum}
 }
 \value{
 a \code{nPatches} \eqn{\times} \code{nStrata} matrix
 }
 \description{
-This function creates the residence matrix (see \link{get_residence_matrix}).
+Create the residence matrix (see \link{residence_matrix}).
 }
 \keyword{internal}

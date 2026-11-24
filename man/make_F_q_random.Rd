@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{make_F_q_random}
 \alias{make_F_q_random}
-\title{Make random human feeding fractions}
+\title{Make random human fractions (\strong{MY})}
 \usage{
 make_F_q_random(
   nPatches,
@@ -17,15 +17,20 @@ make_F_q_random(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{f_rand}{a random number generator}
+\item{f_rand}{a random number generator called as \code{f_rand(nPatches, p1, p2)}
+that returns a numeric vector of length \code{nPatches}}
 
 \item{p1}{argument for f_rand}
 
 \item{p2}{argument for f_rand}
 }
 \value{
-a configuration object for \link{F_q.random}
+a static port object for \link{F_q.static}
 }
 \description{
-Build a configuration object for random human feeding fractions.
+Draw human fractions once during setup.
+Subsequent evaluations reuse these values.
+}
+\note{
+The values are stored in a static port object.
 }

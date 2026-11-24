@@ -1,4 +1,4 @@
-# Set up `trivialL` (**L**)
+# Set up the module object for `trivialL` (**L**)
 
 This sets up a `trivialL` model object for the **L** module for the
 \\(s^{th}\\) vector species

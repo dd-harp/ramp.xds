@@ -1,8 +1,6 @@
-# Generalized spatial differential equation model (mosquito only)
+# Compute exogenous variables and dynamical terms
 
-Mirrors
-[xds_compute_terms](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.md)
-but only includes the adult and aquatic mosquito components.
+Compute exogenous variables and dynamical terms
 
 ## Usage
 
@@ -27,5 +25,4 @@ xds_compute_terms(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) containing the vector of all
-state derivatives
+an **`xds`** model object

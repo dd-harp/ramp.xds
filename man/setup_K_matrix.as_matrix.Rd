@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{setup_K_matrix.as_matrix}
 \alias{setup_K_matrix.as_matrix}
-\title{Setup a Here-There Dispersal Matrix}
+\title{Set up a supplied mosquito dispersal matrix}
 \usage{
 \method{setup_K_matrix}{as_matrix}(name, xds_obj, options = list(), s = 1)
 }
@@ -16,10 +16,9 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_K_matrix} for the here and there model:
-dispersal to every other patch, with equal probability
+Set up a supplied mosquito dispersal matrix using \link{change_K_matrix}.
 }
 \keyword{internal}

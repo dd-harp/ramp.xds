@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{check_other_blood_hosts}
 \alias{check_other_blood_hosts}
-\title{Check other blood hosts}
+\title{Check other blood host availability}
 \usage{
 check_other_blood_hosts(other_blood_hosts, nP)
 }
 \arguments{
-\item{other_blood_hosts}{availbility of other blood hosts}
+\item{other_blood_hosts}{availability of other blood hosts}
 
 \item{nP}{the number of patches}
 }
@@ -15,7 +15,7 @@ check_other_blood_hosts(other_blood_hosts, nP)
 Check that
 \itemize{
 \item all elements are non-negative
-\item length(other_blood_hosts) == nPatc
+\item length(other_blood_hosts) == nP
 }
 }
 \seealso{

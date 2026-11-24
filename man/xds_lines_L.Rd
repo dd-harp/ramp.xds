@@ -11,13 +11,16 @@ xds_lines_L(xds_obj, s = 1, clrs = "darkblue", llty = 1)
 
 \item{s}{the vector species index}
 
-\item{clrs}{a vector of colors}
+\item{clrs}{a color for all habitats or a vector of colors, one per habitat}
 
-\item{llty}{an integer (or integers) to set the \code{lty} for plotting}
+\item{llty}{a line type for all habitats or a vector of line types, one per habitat, passed to \code{lty}}
 }
 \value{
 invisible(NULL)
 }
 \description{
-Add lines for aquatic mosquito population density
+Add aquatic mosquito population density lines for each habitat to an existing plot.
+}
+\seealso{
+\link{xds_plot_L}
 }

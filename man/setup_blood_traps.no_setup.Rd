@@ -2,23 +2,23 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{setup_blood_traps.no_setup}
 \alias{setup_blood_traps.no_setup}
-\title{Set up no blood_traps}
+\title{Leave blood trap availability unchanged}
 \usage{
 \method{setup_blood_traps}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Return \code{xds_obj} without changing the configured availability.
 }
 \keyword{internal}

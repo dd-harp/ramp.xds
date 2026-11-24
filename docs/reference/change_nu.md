@@ -1,6 +1,6 @@
-# Change F_nu
+# Change the oviposition rate (**MY**)
 
-Update F_nu for the \\(s^{th}\\) vector species.
+Update the oviposition rate for the \\(s^{th}\\) vector species.
 
 ## Usage
 

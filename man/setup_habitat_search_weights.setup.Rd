@@ -7,7 +7,7 @@
 \method{setup_habitat_search_weights}{setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-The default version called by setup
+The default version called by setup.
 }
 \keyword{internal}

@@ -1,7 +1,7 @@
 # Mosquito bionomics (**L**)
 
-Compute the values of bionomic parameter values for an **L** Component
-module
+Compute baseline bionomic parameter values for an **L** component
+module.
 
 ## Usage
 
@@ -30,3 +30,8 @@ LBionomics(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md),
+[MosquitoBionomics](https://dd-harp.github.io/ramp.xds/reference/MosquitoBionomics.md)

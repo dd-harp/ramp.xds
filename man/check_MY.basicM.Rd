@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{check_MY.basicM}
 \alias{check_MY.basicM}
-\title{Run a check before solving}
+\title{Check \code{basicM} (\strong{MY})}
 \usage{
 \method{check_MY}{basicM}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Run a check before solving
+Check \code{basicM} (\strong{MY})
 }
 \keyword{internal}

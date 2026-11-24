@@ -9,6 +9,9 @@ make_K_matrix_herethere(nPatches)
 \arguments{
 \item{nPatches}{is the number of patches}
 }
+\value{
+a mosquito dispersal \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
+}
 \description{
 Mosquitoes disperse to every other patch
 with equal probability.

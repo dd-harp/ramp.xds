@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_F_f.random}
 \alias{setup_F_f.random}
-\title{Set up blood feeding rates}
+\title{Set up random blood feeding rates (\strong{MY})}
 \usage{
 \method{setup_F_f}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a blood feeding rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_F_f}.
+Configure random blood feeding rates using \link{make_F_f_random}.
 }
 \keyword{internal}

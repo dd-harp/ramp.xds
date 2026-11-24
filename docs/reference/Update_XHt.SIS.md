@@ -35,7 +35,8 @@ Update_XHt(t, y, xds_obj, i)
 
 ## Value
 
-the derivatives, as a vector
+updated dependent variables (a
+[vector](https://rdrr.io/r/base/vector.html))
 
 ## Infection Dynamics
 
@@ -52,7 +53,7 @@ curing malaria infections:
 - in addition, prevalent infections are treated and cured at the rate
   \\(\sigma\\)
 
-- functions describes an increase in clearance caused by mass treatment,
+- functions describe an increase in clearance caused by mass treatment,
   \\(\Xi(t)\\), a *shock* function
 
 The total per-capita clearance rate from treatment is thus \\(\rho h +
@@ -62,7 +63,7 @@ After clearing, individuals are susceptible to infection.
 
 ## Demography
 
-This model has no parameter or terms to describe disease-induced
+This model has no parameters or terms to describe disease-induced
 mortality.
 
 - [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md) or

@@ -16,8 +16,9 @@ check_timespent_matrix(TS, Np, Nh)
 \description{
 Check that
 \itemize{
-\item there ar \eqn{N_p} columns and \eqn{N_h} rows
-\item the column sums are at most 1`
+\item there are \code{Np} rows and \code{Nh} columns
+\item all elements are non-negative
+\item the column sums are at most 1
 }
 }
 \seealso{

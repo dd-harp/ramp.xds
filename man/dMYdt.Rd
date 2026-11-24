@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{dMYdt}
 \alias{dMYdt}
-\title{Compute derivatives (\strong{MY})}
+\title{Compute the derivatives (\strong{MY})}
 \usage{
 dMYdt(t, y, xds_obj, s)
 }
@@ -16,13 +16,14 @@ dMYdt(t, y, xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-Derivatives for an adult mosquito model, a \link{vector}
+a \link{numeric} vector of derivatives in the module's state-variable order
 }
 \description{
-In the description, each method should include the equations and
-a reference to relevant papers in the literature.
+Compute the derivatives of the adult mosquito state variables using the
+selected \strong{MY} module. See the module-specific documentation for equations
+and references.
 }
 \note{
-This is the \code{S3} generic. Methods dispatch on \code{MY_obj[[s]]}
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
 }
 \keyword{internal}

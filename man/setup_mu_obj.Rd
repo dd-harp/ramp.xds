@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_mu_obj}
 \alias{setup_mu_obj}
-\title{Set up a dispersal loss bionomic object}
+\title{Set up bionomic port for emigration-loss fraction (\strong{MY})}
 \usage{
 setup_mu_obj(mu, MY_obj)
 }
 \arguments{
 \item{mu}{the emigration loss fraction}
 
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{MY_obj}{an \strong{\code{MY}} module object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} module object
 }
 \description{
-Set up an object
-to compute the dispersal loss fraction, \eqn{\mu}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline emigration-loss
+fraction, \eqn{\mu}, for a static model.
 }
 \keyword{internal}

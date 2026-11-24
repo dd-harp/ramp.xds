@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{setup_blood_search_weights.as_is}
 \alias{setup_blood_search_weights.as_is}
-\title{Set up a blood_search_weights}
+\title{Set up blood search weights from supplied values}
 \usage{
 \method{setup_blood_search_weights}{as_is}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of weights}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -25,8 +25,6 @@ the checks, it replaces the current blood_search_weights.
 If the first argument to \code{setup_blood_search_weights} is a
 numeric vector, the \code{"as_is"} method is used.
 
-The conventional way to call this method is \code{name = "as_is"},
-and the new blood search weights are passed as
-\code{options$blood_search_weights}
+When \code{name = "as_is"}, pass the new vector in \code{options$weights}.
 }
 \keyword{internal}

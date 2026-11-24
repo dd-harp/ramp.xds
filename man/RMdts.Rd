@@ -16,6 +16,14 @@ model of adult mosquito ecology and infection dynamics.
 }
 }
 
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence, supplied by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness, supplied by \link{Transmission}}
+}
+}
+
 \section{Parameters}{
 
 \describe{
@@ -34,5 +42,22 @@ model of adult mosquito ecology and infection dynamics.
 \section{Dynamics}{
 
 State is updated each time step via \link{Update_MYt.RMdts}.
+}
+
+\section{DTS}{
+
+\link{Update_MYt.RMdts} updates \code{M}, \code{P}, \code{U}, the cohort matrix \code{Y}, and \code{Z}.
+It uses the stored \code{Omega} as a one-step matrix and \code{G} to weight progression
+out of the infected cohorts. Cohort columns are merged and replaced after
+computing survival and progression.
+}
+
+\section{Egg Laying}{
+
+The daily number of eggs laid per patch is \code{M*nu*eggsPerBatch}, where
+\code{M} is total adult mosquito density, \code{nu} is the oviposition rate,
+and \code{eggsPerBatch} is the number of eggs per batch.
+\link{F_eggs.RMdts} returns this quantity before distribution among aquatic
+habitats by \link{EggLaying}.
 }
 

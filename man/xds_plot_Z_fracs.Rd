@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-plotting.R
 \name{xds_plot_Z_fracs}
 \alias{xds_plot_Z_fracs}
-\title{Plot the fraction infective}
+\title{Plot the infective mosquito fraction (\strong{MY})}
 \usage{
 xds_plot_Z_fracs(xds_obj, s = 1, clrs = "darkred", llty = 1, add = FALSE)
 }
@@ -11,12 +11,24 @@ xds_plot_Z_fracs(xds_obj, s = 1, clrs = "darkred", llty = 1, add = FALSE)
 
 \item{s}{the vector species index}
 
-\item{clrs}{a vector of colors for infective mosquitoes}
+\item{clrs}{a color for all patches or a vector of colors, one per patch}
 
-\item{llty}{an integer (or integers) to set the \code{lty} for plotting}
+\item{llty}{a line type for all patches or a vector of line types, one per patch, passed to \code{lty}}
 
-\item{add}{do not plot axes if TRUE}
+\item{add}{add lines to the existing plot if \code{TRUE}}
+}
+\value{
+invisible(NULL)
 }
 \description{
-Plot the fraction infective
+Plot the saved infective mosquito fraction over time, one line per
+patch for the selected species.
+}
+\note{
+Reads \code{z = Z/M} and \code{time} through \link{get_MY_orbits}; it does not
+calculate the fraction. Creates a new plot unless \code{add = TRUE};
+then adds lines to the existing plot.
+}
+\seealso{
+\link{xds_lines_Z_fracs}
 }

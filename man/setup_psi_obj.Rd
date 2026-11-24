@@ -2,21 +2,20 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_psi_obj}
 \alias{setup_psi_obj}
-\title{Set up psi object (maturation rate)}
+\title{Set up bionomic port for maturation rate (\strong{L})}
 \usage{
 setup_psi_obj(psi, L_obj)
 }
 \arguments{
 \item{psi}{the maturation rate}
 
-\item{L_obj}{an \strong{\code{L}} model object}
+\item{L_obj}{an \strong{\code{L}} module object}
 }
 \value{
-a \strong{\code{L}} model object
+an \strong{\code{L}} module object
 }
 \description{
-Set up an object
-to compute the maturation
-rate \eqn{psi}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline maturation rate,
+\eqn{psi}, for a static model.
 }
 \keyword{internal}

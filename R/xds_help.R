@@ -10,7 +10,7 @@
 #' 
 #' + [xds_info_basic_setup] -- an overview of basic setup 
 #' 
-#' + [xds_info_setup_options] -- setup options for other features
+#' + [xds_info_advanced_setup] -- advanced setup
 #' 
 #' + **`get_`** functions inspect a model component or its outputs
 #'  

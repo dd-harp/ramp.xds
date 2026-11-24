@@ -15,7 +15,7 @@ check_habitat_search_weights(search_weights, nQ)
 Check that
 \itemize{
 \item all elements are non-negative
-\item length(habitat_search_weights) == nHabitats
+\item length(search_weights) == nQ
 }
 }
 \seealso{

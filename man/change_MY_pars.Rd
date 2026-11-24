@@ -17,9 +17,8 @@ change_MY_pars(xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-For the \strong{MY} module for the \eqn{s^{th}} species,
-change parameter values named in \code{options},
-leaving other values unchanged.
+Change parameter values named in \code{options} for the selected
+\strong{MY} module for the \eqn{s^{th}} vector species, leaving other values unchanged.
 }
 \note{
 This is designed to work for static parameters or
@@ -27,6 +26,7 @@ for parameters that are set up as ports, where the class of
 the bionomic object is "static."
 
 Use advanced setup to modify dynamic bionomic ports.
+Dispatch is on the class of \code{xds_obj$MY_obj[[s]]}.
 }
 \seealso{
 \link{get_MY_pars}, \link{setup_MY_obj}, \link{xds_info_change_parameters}

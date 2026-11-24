@@ -221,7 +221,7 @@ treatment. The code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x10f852cf8>
+    ## <bytecode: 0x114e33480>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -250,10 +250,10 @@ code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x10fadf048>
+    ## <bytecode: 0x1310450e8>
     ## <environment: namespace:ramp.xds>
 
-The term \\(\Lambda\\) is passed from the trace function
+The term \\(\Lambda\\) is passed from the forcing function
 `F_emerge.trivialL`. Documentation is available through help in two
 ways:
 [`?trivialL`](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
@@ -271,5 +271,5 @@ The implementation looks like this:
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x1187f3030>
+    ## <bytecode: 0x13123e320>
     ## <environment: namespace:ramp.xds>

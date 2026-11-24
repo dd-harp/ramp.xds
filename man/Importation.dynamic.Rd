@@ -17,8 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-No-op method for the \code{Importation} junction when no
-dynamic importation has been configured. The static default
-parameters set by \link{setup_importation} are used as-is.
+Call \link{importation_dynamics} to update visitor availability,
+visitor infectiousness, time away, and travel EIR for each host species.
 }
 \keyword{internal}

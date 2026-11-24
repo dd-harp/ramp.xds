@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{Update_Lt.trivialL}
 \alias{Update_Lt.trivialL}
-\title{Update state variables for \code{trivialL} (\strong{L})}
+\title{Update states for \code{trivialL} (\strong{L})}
 \usage{
 \method{Update_Lt}{trivialL}(t, y, xds_obj, s)
 }

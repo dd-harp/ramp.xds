@@ -1,7 +1,6 @@
-# Compute theta (density dependent mortality)
+# Compute the baseline slope of density-dependent mortality (**L**)
 
-This method dispatches on the type of `theta_obj`. It should set the
-values otheta the bionomic parameters to baseline values
+Compute the baseline slope of density-dependent mortality.
 
 ## Usage
 

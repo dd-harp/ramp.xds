@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_Z}
 \alias{get_Z}
-\title{Get the density of infectious, blood feeding mosquitoes}
+\title{Get the initial infective mosquito density (\strong{MY})}
 \usage{
 get_Z(xds_obj, s = 1)
 }
@@ -12,9 +12,18 @@ get_Z(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the density of infectious, blood feeding mosquitoes
+Return the initial infective mosquito density per patch.
+}
+\details{
+Return initial density, not current solver states or output trajectories.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
+}
+\seealso{
+\link{get_MY_inits}, \link{get_MY_vars}, \link{get_MY_orbits}
 }
 \keyword{internal}

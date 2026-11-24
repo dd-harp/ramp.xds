@@ -1,6 +1,6 @@
-# Add lines for the density of infected and infective mosquitoes
+# Add lines for the density of infected mosquitoes
 
-Add lines for the density of infected and infective mosquitoes
+Add lines for the density of infected mosquitoes
 
 ## Usage
 

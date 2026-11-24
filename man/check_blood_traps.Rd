@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{check_blood_traps}
 \alias{check_blood_traps}
-\title{Check other blood hosts}
+\title{Check blood trap availability}
 \usage{
 check_blood_traps(blood_traps, nP)
 }
@@ -15,7 +15,7 @@ check_blood_traps(blood_traps, nP)
 Check that
 \itemize{
 \item all elements are non-negative
-\item length(blood_traps) == nPatc
+\item length(blood_traps) == nP
 }
 }
 \seealso{

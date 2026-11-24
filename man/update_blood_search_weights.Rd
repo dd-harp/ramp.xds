@@ -19,6 +19,7 @@ update_blood_search_weights(t, y, xds_obj, i)
 an \strong{\code{xds}} model object
 }
 \description{
-This is called to update dy
+Dispatch the update for blood search weights of host species
+\code{i}.
 }
 \keyword{internal}

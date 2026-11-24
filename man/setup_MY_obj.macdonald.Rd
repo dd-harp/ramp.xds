@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{setup_MY_obj.macdonald}
 \alias{setup_MY_obj.macdonald}
-\title{Set up \code{macdonald} (\strong{MY})}
+\title{Set up the module object for \code{macdonald} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{macdonald}(MYname, xds_obj, options = list(), s = 1)
 }
@@ -19,11 +19,17 @@
 an \strong{\code{xds}} model object
 }
 \description{
-This sets up a \code{macdonald} model object for the \strong{MY} module for the \eqn{s^{th}} vector species
+Set up a \code{macdonald} module object for the \strong{MY} component and the \eqn{s^{th}} vector species.
 \itemize{
-\item the object is created by \link{make_MY_obj_macdonald}
-\item the initial conditions are set by \link{setup_MY_inits}
-\item \code{options} is passed to both to override the defaults
+\item Set the module name to \code{macdonald}.
+\item Create the module object with \link{make_MY_obj_macdonald}, passing \code{nPatches} and \code{options}.
+\item Set the skill set using \link{get_skillset_MY}.
+\item Initialize the circadian function using \link{setup_F_circadian.setup}.
+\item Initialize the mosquito demographic matrix port.
+\item Initialize the EIP survival and dispersal matrix port.
+\item Initialize the mosquito dispersal matrix using \link{setup_K_matrix.zero}.
+\item Set initial values using \link{setup_MY_inits}, passing \code{options} to override defaults.
+\item Return the updated \strong{\code{xds}} model object.
 }
 }
 \note{
@@ -46,10 +52,10 @@ The module object is stored at \code{xds_obj$MY_obj[[s]]}
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 

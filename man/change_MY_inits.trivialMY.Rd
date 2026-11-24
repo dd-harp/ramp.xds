@@ -17,7 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{trivialMY} module (\strong{MY}) for the \eqn{s^{th}} species,
-change initial values named in \code{options} leaving other values unchanged.
+The module has no state variables; return the model object unchanged.
+\code{options} is unused.
 }
 \keyword{internal}

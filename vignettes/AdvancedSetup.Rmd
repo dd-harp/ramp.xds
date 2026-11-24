@@ -84,7 +84,7 @@ To build models,
 - [setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.html) – set up or modify the habitat search weights.
 - [setup_bad_habitats](https://dd-harp.github.io/ramp.xds/reference/setup_bad_habitats.html) – modify the availability of habitats, water where mosquitoes would lay eggs but that would never support development of adults. During setup, the variable is set to zero.
 - [setup_ovitraps](https://dd-harp.github.io/ramp.xds/reference/setup_ovitraps.html) – modify the availability of habitats, water where mosquitoes would lay eggs but that would never support development of adults. During setup, the variable is set to zero.
-- [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html) – by default, egg laying rates ($\nu$) are not computed as a functional response to available, but it is an advanced setup option.
+- [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html) – by default, oviposition rates ($\nu$) are not computed as a functional response to resource availability, but it is an advanced setup option.
 
 ## Adult Mosquitoes 
 
@@ -94,7 +94,7 @@ Some of the parameters describing mosquito behavior or ecology are set up to be 
 
 - [setup_f](https://dd-harp.github.io/ramp.xds/reference/setup_f.html)  – set up or modify blood feeding rates or the way they are computed
 - [setup_q](https://dd-harp.github.io/ramp.xds/reference/setup_q.html)  – set up or modify the human fractions or the way they are computed
-- [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html)  – set up or modify egg laying rates or the way they are computed
+- [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html)  – set up or modify oviposition rates or the way they are computed
 - [setup_g](https://dd-harp.github.io/ramp.xds/reference/setup_g.html)  – set up or modify mosquito mortality rates or the way they are computed
 - [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.html) – set up or modify patch emigration rates or the way they are computed
 - [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.html) – set up or modify emigration loss fractions or the way they are computed
@@ -237,5 +237,4 @@ A port is an object that makes any parameter or term extensible: most ports are 
 A junction activates a set of ports.
 
 Junctions handle weather variables, intervention coverage, resource dynamics, baseline mosquito bionomics, vector control effect sizes, mass pharmaceutical interventions, and malaria importation. Advanced setup options to configure ports are discussed in the following sections.
-
 

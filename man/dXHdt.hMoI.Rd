@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{dXHdt.hMoI}
 \alias{dXHdt.hMoI}
-\title{Compute derivatives for \code{hMoI} (\strong{XH})}
+\title{Compute the derivatives for \code{hMoI} (\strong{XH})}
 \usage{
 \method{dXHdt}{hMoI}(t, y, xds_obj, i)
 }
@@ -19,7 +19,12 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dXHdt} for the hybrid MoI model.
+The derivatives for the hybrid MoI (\code{hMoI}) module are:
+\deqn{\begin{array}{rl}
+dm_1/dt &= h-r_1m_1 \\
+dm_2/dt &= h-r_2m_2
+\end{array}}
+Here \eqn{h} is the force of infection (\code{foi}).
 }
 \seealso{
 \link{hMoI}

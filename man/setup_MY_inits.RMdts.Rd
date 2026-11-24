@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{setup_MY_inits.RMdts}
 \alias{setup_MY_inits.RMdts}
-\title{Setup initial values for \code{RMdts} (\strong{MY})}
+\title{Set up initial values for \code{RMdts} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{RMdts}(xds_obj, options = list(), s = 1)
 }
@@ -14,16 +14,18 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{RMdts} module
-(\strong{MY}) for the \eqn{s^{th}} species.
-\itemize{
-\item \link{make_MY_inits_RMdts} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_MY_inits} or
-see the inline module documentation.
+Set up initial values for the \code{RMdts} module using
+\link{make_MY_inits_RMdts}. Values in \code{options} override the defaults.
 }
+\note{
+Initial values are stored at \code{xds_obj$MY_obj[[s]]$inits}.
+}
+\seealso{
+\link{change_MY_inits.RMdts}
+
+\link{get_MY_inits}
 }
 \keyword{internal}

@@ -6,40 +6,73 @@
 \description{
 Aquatic habitats are distributed among patches on a landscape.
 \describe{
-\item{\code{membership}}{a vector: the patch index of each aquatic habitat}
+\item{\code{membership}}{the \link[=habitat_vector]{habitat vector}}
 \item{\code{nHabitats}}{the number of habitats (\code{length(membership)}) }
-\item{\code{searchQ}}{a vector: a search weight for each aquatic habitat}
+\item{\code{search_weights} or \eqn{w}}{a vector: a search weight for each aquatic habitat}
 }
 }
-\section{The Habitat Matrix}{
+\section{Habitat Vector}{
 
 
-The \emph{habitat matrix} is an \code{nPatches} \eqn{\times} \code{nHabitats} matrix called \eqn{N}.
-It is constructed from the \code{membership} vector.
-In the matrix, \eqn{N_{i,j}} is 1 if the \eqn{i^{th}} patch contains the \eqn{j^{th}} habitat.
-For example, a membership vector \eqn{(1,1,2)} has a corresponding habitat matrix:
-\deqn{
-N = \left[ 
-\begin{array}{ccc}
-1&1&0\\
-0&0&1\\
-\end{array}
-\right]
-}
-If \eqn{\alpha} denotes the emergence rate of adult mosquitoes
-from each habitat, then the emergence rate at the patch, \eqn{\Lambda} is:
-\deqn{\Lambda = N \cdot \alpha}
+A habitat vector \eqn{(V)} indexes
+the patches where each aquatic habitat can be found.
+
+If the \eqn{i^{th}}
+habitat is located in the \eqn{j^{th}} patch, then \eqn{V_i = j.}
 }
 
-\section{The Egg Distribution Matrix}{
+\section{Habitat Matrix}{
 
 
-Let \eqn{\omega} denote the habitat search weights. Habitat availability (\eqn{Q}) is computed as:
-\deqn{Q = N \cdot \omega.}
-Mosquitoes could also lay some eggs in available bad habitats (\eqn{B}) or in available ovitraps (\eqn{O}).
-The egg distribution matrix (\eqn{U}) is computed as
-\deqn{U = \left( \mbox{diag} \left(\omega \right) \cdot N^T \right) \cdot \mbox{diag}\left( (Q+B+O)^{-1} \right).}
-In models where there are patches with no available habitat, \eqn{(Q+B+O)^{-1}} is computed using the function \link{diag_inverse}, which
-fixes the divide-by-zero problem.
+The habitat matrix \eqn{(\mathbf N)} is an \code{nPatches}\eqn{\times}\code{nHabitats} matrix
+that is constructed from the \link{habitat_vector}.
+
+If the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
+\eqn{{N}_{j,i}=1.} Otherwise, \eqn{{N}_{j,i}=0.}
+
+If \eqn{x} is any vector describing a quantity in
+habitats (\emph{i.e.}, \eqn{\left|x\right|=}\code{nHabitats}), then
+\deqn{X=\mathbf{N}\cdot x} is a vector that has summed \eqn{x}
+by patch, and \eqn{\left|X\right|=}\code{nPatches}.
+}
+
+\section{Unproductive Aquatic Habitats}{
+
+To model egg laying, a port
+was developed to model the availability
+of unproductive aquatic habitats: water
+where mosquitoes
+lay eggs, but no mature adults ever emerge.
+}
+
+\section{Ovitraps}{
+
+To simulate ovitraps, a port
+was developed to model the availability
+of the ovitraps.
+}
+
+\section{Egg Laying}{
+
+
+\strong{Egg Laying in Patches} --- The number of eggs laid by adult mosquitoes in each patch \eqn{(G)}
+is computed by an \strong{MY} component function \link{F_eggs}, typically:
+\deqn{G = F_G(M).}
+
+\strong{Habitats and Traps} --- Aquatic habitats compete with "bad habitats" (\emph{i.e.}, water bodies where eggs
+are laid that are not productive) and ovitraps for eggs laid. The availability
+of each one in the patch is given by:
+\itemize{
+\item \eqn{Q} --- habitat availability (see \link{habitat_availability})
+\item \eqn{W} --- availability of unsuitable habitats
+\item \eqn{O} --- availability of ovitraps
+}
+
+\deqn{\zeta = \frac{\textstyle{Q}}{\textstyle{Q+W+O}}}
+
+\strong{Laying in Habitats} --- eggs laid in habitats are distributed by the
+laying matrix \eqn{(\mathbf{U})}.
+
+\deqn{\eta = \mathbf{U} \cdot \zeta G }
 }
 

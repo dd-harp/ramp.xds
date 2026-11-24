@@ -4,16 +4,14 @@
 \alias{F_beta}
 \title{Compute beta, the biting distribution matrix}
 \usage{
-F_beta(H, W, wts_f, TaR)
+F_beta(W, wts, TaR)
 }
 \arguments{
-\item{H}{human / host population density}
-
 \item{W}{human / host availability in the patches}
 
-\item{wts_f}{the blood feeding search weights}
+\item{wts}{the blood feeding search weights, adjusted for the fraction of time not traveling}
 
-\item{TaR}{(time at risk), a \link{matrix}  dimensions \code{nPatches} by \code{nStrata}}
+\item{TaR}{(time at risk), a \link{matrix} with dimensions \code{nPatches} by \code{nStrata}}
 }
 \value{
 a \link{matrix} of dimensions \code{nStrata} by \code{nPatches}
@@ -21,4 +19,32 @@ a \link{matrix} of dimensions \code{nStrata} by \code{nPatches}
 \description{
 Compute beta, the biting distribution matrix
 }
+\section{Mixing Matrix}{
+
+The mixing matrix maps mosquito biting density in patches to per-capita
+biting rates in human/host population strata.
+It uses the same search weights and time at risk as \link{available_blood_hosts}.
+
+For a host species, the mixing matrix is an \code{nStrata} \eqn{\times}
+\code{nPatches} matrix:
+\deqn{\beta =
+\mbox{diag}(w(1-\delta)) \cdot \Psi^T \cdot \mbox{diag}(1/W)}
+The product \eqn{w(1-\delta)} is element-wise, with \eqn{\delta}
+denoting the fraction of time away for each stratum.
+Here, \eqn{W} is total local host availability, summed over host species.
+\link{F_beta} replaces zero entries of \eqn{W} with one before dividing,
+to avoid division by zero.
+
+For one host species, the fraction of bites on local hosts in patch
+\eqn{j} received by stratum \eqn{i} is \eqn{H_i \beta_{i,j}}.
+The entries of \eqn{\beta} alone are per-capita allocation weights,
+not fractions of bites.
+
+If \eqn{D} is mosquito biting density in each patch and \eqn{\ell}
+is the local fraction, then the biting rate in each stratum is:
+\deqn{\beta \cdot (\ell D)}
+The product \eqn{\ell D} is element-wise.
+Using infective biting density gives the daily local EIR.
+}
+
 \keyword{internal}

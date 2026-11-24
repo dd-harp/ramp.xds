@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{change_g}
 \alias{change_g}
-\title{Change mosquito mortality rate}
+\title{Change mosquito mortality rate (\strong{MY})}
 \usage{
 change_g(xds_obj, s = 1)
 }

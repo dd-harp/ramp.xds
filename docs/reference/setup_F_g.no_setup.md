@@ -1,6 +1,6 @@
-# Set up no F_g
+# Set up F_g (no setup) (**MY**)
 
-Don't change anything
+Leave the existing mosquito mortality rate configuration unchanged.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_g(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a mosquito mortality rate or setup method name
 
 - xds_obj:
 

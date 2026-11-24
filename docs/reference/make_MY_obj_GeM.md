@@ -1,6 +1,6 @@
-# Make parameters for `GeM` (**MY**)
+# Make the module object for `GeM` (**MY**)
 
-Make parameters for `GeM` (**MY**)
+Make the module object for `GeM` (**MY**)
 
 ## Usage
 
@@ -56,11 +56,12 @@ make_MY_obj_GeM(
 
 - nu:
 
-  oviposition rate, per mosquito
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - eggs_per_batch:
 
-  eggs laid per oviposition
+  number of eggs per batch
 
 ## Value
 

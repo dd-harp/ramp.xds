@@ -1,4 +1,4 @@
-# List variables for `trivialL` (**L**)
+# Get the state variables for `trivialL` (**L**)
 
 Returns an empty list; the `trivialL` module has no state variables
 

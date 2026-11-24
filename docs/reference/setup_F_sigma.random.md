@@ -1,9 +1,7 @@
-# Set up F_sigma
+# Set up random patch emigration rates (**MY**)
 
-Implements the "random" case for
-[setup_F_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_F_sigma.md).
-See
-[make_F_sigma_random](https://dd-harp.github.io/ramp.xds/reference/make_F_sigma_random.md)
+Configure random patch emigration rates using
+[make_F_sigma_random](https://dd-harp.github.io/ramp.xds/reference/make_F_sigma_random.md).
 
 ## Usage
 
@@ -16,7 +14,7 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a patch emigration rate or setup method name
 
 - xds_obj:
 

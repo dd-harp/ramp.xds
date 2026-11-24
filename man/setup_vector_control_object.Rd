@@ -13,8 +13,8 @@ setup_vector_control_object(xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-This creates \code{xds_obj$vector_control}
-and sets \verb{class(vector_control) = 'none'.}
+This creates \code{xds_obj$vector_control_obj}
+and sets its class to \code{none}.
 
 Vector control is implemented in two stages.
 

@@ -2,32 +2,48 @@
 % Please edit documentation in R/blood_feeding.R
 \name{F_TaR}
 \alias{F_TaR}
-\title{Compute blood feeding available of all vertebrate hosts}
+\title{Compute time at risk}
 \usage{
-F_TaR(t, TiSp, F_circadian, time_away)
+F_TaR(t, TiSp, F_circadian)
 }
 \arguments{
-\item{t}{time}
+\item{t}{simulation time in days, passed directly to the circadian function}
 
 \item{TiSp}{a time spent matrix}
 
-\item{F_circadian}{a function to compute relative activity rates by time of day}
-
-\item{time_away}{the fraction of time spent at home}
+\item{F_circadian}{a function that returns relative mosquito activity at time \eqn{t}}
 }
 \value{
-a TaR \link{matrix}
+a time-at-risk matrix
 }
 \description{
-Computes available all vertebrate hosts to blood feeding
-mosquitoes
+Computes time at risk from time spent \eqn{\Theta} and a circadian
+pattern function evaluated at simulation time \eqn{t}.
 }
-\details{
-The available of other vertebrate hosts is a sum of available local
-hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
-Total available is a simple sum: \deqn{B = W + W_\delta + O}
+\section{Time at Risk}{
+
+
+The time at risk matrix describes time spent in the patches weighted by
+relative mosquito activity rates.
+
+The time at risk matrix \eqn{(\Psi)} is computed from the time spent
+matrix \eqn{(\Theta)} and the circadian mosquito activity function
+\eqn{F_c(t)}:
+\deqn{\Psi = F_c(t) \Theta}
+
+Both \eqn{\Theta} and \eqn{\Psi} have dimensions \code{nPatches} \eqn{\times}
+\code{nStrata} for a host species. Time at risk is computed for each
+vector-host species pair.
+By default, \eqn{F_c(t)=1}, so \eqn{\Psi=\Theta}.
+
+The time-at-risk matrix is used to compute human availability \eqn{(W)} and the
+biting distribution matrix \eqn{(\beta)}.
 }
+
 \references{
 {\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
+}
+\seealso{
+\link{time_spent_matrix}, \link{setup_timespent}, \link{setup_F_circadian}, \link{human_availability}
 }
 \keyword{internal}

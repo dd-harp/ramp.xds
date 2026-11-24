@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_Z.SI}
 \alias{get_Z.SI}
-\title{Get the initial infective mosquito density}
+\title{Get the initial infective mosquito density for \code{SI} (\strong{MY})}
 \usage{
 \method{get_Z}{SI}(xds_obj, s = 1)
 }
@@ -12,11 +12,21 @@
 \item{s}{the vector species index}
 }
 \value{
-the initial infective mosquito population density
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the initial infective mosquito density
+Return the initial infective mosquito density per patch.
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
 \section{Infective Biting}{
 
 
@@ -27,7 +37,7 @@ and dispersed through an EIP of \eqn{\tau} days \eqn{e^{- \Omega \tau}}.
 \describe{
 \item{\eqn{Z}}{density of infectious mosquitoes, imputed from \eqn{Y}}
 \item{\code{fqZ}}{Infective biting density: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
-\item{\code{fqM}}{Human biting density: the number of human infectious bites, per patch, per day}
+\item{\code{fqM}}{Human biting density: the number of bites on humans, per patch, per day}
 }
 
 Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential function \link[expm:expm]{expm}
@@ -35,15 +45,14 @@ Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential functio
 \strong{The EIR}
 
 \eqn{fqZ} is the dynamical term computed by \link{F_fqZ.SI}. It is called
-by \link{compute_EIR} (in \link{Transmission}) to compute and store \verb{EIR,}
+by \link{compute_EIR} (in \link{Transmission}) to compute and store \code{EIR},
 the local daily EIR \eqn{(E)}. Note that
 \code{fqZ} is a vector of length \code{nPatches} but the
-local EIR is a vector of length \code{nStrata.}
+local EIR is a vector of length \code{nStrata}.
 The \strong{XY} interface uses
 information about humans and mosquitoes to build the biting distribution matrix, \eqn{\beta,} and if
 there are no visitors, then
 \deqn{E = \beta \cdot fqZ}
-The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
 
 \strong{The HBR}
 

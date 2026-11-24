@@ -1,10 +1,10 @@
-# Set up a vis_kappa
+# Set up visitor net infectiousness
 
 Pass a pre-configured vis_kappa. If it passes the checks, it replaces
 the current vis_kappa.
 
 If called with `name = "as_is"`, the vis_kappa must be at
-`options$vis_kappa`
+`options$vis_kappa_asis`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 
@@ -29,7 +29,7 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{setup_MY_ix.macdonald}
 \alias{setup_MY_ix.macdonald}
-\title{Add indices for adult mosquitoes to parameter list}
+\title{Set up variable indices for \code{macdonald} (\strong{MY})}
 \usage{
 \method{setup_MY_ix}{macdonald}(xds_obj, s)
 }
@@ -12,10 +12,17 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_MY_ix} for the macdonald model.
+Assign consecutive variable indices for the \code{macdonald} module,
+starting after \code{xds_obj$max_ix}, and update the maximum index.
+Allocate blocks in the order \code{M_ix}, \code{P_ix}, \code{Y_ix}, \code{Z_ix}, \code{kappa_ix}.
+Each block has length \code{nPatches}.
+}
+\note{
+Indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
+The maximum index is stored at \code{xds_obj$max_ix}.
 }
 \section{State Variables}{
 

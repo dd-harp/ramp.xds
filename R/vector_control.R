@@ -1,15 +1,17 @@
+# X
+
 #' @title Vector Control 
 #' 
 #' @description
-#' Vector Control is a junction
+#' Vector Control is a junction.
 #'  
 #' @name xds_info_vector_control
 NULL
 
 #' @title Setup the Vector Control Junction
 #'
-#' @description This creates `xds_obj$vector_control`
-#' and sets `class(vector_control) = 'none'.`
+#' @description This creates `xds_obj$vector_control_obj`
+#' and sets its class to `none`.
 #'
 #' Vector control is implemented in two stages.
 #'
@@ -57,7 +59,7 @@ VectorControl1 = function(t, y, xds_obj){
 #' @title Compute Vector Control Effect Sizes
 #'
 #' @description Do no vector control:
-#' the **`xds`** object is returned unmodified
+#' the **`xds`** object is returned unmodified.
 #'
 #' @note No control or `none` is the default setting
 #'
@@ -74,7 +76,7 @@ VectorControl1.none = function(t, y, xds_obj){
 #' @title Vector Control, Stage 2
 
 #' @description A junction to implement
-#' stage two vector control functions
+#' stage two vector control functions.
 #'
 #' @param t time
 #' @param y dependent variables
@@ -90,7 +92,7 @@ VectorControl2 <- function(t, y, xds_obj) {
 #' @title Set the values of exogenous variables
 #'
 #' @description Do no vector control:
-#' the **`xds`** object is returned unmodified
+#' the **`xds`** object is returned unmodified.
 #'
 #' @inheritParams VectorControl2
 #'

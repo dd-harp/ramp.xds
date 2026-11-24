@@ -17,8 +17,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change static parameter values named in \code{options},
-leaving other values unchanged.
+Change parameter values named in \code{options} for the \code{RMdts}
+module, leaving other values unchanged.
+Call \link{MBionomics} at time zero after updating parameters, without calling \link{MEffectSizes}.
+This method changes static parameter values.
 }
 \seealso{
 \link{RMdts}, \link{get_MY_pars.RMdts}

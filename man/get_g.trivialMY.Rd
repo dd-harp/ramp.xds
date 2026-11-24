@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-the mortality rate, as a vector
+a \link{numeric} vector of length 0
 }
 \description{
 Get the mortality rates

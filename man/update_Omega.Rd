@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{update_Omega}
 \alias{update_Omega}
-\title{Change Omega}
+\title{Update the mosquito demographic matrix (\strong{MY})}
 \usage{
 update_Omega(xds_obj, s)
 }
@@ -15,6 +15,10 @@ update_Omega(xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Update a static demographic matrix
+Retain or recompute the demographic matrix.
+}
+\note{
+Dispatch on the class of the port object \code{Omega_obj} to retain
+or recompute the demographic matrix.
 }
 \keyword{internal}

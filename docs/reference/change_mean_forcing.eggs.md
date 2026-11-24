@@ -1,6 +1,6 @@
 # Change mean forcing
 
-Change the mean egg deposition rate
+Change the mean egg deposition rate.
 
 ## Usage
 

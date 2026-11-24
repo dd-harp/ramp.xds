@@ -7,7 +7,7 @@
 \method{setup_travel_eir}{list}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -24,7 +24,7 @@ as the first argument, then set
 \itemize{
 \item \code{Teirname = name$name}
 \item \code{options = name}
-and call \code{setup_travel_eir(Teirname, xds_obj, options, s)}
+and call \code{setup_travel_eir(Teirname, xds_obj, options, i)}
 }
 }
 \keyword{internal}

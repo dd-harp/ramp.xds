@@ -2,7 +2,7 @@
 % Please edit documentation in R/travel-time_away.R
 \name{make_time_away_random}
 \alias{make_time_away_random}
-\title{Make other blood hosts}
+\title{Make random time away}
 \usage{
 make_time_away_random(
   nStrata,

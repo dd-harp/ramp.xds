@@ -15,7 +15,7 @@ The `SI` module is a generalized implementation of the S-I model:
 
 - mosquito ecology and infection dynamics are spatial – a patch-based
   meta-population model – so state variables and most parameters are
-  vectors of length `nPatches.` The dispersal matrix has dimension
+  vectors of length `nPatches`. The dispersal matrix has dimension
   `nPatches` \\(\times\\) `nPatches`
 
 - biting by infectious mosquitoes is computed at time \\(t\\) as if the
@@ -23,7 +23,7 @@ The `SI` module is a generalized implementation of the S-I model:
 
 - parameters describe egg laying by the adult mosquito population
 
-- several of the the core bionomic parameters are set up as *ports* and
+- several of the core bionomic parameters are set up as *ports* and
   designed to be computed as a *changing baseline* that can be *modified
   by vector control*
 
@@ -89,11 +89,11 @@ discusses the model family, and the module design and implementation.
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
-  emigration loss rate — use
+  emigration loss fraction — use
   [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
   or
   [setup_emigration_loss](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
@@ -105,7 +105,8 @@ discusses the model family, and the module design and implementation.
 
 - `nu` or \\(\nu\\):
 
-  the egg batch rate, in batches per mosquito per day — use
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -116,9 +117,8 @@ discusses the model family, and the module design and implementation.
 
 After basic setup,
 [change_MY_pars](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.md)
-can be used for static parameters, or for for parameters that are set up
-as static ports (the default). Use advanced setup to modify dynamic
-ports.
+can be used for static parameters, or for parameters that are set up as
+static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## Survival and Dispersal
 
@@ -128,13 +128,13 @@ Mosquito survival and dispersal are described by a single matrix,
 The parameter \\(g\\) is interpreted as the per-capita mortality rate
 for mosquitoes while they are in a patch. Mosquitoes emigrate from
 patches at the per-capita rates \\(\sigma\\), and some fraction of
-emigrating mosquitoes is lost (\\(\mu\\)). The total rate of loss from a
-patch is \$\$g + \mu \sigma.\$\$
+emigrating mosquitoes is lost (\\(\mu\\)). The combined rate of
+mortality and loss during emigration is \$\$g + \mu \sigma.\$\$
 
 The columns of the mosquito dispersal matrix \\((K)\\) sum to zero. The
 default matrix is all zeros, but for non-trivial dispersal matrices:
 \$\$\mbox{diag}\left(K\right)=-1\$\$ and the non-diagonal elements are
-fraction of surviving mosquitoes that arrive at another patch after a
+fractions of surviving mosquitoes that arrive at another patch after a
 flight bout. (If there is any population loss associated with
 emigration, it goes in the term \\(\mu\\).)
 
@@ -159,23 +159,45 @@ parameter values *ought* to be subject to some natural constraints:
 Using advanced setup options, the blood feeding parameters can be forced
 by variables describing resource availability or weather.
 
-## Dynamics
+## ODE
 
 **Ecology**
 
-Adult mosquitoes emerge from aquatic habitats \\((\Lambda)\\) and
-disperse and die (\\(\Omega\\)): \$\$ dM/dt = \Lambda - \Omega \cdot M
-\$\$ The model also computes the density of parous adult mosquitoes:
-those that have blood fed at least once: \$\$ dP/dt = fq(M-P) - \Omega
-\cdot P \\\\ \$\$ Parity is computed during parsing as \\(P/M\\) and its
-orbit is stored as `parity.`
+Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
+disperse and die according to \\(\Omega\\): \$\$ dM/dt = \Lambda -
+\Omega \cdot M \$\$ The model also computes the density of parous adult
+mosquitoes: those that have blood fed at least once: \$\$ dP/dt =
+fq(M-P) - \Omega \cdot P \\\\ \$\$ Parity is computed during parsing as
+\\(P/M\\) and its orbit is stored as `parity`.
 
 **Infection Dynamics**
 
 Given the per-capita daily rate of human blood feeding \\((fq)\\) and
 net infectiousness \\((\kappa)\\), the FoI for mosquitoes is
-\\(fq\kappa\\). Changes in the density of infected mosquitoes is given
+\\(fq\kappa\\). Changes in the density of infected mosquitoes are given
 by: \$\$ dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\\\ \$\$
+
+## DTS
+
+**Ecology**
+
+Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
+disperse and die according to \\(\Omega\\). The one-day update in
+[Update_MYt.SI](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.SI.md)
+is: \$\$M_t = \Lambda + e^{-\Omega}\cdot M\_{t-1}\$\$ The model also
+computes the density of parous adult mosquitoes: those that have blood
+fed at least once: \$\$P_t =
+e^{-\Omega}\cdot\left\[(1-e^{-fq})(M\_{t-1}-P\_{t-1}) +
+P\_{t-1}\right\]\$\$ Parity is computed during parsing as \\(P/M\\) and
+its orbit is stored as `parity`.
+
+**Infection Dynamics**
+
+Given the per-capita daily rate of human blood feeding \\((fq)\\) and
+net infectiousness \\((\kappa)\\), the FoI for mosquitoes is
+\\(fq\kappa\\). The density of infected mosquitoes is updated by:
+\$\$Y_t = e^{-\Omega}\cdot\left\[(1-e^{-fq\kappa})(M\_{t-1}-Y\_{t-1}) +
+Y\_{t-1}\right\]\$\$
 
 ## Infective Biting
 
@@ -196,8 +218,8 @@ time \\(t\\), \\(Y(t),\\) had survived and dispersed through an EIP of
 
 - `fqM`:
 
-  Human biting density: the number of human infectious bites, per patch,
-  per day
+  Human biting density: the number of bites on humans, per patch, per
+  day
 
 Note that \\(e^{-\Omega \tau}\\) is computed with the matrix exponential
 function [expm](https://rdrr.io/pkg/expm/man/expm.html)
@@ -210,9 +232,9 @@ is called by
 [compute_EIR](https://dd-harp.github.io/ramp.xds/reference/compute_EIR.md)
 (in
 [Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md))
-to compute and store `EIR,` the local daily EIR \\((E)\\). Note that
+to compute and store `EIR`, the local daily EIR \\((E)\\). Note that
 `fqZ` is a vector of length `nPatches` but the local EIR is a vector of
-length `nStrata.` The **XY** interface uses information about humans and
+length `nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\(\beta,\\) and if
 there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
 `fqZ` and `EIR` are computed and stored by

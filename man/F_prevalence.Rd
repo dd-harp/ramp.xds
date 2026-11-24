@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{F_prevalence}
 \alias{F_prevalence}
-\title{Compute the \emph{true} prevalence of infection / parasite rate}
+\title{Compute true prevalance}
 \usage{
 F_prevalence(vars, XH_obj)
 }

@@ -1,7 +1,7 @@
-# Compute eggs laid
+# Aquatic Habitat Dynamics
 
-Computes eggs laid with exogenous forcing on parameter affecting host
-availability.
+Updates habitat availability with exogenous forcing on a parameter
+affecting habitat availability.
 
 ## Usage
 

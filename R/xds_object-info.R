@@ -3,14 +3,15 @@
 #' @title The **`xds`** Model Object  
 #' 
 #' @description
-#' A dynamical system is encoded and stored 
-#' on an **`xds`** model 
-#' object, 
-#' a compound [list] with 
-#' a specific set of features. 
-#'  
 #' A properly constructed xds object is
 #' returned by [xds_setup] or one of its variants (see [xds_info_basic_setup]).
+#'
+#' @note A dynamical system is encoded and stored
+#' on an **`xds`** model
+#' object,
+#' a compound [list] with
+#' a specific set of features.
+#'
 #' The object is created in several steps: 
 #' + a basic template for an xds object is returned by 
 #' [make_xds_object_template], which 

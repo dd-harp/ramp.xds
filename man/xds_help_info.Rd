@@ -6,6 +6,8 @@
 \description{
 A list of all \verb{xds_info_*} documentation pages in \strong{\code{ramp.xds}}.
 
+See \link{xds_info_glossary} for a vocabulary guide.
+
 \strong{Setup & Structure}
 \itemize{
 \item \link{xds_info_basic_setup} -- basic setup overview

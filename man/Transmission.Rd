@@ -17,6 +17,6 @@ Transmission(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$beta}
+This method dispatches on the class of \code{xds_obj$transmission_obj}.
 }
 \keyword{internal}

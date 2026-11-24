@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-time_away.R
 \name{change_time_away}
 \alias{change_time_away}
-\title{Change the time spent}
+\title{Change time away}
 \usage{
 change_time_away(time_away, xds_obj, i = 1)
 }
 \arguments{
-\item{time_away}{a time spent vector}
+\item{time_away}{a time away vector}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,6 @@ change_time_away(time_away, xds_obj, i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the time spent  for the \eqn{i^{th}} host species, and
+Update time away for the \eqn{i^{th}} host species, and
 trigger updates for the \code{XY} interface.
 }

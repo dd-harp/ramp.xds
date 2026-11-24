@@ -1,6 +1,6 @@
 # Change F_shock
 
-Change the shock function when `forced_by = "kappa"`
+Change the shock function when `forced_by = "kappa"`.
 
 ## Usage
 

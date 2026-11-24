@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{get_skillset_L.basicL}
 \alias{get_skillset_L.basicL}
-\title{The \strong{L} module skill set}
+\title{Get the skill set for \code{basicL} (\strong{L})}
 \usage{
 \method{get_skillset_L}{basicL}(xds_obj, s)
 }
@@ -15,7 +15,6 @@
 the \strong{L} module skill set, as a list
 }
 \description{
-The \strong{L} skill set is a list of
-a module's capabilities
+Return the capabilities and compatibilities of the \code{basicL} module as a list.
 }
 \keyword{internal}

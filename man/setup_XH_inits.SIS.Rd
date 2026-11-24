@@ -17,14 +17,11 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{SIS} module
-(\strong{XH}) for the \eqn{i^{th}} host species.
-\itemize{
-\item \link{make_XH_inits_SIS} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_XH_inits} or
-see the inline module documentation.
+Set up initial values for the \code{SIS} module using
+\link{make_XH_inits_SIS}. Values in \code{options} override the defaults.
 }
+\note{
+Initial values are stored at \code{xds_obj$XH_obj[[i]]$inits}.
 }
 \section{State Variables}{
 
@@ -38,5 +35,9 @@ see the inline module documentation.
 
 \seealso{
 \link{SIS}
+
+\link{change_XH_inits.SIS}
+
+\link{get_XH_inits}
 }
 \keyword{internal}

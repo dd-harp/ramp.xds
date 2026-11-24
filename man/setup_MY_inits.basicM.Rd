@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{setup_MY_inits.basicM}
 \alias{setup_MY_inits.basicM}
-\title{Setup initial values for \code{basicM} (\strong{MY})}
+\title{Set up initial values for \code{basicM} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{basicM}(xds_obj, options = list(), s = 1)
 }
@@ -14,17 +14,14 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{basicM} module
-(\strong{MY}) for the \eqn{s^{th}} species.
-\itemize{
-\item \link{make_MY_inits_basicM} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_MY_inits} or
-see the inline module documentation.
+Set up initial values for the \code{basicM} module using
+\link{make_MY_inits_basicM}. Values in \code{options} override the defaults.
 }
+\note{
+Initial values are stored at \code{xds_obj$MY_obj[[s]]$inits}.
 }
 \section{State Variables}{
 
@@ -34,4 +31,9 @@ see the inline module documentation.
 }
 }
 
+\seealso{
+\link{change_MY_inits.basicM}
+
+\link{get_MY_inits}
+}
 \keyword{internal}

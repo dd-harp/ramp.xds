@@ -1,8 +1,7 @@
 # Parse outputs for `basicL` (**L**)
 
-The function returns the column representing the variable \\(L\\) from a
-matrix where each row is a state variable. The variable is returned as a
-named list.
+The function extracts the \\(L\\) outputs from the solution matrix and
+returns them as a named list.
 
 ## Usage
 
@@ -15,8 +14,7 @@ parse_L_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) with the solutions to a
-  dynamical system
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -28,4 +26,4 @@ parse_L_orbits(outputs, xds_obj, s)
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html)
+a [list](https://rdrr.io/r/base/list.html)

@@ -1,7 +1,7 @@
 # Mosquito biting rate
 
-This method dispatches on the type of `xds_obj$MY_obj` and returns the
-daily mosquito biting density on humans, `fqM`, for each patch.
+Return the daily mosquito biting density on humans, `fqM`, for each
+patch.
 
 ## Usage
 

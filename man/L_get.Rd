@@ -12,5 +12,9 @@ A list of get functions for aquatic mosquito modules.
 \item \code{\link{get_L_inits}} -- get initial values
 \item \code{\link{get_L_pars}} -- get parameters
 \item \code{\link{get_L_orbits}} -- get saved orbits
+\item \code{\link{get_psi}} -- get the maturation rate
+\item \code{\link{get_phi}} -- get the density-independent mortality rate
+\item \code{\link{get_xi}} -- get the delayed maturation parameter
+\item \code{\link{get_theta}} -- get the slope of density-dependent mortality
 }
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{F_f.type2}
 \alias{F_f.type2}
-\title{Compute the blood feeding rate, f}
+\title{Compute the baseline blood feeding rate (type 2) (\strong{MY})}
 \usage{
 \method{F_f}{type2}(t, xds_obj, s)
 }
@@ -17,8 +17,8 @@
 \eqn{f}, the baseline blood feeding rate
 }
 \description{
-Implements a type2 functional response to compute
-blood feeding rates as a functional response to resource availability:
+Compute the baseline blood feeding rate using a type 2
+functional response to blood host availability, \eqn{B}.
 \deqn{F_f(B)= f_x \frac{s_f B}{1+s_f B}}.
 }
 \keyword{internal}

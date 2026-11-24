@@ -58,7 +58,9 @@ setup_births = function(name, xds_obj, options = list(), i=1){
 
 #' @title Set up births
 #'
-#' @description If an options list is passed
+#' @description Set up births using an options list.
+#'
+#' @note If an options list is passed
 #' as the first argument, then set 
 #' + `births_name = name$name`
 #' + `options = name`

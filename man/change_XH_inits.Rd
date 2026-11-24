@@ -17,8 +17,11 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Change the stored initial values for
-any variables named in \code{options}, leaving other values unchanged.
+Change initial values named in \code{options} for the selected
+\strong{XH} module and host species, leaving other values unchanged.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$XH_obj[[i]]}.
 }
 \seealso{
 \link{get_XH_inits}

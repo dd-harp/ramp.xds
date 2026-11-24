@@ -150,8 +150,8 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 \
 `xds_obj`` ``=`` `[`setup_habitat_search_weights`](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``1``,``4``)``, ``xds_obj``)`` `\
-`xds_obj`` ``=`` `[`compute_all_available_water`](https://dd-harp.github.io/ramp.xds/reference/compute_all_available_water.md)`(``xds_obj``)`\
-`xds_obj`` ``=`` `[`compute_U_matrix`](https://dd-harp.github.io/ramp.xds/reference/compute_U_matrix.md)`(``xds_obj``)`
+`xds_obj`` ``=`` `[`update_all_available_water`](https://dd-harp.github.io/ramp.xds/reference/update_all_available_water.md)`(``xds_obj``)`\
+`xds_obj`` ``=`` `[`update_U_matrix`](https://dd-harp.github.io/ramp.xds/reference/update_U_matrix.md)`(``xds_obj``)`
 
 \
 `out`` ``<-`` ``deSolve``::`[`ode`](https://rdrr.io/pkg/deSolve/man/ode.html)`(``y ``=`` `[`get_inits`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)`(``xds_obj``, flatten``=``TRUE``)``, times ``=`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``0``,``50``, by``=``10``)``, func ``=`` ``xde_derivatives``, parms ``=`` ``xds_obj``, method ``=`` ``'lsoda'``)`\

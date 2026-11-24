@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{change_eip}
 \alias{change_eip}
-\title{Change the extrinsic incubation period}
+\title{Change the extrinsic incubation period (\strong{MY})}
 \usage{
 change_eip(xds_obj, s = 1)
 }

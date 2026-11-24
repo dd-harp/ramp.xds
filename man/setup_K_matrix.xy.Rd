@@ -16,13 +16,13 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
 Set up a mosquito dispersal matrix from
 a set of \eqn{x,y} coordinates and a \emph{kernel,} a function
-that assigns weights by distance. The fraction leaving from
-each patch that arrive at other patch is the vector of normalized
+that assigns weights by distance. The fractions leaving from
+each patch that arrive at other patches form the vector of normalized
 weights.
 }
 \keyword{internal}

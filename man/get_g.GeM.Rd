@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_g.GeM}
 \alias{get_g.GeM}
-\title{Get the mortality rates}
+\title{Get the adult mosquito mortality rate for \code{GeM} (\strong{MY})}
 \usage{
 \method{get_g}{GeM}(xds_obj, s = 1)
 }
@@ -12,9 +12,34 @@
 \item{s}{the vector species index}
 }
 \value{
-the mortality rate, as a vector
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the mortality rates
+Return the stored realized adult mosquito mortality rate per patch.
+}
+\details{
+Read \code{g} without evaluating ports or applying effect sizes.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggs_per_batch}}{number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars.GeM} can be used to change static
+parameter values. By default, bionomic parameters are configured as static
+baselines; advanced setup can be used to define dynamic ports.
+}
+
+\seealso{
+\link{GeM}
 }
 \keyword{internal}

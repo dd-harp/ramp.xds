@@ -1,3 +1,5 @@
+# X
+
 #' @title Setup the Habitat Interface for Egg Laying and Emergence
 #'
 #' @description Set up a part of the `xds` object that defines the interface for egg laying
@@ -6,21 +8,19 @@
 #'
 #' Modular computation in **`ramp.xds`** requires a rigid interface
 #' to guarantee mathematical consistency for egg laying and emergence.
-#' The interface is defined by an object called `egg_laying` that is
-#' attached to the `xds` object `xds_obj` as `xds_obj$egg_laying`.
-#' The interface includes
-#' - a habitat membership matrix, \eqn{N} made by [make_habitat_matrix]
-#' - the habitat search weights
-#' - a quantity that is motivated by mosquito searching for resources, called
-#' habitat availability \eqn{Q}, computed by [F_available_habitat];
-#' - the availability of ovitraps
-#' - the availability of unsuitable habitats
-#' - the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
-#' - the egg distribution matrix \eqn{O}, made by [make_U_matrix]
-#' - a vector that stores eggs laid
+#' This function initializes lists in `xds_obj$terms` for the first vector species:
+#' - `G`: eggs laid in each patch
+#' - `eta`: eggs laid in each habitat
+#' - `alpha`: emergence from each habitat
+#' - `Lambda`: emergence in each patch
+#' - `Q` and `Qall`: habitat availability in each patch, initialized to one
 #'
-#' This function is called by `compute_xds_object_template` to set up `egg_laying` and the variables and parameters with all
-#' the variables it might depend on.
+#' The egg-laying and emergence terms are initialized to zero.
+#' In `xds_obj$patches`, it initializes `bad_habitats` and `ovitraps`
+#' to zero in each patch, with static port objects.
+#'
+#' This function is called by [make_xds_object_template].
+#' Habitat membership is configured separately by [setup_habitats].
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param xds_obj an **`xds`** model object
 #' 

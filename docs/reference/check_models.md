@@ -1,6 +1,6 @@
-# Run Checks
+# Check the model components
 
-Run Checks
+Check the model components
 
 ## Usage
 

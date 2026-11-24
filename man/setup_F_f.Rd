@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_F_f}
 \alias{setup_F_f}
-\title{Set up blood feeding rates}
+\title{Configure the blood feeding rate function (\strong{MY})}
 \usage{
 setup_F_f(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a blood feeding rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,5 @@ setup_F_f(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up blood feeding rates
+Configure the function used to compute the baseline blood feeding rate.
 }

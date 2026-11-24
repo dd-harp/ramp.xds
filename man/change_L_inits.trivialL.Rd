@@ -17,9 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{trivialL} module (\strong{L}) for the \eqn{s^{th}} species,
-change initial values named in \code{options} leaving other values unchanged.
-
-Returns the unmodified \strong{\code{xds}} object.
+The \code{trivialL} module has no state variables. Return the
+\strong{\code{xds}} object unmodified; \code{options} is unused.
 }
 \keyword{internal}

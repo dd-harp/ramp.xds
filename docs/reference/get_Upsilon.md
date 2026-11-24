@@ -21,7 +21,7 @@ get_Upsilon(xds_obj, s = 1)
 
 ## Value
 
-the demographic matrix
+the survival and dispersal matrix through the EIP
 
 ## See also
 

@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{setup_blood_search_weights.random}
 \alias{setup_blood_search_weights.random}
-\title{Set up a blood_search_weights}
+\title{Set up random blood search weights}
 \usage{
 \method{setup_blood_search_weights}{random}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of weights}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "method1" case for \link{setup_blood_search_weights}. See \link{make_blood_search_weights_random}
+Generate random blood search weights using
+\link{make_blood_search_weights_random}.
 }
 \keyword{internal}

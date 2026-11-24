@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{F_pfpr_by_rdt.SIS}
 \alias{F_pfpr_by_rdt.SIS}
-\title{Compute \emph{Pf}PR by RDT}
+\title{Compute observed prevalence by RDT}
 \usage{
 \method{F_pfpr_by_rdt}{SIS}(vars, XH_obj)
 }
@@ -15,7 +15,8 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_pfpr_by_rdt} for the \code{SIS} model.
+Compatibility alias for \link{F_pr_obs.SIS}. The \code{SIS} module
+does not distinguish diagnostic methods; all aliases use test positivity \code{q}.
 }
 \seealso{
 \link{SIS}

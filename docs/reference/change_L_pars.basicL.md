@@ -3,16 +3,6 @@
 For the `basicL` module (**L**) for the \\(s^{th}\\) species, change
 parameter values named in `options` leaving other values unchanged.
 
-Parameters:
-
-- `psi` or \\(\psi\\)
-
-- `xi` or \\(\xi\\)
-
-- `phi` or \\(\phi\\)
-
-- `theta` or \\(\theta\\)
-
 ## Usage
 
 ``` r
@@ -37,6 +27,24 @@ change_L_pars(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Parameters
+
+- `psi` or \\(\psi\\):
+
+  maturation rate
+
+- `xi` or \\(\xi\\):
+
+  delayed maturation parameter in response to mean crowding
+
+- `phi` or \\(\phi\\):
+
+  density-independent mortality rate
+
+- `theta` or \\(\theta\\):
+
+  slope of density-dependent mortality
 
 ## See also
 

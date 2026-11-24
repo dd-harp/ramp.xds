@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{make_MY_inits_GeM}
 \alias{make_MY_inits_GeM}
-\title{Make inits for GeM adult mosquito model}
+\title{Make initial values for \code{GeM} (\strong{MY})}
 \usage{
 make_MY_inits_GeM(
   nPatches,
@@ -17,7 +17,8 @@ make_MY_inits_GeM(
 \arguments{
 \item{nPatches}{the number of patches}
 
-\item{Upsilon}{a matrix describing survival and dispersal through the initial EIP}
+\item{Upsilon}{an \code{nPatches} by \code{nPatches} matrix describing survival and
+dispersal through the initial EIP}
 
 \item{options}{a \link{list} of values that overrides the defaults}
 
@@ -30,10 +31,18 @@ make_MY_inits_GeM(
 \item{Z}{infectious mosquito density at each patch}
 }
 \value{
-a \link{list}
+a named \link{list} of initial values
 }
 \description{
-Make inits for GeM adult mosquito model
+Create a named list of initial values for the \code{GeM} module.
+Values in \code{options} override the defaults.
+}
+\details{
+Initial mosquito densities must be numeric scalars or have length
+\code{nPatches}. Scalars are expanded to that length.
+Initialize \code{U} from \code{Upsilon} and \code{d1}, \code{d2}, and \code{d3} to zero in each patch.
+These accessory values are constructed internally rather than independently
+set through \code{options}.
 }
 \section{State Variables}{
 
@@ -58,5 +67,7 @@ internal to the model and is not an output orbit.
 
 \seealso{
 \link{GeM}, \link{setup_MY_inits.GeM}
+
+\link{change_MY_inits.GeM}
 }
 \keyword{internal}

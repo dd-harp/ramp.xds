@@ -18,7 +18,7 @@ an \strong{\code{xds}} model object
 }
 \description{
 Do no vector control:
-the \strong{\code{xds}} object is returned unmodified
+the \strong{\code{xds}} object is returned unmodified.
 }
 \note{
 No control or \code{none} is the default setting

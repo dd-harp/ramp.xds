@@ -5,9 +5,9 @@ Multiplicity of Infection (MoI): the first models the true MoI, and the
 second is the MoI for "younger" infections that are detected with higher
 frequency than older ones.
 
-This model is derived under a restrictive set of assumptions, so it can
-not be extended to model dynamic changes in population size or treatment
-with anti-malarial drugs.
+This model is derived under a restrictive set of assumptions, so it
+cannot be extended to model dynamic changes in population size or
+treatment with anti-malarial drugs.
 
 ## State Variables
 
@@ -34,8 +34,8 @@ using
   [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
   as `FoI`
 
-In the `SIS` module, there is no effect of pre-erythrocytic immunity, so
-a constant fraction of infectious bites causes an infection: the
+In the `hMoI` module, there is no effect of pre-erythrocytic immunity,
+so a constant fraction of infectious bites causes an infection: the
 parameter \\(b.\\)
 
 ## Parameters
@@ -83,5 +83,5 @@ m_2 \\\\ \end{array}\$\$
 
 The model assumes that younger infections are more infectious, but that
 some transmission does occur from the older infections: \$\$c_2 x_2 +
-c_1 (x_2 - x_1)\$\$ so the infectious density is \$\$\left(c_2 x_2 + c_1
-(x_2 - x_1)\right) H\$\$
+c_1 (x_1 - x_2)\$\$ so the infectious density is \$\$\left(c_2 x_2 + c_1
+(x_1 - x_2)\right) H\$\$

@@ -18,12 +18,13 @@ After solving, this function extracts
 the values of the dependent variables for the \strong{V}
 module from the matrix of solutions,
 often called the "orbits."
-The orbits are parsed
-and attached by name to the \strong{\code{xds}} model object.
-
 For differential equations
 the solution matrix is returned by \link[deSolve:deSolve]{deSolve}.
 Discrete-time systems return a matrix
 that has the same shape.
+}
+\note{
+The orbits are parsed
+and attached by name to the \strong{\code{xds}} model object.
 }
 \keyword{internal}

@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_F_q.no_setup}
 \alias{setup_F_q.no_setup}
-\title{Set up no F_q}
+\title{Set up F_q (no setup) (\strong{MY})}
 \usage{
 \method{setup_F_q}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a human fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Leave the existing human fraction configuration unchanged.
 }
 \keyword{internal}

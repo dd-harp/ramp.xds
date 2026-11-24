@@ -1,7 +1,7 @@
 # Change spline interpolation points
 
-Change the interpolation points for a spline function. when
-`forced_by = "eir"`
+Change the interpolation points for a spline function when
+`forced_by = "eir"`.
 
 ## Usage
 

@@ -1,7 +1,6 @@
-# Difference equation models for aquatic mosquito populations
+# Update states for discrete-time systems
 
-Compute and update the state variables for a model with only aquatic
-mosquitoes
+Update the state variables for an *aquatic* model.
 
 ## Usage
 
@@ -26,5 +25,5 @@ dts_update(t, y, xds_obj)
 
 ## Value
 
-a [vector](https://rdrr.io/r/base/vector.html) containing the vector of
-all state derivatives
+updated dependent variables (a
+[vector](https://rdrr.io/r/base/vector.html))

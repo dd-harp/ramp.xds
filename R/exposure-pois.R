@@ -1,19 +1,40 @@
+# X
 
-#' @title Set up a Poisson model for Exposure and Infection
+#' @title Initialize exposure objects and infection-rate terms
 #'
-#' @inheritParams setup_exposure
+#' @description Initialize a Poisson exposure object for the first host species
+#' and empty FoI and AR storage. Called by [make_xds_object_template].
+#' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 #' @seealso Also, see [F_foi.pois] and [F_ar.pois]
 #'
-setup_exposure.pois <- function(EHname, xds_obj, options = list(), i=1) {
-  xds_obj$env_het_obj[[i]] = make_exposure_pois()
+setup_exposure_obj <- function(xds_obj) {
+  xds_obj$env_het_obj[[1]] = make_exposure_pois()
   xds_obj$terms$FoI = list()
   xds_obj$terms$FoI[[1]] = list()
   xds_obj$terms$AR = list()
   xds_obj$terms$AR[[1]] = list()
+  return(xds_obj)
+}
+
+#' @title Set up a Poisson model for Exposure and Infection
+#' @description Set the exposure object's class to `pois` for host species `i`,
+#' retaining its fields and existing FoI and AR terms.
+#' Create an empty exposure object if the species does not yet have one.
+#' @inheritParams setup_exposure
+#' @return an **`xds`** model object
+#' @export
+#' @keywords internal
+#' @seealso [F_foi.pois] and [F_ar.pois]
+setup_exposure.pois <- function(EHname, xds_obj, options = list(), i=1) {
+  if (length(xds_obj$env_het_obj) < i ||
+      is.null(xds_obj$env_het_obj[[i]])) {
+    xds_obj$env_het_obj[[i]] <- list()
+  }
+  class(xds_obj$env_het_obj[[i]]) <- "pois"
   return(xds_obj)
 }
 
@@ -35,7 +56,7 @@ make_exposure_pois <- function() {
 #' @title Poisson Force of Infection
 #' @description A Poisson model for the force of infection as a function of the daily EIR.
 #' @details This function computes the daily FoI (\eqn{h})
-#' as function of the local daily EIR (\eqn{E})
+#' as a function of the local daily EIR (\eqn{E})
 #' under a Poisson model for the distribution
 #' of bites per person, and the probability of
 #' infection per infective bite (\eqn{b}):

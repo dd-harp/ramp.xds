@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_obj}
 \alias{setup_MY_obj}
-\title{Set up an \strong{MY} model object}
+\title{Set up the module object (\strong{MY})}
 \usage{
 setup_MY_obj(MYname, xds_obj, options = list(), s = 1)
 }
@@ -19,21 +19,21 @@ setup_MY_obj(MYname, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-This setup creates an \strong{MY} object for the \eqn{s^{th}} species
-and sets up the interface ports:
+Set up the selected module and its interface ports for the
+\eqn{s^{th}} vector species in the \strong{MY} component.
 \itemize{
-\item calls \code{make_MY_obj_}\emph{MYname} to set up the dynamics, including parameters
-\item calls \link{setup_MY_inits} to set initial values
-\item calls \link{setup_F_circadian} to set up a flat circadian function (no effect)
-\item calls \link{setup_K_matrix} to set up a zero matrix
+\item Pass \code{xds_obj}, \code{options}, and \code{s} to the selected setup method.
+\item Let that method construct the module object and configure its
+initial values and interface ports as appropriate for the module.
+\item Return the updated \strong{\code{xds}} model object.
 }
-
-It also sets up computation for module-specific objects.
 
 The function is part of basic setup, but it can also be used to add vector species.
 }
 \note{
 The object is stored as \code{xds_obj$MY_obj[[s]]}
+Dispatch is on \code{MYname}, whose class is set to the supplied module name,
+not on an existing module object.
 }
 \seealso{
 \link{xds_setup}, \link{change_MY_pars}, \link{setup_MY_inits}, \link{setup_F_circadian}, \link{setup_K_matrix}

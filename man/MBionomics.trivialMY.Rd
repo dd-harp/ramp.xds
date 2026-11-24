@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{MBionomics} for the \code{trivialMY} module
+Implements \link{MBionomics} for the \code{trivialMY} module.
 }
 \keyword{internal}

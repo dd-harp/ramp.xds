@@ -1,7 +1,10 @@
 # Change parameters for `GeM` (**MY**)
 
 For the `GeM` module (**MY**) for the \\(s^{th}\\) species, change
-parameter values named in `options` leaving other values unchanged.
+parameter values named in `options` leaving other values unchanged. To
+change `K_matrix`, use
+[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md);
+this method does not change the dispersal matrix.
 
 ## Usage
 
@@ -58,7 +61,7 @@ an **`xds`** model object
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
@@ -74,7 +77,8 @@ an **`xds`** model object
 
 - `nu` or \\(\nu\\):
 
-  egg batch rate in batches per mosquito per day — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

@@ -19,9 +19,11 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a Poisson model for Exposure and Infection
+Set the exposure object's class to \code{pois} for host species \code{i},
+retaining its fields and existing FoI and AR terms.
+Create an empty exposure object if the species does not yet have one.
 }
 \seealso{
-Also, see \link{F_foi.pois} and \link{F_ar.pois}
+\link{F_foi.pois} and \link{F_ar.pois}
 }
 \keyword{internal}

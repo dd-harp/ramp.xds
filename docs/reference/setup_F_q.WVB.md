@@ -1,6 +1,6 @@
-# Set up WVB human feeding fraction
+# Set up WVB human fraction (**MY**)
 
-Configure the WVB human feeding fraction method.
+Configure the WVB human fraction method.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a human fraction or setup method name
 
 - xds_obj:
 

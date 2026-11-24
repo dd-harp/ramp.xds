@@ -1,7 +1,7 @@
 # Compute the temporal shock
 
 Evaluate the function `F_shock` for a forced model when `forced_by` is
-"Lambda"
+"Lambda".
 
 ## Usage
 

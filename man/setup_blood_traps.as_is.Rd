@@ -2,18 +2,18 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{setup_blood_traps.as_is}
 \alias{setup_blood_traps.as_is}
-\title{Set up a blood_traps}
+\title{Set up blood traps from supplied values}
 \usage{
 \method{setup_blood_traps}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
@@ -23,6 +23,6 @@ Pass a pre-configured blood_traps. If it passes
 the checks, it replaces the current blood_traps.
 
 If called with \code{name = "as_is"}, the blood_traps
-must be at \code{options$blood_traps}
+must be at \code{options$blood_traps_asis}.
 }
 \keyword{internal}

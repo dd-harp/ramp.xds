@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{F_fqZ}
 \alias{F_fqZ}
-\title{Infective mosquito biting rate}
+\title{Compute infective mosquito biting density (\strong{MY})}
 \usage{
 F_fqZ(t, y, xds_obj, s)
 }
@@ -19,6 +19,14 @@ F_fqZ(t, y, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
+Return the daily infective mosquito biting density on humans,
+\code{fqZ}, for each patch.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
+This is a patch-level biting density, not a per-host biting rate.
+}
+\seealso{
+\link{F_fqM}
 }
 \keyword{internal}

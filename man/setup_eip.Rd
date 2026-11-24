@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_eip}
 \alias{setup_eip}
-\title{Set up the extrinsic incubation period}
+\title{Set up the extrinsic incubation period (\strong{MY})}
 \usage{
 setup_eip(name, xds_obj, options = list(), s = 1)
 }

@@ -19,6 +19,9 @@
 an \strong{\code{xds}} model object
 }
 \description{
+Set up births using an options list.
+}
+\note{
 If an options list is passed
 as the first argument, then set
 \itemize{

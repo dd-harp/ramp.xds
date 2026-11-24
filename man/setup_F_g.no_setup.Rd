@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_F_g.no_setup}
 \alias{setup_F_g.no_setup}
-\title{Set up no F_g}
+\title{Set up F_g (no setup) (\strong{MY})}
 \usage{
 \method{setup_F_g}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a mosquito mortality rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Leave the existing mosquito mortality rate configuration unchanged.
 }
 \keyword{internal}

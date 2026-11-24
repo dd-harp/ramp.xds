@@ -21,14 +21,19 @@ It is equivalent to an S-I compartmental model under a change of variables \eqn{
 The \code{SI} module is a generalized implementation of the S-I model:
 \itemize{
 \item the module adds a variable to compute the density of parous mosquitoes
-\item mosquito ecology and infection dynamics are spatial -- a patch-based meta-population model -- so state variables and most parameters are vectors of length \code{nPatches.} The dispersal matrix has dimension \code{nPatches} \eqn{\times} \code{nPatches}
+\item mosquito ecology and infection dynamics are spatial -- a patch-based meta-population model -- so state variables and most parameters are vectors of length \code{nPatches}. The dispersal matrix has dimension \code{nPatches} \eqn{\times} \code{nPatches}
 \item biting by infectious mosquitoes is computed at time \eqn{t} as if the infected mosquitoes
 had survived through the EIP \eqn{(\tau)}.
 \item parameters describe egg laying by the adult mosquito population
-\item several of the the core bionomic parameters are set up as \emph{ports} and designed to be computed as a \emph{changing baseline} that can be \emph{modified by vector control}
+\item several of the core bionomic parameters are set up as \emph{ports} and designed to be computed as a \emph{changing baseline} that can be \emph{modified by vector control}
 }
 
 The \href{https://dd-harp.github.io/ramp.xds/articles/adult_si.html}{SI Vignette} discusses the model family, and the module design and implementation.
+}
+\note{
+Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity}.
+
+The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
 }
 \section{State Variables}{
 
@@ -56,14 +61,14 @@ The \href{https://dd-harp.github.io/ramp.xds/articles/adult_si.html}{SI Vignette
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
-\item{\code{mu} or \eqn{\mu}}{emigration loss rate --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{the egg batch rate, in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{the oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
 }
 
-After basic setup, \link{change_MY_pars} can be used for static parameters, or for
+After basic setup, \link{change_MY_pars} can be used for static parameters, or
 for parameters that are set up as static ports (the default).
 Use advanced setup to modify dynamic ports.
 }
@@ -75,13 +80,13 @@ Mosquito survival and dispersal are described by a single matrix, \eqn{\Omega.}
 
 The parameter \eqn{g} is interpreted as the per-capita mortality rate for mosquitoes
 while they are in a patch. Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma},
-and some fraction of emigrating mosquitoes is lost (\eqn{\mu}). The total rate of loss from
-a patch is \deqn{g + \mu \sigma.}
+and some fraction of emigrating mosquitoes is lost (\eqn{\mu}). The combined rate of
+mortality and loss during emigration is \deqn{g + \mu \sigma.}
 
 The columns of the mosquito dispersal matrix \eqn{(K)} sum
 to zero. The default matrix is all zeros, but for non-trivial dispersal matrices:
 \deqn{\mbox{diag}\left(K\right)=-1}
-and the non-diagonal elements are fraction of surviving mosquitoes that arrive at another patch after
+and the non-diagonal elements are fractions of surviving mosquitoes that arrive at another patch after
 a flight bout. (If there is any population loss associated with emigration, it goes in the term \eqn{\mu}.)
 
 The matrix \eqn{\Omega} is computed as
@@ -104,12 +109,12 @@ Using advanced setup options, the blood feeding parameters can be forced by vari
 describing resource availability or weather.
 }
 
-\section{Dynamics}{
+\section{ODE}{
 
 
 \strong{Ecology}
 
-Adult mosquitoes emerge from aquatic habitats \eqn{(\Lambda)} and disperse and die (\eqn{\Omega}):
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and disperse and die according to \eqn{\Omega}:
 \deqn{
 dM/dt = \Lambda - \Omega \cdot M 
 }
@@ -118,17 +123,37 @@ blood fed at least once:
 \deqn{
 dP/dt = fq(M-P) - \Omega \cdot P \\
 }
-Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity.}
 
 \strong{Infection Dynamics}
 
 Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
 net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
 Changes in the density of infected mosquitoes
-is given by:
+are given by:
 \deqn{
 dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
 }
+}
+
+\section{DTS}{
+
+
+\strong{Ecology}
+
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
+disperse and die according to \eqn{\Omega}. The one-day update in
+\link{Update_MYt.SI} is:
+\deqn{M_t = \Lambda + e^{-\Omega}\cdot M_{t-1}}
+The model also computes the density of parous adult mosquitoes: those that have
+blood fed at least once:
+\deqn{P_t = e^{-\Omega}\cdot\left[(1-e^{-fq})(M_{t-1}-P_{t-1}) + P_{t-1}\right]}
+
+\strong{Infection Dynamics}
+
+Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
+net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
+The density of infected mosquitoes is updated by:
+\deqn{Y_t = e^{-\Omega}\cdot\left[(1-e^{-fq\kappa})(M_{t-1}-Y_{t-1}) + Y_{t-1}\right]}
 }
 
 \section{Infective Biting}{
@@ -141,7 +166,7 @@ and dispersed through an EIP of \eqn{\tau} days \eqn{e^{- \Omega \tau}}.
 \describe{
 \item{\eqn{Z}}{density of infectious mosquitoes, imputed from \eqn{Y}}
 \item{\code{fqZ}}{Infective biting density: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
-\item{\code{fqM}}{Human biting density: the number of human infectious bites, per patch, per day}
+\item{\code{fqM}}{Human biting density: the number of bites on humans, per patch, per day}
 }
 
 Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential function \link[expm:expm]{expm}
@@ -149,15 +174,14 @@ Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential functio
 \strong{The EIR}
 
 \eqn{fqZ} is the dynamical term computed by \link{F_fqZ.SI}. It is called
-by \link{compute_EIR} (in \link{Transmission}) to compute and store \verb{EIR,}
+by \link{compute_EIR} (in \link{Transmission}) to compute and store \code{EIR},
 the local daily EIR \eqn{(E)}. Note that
 \code{fqZ} is a vector of length \code{nPatches} but the
-local EIR is a vector of length \code{nStrata.}
+local EIR is a vector of length \code{nStrata}.
 The \strong{XY} interface uses
 information about humans and mosquitoes to build the biting distribution matrix, \eqn{\beta,} and if
 there are no visitors, then
 \deqn{E = \beta \cdot fqZ}
-The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
 
 \strong{The HBR}
 

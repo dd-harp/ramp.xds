@@ -1,6 +1,6 @@
-# Plot the fraction infective
+# Plot the fraction of infective mosquitoes
 
-Plot the fraction infective
+Plot the fraction of infective mosquitoes
 
 ## Usage
 
@@ -28,4 +28,4 @@ xds_plot_Z_fracs(xds_obj, s = 1, clrs = "darkred", llty = 1, add = FALSE)
 
 - add:
 
-  do not plot axes if TRUE
+  add lines to the existing plot if TRUE

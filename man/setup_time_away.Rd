@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-time_away.R
 \name{setup_time_away}
 \alias{setup_time_away}
-\title{Set up time spent}
+\title{Set up time away}
 \usage{
 setup_time_away(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,8 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up time spent
+Set up time away
+}
+\seealso{
+\link{time_away}
 }

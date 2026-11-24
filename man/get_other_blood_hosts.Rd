@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{get_other_blood_hosts}
 \alias{get_other_blood_hosts}
-\title{Get availability of other blood hosts}
+\title{Get other blood host availability}
 \usage{
 get_other_blood_hosts(xds_obj, s = 1)
 }
@@ -12,8 +12,8 @@ get_other_blood_hosts(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+a numeric vector of patch-level availability
 }
 \description{
-Get availability of other blood hosts
+Get other blood host availability
 }

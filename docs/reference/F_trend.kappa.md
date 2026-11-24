@@ -1,6 +1,6 @@
 # Compute the temporal trend
 
-Evaluate the function `F_trend` for a trivial **XH** model
+Evaluate the function `F_trend` for a trivial **XH** model.
 
 ## Usage
 

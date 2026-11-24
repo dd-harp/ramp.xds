@@ -115,8 +115,7 @@ get_spline_s = function(xds_obj, s){
 #' @description
 #' Get spline interpolation points when `forced_by` = "none".
 #'
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
+#' @inheritParams get_spline_s
 #'
 #' @return `NULL`
 #'
@@ -132,8 +131,7 @@ get_spline_s.none = function(xds_obj, s){
 #' @description
 #' Get spline interpolation points when `forced_by` = "Lambda".
 #'
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
+#' @inheritParams get_spline_s
 #'
 #' @return a [list] containing `tt` and `yy`
 #'
@@ -150,8 +148,7 @@ get_spline_s.Lambda = function(xds_obj, s=1){
 #' @description
 #' Get spline interpolation points when `forced_by` = "eir".
 #'
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
+#' @inheritParams get_spline_s
 #'
 #' @return a [list] containing `tt` and `yy`
 #'

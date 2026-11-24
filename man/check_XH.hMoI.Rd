@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{check_XH.hMoI}
 \alias{check_XH.hMoI}
-\title{Check / update before solving}
+\title{Check \code{hMoI} (\strong{XH})}
 \usage{
 \method{check_XH}{hMoI}(xds_obj, i)
 }
@@ -15,7 +15,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Check / update before solving
+Check \code{hMoI} (\strong{XH})
 }
 \seealso{
 \link{hMoI}

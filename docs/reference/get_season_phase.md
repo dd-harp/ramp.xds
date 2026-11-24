@@ -1,6 +1,6 @@
 # Get seasonality parameter `phase`
 
-Get the `phase` parameter for the seasonality function
+Get the `phase` parameter for the seasonality function.
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_F_eip.random}
 \alias{setup_F_eip.random}
-\title{Set up random EIP values}
+\title{Set up random EIP values (\strong{MY})}
 \usage{
 \method{setup_F_eip}{random}(name, xds_obj, options = list(), s = 1)
 }
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Configure random extrinsic incubation periods.
+Configure random extrinsic incubation periods using \link{make_F_eip_random}.
 }
 \keyword{internal}

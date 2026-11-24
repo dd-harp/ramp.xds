@@ -17,11 +17,13 @@ change_L_pars(xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-For the \strong{L} module for the \eqn{s^{th}} species,
-change parameter values named in \code{options},
-leaving other values unchanged.
+Change parameter values named in \code{options} for the selected
+\strong{L} module for the \eqn{s^{th}} vector species, leaving other values unchanged.
+}
+\note{
+Dispatch is on the class of \code{xds_obj$L_obj[[s]]}.
 }
 \seealso{
-\link{get_L_pars}, \link{setup_L_obj}, \link{xds_info_change_parameters}
+\link{get_L_pars}, \link{setup_L_obj}, \link{xds_change_parameters}
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{F_fqZ.SI}
 \alias{F_fqZ.SI}
-\title{Infective biting for \code{SI}}
+\title{Compute infective mosquito biting density for \code{SI} (\strong{MY})}
 \usage{
 \method{F_fqZ}{SI}(t, y, xds_obj, s)
 }
@@ -19,7 +19,10 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Compute infective biting, the number of infectious bites by the mosquito population on humans in each patch, each day.
+Return the daily infective mosquito biting density on humans,
+\code{fqZ}, for each patch in the \code{SI} module.
+Compute \code{fqZ = f*q*(Upsilon \%*\% Y)} using the module's
+survival matrix to obtain infective mosquito density.
 }
 \section{Infective Biting}{
 
@@ -31,7 +34,7 @@ and dispersed through an EIP of \eqn{\tau} days \eqn{e^{- \Omega \tau}}.
 \describe{
 \item{\eqn{Z}}{density of infectious mosquitoes, imputed from \eqn{Y}}
 \item{\code{fqZ}}{Infective biting density: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
-\item{\code{fqM}}{Human biting density: the number of human infectious bites, per patch, per day}
+\item{\code{fqM}}{Human biting density: the number of bites on humans, per patch, per day}
 }
 
 Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential function \link[expm:expm]{expm}
@@ -39,15 +42,14 @@ Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential functio
 \strong{The EIR}
 
 \eqn{fqZ} is the dynamical term computed by \link{F_fqZ.SI}. It is called
-by \link{compute_EIR} (in \link{Transmission}) to compute and store \verb{EIR,}
+by \link{compute_EIR} (in \link{Transmission}) to compute and store \code{EIR},
 the local daily EIR \eqn{(E)}. Note that
 \code{fqZ} is a vector of length \code{nPatches} but the
-local EIR is a vector of length \code{nStrata.}
+local EIR is a vector of length \code{nStrata}.
 The \strong{XY} interface uses
 information about humans and mosquitoes to build the biting distribution matrix, \eqn{\beta,} and if
 there are no visitors, then
 \deqn{E = \beta \cdot fqZ}
-The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
 
 \strong{The HBR}
 
@@ -58,6 +60,6 @@ The orbits of \code{fqM} and \code{HBR} are also computed during parsing, as
 }
 
 \seealso{
-\link{SI}, \link{dMYdt.SI}
+\link{SI}, \link{dMYdt.SI}, \link{F_fqM.SI}
 }
 \keyword{internal}

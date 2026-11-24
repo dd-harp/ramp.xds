@@ -11,6 +11,10 @@ published by Aron and May (1982). Unlike the \code{SI} module, it includes
 infectious mosquitoes as an explicit state variable and uses delayed values
 to represent the extrinsic incubation period.
 }
+\note{
+The resulting \code{EIR} and \code{HBR}
+orbits are attached to the XH output during parsing.
+}
 \section{State Variables}{
 
 \describe{
@@ -36,10 +40,10 @@ to represent the extrinsic incubation period.
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 
@@ -53,7 +57,7 @@ Mosquito survival and dispersal are described by the demographic matrix
 \eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
 rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
-lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+lost. The combined rate of mortality and loss during emigration is \deqn{g+\mu\sigma.}
 
 The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
 non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal
@@ -109,13 +113,12 @@ EIP.
 \link{F_fqZ.macdonald} and \link{F_fqM.macdonald} compute these patch-level
 quantities. \link{compute_EIR} combines \code{fqZ} with the biting distribution
 matrix and resident-bite fraction to compute stratum-level EIR; \link{F_hbr}
-computes HBR from \code{fqM} in the same way. The resulting \code{EIR} and \code{HBR}
-orbits are attached to the XH output during parsing.
+computes HBR from \code{fqM} in the same way.
 }
 
 \section{Egg Laying}{
 
-The egg batch rate \eqn{\nu} and the number of eggs per batch
+The oviposition rate \eqn{\nu} and the number of eggs per batch
 \eqn{\Gamma} determine the egg production rate per patch:
 \deqn{G=\nu\Gamma M.}
 \link{F_eggs.macdonald} computes \eqn{G}, which is passed to \link{EggLaying} for
@@ -124,8 +127,9 @@ distribution among aquatic habitats.
 
 \section{Note}{
 
-This model is not capable of handling exogenous forcing by weather or
-vector control. Use the \code{GeM} module instead.
+Scalar parameters have no ports for exogenous forcing or vector control.
+Use the \code{GeM} module for those capabilities. The standard dispersal-matrix
+port follows the shared bionomics and effect-size convention.
 }
 
 \references{

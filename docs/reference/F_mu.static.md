@@ -1,7 +1,6 @@
-# Static model emigration-loss fraction
+# Static model emigration-loss fraction (**MY**)
 
-Implements [F_mu](https://dd-harp.github.io/ramp.xds/reference/F_mu.md)
-for a static model
+Return the baseline emigration-loss fraction for a static model.
 
 ## Usage
 

@@ -17,5 +17,5 @@ change_travel_eir(travel_eir, xds_obj, i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the travel eir  for the \eqn{i^{th}} host species
+Update the travel eir for the \eqn{i^{th}} host species
 }

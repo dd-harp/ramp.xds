@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{F_fqM.SI}
 \alias{F_fqM.SI}
-\title{Human biting or \code{SI}}
+\title{Compute mosquito biting density for \code{SI} (\strong{MY})}
 \usage{
 \method{F_fqM}{SI}(t, y, xds_obj, s)
 }
@@ -19,7 +19,9 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Compute human biting, the number of bites by the mosquito population on humans in each patch, each day.
+Return the daily mosquito biting density on humans,
+\code{fqM}, for each patch in the \code{SI} module.
+Compute \code{fqM = f*q*M}.
 }
 \section{Infective Biting}{
 
@@ -31,7 +33,7 @@ and dispersed through an EIP of \eqn{\tau} days \eqn{e^{- \Omega \tau}}.
 \describe{
 \item{\eqn{Z}}{density of infectious mosquitoes, imputed from \eqn{Y}}
 \item{\code{fqZ}}{Infective biting density: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
-\item{\code{fqM}}{Human biting density: the number of human infectious bites, per patch, per day}
+\item{\code{fqM}}{Human biting density: the number of bites on humans, per patch, per day}
 }
 
 Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential function \link[expm:expm]{expm}
@@ -39,15 +41,14 @@ Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential functio
 \strong{The EIR}
 
 \eqn{fqZ} is the dynamical term computed by \link{F_fqZ.SI}. It is called
-by \link{compute_EIR} (in \link{Transmission}) to compute and store \verb{EIR,}
+by \link{compute_EIR} (in \link{Transmission}) to compute and store \code{EIR},
 the local daily EIR \eqn{(E)}. Note that
 \code{fqZ} is a vector of length \code{nPatches} but the
-local EIR is a vector of length \code{nStrata.}
+local EIR is a vector of length \code{nStrata}.
 The \strong{XY} interface uses
 information about humans and mosquitoes to build the biting distribution matrix, \eqn{\beta,} and if
 there are no visitors, then
 \deqn{E = \beta \cdot fqZ}
-The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
 
 \strong{The HBR}
 
@@ -58,6 +59,6 @@ The orbits of \code{fqM} and \code{HBR} are also computed during parsing, as
 }
 
 \seealso{
-\link{SI}
+\link{SI}, \link{F_fqZ.SI}
 }
 \keyword{internal}

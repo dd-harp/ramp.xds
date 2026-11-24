@@ -19,12 +19,21 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Run \link{check_K_matrix} then
+Run \link{check_K_matrix}.
 
 After passing checks, \code{xds_obj} is updated.
 
+For models with two or more dispersal matrices,
+use \code{which_K}.
+
 In models with multiple species, use \code{s} to
 specify the species to update.
+}
+\note{
+The argument \code{which_K} supports behavioral state
+models for mosquito ecology with two or more
+mosquito dispersal matrices.
+The default "K" returns \code{K_matrix}
 }
 \seealso{
 \link{xds_info_mosquito_dispersal}; \link{setup_K_matrix}

@@ -1,6 +1,9 @@
-# Get parameters for `trivialXH` (**XH**)
+# Change parameters for `trivialXH` (**XH**)
 
-This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+Change parameter values named in `options`, leaving other parameter
+values unchanged. Rebuild only forcing functions whose parameters are
+named in `options`; an empty parameter list resets the corresponding
+function to constant one.
 
 ## Usage
 

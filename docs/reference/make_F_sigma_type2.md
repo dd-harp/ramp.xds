@@ -1,6 +1,7 @@
-# Make a patch emigration configuration
+# Make a patch emigration configuration (**MY**)
 
-Make an object to model patch emigration as a type 2 functional response
+Build a configuration object for a type 2 patch emigration rate response
+to blood host, aquatic habitat, and sugar availability.
 
 ## Usage
 
@@ -27,7 +28,7 @@ make_F_sigma_type2(
 
 - sigX:
 
-  the emigration rate from a patch with no resources
+  the emigration rate scaling parameter
 
 - sigB:
 

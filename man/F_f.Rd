@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{F_f}
 \alias{F_f}
-\title{Compute the blood feeding rate, f}
+\title{Compute the baseline blood feeding rate (\strong{MY})}
 \usage{
 F_f(t, xds_obj, s)
 }
@@ -17,9 +17,10 @@ F_f(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Set the baseline value of the feeding rate, \eqn{f}.
+Compute the baseline blood feeding rate, \eqn{f}.
 }
 \note{
-This method dispatches on the type of \code{f_obj} attached to the \code{MY_obj}.
+This method dispatches on the class of the port object \code{f_obj}
+attached to the \code{MY_obj}.
 }
 \keyword{internal}

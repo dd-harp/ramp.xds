@@ -37,11 +37,15 @@ test_that("initial-value changes preserve positional, named and species behavior
       setup_L_obj("basicL", 1, model, s=2)
     changed <- fun(model2, options)
     expect_equal(changed, fun(model2, options=options, s=1))
-    expect_equal(changed[[component]][[1]]$inits, options)
+    expected <- model2[[component]][[1]]$inits
+    expected[names(options)] <- options
+    expect_equal(changed[[component]][[1]]$inits, expected)
     expect_equal(fun(model2), fun(model2, list(), 1))
     second <- fun(model2, options, 2)
     expect_equal(second[[component]][[1]], model2[[component]][[1]])
-    expect_equal(second[[component]][[2]]$inits, options)
+    expected <- model2[[component]][[2]]$inits
+    expected[names(options)] <- options
+    expect_equal(second[[component]][[2]]$inits, expected)
   }
 })
 

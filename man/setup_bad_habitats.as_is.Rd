@@ -7,7 +7,7 @@
 \method{setup_bad_habitats}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured bad_habitats. If it passes
+Pass pre-configured bad_habitats. If it passes
 the checks, it replaces the current bad_habitats.
 
 If called with \code{name = "as_is"}, the bad_habitats
-must be at \code{options$bad_habitats}
+must be at \code{options$bad_habitats}.
 }
 \keyword{internal}

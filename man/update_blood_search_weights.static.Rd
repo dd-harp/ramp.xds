@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-The \code{static} method returnStrata \code{xds_obj} unmodified
+The static method returns \code{xds_obj} unmodified.
 }
 \keyword{internal}

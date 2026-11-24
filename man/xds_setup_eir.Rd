@@ -65,13 +65,6 @@ To build a model that is forced by infective biting in the patches, which requir
 spent matrix and search weights, use \link{xds_setup_human}.
 }
 \details{
-This sets
-
-\code{class(xds_obj$frame) = 'eir'}
-
-to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs.
-
 \strong{Dynamics}
 
 Configure the \strong{XH} component:
@@ -96,6 +89,14 @@ can be configured to compute relative biting rates by age:
 \item \code{F_shock} or \code{shock_par} --- set up the shock function
 \item \code{F_age} or \code{age_par} --- set up relative biting rates by age
 }
+}
+\note{
+This sets
+
+\code{class(xds_obj$frame) = 'eir'}
+
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs.
 }
 \seealso{
 \itemize{

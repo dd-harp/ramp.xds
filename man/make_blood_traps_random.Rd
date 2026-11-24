@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{make_blood_traps_random}
 \alias{make_blood_traps_random}
-\title{Make other blood hosts}
+\title{Make random blood trap availability}
 \usage{
 make_blood_traps_random(
   nPatches,
@@ -27,5 +27,5 @@ make_blood_traps_random(
 a numeric vector
 }
 \description{
-Set up a random vector
+Generate a random vector of blood trap availability.
 }

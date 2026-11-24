@@ -23,7 +23,7 @@ To build a model forced by the EIR, see xds_setup_eir.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,7 +142,7 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 
 
 <dt id="arg-residence">residence<a class="anchor" aria-label="anchor" href="#arg-residence"></a></dt>
-<dd><p>a vector that describes the patch where each human stratum lives</p></dd>
+<dd><p>a vector that describes the patch where each human stratum lives (see <a href="residence_vector.html">residence_vector</a>)</p></dd>
 
 
 <dt id="arg-searchb">searchB<a class="anchor" aria-label="anchor" href="#arg-searchb"></a></dt>
@@ -175,9 +175,6 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 infection.
 The <strong>MY</strong> module is set to <code>trivialMY</code> and a forcing function
 computes infective biting in the patches.</p>
-<p><code>class(xds_obj$frame) = 'human'</code></p>
-<p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
-and parse outputs.</p>
 <p>To set up a model that is forced
 by the EIR, use <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
 <p><strong>Dynamics</strong></p>
@@ -188,19 +185,28 @@ by the EIR, use <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
 <li><p><code>HPop</code> is the human population density</p></li>
 </ul><p><strong>Model Structure</strong></p>
 <p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
-<li><p><code>residence</code> - the human residence vector (see <a href="xds_info_human_populations.html">xds_info_human_populations</a>)</p></li>
+<li><p><code>residence</code> - the human residence vector (see <a href="residence_vector.html">residence_vector</a> and <a href="residence_matrix.html">residence_matrix</a>)</p></li>
 </ul><p>During setup:</p><ul><li><p>The structural parameter <code>nStrata</code> is set to  <code>length(residence)</code></p></li>
 <li><p><code>nHostSpecies</code>\(=1\)</p></li>
-</ul><p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of blood feeding and exposure:</p><ul><li><p><code>searchB</code> the blood feeding search weights (see <a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a>)</p></li>
-<li><p><code>TSoptions</code> sets up a time spent matrix (see <a href="xds_info_time_spent.html">xds_info_time_spent</a>)</p></li>
-</ul></div>
+</ul><p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of blood feeding and exposure:</p><ul><li><p><code>searchB</code> the blood feeding search weights (see <a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a> and <a href="human_availability.html">human_availability</a>)</p></li>
+<li><p><code>TSoptions</code> sets up a time spent matrix (see <a href="time_spent_matrix.html">xds_info_time_spent</a>)</p></li>
+</ul><p>The <a href="mixing_matrix.html">mixing_matrix</a> maps infective biting density in patches to the daily
+EIR in population strata. See <a href="blood_feeding.html">blood_feeding</a> for the blood-feeding framework.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>This sets</p>
+<p><code>class(xds_obj$frame) = 'human'</code></p>
+<p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
+and parse outputs.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
 <ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
 <li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
-<li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
+<li><p>Advanced Setup: <a href="xds_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a></p></li>
 <li><p>Internals: <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>,
 <a href="xds_object.html">xds_object</a>, <a href="make_xds_object_template.html">make_xds_object_template</a></p></li>

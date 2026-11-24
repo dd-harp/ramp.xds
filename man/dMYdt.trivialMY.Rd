@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{dMYdt.trivialMY}
 \alias{dMYdt.trivialMY}
-\title{Compute derivatives for \code{trivialMY} (\strong{MY})}
+\title{Compute the derivatives for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{dMYdt}{trivialMY}(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@
 a \link{numeric} vector of length 0
 }
 \description{
-Implements \link{dMYdt} for the trivial (forced emergence) model.
+Return an empty numeric vector because the \code{trivialMY} module has no state variables.
 }
 \keyword{internal}

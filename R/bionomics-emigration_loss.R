@@ -1,13 +1,14 @@
+# X
 
-#' @title Set up a dispersal loss bionomic object
+#' @title Set up bionomic port for emigration-loss fraction (**MY**)
 #'
-#' @description Set up an object
-#' to compute the dispersal loss fraction, \eqn{\mu}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline emigration-loss
+#' fraction, \eqn{\mu}, for a static model.
 #'
 #' @param mu the emigration loss fraction
-#' @param MY_obj an **`MY`** model object
+#' @param MY_obj an **`MY`** module object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** module object
 #'
 #' @keywords internal
 #' @export
@@ -21,10 +22,9 @@ setup_mu_obj = function(mu, MY_obj){
   return(MY_obj)
 }
 
-#' @title Compute the emigration loss fraction
+#' @title Compute the baseline emigration-loss fraction (**MY**)
 #'
-#' @description This method dispatches on the type of `mu_obj`. It should
-#' compute the baseline emigration-loss fraction, \eqn{\mu}
+#' @description Compute the baseline emigration-loss fraction, \eqn{\mu}.
 #'
 #' @inheritParams F_f
 #'
@@ -36,8 +36,8 @@ F_mu <- function(t, xds_obj, s){
   UseMethod("F_mu", xds_obj$MY_obj[[s]]$mu_obj)
 }
 
-#' @title Static model emigration-loss fraction
-#' @description Implements [F_mu] for a static model
+#' @title Static model emigration-loss fraction (**MY**)
+#' @description Return the baseline emigration-loss fraction for a static model.
 #' @inheritParams F_mu
 #' @return \eqn{mu}, the baseline emigration-loss fraction
 #' @keywords internal
@@ -69,7 +69,7 @@ check_mu = function(xds_obj, s=1){
   return(mu)
 }
 
-#' @title Change emigration-loss fraction
+#' @title Change emigration-loss fraction (**MY**)
 #' 
 #' @description Update the emigration-loss fraction for the \eqn{s^{th}} vector
 #' species and refresh the demographic matrix.
@@ -90,7 +90,7 @@ change_mu = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up emigration-loss fraction
+#' @title Set up emigration-loss fraction (**MY**)
 #'
 #' @description Configure and validate the emigration-loss fraction.
 #'
@@ -111,9 +111,12 @@ setup_mu = function(name, xds_obj, options=list(), s=1){
 #' @export
 setup_emigration_loss <- setup_mu
 
-#' @title Set up F_mu
+#' @title Configure the emigration-loss fraction function (**MY**)
 #'
-#' @param name a or setup function name
+#' @description Configure the function used to compute the baseline
+#' emigration-loss fraction.
+#'
+#' @param name an emigration-loss fraction or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -127,13 +130,13 @@ setup_F_mu = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_F_mu", options)
 }
 
-#' @title Set up F_mu
+#' @title Set up F_mu (**MY**)
 #'
-#' @description If an options list is passed
-#' as the first argument, then set 
-#' + `Fmu_name = name$name` 
-#' + `options = name`
-#' and call `setup_F_mu(Fmu_name, xds_obj, options, s)` 
+#' @description Set up emigration-loss fractions using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_F_mu].
 #'
 #' @inheritParams setup_F_mu
 #'
@@ -149,8 +152,8 @@ setup_F_mu.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no F_mu 
-#' @description Don't change anything 
+#' @title Set up F_mu (no setup) (**MY**)
+#' @description Leave the existing emigration-loss fraction configuration unchanged.
 #' @inheritParams setup_F_mu
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -159,9 +162,10 @@ setup_F_mu.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up static emigration-loss fraction
+#' @title Set up static emigration-loss fraction (**MY**)
 #'
-#' @description Set up supplied static emigration-loss fractions.
+#' @description Set up supplied static emigration-loss fractions from `options$mu`
+#' or a numeric `name`. Values in `options$mu` take precedence.
 #'
 #' @inheritParams setup_F_mu
 #' @return an **`xds`** model object
@@ -180,9 +184,9 @@ setup_F_mu.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up random emigration-loss fraction
+#' @title Set up random emigration-loss fraction (**MY**)
 #' 
-#' @description Implements the "random" case for [setup_F_mu]. See [make_F_mu_random].
+#' @description Configure random emigration-loss fractions using [make_F_mu_random].
 #' 
 #' @inheritParams setup_F_mu
 #' @return an **`xds`** model object
@@ -193,38 +197,27 @@ setup_F_mu.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Compute random emigration-loss fractions
-#'
-#' @description Generate patch-level emigration-loss fractions using the
-#' configured random number generator.
-#'
-#' @inheritParams F_mu
-#' @return a [numeric] vector of length `nPatches`
-#' @keywords internal
-#' @export
-F_mu.random = function(t, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$mu_obj, {
-    mu <- f_rand(xds_obj$nPatches, p1, p2)
-    return(mu)
-  })
-}
-
-#' @title Make random emigration-loss fractions
+#' @title Make random emigration-loss fractions (**MY**)
 #' 
-#' @description Build a configuration object for random emigration-loss fractions.
+#' @description Draw emigration-loss fractions once during setup.
+#' Subsequent evaluations reuse these values.
+#'
+#' @note The values are stored in a static port object.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param f_rand a random number generator
+#' @param f_rand a random number generator called as `f_rand(nPatches, p1, p2)`
+#' that returns a numeric vector of length `nPatches`
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
-#' @return a configuration object for [F_mu.random]
+#' @return a static port object for [F_mu.static]
 #' @export
 make_F_mu_random = function(nPatches, options=list(), f_rand = stats::rbeta,
                             p1=8, p2=1000) {
   with(options, {
     mu_obj <- list(f_rand=f_rand, p1=p1, p2=p2)
-    class(mu_obj) <- "random"
+    mu_obj$mu <- f_rand(nPatches, p1, p2)
+    class(mu_obj) <- "static"
     return(mu_obj)
   })
 }

@@ -12,7 +12,7 @@ get_ovitraps(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 Get availability of ovitraps

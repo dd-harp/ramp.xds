@@ -1,8 +1,6 @@
-# Add indices for aquatic stage mosquitoes to parameter list
+# Set up variable indices for `trivialMY` (**MY**)
 
-Implements
-[setup_MY_ix](https://dd-harp.github.io/ramp.xds/reference/setup_MY_ix.md)
-for trivial (forced emergence) model.
+The module has no state variables; return the model object unchanged.
 
 ## Usage
 

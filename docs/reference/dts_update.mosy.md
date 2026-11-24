@@ -1,7 +1,6 @@
-# Generalized spatial differential equation model (mosquito only)
+# Update states for discrete-time systems
 
-Compute and update the state variables for a model with mosquito ecology
-(no transmission)
+Update the state variables for a *mosy* model.
 
 ## Usage
 
@@ -26,5 +25,5 @@ dts_update(t, y, xds_obj)
 
 ## Value
 
-a [vector](https://rdrr.io/r/base/vector.html) containing the vector of
-all state derivatives
+updated dependent variables (a
+[vector](https://rdrr.io/r/base/vector.html))

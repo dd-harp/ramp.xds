@@ -14,7 +14,7 @@ VectorControlEffectSizes(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
 This calls \link{MEffectSizes} and \link{LEffectSizes}

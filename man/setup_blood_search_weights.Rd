@@ -7,7 +7,7 @@
 setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of weights}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -21,8 +21,8 @@ an \strong{\code{xds}} model object
 \description{
 Advanced setup for heterogeneous biting. Useful methods include:
 \itemize{
-\item "as_is" changes the values to a vector of values
-\item "random" sets random search weights (see \link{make_blood_search_weights_random})
+\item \code{"as_is"} sets the supplied vector of weights
+\item \code{"random"} generates random search weights (see \link{make_blood_search_weights_random})
 }
 }
 \seealso{

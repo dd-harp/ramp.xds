@@ -1,6 +1,6 @@
-# Compute Derivatives
+# Compute exogenous variables and dynamical terms
 
-The function to compute the derivatives dispatches on `class(frame)`
+Compute exogenous variables and dynamical terms
 
 ## Usage
 
@@ -24,8 +24,7 @@ xds_compute_terms(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) containing the vector of all
-state derivatives
+an **`xds`** model object
 
 ## See also
 

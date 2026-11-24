@@ -14,7 +14,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} model object
+a mosquito dispersal \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
 Get the Mosquito Dispersal Matrix

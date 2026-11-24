@@ -12,7 +12,7 @@ change_visitors(visitors, xds_obj, s = 1)
 
 - visitors:
 
-  a visitors
+  the availability of visitors
 
 - xds_obj:
 

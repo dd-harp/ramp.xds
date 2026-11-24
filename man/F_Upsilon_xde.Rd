@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{F_Upsilon_xde}
 \alias{F_Upsilon_xde}
-\title{F_Upsilon for dts}
+\title{Compute survival and dispersal through the EIP for xde (\strong{MY})}
 \usage{
 F_Upsilon_xde(eip, Omega)
 }
@@ -15,6 +15,6 @@ F_Upsilon_xde(eip, Omega)
 a \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
-F_Upsilon for dts
+Compute survival and dispersal through the EIP for xde (\strong{MY})
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
-# Plot the density of infected and infective mosquitoes
+# Plot the density of infected mosquitoes
 
-Plot the density of infected and infective mosquitoes
+Plot the density of infected mosquitoes
 
 ## Usage
 
@@ -28,4 +28,4 @@ xds_plot_Y(xds_obj, s = 1, clrs = "purple", llty = 1, add = FALSE)
 
 - add:
 
-  do not plot axes if TRUE
+  add lines to the existing plot if TRUE

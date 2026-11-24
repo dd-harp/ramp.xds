@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-time_away.R
 \name{setup_time_away.no_setup}
 \alias{setup_time_away.no_setup}
-\title{Set up no time spent}
+\title{Leave time away unchanged}
 \usage{
 \method{setup_time_away}{no_setup}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

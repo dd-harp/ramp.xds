@@ -1,7 +1,7 @@
-# Set up blood feeding rates
+# Set up random blood feeding rates (**MY**)
 
-Implements the "random" case for
-[setup_F_f](https://dd-harp.github.io/ramp.xds/reference/setup_F_f.md).
+Configure random blood feeding rates using
+[make_F_f_random](https://dd-harp.github.io/ramp.xds/reference/make_F_f_random.md).
 
 ## Usage
 
@@ -14,7 +14,7 @@ setup_F_f(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a blood feeding rate or setup method name
 
 - xds_obj:
 

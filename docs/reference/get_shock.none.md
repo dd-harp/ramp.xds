@@ -1,6 +1,6 @@
 # Get the shock parameters
 
-Get the parameters for the perturbation function
+Get the parameters for the perturbation function.
 
 ## Usage
 
@@ -21,4 +21,4 @@ get_shock(xds_obj, s = 1)
 
 ## Value
 
-an empty vector
+`NULL`

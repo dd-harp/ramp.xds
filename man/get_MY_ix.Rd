@@ -2,9 +2,9 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_MY_ix}
 \alias{get_MY_ix}
-\title{Get \strong{MY} variable indices}
+\title{Get variable indices (\strong{MY})}
 \usage{
-get_MY_ix(xds_obj, s)
+get_MY_ix(xds_obj, s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
@@ -12,9 +12,17 @@ get_MY_ix(xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-\link{list}
+a named \link{list} of variable indices, or \code{NULL} if the field is absent
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
+Return the stored variable indices for the selected \strong{MY} module
+and vector species.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
+If the field is absent, return \code{NULL}. An empty list is returned unchanged.
+}
+\seealso{
+\link{setup_MY_ix}
 }
 \keyword{internal}

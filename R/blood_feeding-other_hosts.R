@@ -1,12 +1,12 @@
-#' @title Check other blood hosts
+#' @title Check other blood host availability
 #' 
 #' @description
 #' Check that 
 #' + all elements are non-negative
-#' + length(other_blood_hosts) == nPatc
+#' + length(other_blood_hosts) == nP
 #' 
 #' 
-#' @param other_blood_hosts availbility of other blood hosts
+#' @param other_blood_hosts availability of other blood hosts
 #' @param nP the number of patches
 #' 
 #' @seealso [xds_info_blood_feeding]
@@ -17,13 +17,11 @@ check_other_blood_hosts = function(other_blood_hosts, nP){
   stopifnot(length(other_blood_hosts) == nP) 
 }
 
-#' @title Change the other_blood_hosts
+#' @title Change other blood host availability
 
-#' @description
-#' Update the other_blood_hosts for the \eqn{i^{th}} host species, and 
-#' trigger updates for the `XY` interface. 
+#' @description Set other blood host availability for vector species `s`.
 #' 
-#' @param other_blood_hosts a other_blood_hosts
+#' @param other_blood_hosts a numeric vector of patch-level availability
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
@@ -38,9 +36,9 @@ change_other_blood_hosts = function(other_blood_hosts, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up a other_blood_hosts
+#' @title Set up other blood hosts
 #'
-#' @param name a or setup function name
+#' @param name a setup method name or a numeric vector of availability values
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -54,7 +52,7 @@ setup_other_blood_hosts = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_other_blood_hosts", options)
 }
 
-#' @title Set up a other_blood_hosts
+#' @title Set up other blood hosts
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
@@ -76,8 +74,8 @@ setup_other_blood_hosts.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no other_blood_hosts 
-#' @description Don't change anything 
+#' @title Leave other blood host availability unchanged
+#' @description Return `xds_obj` without changing the configured availability.
 #' @inheritParams setup_other_blood_hosts
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -86,9 +84,10 @@ setup_other_blood_hosts.no_setup = function(name, xds_obj, options = list(), s=1
   return(xds_obj)
 }
 
-#' @title Set up a other_blood_hosts
+#' @title Set up other blood hosts
 #' 
-#' @description Implements the "method1" case for [setup_other_blood_hosts]. See [make_other_blood_hosts_random]
+#' @description Generate random other blood host availability using
+#' [make_other_blood_hosts_random].
 #' 
 #' @inheritParams setup_other_blood_hosts
 #' @return an **`xds`** model object
@@ -100,9 +99,9 @@ setup_other_blood_hosts.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make other blood hosts 
+#' @title Make random other blood host availability
 #' 
-#' @description Set up a random vector 
+#' @description Generate a random vector of other blood host availability.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
@@ -116,13 +115,13 @@ make_other_blood_hosts_random = function(nPatches, options=list(), f_rand = stat
   return(other_blood_hosts)
 })}
 
-#' @title Set up a other_blood_hosts
+#' @title Set up other blood hosts
 #' @description 
 #' Pass a pre-configured other_blood_hosts. If it passes 
 #' the checks, it replaces the current other_blood_hosts.
 #' 
-#' If called with `name = "as_is"`, the other_blood_hosts
-#' must be at `options$other_blood_hosts` 
+#' If called with `name = "as_is"`, provide the vector in
+#' `options$other_blood_hosts_asis`.
 #' 
 #' @inheritParams setup_other_blood_hosts
 #' @return an **`xds`** model object
@@ -140,10 +139,11 @@ setup_other_blood_hosts.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Update other blood hosts 
+#' @title Update other blood host availability
 #' 
-#' @description Port function for the other_blood_hosts, \eqn{\Theta}.
-#' Dispatches on `class(xds_obj$XY_interface$other_blood_hosts_obj[[s]])`.
+#' @description Dispatch the update for other blood host availability of
+#' vector species `s`.
+#' Dispatches on `class(xds_obj$patches$other_blood_hosts_obj[[s]])`.
 #' 
 #' @param t time
 #' @param y dependent variables
@@ -157,23 +157,21 @@ update_other_blood_hosts <- function(t, y, xds_obj, s){
   UseMethod("update_other_blood_hosts", xds_obj$patches$other_blood_hosts_obj[[s]])
 }
 
-#' @title Update other blood hosts 
-#' @description The `static` method returns `xds_obj` unmodified
+#' @title Update other blood host availability
+#' @description The static method returns `xds_obj` unmodified.
 #' @inheritParams update_other_blood_hosts
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_other_blood_hosts.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title Get availability of other blood hosts
+#' @title Get other blood host availability
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a [matrix]
+#' @return a numeric vector of patch-level availability
 #' @export
 get_other_blood_hosts = function(xds_obj, s=1){
-  return(xds_obj$XY_interface$other_blood_hosts[[s]])
+  return(xds_obj$patches$other_blood_hosts[[s]])
 }
-
-

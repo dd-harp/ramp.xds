@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_skillset_L}
 \alias{get_skillset_L}
-\title{Get the skill set}
+\title{Get the skill set (\strong{L})}
 \usage{
 get_skillset_L(xds_obj, s = 1)
 }
@@ -15,6 +15,13 @@ get_skillset_L(xds_obj, s = 1)
 the \strong{L} module skill set, as a list
 }
 \description{
-Return the capabilities and compatibilities of an \strong{L} module.
+Return the selected module's capabilities and compatibilities as a list.
+Non-trivial modules include logical \verb{<parameter>_is_port} flags for
+\code{psi}, \code{phi}, \code{xi}, and \code{theta}. A flag is \code{TRUE} when the module implements
+that parameter as a port, and \code{FALSE} when it is a direct value or is absent.
+}
+\note{
+Dispatch is on the class of \code{xds_obj$L_obj[[s]]}.
+If a module name is passed instead of a model object, that name selects the method.
 }
 \keyword{internal}

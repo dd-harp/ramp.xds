@@ -7,7 +7,7 @@
 \method{parse_XH_orbits}{SIS}(outputs, xds_obj, i)
 }
 \arguments{
-\item{outputs}{an output matrix returned by \link[deSolve:deSolve]{deSolve}}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,7 +17,12 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_XH_orbits} for the \code{SIS} model
+Extract the model state outputs for the \code{SIS} module
+from \code{outputs} and return them by name in a list.
+Also compute \code{S = H-I}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$XH_obj[[i]]$ix}.
 }
 \seealso{
 \link{SIS}

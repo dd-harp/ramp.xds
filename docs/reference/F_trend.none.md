@@ -1,7 +1,7 @@
 # Compute the temporal trend
 
 Evaluate the function `F_trend` for a forced model when `forced_by` is
-"none"
+"none".
 
 ## Usage
 
@@ -22,4 +22,4 @@ F_trend(tm, xds_obj)
 
 ## Value
 
-an empty vector
+`NULL`

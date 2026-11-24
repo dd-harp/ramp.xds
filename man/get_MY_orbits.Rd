@@ -12,10 +12,18 @@ get_MY_orbits(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the orbits for the \strong{MY} component
+a \link{list} of module-specific orbits (trajectories) with a \code{time} vector
 }
 \description{
-After solving, the orbits
-are parsed and stored. Get orbits retrieves
-the parsed outputs for the \strong{MY} module
+Return the saved, parsed orbits (trajectories) for \strong{MY}
+for the selected species after solving.
+}
+\note{
+Orbits are stored at \code{xds_obj$outputs$orbits$MY[[s]]}.
+The returned list includes \code{time} from \code{xds_obj$outputs$time}.
+This function does not parse outputs
+or modify the model object.
+}
+\seealso{
+\link{parse_MY_orbits}, \link{xds_solve}
 }

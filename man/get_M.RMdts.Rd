@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{get_M.RMdts}
 \alias{get_M.RMdts}
-\title{Get the initial mosquito population density}
+\title{Get the initial adult mosquito density for \code{RMdts} (\strong{MY})}
 \usage{
 \method{get_M}{RMdts}(xds_obj, s = 1)
 }
@@ -12,11 +12,20 @@
 \item{s}{the vector species index}
 }
 \value{
-the initial mosquito population density
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the initial mosquito population density
+Return the initial adult mosquito density per patch.
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
 \seealso{
 \link{RMdts}, \link{get_MY_inits}
 }

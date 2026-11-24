@@ -1,6 +1,6 @@
 # Plot aquatic mosquito population density
 
-Plot aquatic mosquito population density
+Plot aquatic mosquito population density over time for each habitat.
 
 ## Usage
 
@@ -20,16 +20,21 @@ xds_plot_L(xds_obj, s = 1, clrs = "darkblue", llty = 1, add = FALSE)
 
 - clrs:
 
-  a vector of colors
+  a color for all habitats or a vector of colors, one per habitat
 
 - llty:
 
-  an integer (or integers) to set the `lty` for plotting
+  a line type for all habitats or a vector of line types, one per
+  habitat, passed to `lty`
 
 - add:
 
-  do not plot axes if TRUE
+  add lines to the existing plot if TRUE
 
 ## Value
 
 invisible(NULL)
+
+## See also
+
+[xds_lines_L](https://dd-harp.github.io/ramp.xds/reference/xds_lines_L.md)

@@ -1,14 +1,14 @@
+# X
 
-#' @title Set up psi object (maturation rate)
+#' @title Set up bionomic port for maturation rate (**L**)
 #'
-#' @description Set up an object
-#' to compute the maturation  
-#' rate \eqn{psi}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline maturation rate,
+#' \eqn{psi}, for a static model.
 #'
 #' @param psi the maturation rate 
-#' @param L_obj an **`L`** model object
+#' @param L_obj an **`L`** module object
 #'
-#' @return a **`L`** model object
+#' @return an **`L`** module object
 #' @keywords internal
 #'
 #' @export
@@ -22,10 +22,9 @@ setup_psi_obj = function(psi, L_obj){
   return(L_obj)
 }
 
-#' @title Set up for
+#' @title Compute the baseline maturation rate (**L**)
 #'
-#' @description Set up an object
-#' to compute 
+#' @description Compute the baseline maturation rate.
 #'
 #' @param t time
 #' @param xds_obj an **`xds`** model object
@@ -39,10 +38,10 @@ F_psi <- function(t, xds_obj, s) {
   UseMethod("F_psi", xds_obj$L_obj[[s]]$psi_obj)
 }
 
-#' @title Static model for the blood feeding rate
-#' @description Implements [F_psi] for a static model
+#' @title Static model for the maturation rate (**L**)
+#' @description Return the baseline maturation rate for a static model.
 #' @inheritParams F_psi
-#' @return \eqn{psi}, the baseline human fraction
+#' @return \eqn{psi}, the baseline maturation rate
 #' @keywords internal
 #' @export
 F_psi.static <- function(t, xds_obj, s){
@@ -50,15 +49,15 @@ F_psi.static <- function(t, xds_obj, s){
 }
 
 
-#' @title Set up phi object (density independent mortality)
+#' @title Set up bionomic port for density-independent mortality rate (**L**)
 #'
-#' @description Set up an object
-#' to compute the density independent death rate, \eqn{phi}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline density-independent
+#' mortality rate, \eqn{phi}, for a static model.
 #'
-#' @param phi the human fraction
-#' @param L_obj an **`L`** model object
+#' @param phi the density-independent mortality rate
+#' @param L_obj an **`L`** module object
 #'
-#' @return a **`L`** model object
+#' @return an **`L`** module object
 #' @keywords internal
 #'
 #' @export
@@ -72,14 +71,13 @@ setup_phi_obj = function(phi, L_obj){
   return(L_obj)
 }
 
-#' @title Compute the blood phieeding rate, phi
+#' @title Compute the baseline density-independent mortality rate (**L**)
 #'
-#' @description This method dispatches on the type of `phi_obj`. It should
-#' set the values ophi the bionomic parameters to baseline values
+#' @description Compute the baseline density-independent mortality rate.
 #'
 #' @inheritParams F_psi
 #'
-#' @return a [numeric] vector ophi length `nHabitats`
+#' @return a [numeric] vector of length `nHabitats`
 #'
 #' @keywords internal
 #' @export
@@ -87,25 +85,25 @@ F_phi <- function(t, xds_obj, s) {
   UseMethod("F_phi", xds_obj$L_obj[[s]]$phi_obj)
 }
 
-#' @title Compute phi, density independent mortality rate 
-#' @description Implements [F_phi] for a static model
+#' @title Static model for the density-independent mortality rate (**L**)
+#' @description Return the baseline density-independent mortality rate for a static model.
 #' @inheritParams F_phi
-#' @return \eqn{phi}, the baseline human fraction
+#' @return \eqn{phi}, the baseline density-independent mortality rate
 #' @keywords internal
 #' @export
 F_phi.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$phi_obj$phi)
 }
 
-#' @title Set up xi object (maturation delay)
+#' @title Set up bionomic port for delayed maturation parameter (**L**)
 #'
-#' @description Set up an object
-#' to compute the delayed maturation parameter, \eqn{xi}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline delayed maturation
+#' parameter in response to mean crowding, \eqn{xi}, for a static model.
 #'
-#' @param xi the human fraction
-#' @param L_obj an **`L`** model object
+#' @param xi the delayed maturation parameter in response to mean crowding
+#' @param L_obj an **`L`** module object
 #'
-#' @return a **`L`** model object
+#' @return an **`L`** module object
 #' @keywords internal
 #' @export
 setup_xi_obj = function(xi, L_obj){
@@ -118,10 +116,9 @@ setup_xi_obj = function(xi, L_obj){
   return(L_obj)
 }
 
-#' @title Compute xi, the maturation delay parameter 
+#' @title Compute the baseline delayed maturation parameter (**L**)
 #'
-#' @description This method dispatches on the type of `xi_obj`. It should
-#' set the values oxi the bionomic parameters to baseline values
+#' @description Compute the baseline delayed maturation parameter in response to mean crowding.
 #'
 #' @inheritParams F_psi
 #'
@@ -133,26 +130,25 @@ F_xi <- function(t, xds_obj, s) {
   UseMethod("F_xi", xds_obj$L_obj[[s]]$xi_obj)
 }
 
-#' @title Static model for the maturation delay parameter 
-#' @description Implements [F_xi] for a static model
+#' @title Static model for the delayed maturation parameter (**L**)
+#' @description Return the baseline delayed maturation parameter in response to mean crowding for a static model.
 #' @inheritParams F_xi
-#' @return \eqn{xi}, the baseline human fraction
+#' @return \eqn{xi}, the baseline delayed maturation parameter in response to mean crowding
 #' @keywords internal
 #' @export
 F_xi.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$xi_obj$xi)
 }
 
-#' @title Set up theta object (density dependent larval mortality)
+#' @title Set up bionomic port for slope of density-dependent mortality (**L**)
 #'
-#' @description Set up an object
-#' to compute excess mortality as a function of 
-#' to mean crowding, \eqn{theta}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline slope of
+#' density-dependent mortality, \eqn{theta}, for a static model.
 #'
-#' @param theta the human fraction
-#' @param L_obj an **`L`** model object
+#' @param theta the slope of density-dependent mortality
+#' @param L_obj an **`L`** module object
 #'
-#' @return a **`L`** model object
+#' @return an **`L`** module object
 #' @keywords internal
 #' @export
 setup_theta_obj = function(theta, L_obj){
@@ -165,10 +161,9 @@ setup_theta_obj = function(theta, L_obj){
   return(L_obj)
 }
 
-#' @title Compute theta (density dependent mortality) 
+#' @title Compute the baseline slope of density-dependent mortality (**L**)
 #'
-#' @description This method dispatches on the type of `theta_obj`. It should
-#' set the values otheta the bionomic parameters to baseline values
+#' @description Compute the baseline slope of density-dependent mortality.
 #'
 #' @inheritParams F_psi
 #'
@@ -180,11 +175,11 @@ F_theta <- function(t, xds_obj, s) {
   UseMethod("F_theta", xds_obj$L_obj[[s]]$theta_obj)
 }
 
-#' @title Compute theta (density dependent mortality) 
+#' @title Static model for the slope of density-dependent mortality (**L**)
 #' 
-#' @description Implements [F_theta] for a static model
+#' @description Return the baseline slope of density-dependent mortality for a static model.
 #' @inheritParams F_theta
-#' @return \eqn{theta}, slope of density-dependent mortality  
+#' @return \eqn{theta}, the baseline slope of density-dependent mortality
 #' @keywords internal
 #' @export
 F_theta.static <- function(t, xds_obj, s){

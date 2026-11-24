@@ -3,14 +3,17 @@
 \name{setup_q}
 \alias{setup_q}
 \alias{setup_human_fractions}
-\title{Set up human feeding fraction}
+\alias{setup_human_fraction}
+\title{Set up human fraction (\strong{MY})}
 \usage{
 setup_q(name, xds_obj, options = list(), s = 1)
 
 setup_human_fractions(name, xds_obj, options = list(), s = 1)
+
+setup_human_fraction(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a human feeding fraction or setup method name}
+\item{name}{a human fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -22,5 +25,5 @@ setup_human_fractions(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Configure and validate the human feeding fraction.
+Configure and validate the human fraction.
 }

@@ -12,10 +12,10 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of parameter values
 }
 \description{
-Get the stored parameter values for the \code{RMdts} model.
+Return the parameters for the \code{RMdts} module as a named list.
 }
 \seealso{
 \link{RMdts}

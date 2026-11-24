@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_F_sigma.type2}
 \alias{setup_F_sigma.type2}
-\title{Set up F_sigma}
+\title{Set up type 2 patch emigration rates (\strong{MY})}
 \usage{
 \method{setup_F_sigma}{type2}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a patch emigration rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,7 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a type 2 functional response
-to model the patch emigration rate
+Configure a type 2 functional response for the patch emigration rate.
 }
 \keyword{internal}

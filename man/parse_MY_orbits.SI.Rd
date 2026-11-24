@@ -7,7 +7,7 @@
 \method{parse_MY_orbits}{SI}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,7 +17,13 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_MY_orbits} for the \code{SI} model
+Extract the model state outputs for the \code{SI} module
+from \code{outputs} and return them by name in a list.
+Compute \code{Z = t(Upsilon \%*\% t(Y))} using the module's survival matrix,
+and return \code{y = Y/M}, \code{z = Z/M}, and \code{parity = P/M}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
 }
 \section{State Variables}{
 
@@ -39,7 +45,7 @@ and dispersed through an EIP of \eqn{\tau} days \eqn{e^{- \Omega \tau}}.
 \describe{
 \item{\eqn{Z}}{density of infectious mosquitoes, imputed from \eqn{Y}}
 \item{\code{fqZ}}{Infective biting density: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
-\item{\code{fqM}}{Human biting density: the number of human infectious bites, per patch, per day}
+\item{\code{fqM}}{Human biting density: the number of bites on humans, per patch, per day}
 }
 
 Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential function \link[expm:expm]{expm}
@@ -47,15 +53,14 @@ Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential functio
 \strong{The EIR}
 
 \eqn{fqZ} is the dynamical term computed by \link{F_fqZ.SI}. It is called
-by \link{compute_EIR} (in \link{Transmission}) to compute and store \verb{EIR,}
+by \link{compute_EIR} (in \link{Transmission}) to compute and store \code{EIR},
 the local daily EIR \eqn{(E)}. Note that
 \code{fqZ} is a vector of length \code{nPatches} but the
-local EIR is a vector of length \code{nStrata.}
+local EIR is a vector of length \code{nStrata}.
 The \strong{XY} interface uses
 information about humans and mosquitoes to build the biting distribution matrix, \eqn{\beta,} and if
 there are no visitors, then
 \deqn{E = \beta \cdot fqZ}
-The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
 
 \strong{The HBR}
 

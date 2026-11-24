@@ -1,6 +1,6 @@
 # Make visitors
 
-Set up a random vector
+Set up a random vector.
 
 ## Usage
 
@@ -38,4 +38,4 @@ make_visitors_random(
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+a [vector](https://rdrr.io/r/base/vector.html)

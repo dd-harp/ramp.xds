@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_M.SI}
 \alias{get_M.SI}
-\title{Get the initial mosquito population density}
+\title{Get the initial adult mosquito density for \code{SI} (\strong{MY})}
 \usage{
 \method{get_M}{SI}(xds_obj, s = 1)
 }
@@ -12,10 +12,10 @@
 \item{s}{the vector species index}
 }
 \value{
-the initial mosquito population density
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the initial mosquito population density
+Return the initial adult mosquito density per patch.
 }
 \section{State Variables}{
 

@@ -1,6 +1,7 @@
-# List variables (**MY**)
+# Get the state variables (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+Extract the **MY** variables from the state variables vector \\(y\\),
+parse, and return the variables by name in a list.
 
 ## Usage
 

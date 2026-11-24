@@ -14,6 +14,10 @@ F_one(t, V = list())
 
   time
 
+- V:
+
+  an optional list of variables
+
 ## Value
 
-1
+a vector of ones matching `t`

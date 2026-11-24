@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{make_F_nu_type2}
 \alias{make_F_nu_type2}
-\title{Make type2 egg batch rates}
+\title{Make type 2 oviposition rate port (\strong{MY})}
 \usage{
 make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 }
@@ -11,13 +11,15 @@ make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{vx}{the maximum laying}
+\item{vx}{the maximum oviposition rate: the maximum number of egg batches
+laid in each patch, per mosquito, per day}
 
 \item{sv}{the shape parameter}
 }
 \value{
-an object to set up egg batch rates
+a configuration object for \link{F_nu.type2}
 }
 \description{
-Set up a type2 vector
+Build a configuration object for a type 2 oviposition rate
+response to water availability.
 }

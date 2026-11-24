@@ -27,7 +27,7 @@
 #' of a port could be mathematically inconsistent, the port
 #' documentation should include warnings.  
 #'
-#' @section Port Value: 
+#' @note **Port Value:**
 #' Each port is a flexible method for assigning a value to a parameter or variable (`par`).
 #' The current value of the parameter
 #' or variable has a location on a base object (`base_obj`), and it is 
@@ -35,7 +35,7 @@
 #' 
 #' `xds_obj$base_obj$par`
 #' 
-#' @section Port Object:
+#' @note **Port Object:**
 #' A port is set up and implemented through an object (`par_obj`) that 
 #' is located on the same base object: 
 #' 
@@ -54,7 +54,7 @@
 #' In some cases, `par_obj` is a named list 
 #' that holds other parameter values. 
 #' 
-#' @section Port Function: 
+#' @note **Port Function:**
 #' 
 #' The value of the parameter is set by a function call with 
 #' a standard form: 
@@ -78,7 +78,7 @@
 #' any variables that have been defined anywhere
 #' on the `xds_obj`. 
 #' 
-#' @section Default Case: 
+#' @note **Default Case:**
 #' The default case is:
 #' 
 #' `class(xds_obj$base_obj$par_obj) =  "static"`
@@ -92,7 +92,7 @@
 #' using the composable time series functions from `ramp.func` and
 #' `ramp.forcing`.
 #'
-#' @section Setup: 
+#' @note **Setup:**
 #' All methods should have well-defined setup functions:
 #' 
 #' `xds_obj <- setup_this_port(case_name, xds_obj, options, ...)`

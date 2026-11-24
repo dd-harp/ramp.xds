@@ -1,6 +1,7 @@
-# Check
+# Check human population change
 
-Configure the births function
+Check population change and enable dynamic blood-feeding and
+transmission interfaces when the population changes.
 
 ## Usage
 

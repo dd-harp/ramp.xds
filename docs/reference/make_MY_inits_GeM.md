@@ -1,6 +1,6 @@
-# Make inits for GeM adult mosquito model
+# Make initial values for `GeM` (**MY**)
 
-Make inits for GeM adult mosquito model
+Make initial values for `GeM` (**MY**)
 
 ## Usage
 

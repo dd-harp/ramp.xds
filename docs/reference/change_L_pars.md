@@ -31,4 +31,4 @@ an **`xds`** model object
 
 [get_L_pars](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.md),
 [setup_L_obj](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md),
-[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+[xds_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)

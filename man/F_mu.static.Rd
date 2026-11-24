@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{F_mu.static}
 \alias{F_mu.static}
-\title{Static model emigration-loss fraction}
+\title{Static model emigration-loss fraction (\strong{MY})}
 \usage{
 \method{F_mu}{static}(t, xds_obj, s)
 }
@@ -17,6 +17,6 @@
 \eqn{mu}, the baseline emigration-loss fraction
 }
 \description{
-Implements \link{F_mu} for a static model
+Return the baseline emigration-loss fraction for a static model.
 }
 \keyword{internal}

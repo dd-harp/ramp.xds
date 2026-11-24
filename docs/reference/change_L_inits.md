@@ -29,4 +29,6 @@ an **`xds`** model object
 
 ## See also
 
-[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)
+[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md),
+[setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md),
+[xds_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)

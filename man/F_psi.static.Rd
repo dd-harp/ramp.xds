@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_psi.static}
 \alias{F_psi.static}
-\title{Static model for the blood feeding rate}
+\title{Static model for the maturation rate (\strong{L})}
 \usage{
 \method{F_psi}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{psi}, the baseline human fraction
+\eqn{psi}, the baseline maturation rate
 }
 \description{
-Implements \link{F_psi} for a static model
+Return the baseline maturation rate for a static model.
 }
 \keyword{internal}

@@ -1,6 +1,7 @@
-# `trivialMY` — **MY** module
+# The trivial module for the MY component
 
-The trivial **MY** module configures two trace functions:
+The trivial **MY** module configures one of two forcing functions,
+either:
 
 - infectious biting: \$\$F\_{fqZ}(t, V) = fqZ \times F_S(t, V_s) \times
   F_T(t, V_t) \times F_K(t, V_k)\$\$
@@ -12,8 +13,8 @@ where
 
 - \\(G\\) or `eggs` is the mean egg laying rate
 
-- \\(fqZ\\) or `fqZ` is the mean number of infectious bites on humans,
-  per patch
+- \\(fqZ\\) is the product of `f`, `q`, and `Z`, the mean number of
+  infectious bites on humans, per patch, per day
 
 - \\(F_S(t,V_s)\\) or `F_season` is a seasonal pattern function
 
@@ -21,7 +22,7 @@ where
 
 - \\(F_K(t,V_k)\\) or `F_shock` is a perturbation function
 
-The variables \\(V_s\\), \\(V_t\\), and \\(V_t\\) are called by
+The variables \\(V_s\\), \\(V_t\\), and \\(V_k\\) are called by
 [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
 which dispatches on the class of `season_par` or `trend_par` or
 `shock_par`.
@@ -34,11 +35,11 @@ egg laying and infective biting.
 
 - `eggs`:
 
-  the mean number of eggs laid, per day
+  the mean number of eggs laid, per patch, per day
 
 - `Z`:
 
-  the mean density of infectious mosquitoes
+  the mean density of infectious mosquitoes, per patch
 
 - `f`:
 
@@ -78,50 +79,23 @@ egg laying and infective biting.
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
   to get \\(V_k\\)
 
-The default values are `F_season=F_trend=F_shock=F_one` and the classes
-of the objects `season_par` and `trend_par` and `shock_par` are all
-'list'
+By default, `season_par`, `trend_par`, and `shock_par` configure
+constant-one forcing functions.
 
 For the bionomic parameters, `f=q=Z=eggs=1`.
-
-## Get
-
-- `get_MY_pars` — the `trivialMY` method returns all the parameters
-
-- `get_mean_forcing` — returns `Z`
-
-- `get_f` — returns `f`
-
-- `get_q` — returns `q`
-
-- `get_season` — returns `season_par`
-
-- `get_trend` — returns `trend_par`
-
-- `get_shock` — returns `shock_par`
-
-Note: use `get_MY_pars` to inspect `eggs`
-
-## Change
-
-- `change_MY_pars` — change bionomic parameters by name
-
-- `change_mean_forcing` — changes `Z`
-
-- `change_F_season` — changes `F_season`
-
-- `change_F_trend` — changes `F_trend`
-
-- `change_F_shock` — changes `F_shock`
 
 ## Notes
 
 1.  The module has no state variables.
 
 2.  The size of an object saved by `saveRDS` balloons if it saves a
-    function, so `saveXDS` function strips the functions and `readRDS`
-    remakes the function from the stored parameters.
+    function, so the `saveXDS` function strips the functions and
+    `readXDS` remakes the function from the stored parameters.
 
 `F_season`, `F_trend`, and `F_shock` can be set up manually by passing
-any user defined function. If so, the user should use `saveRDS` and
-`readRDS` rather than `saveXDS` and `readXDS`
+any user-defined function. If so, the user should use `saveRDS` and
+`readRDS` rather than `saveXDS` and `readXDS`.
+
+## See also
+
+[make_MY_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_trivial.md)

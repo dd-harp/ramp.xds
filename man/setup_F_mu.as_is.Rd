@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_F_mu.as_is}
 \alias{setup_F_mu.as_is}
-\title{Set up static emigration-loss fraction}
+\title{Set up static emigration-loss fraction (\strong{MY})}
 \usage{
 \method{setup_F_mu}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an emigration-loss fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up supplied static emigration-loss fractions.
+Set up supplied static emigration-loss fractions from \code{options$mu}
+or a numeric \code{name}. Values in \code{options$mu} take precedence.
 }
 \keyword{internal}

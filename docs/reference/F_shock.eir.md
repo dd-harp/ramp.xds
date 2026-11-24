@@ -1,7 +1,7 @@
 # Compute the temporal shock
 
 Evaluate the function `F_shock` for a forced model when `forced_by` is
-"eir"
+"eir".
 
 ## Usage
 
@@ -22,4 +22,4 @@ F_shock(tm, xds_obj)
 
 ## Value
 
-the temporal shock, invisibly
+the temporal shock

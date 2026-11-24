@@ -17,16 +17,18 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{hMoI} module
-(\strong{XH}) for the \eqn{i^{th}} species.
-\itemize{
-\item \link{make_XH_inits_hMoI} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_XH_inits} or
-see the inline module documentation.
+Set up initial values for the \code{hMoI} module using
+\link{make_XH_inits_hMoI}. Values in \code{options} override the defaults.
+If \code{H} is supplied in \code{options}, also update the module's population density.
 }
+\note{
+Initial values are stored at \code{xds_obj$XH_obj[[i]]$inits}.
 }
 \seealso{
 \link{hMoI}
+
+\link{change_XH_inits.hMoI}
+
+\link{get_XH_inits}
 }
 \keyword{internal}

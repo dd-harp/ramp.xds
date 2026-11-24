@@ -23,7 +23,7 @@ Other basic setup functions are discussed in xds_info_basic_setup.'></head><body
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,11 +160,11 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 
 
 <dt id="arg-residence">residence<a class="anchor" aria-label="anchor" href="#arg-residence"></a></dt>
-<dd><p>the index of the patch where each human population stratum resides</p></dd>
+<dd><p>the index of the patch where each human population stratum resides (see <a href="residence_vector.html">residence_vector</a>)</p></dd>
 
 
 <dt id="arg-membership">membership<a class="anchor" aria-label="anchor" href="#arg-membership"></a></dt>
-<dd><p>the index of the patch where each aquatic habitat is found</p></dd>
+<dd><p>the habitat membership vector or <a href="habitat_vector.html">habitat_vector</a></p></dd>
 
 
 <dt id="arg-hpop">HPop<a class="anchor" aria-label="anchor" href="#arg-hpop"></a></dt>
@@ -230,7 +230,7 @@ initial conditions, see <a href="xds_change_parameters.html">xds_info_change_par
 
 
 <p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
-<li><p><code>residence</code> - the human residence vector (see <a href="xds_info_human_populations.html">xds_info_human_populations</a>)</p></li>
+<li><p><code>residence</code> - the human residence vector (see <a href="residence_vector.html">residence_vector</a> and <a href="residence_matrix.html">residence_matrix</a>)</p></li>
 <li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
 </ul><p>During setup:</p><ul><li><p>The structural parameter <code>nStrata</code> is set to <code>length(residence)</code></p></li>
 <li><p>The structural parameter <code>nHabitats</code> is set to <code>length(membership)</code></p></li>
@@ -244,17 +244,20 @@ initial conditions, see <a href="xds_change_parameters.html">xds_info_change_par
 
 
 <p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:</p><ul><li><p><code>searchQ</code> the habitat search weights (see <a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a>)</p></li>
-<li><p><code>searchB</code> the blood feeding search weights (see <a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a>)</p></li>
+<li><p><code>searchB</code> the blood feeding search weights (see <a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a> and <a href="human_availability.html">human_availability</a>)</p></li>
 <li><p><code>Koptions</code> sets up a mosquito dispersal matrix (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></li>
-<li><p><code>TSoptions</code> sets up a time spent matrix (see <a href="xds_info_time_spent.html">xds_info_time_spent</a>)</p></li>
-</ul></div>
+<li><p><code>TSoptions</code> sets up a time spent matrix (see <a href="time_spent_matrix.html">xds_info_time_spent</a>)</p></li>
+</ul><p>Blood host availability and time at risk determine the <a href="mixing_matrix.html">mixing_matrix</a>,
+which maps biting density in patches to biting rates in population strata.
+See <a href="blood_feeding.html">blood_feeding</a> for the blood-feeding framework.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
 <ul><li><p>Basic Setup: <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
 <li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
-<li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
+<li><p>Advanced Setup: <a href="xds_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a></p></li>
 <li><p>Internals: <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>,
 <a href="xds_object.html">xds_object</a>, <a href="make_xds_object_template.html">make_xds_object_template</a></p></li>

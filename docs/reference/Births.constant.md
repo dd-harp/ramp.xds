@@ -1,6 +1,6 @@
 # Human/host births
 
-Constant birth rates
+Constant birth rates.
 
 ## Usage
 

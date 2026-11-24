@@ -25,4 +25,4 @@ an **`xds`** model object
 
 ## Note
 
-Dynamic forcing is implemented in **`ramp.forcing`**
+Dynamic forcing is implemented in **`ramp.forcing`**.

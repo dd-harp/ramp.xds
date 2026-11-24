@@ -1,7 +1,7 @@
-# List variables (**XH**)
+# Get the state variables (**XH**)
 
-Get the values of variables from the flat state variable vector \\(y\\),
-and return the values as a named list
+Extract the **XH** variables from the state variables vector \\(y\\),
+parse, and return the variables by name in a list.
 
 ## Usage
 

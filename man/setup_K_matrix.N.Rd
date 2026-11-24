@@ -16,12 +16,10 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
 Call \link{setup_K_matrix} \eqn{N} times.
-The options for the \eqn{i^{th}} call are \code{options[[i]]}
-
-of options
+The options for the \eqn{i^{th}} call are \code{options$opts[[i]]}
 }
 \keyword{internal}

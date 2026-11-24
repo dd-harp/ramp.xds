@@ -1,4 +1,4 @@
-# Human biting or `SI`
+# Human biting for `SI`
 
 Compute human biting, the number of bites by the mosquito population on
 humans in each patch, each day.
@@ -52,8 +52,8 @@ time \\(t\\), \\(Y(t),\\) had survived and dispersed through an EIP of
 
 - `fqM`:
 
-  Human biting density: the number of human infectious bites, per patch,
-  per day
+  Human biting density: the number of bites on humans, per patch, per
+  day
 
 Note that \\(e^{-\Omega \tau}\\) is computed with the matrix exponential
 function [expm](https://rdrr.io/pkg/expm/man/expm.html)
@@ -66,9 +66,9 @@ is called by
 [compute_EIR](https://dd-harp.github.io/ramp.xds/reference/compute_EIR.md)
 (in
 [Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md))
-to compute and store `EIR,` the local daily EIR \\((E)\\). Note that
+to compute and store `EIR`, the local daily EIR \\((E)\\). Note that
 `fqZ` is a vector of length `nPatches` but the local EIR is a vector of
-length `nStrata.` The **XY** interface uses information about humans and
+length `nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\(\beta,\\) and if
 there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
 `fqZ` and `EIR` are computed and stored by

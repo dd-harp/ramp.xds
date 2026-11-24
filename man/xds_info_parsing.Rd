@@ -5,15 +5,16 @@
 \title{Parsing}
 \description{
 After solving a system of equations using \link{xds_solve}, the outputs
-are parsed and attached to \code{xds_obj$outputs}.
+are parsed.
 
 Use \verb{get_*_orbits} to inspect the orbits.
-
-\strong{Note:} \code{xds_obj$outputs} are overwritten each time
-\link{xds_solve} is called.
 }
-\section{Internals}{
+\note{
+The parsed outputs are attached to \code{xds_obj$outputs}.
+\code{xds_obj$outputs} are overwritten each time
+\link{xds_solve} is called.
 
+\strong{Internals:}
 \enumerate{
 \item Each module defines a method \verb{parse_*_orbits}.
 \item \link{xds_solve} calls \link{parse_outputs} which calls \verb{parse_*_orbits} for each component and for each species.
@@ -34,4 +35,3 @@ Use \verb{get_*_orbits} to inspect the orbits.
 }
 }
 }
-

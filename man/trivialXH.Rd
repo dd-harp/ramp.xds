@@ -13,10 +13,33 @@ The trivial module sets up two forcing functions:
 Basic setup uses a function if it is passed. If no function is passed,
 the functions are built from function objects (see \link[ramp.func:F_obj]{ramp.func::F_obj}) using \link[ramp.func:make_function]{make_function},
 which returns a function of the form \eqn{F(t,V).}
-
+}
+\note{
 The variables passed to the functions, \eqn{V}, are returned by
 \link{get_variables}, which dispatches on the class of the stored function
 object (by default, an empty list).
+
+\describe{
+\item{\code{season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
+\item{\code{trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
+\item{\code{shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}
+\item{\code{H_season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
+\item{\code{H_trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
+\item{\code{H_shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}
+}
+
+\enumerate{
+\item The module has no state variables.
+\item The size of an object saved by \code{saveRDS} balloons if it saves a function,
+so the \code{saveXDS} function strips the functions and \code{readXDS} remakes the function
+from the stored function object using \link[ramp.func:make_function]{make_function}.
+\item \code{F_season}, \code{F_trend}, \code{F_shock}, \code{H_season}, \code{H_trend}, and \code{H_shock}
+can be set up manually by passing any
+user-defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
+rather than \code{saveXDS} and \code{readXDS}.
+\item Setup uses a \code{residence} vector. The module constructs \code{H} and \code{kappa}
+with length \code{nStrata[i]}.
+}
 }
 \section{Net Infectiousness}{
 
@@ -56,6 +79,7 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 
 \section{Parameters}{
 
+Test positivity \code{q} defaults to \code{0.8}.
 
 \strong{Net Infectiousness}
 \describe{
@@ -63,9 +87,6 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 \item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
 \item{\code{F_trend}}{a trend function, \eqn{T(t,V_t)}}
 \item{\code{F_shock}}{a shock function, \eqn{K(t,V_k)}}
-\item{\code{season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
-\item{\code{trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
-\item{\code{shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}
 }
 
 \strong{Human Population Density}
@@ -74,12 +95,17 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 \item{\code{H_season}}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
 \item{\code{H_trend}}{a trend function, \eqn{T(t,V_t)}}
 \item{\code{H_shock}}{a shock function, \eqn{K(t,V_k)}}
-\item{\code{H_season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
-\item{\code{H_trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
-\item{\code{H_shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}
 }
-Setup also adds the objects \code{season_par} and \code{trend_par} and \code{shock_par} for
-use by \code{ramp.func}
+By default, \code{season_par}, \code{trend_par}, and \code{shock_par} configure
+constant-one forcing functions for net infectiousness. The corresponding
+\code{H_season_par}, \code{H_trend_par}, and \code{H_shock_par} configure constant-one
+forcing functions for human population density.
+}
+
+\section{Prevalence}{
+
+\link{F_pr_obs.trivialXH} returns an empty numeric vector, as does
+\link{F_prevalence.trivialXH}, because this module has no infection states.
 }
 
 \section{Get and Change}{
@@ -87,22 +113,6 @@ use by \code{ramp.func}
 \itemize{
 \item \code{get_XH_pars} --- the \code{trivialXH} method returns all the parameters
 \item \code{change_XH_pars} --- change parameters by name
-}
-}
-
-\section{Notes}{
-
-\enumerate{
-\item The module has no state variables.
-\item The size of an object saved by \code{saveRDS} balloons if it saves a function,
-so the \code{saveXDS} function strips the functions and \code{readXDS} remakes the function
-from the stored function object using \link[ramp.func:make_function]{make_function}.
-\item \code{F_season}, \code{F_trend}, \code{F_shock}, \code{H_season}, \code{H_trend}, and \code{H_shock}
-can be set up manually by passing any
-user-defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
-rather than \code{saveXDS} and \code{readXDS}.
-\item Setup uses a \code{residence} vector. The module constructs \code{H} and \code{kappa}
-with length \code{nStrata[i]}.
 }
 }
 

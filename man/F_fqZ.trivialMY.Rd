@@ -29,9 +29,9 @@ where
 \item \eqn{F_S(t)} or \code{F_season} is a seasonal pattern
 \item \eqn{F_T(t)} or \code{F_trend} is a trend pattern
 \item \eqn{F_K(t)} or \code{F_shock} is a perturbation
-\item \eqn{season_par} a list to dispatch options for
-\item \eqn{trend_par} or \code{F_season} is a seasonal pattern
-\item \eqn{shock_par} or \code{F_season} is a seasonal pattern
+\item \code{season_par} --- parameters used by \link{get_variables} to obtain \eqn{V_s}
+\item \code{trend_par} --- parameters used by \link{get_variables} to obtain \eqn{V_t}
+\item \code{shock_par} --- parameters used by \link{get_variables} to obtain \eqn{V_k}
 }
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
 # Compute as DDE
 
-If `class(xds_obj$xde) == "dts"` don't change anything
+If `class(xds_obj$xde) == "dts"`, don't change anything.
 
 ## Usage
 

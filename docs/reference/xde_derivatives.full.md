@@ -1,9 +1,6 @@
-# Generalized spatial differential equation model
+# Compute Derivatives
 
-Compute derivatives for
-[deSolve::ode](https://rdrr.io/pkg/deSolve/man/ode.html) or
-[deSolve::dede](https://rdrr.io/pkg/deSolve/man/dede.html) using generic
-methods for each model component.
+Compute derivatives for a *full* model.
 
 ## Usage
 

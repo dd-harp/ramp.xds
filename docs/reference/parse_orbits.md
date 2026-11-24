@@ -12,7 +12,7 @@ parse_orbits(outputs, xds_obj)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) of \_orbits returned by
+  a [matrix](https://rdrr.io/r/base/matrix.html) of orbits returned by
   deSolve
 
 - xds_obj:

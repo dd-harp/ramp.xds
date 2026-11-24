@@ -1,9 +1,9 @@
-#' @title Check other blood hosts
+#' @title Check blood trap availability
 #' 
 #' @description
 #' Check that 
 #' + all elements are non-negative
-#' + length(blood_traps) == nPatc
+#' + length(blood_traps) == nP
 #' 
 #' 
 #' @param blood_traps traps availability
@@ -20,10 +20,9 @@ check_blood_traps = function(blood_traps, nP){
 #' @title Change the blood_traps
 
 #' @description
-#' Update the blood_traps for the \eqn{s^{th}} vector species, and 
-#' trigger updates for the `XY` interface. 
+#' Set blood trap availability for vector species `s`.
 #' 
-#' @param blood_traps a blood_traps
+#' @param blood_traps a numeric vector of patch-level availability
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
@@ -38,12 +37,12 @@ change_blood_traps = function(blood_traps, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up a blood_traps
+#' @title Set up blood traps
 #'
-#' @param name a or setup function name
+#' @param name a setup method name or a numeric vector of availability values
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
-#' @param s the host species index
+#' @param s the vector species index
 #'
 #' @return an **`xds`** model object
 #'
@@ -54,13 +53,13 @@ setup_blood_traps = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_blood_traps", options)
 }
 
-#' @title Set up a blood_traps
+#' @title Set up blood traps
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
-#' + `OBHname = name$name` 
+#' + `BTname = name$name`
 #' + `options = name`
-#' and call `setup_blood_traps(OBHname, xds_obj, options, s)` 
+#' and call `setup_blood_traps(BTname, xds_obj, options, s)`
 #'
 #' @inheritParams setup_blood_traps
 #'
@@ -76,8 +75,8 @@ setup_blood_traps.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no blood_traps 
-#' @description Don't change anything 
+#' @title Leave blood trap availability unchanged
+#' @description Return `xds_obj` without changing the configured availability.
 #' @inheritParams setup_blood_traps
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -86,9 +85,10 @@ setup_blood_traps.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up a blood_traps
+#' @title Set up blood traps
 #' 
-#' @description Implements the "random" case for [setup_blood_traps]. See [make_blood_traps_random]
+#' @description Generate random blood trap availability using
+#' [make_blood_traps_random].
 #' 
 #' @inheritParams setup_blood_traps
 #' @return an **`xds`** model object
@@ -100,9 +100,9 @@ setup_blood_traps.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make other blood hosts 
+#' @title Make random blood trap availability
 #' 
-#' @description Set up a random vector 
+#' @description Generate a random vector of blood trap availability.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
@@ -118,13 +118,13 @@ make_blood_traps_random = function(nPatches, options=list(), f_rand = stats::rln
   return(blood_traps)
 })}
 
-#' @title Set up a blood_traps
+#' @title Set up blood traps from supplied values
 #' @description 
 #' Pass a pre-configured blood_traps. If it passes 
 #' the checks, it replaces the current blood_traps.
 #' 
 #' If called with `name = "as_is"`, the blood_traps
-#' must be at `options$blood_traps` 
+#' must be at `options$blood_traps_asis`.
 #' 
 #' @inheritParams setup_blood_traps
 #' @return an **`xds`** model object
@@ -142,8 +142,8 @@ setup_blood_traps.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Update the blood_traps
-#' @description Port function for the blood_traps, \eqn{\Theta}.
+#' @title Update blood trap availability
+#' @description Dispatch updates for blood trap availability.
 #' Dispatches on `class(xds_obj$patches$blood_traps_obj[[s]])`.
 #' 
 #' @param t time
@@ -158,7 +158,7 @@ update_blood_traps <- function(t, y, xds_obj, s){
   UseMethod("update_blood_traps",  xds_obj$patches$blood_traps_obj[[s]])
 }
 
-#' @title Update the blood_traps
+#' @title Update blood trap availability
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_blood_traps
 #' @return an **`xds`** model object
@@ -166,7 +166,7 @@ update_blood_traps <- function(t, y, xds_obj, s){
 #' @keywords internal
 update_blood_traps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title blood_traps
+#' @title Blood trap update method
 #' 
 #' @description The `S3` definition for the
 #' function that computes blood_traps
@@ -183,9 +183,9 @@ blood_traps = function(t, y, xds_obj, s){
   UseMethod("blood_traps", xds_obj$patches$blood_traps_obj[[s]])
 }
 
-#' @title Compute availability of other blood hosts 
+#' @title Update static blood trap availability
 #'
-#' @description This sets up... 
+#' @description The static method returns `xds_obj` unmodified.
 #' 
 #' @inheritParams blood_traps
 #' 
@@ -194,10 +194,10 @@ blood_traps = function(t, y, xds_obj, s){
 #' @keywords internal
 #' @export
 blood_traps.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
+  return(xds_obj)
 }
 
-#' @title Get availability of other blood hosts
+#' @title Get blood trap availability
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -207,5 +207,3 @@ blood_traps.static = function(t, y, xds_obj, s){
 get_blood_traps = function(xds_obj, s=1){
   return(xds_obj$patches$blood_traps[[s]])
 }
-
-

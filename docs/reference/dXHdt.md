@@ -1,4 +1,4 @@
-# Compute derivatives (**XH**)
+# Compute the derivatives (**XH**)
 
 Using the stored values of the daily FoI, compute the derivatives and
 return the derivatives as a numeric vector.
@@ -34,4 +34,4 @@ vector
 
 ## Note
 
-This method dispatches on `class(xds_obj$XH_obj)`
+This method dispatches on `class(xds_obj$XH_obj[[i]])`.

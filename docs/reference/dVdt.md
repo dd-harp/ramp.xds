@@ -28,9 +28,9 @@ dVdt(t, y, xds_obj, i)
 
 ## Value
 
-derivatives for the \\(\cal MYZ\\) component as a
+derivatives for the auxiliary variables as a
 [vector](https://rdrr.io/r/base/vector.html)
 
 ## Note
 
-This is the `S3` generic. Methods dispatch on `V_obj`
+This is the `S3` generic. Methods dispatch on `V_obj`.

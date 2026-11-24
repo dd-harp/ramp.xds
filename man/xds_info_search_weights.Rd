@@ -5,8 +5,8 @@
 \title{Search Weights}
 \description{
 \describe{
-\item{\code{searchB}}{a vector of search weights for blood feeding: \code{length(searchB)=nStrata}}
-\item{\code{searchQ}}{a vector of search weights for egg laying: \code{length(searchQ)=nHabitats}}
+\item{\code{XH_obj[[i]]$search_weights}}{blood-feeding search weights for host species \code{i}, with length \code{nStrata[i]}}
+\item{\code{L_obj[[s]]$search_weights}}{egg-laying search weights for vector species \code{s}, with length \code{nHabitats}}
 }
 
 By default, the values are all set to 1.
@@ -25,5 +25,5 @@ A search
 weight is a scalar value assigned to each human population stratum
 or habitat that is used to compute \emph{availability}
 to mosquitoes and relative biting rates or relative laying rates.
-The value of these search weights are configurable during basic setup.
+The values of these search weights are configurable during basic setup.
 }

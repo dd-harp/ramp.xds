@@ -1,6 +1,6 @@
-# Change xi, the maturation delay parameter
+# Change the delayed maturation parameter (**L**)
 
-Change the maturation delay parameter for basicL for a static model
+Change the delayed maturation parameter for `basicL` for a static model
 
 ## Usage
 
@@ -12,7 +12,7 @@ change_xi(xi, xds_obj, s)
 
 - xi:
 
-  the density independent mortality rate
+  the delayed maturation parameter
 
 - xds_obj:
 
@@ -25,3 +25,7 @@ change_xi(xi, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[get_xi](https://dd-harp.github.io/ramp.xds/reference/get_xi.md)

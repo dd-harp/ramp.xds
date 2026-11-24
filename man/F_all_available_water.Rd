@@ -30,7 +30,8 @@ using the habitat membership matrix, \eqn{N}:
 If some ovitraps (\eqn{Q_t}) and bad_habitats (\eqn{Q_b}) are
 also available, then total availability of laying sites is
 \deqn{Q_{all} = Q + Q_t + Q_b.}
-
+}
+\note{
 Habitat availability is computed elsewhere and stored in \code{xds_obj$terms$Q}, ovitrap availability in \code{xds_obj$patches$ovitraps}, and bad-habitat availability in \code{xds_obj$patches$bad_habitats}.
 }
 \seealso{

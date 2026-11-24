@@ -1,3 +1,5 @@
+# X
+
 #' @title Check ovitraps
 #' 
 #' @description
@@ -9,7 +11,7 @@
 #' @param ovitraps ovitrap availability
 #' @param nP the number of patches
 #' 
-#' @seealso [xds_info_blood_feeding]
+#' @seealso [xds_info_aquatic_habitats]
 #' @export
 check_ovitraps = function(ovitraps, nP){
   stopifnot(is.numeric(ovitraps))
@@ -20,7 +22,7 @@ check_ovitraps = function(ovitraps, nP){
 #' @title Change ovitrap availability
 
 #' @description
-#' Update the ovitraps for the \eqn{s^{th}} vector species 
+#' Update the ovitraps for the \eqn{s^{th}} vector species.
 #' 
 #' @param ovitraps ovitrap availability
 #' @param xds_obj an **`xds`** model object
@@ -77,7 +79,7 @@ setup_ovitraps.list = function(name, xds_obj, options=list(), s=1){
 }
 
 #' @title Set up no ovitraps 
-#' @description Don't change anything 
+#' @description Don't change anything.
 #' @inheritParams setup_ovitraps
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -88,7 +90,7 @@ setup_ovitraps.no_setup = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up ovitraps
 #' 
-#' @description Set up random values for ovitrap availability
+#' @description Set up random values for ovitrap availability.
 #' 
 #' @inheritParams setup_ovitraps
 #' @return an **`xds`** model object
@@ -102,7 +104,7 @@ setup_ovitraps.random = function(name, xds_obj, options = list(), s=1){
 
 #' @title Random ovitrap availability
 #' 
-#' @description Set up a random vector describing ovitrap availability
+#' @description Set up a random vector describing ovitrap availability.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
@@ -119,11 +121,11 @@ make_ovitraps_random = function(nPatches, options=list(), f_rand = stats::rlnorm
 #' @title Set up ovitraps
 #' 
 #' @description 
-#' Pass a pre-configured ovitraps. If it passes 
-#' the checks, it replaces the current ovitraps.
+#' Pass pre-configured ovitraps. If they pass
+#' the checks, they replace the current ovitraps.
 #' 
 #' If called with `name = "as_is"`, the ovitraps
-#' must be at `options$ovitraps` 
+#' must be at `options$ovitraps`.
 #' 
 #' @inheritParams setup_ovitraps
 #' @return an **`xds`** model object
@@ -159,7 +161,7 @@ update_ovitraps <- function(t, y, xds_obj, s){
 }
 
 #' @title Update ovitraps 
-#' @description The `static` method returns `xds_obj` unmodified
+#' @description The `static` method returns `xds_obj` unmodified.
 #' @inheritParams update_ovitraps
 #' @return an **`xds`** model object
 #' @export
@@ -172,7 +174,7 @@ update_ovitraps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a [matrix]
+#' @return a [numeric] vector of length `nPatches`
 #' @export
 get_ovitraps = function(xds_obj, s=1){
   return(xds_obj$patches$ovitraps[[s]])

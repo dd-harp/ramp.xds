@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{check_q}
 \alias{check_q}
-\title{Check human feeding fraction}
+\title{Check human fraction}
 \usage{
 check_q(xds_obj, s = 1)
 }
@@ -12,10 +12,10 @@ check_q(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the validated human feeding fraction
+the validated human fraction
 }
 \description{
-Check that the human feeding fractions are between zero and one and have
+Check that the human fractions are between zero and one and have
 length \code{nPatches}.
 }
 \seealso{

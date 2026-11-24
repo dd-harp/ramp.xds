@@ -1,6 +1,6 @@
-# Generalized spatial differential equation model
+# Update states for discrete-time systems
 
-dts_update\_ the state variables
+Update the state variables for a *full* model.
 
 ## Usage
 
@@ -25,5 +25,5 @@ dts_update(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) containing the vector of all
-state derivatives
+updated dependent variables (a
+[vector](https://rdrr.io/r/base/vector.html))

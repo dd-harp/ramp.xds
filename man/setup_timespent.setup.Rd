@@ -2,7 +2,7 @@
 % Please edit documentation in R/timespent.R
 \name{setup_timespent.setup}
 \alias{setup_timespent.setup}
-\title{Set up no time spent matrix}
+\title{Set up the default time spent matrix}
 \usage{
 \method{setup_timespent}{setup}(name, xds_obj, options = list(), i = 1)
 }
@@ -19,6 +19,9 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Store residence on the selected host module, initialize its
+time spent matrix from the residence matrix, and initialize a static port.
+Read the residence vector from \code{options$residence} and remove the temporary
+top-level \code{xds_obj$residence}.
 }
 \keyword{internal}

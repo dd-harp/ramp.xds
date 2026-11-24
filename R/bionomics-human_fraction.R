@@ -1,13 +1,14 @@
+# X
 
-#' @title Set up a human fraction bionomic object
+#' @title Set up bionomic port for human fraction (**MY**)
 #'
-#' @description Set up an object
-#' to compute the human fraction, \eqn{q}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline human
+#' fraction, \eqn{q}, for a static model.
 #'
 #' @param q the human fraction
-#' @param MY_obj an **`MY`** model object
+#' @param MY_obj an **`MY`** module object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** module object
 #'
 #' @keywords internal
 #' @export
@@ -21,10 +22,9 @@ setup_q_obj = function(q, MY_obj){
   return(MY_obj)
 }
 
-#' @title Compute the human feeding fraction, q
+#' @title Compute the baseline human fraction (**MY**)
 #'
-#' @description This method dispatches on the type of `q_obj` and computes
-#' the human feeding fraction, \eqn{q}.
+#' @description Compute the baseline human fraction, \eqn{q}.
 #'
 #' @inheritParams F_f
 #'
@@ -36,27 +36,27 @@ F_q = function(t, xds_obj, s) {
   UseMethod("F_q", xds_obj$MY_obj[[s]]$q_obj)
 }
 
-#' @title Static model human feeding fraction
-#' @description Implements [F_q] for a static model
+#' @title Static model human fraction (**MY**)
+#' @description Return the baseline human fraction for a static model.
 #' @inheritParams F_q
-#' @return \eqn{q}, the baseline human feeding fraction
+#' @return \eqn{q}, the baseline human fraction
 #' @keywords internal
 #' @export
 F_q.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$q_obj$q)
 }
 
-#' @title Check human feeding fraction
+#' @title Check human fraction
 #' 
 #' @description
-#' Check that the human feeding fractions are between zero and one and have
+#' Check that the human fractions are between zero and one and have
 #' length `nPatches`.
 #' 
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return the validated human feeding fraction
+#' @return the validated human fraction
 #' @seealso [xds_info_blood_feeding]
 #' @export
 check_q = function(xds_obj, s=1){
@@ -68,9 +68,9 @@ check_q = function(xds_obj, s=1){
   return(q)
 }
 
-#' @title Change human feeding fraction
+#' @title Change human fraction (**MY**)
 #' 
-#' @description Update the human feeding fraction for the \eqn{s^{th}} vector
+#' @description Update the human fraction for the \eqn{s^{th}} vector
 #' species.
 #' 
 #' @param xds_obj an **`xds`** model object
@@ -88,11 +88,11 @@ change_q = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up human feeding fraction
+#' @title Set up human fraction (**MY**)
 #'
-#' @description Configure and validate the human feeding fraction.
+#' @description Configure and validate the human fraction.
 #'
-#' @param name a human feeding fraction or setup method name
+#' @param name a human fraction or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -109,9 +109,16 @@ setup_q = function(name, xds_obj, options=list(), s=1){
 #' @export
 setup_human_fractions <- setup_q
 
-#' @title Set up F_q
+#' @rdname setup_q
+#' @export
+setup_human_fraction <- setup_q
+
+#' @title Configure the human fraction function (**MY**)
 #'
-#' @param name a or setup function name
+#' @description Configure the function used to compute the baseline human
+#' fraction.
+#'
+#' @param name a human fraction or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -125,13 +132,13 @@ setup_F_q = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_F_q", options)
 }
 
-#' @title Set up F_q
+#' @title Set up F_q (**MY**)
 #'
-#' @description If an options list is passed
-#' as the first argument, then set 
-#' + `Fq_name = name$name` 
-#' + `options = name`
-#' and call `setup_F_q(Fq_name, xds_obj, options, s)` 
+#' @description Set up human fractions using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_F_q].
 #'
 #' @inheritParams setup_F_q
 #'
@@ -147,8 +154,8 @@ setup_F_q.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no F_q 
-#' @description Don't change anything 
+#' @title Set up F_q (no setup) (**MY**)
+#' @description Leave the existing human fraction configuration unchanged.
 #' @inheritParams setup_F_q
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -157,9 +164,10 @@ setup_F_q.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up static human feeding fraction
+#' @title Set up static human fraction (**MY**)
 #'
-#' @description Set up supplied static human feeding fractions.
+#' @description Set up supplied static human fractions from `options$q`
+#' or a numeric `name`. Values in `options$q` take precedence.
 #'
 #' @inheritParams setup_F_q
 #' @return an **`xds`** model object
@@ -178,9 +186,9 @@ setup_F_q.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up F_q
+#' @title Set up random human fractions (**MY**)
 #' 
-#' @description Implements the "random" case for [setup_F_q]. See [make_F_q_random].
+#' @description Configure random human fractions using [make_F_q_random].
 #' 
 #' @inheritParams setup_F_q
 #' @return an **`xds`** model object
@@ -191,46 +199,35 @@ setup_F_q.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Compute random human feeding fractions
-#'
-#' @description Generate patch-level human feeding fractions using the
-#' configured random number generator.
-#'
-#' @inheritParams F_q
-#' @return a [numeric] vector of length `nPatches`
-#' @keywords internal
-#' @export
-F_q.random = function(t, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$q_obj, {
-    q <- f_rand(xds_obj$nPatches, p1, p2)
-    return(q)
-  })
-}
-
-#' @title Make random human feeding fractions
+#' @title Make random human fractions (**MY**)
 #' 
-#' @description Build a configuration object for random human feeding fractions.
+#' @description Draw human fractions once during setup.
+#' Subsequent evaluations reuse these values.
+#'
+#' @note The values are stored in a static port object.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param f_rand a random number generator
+#' @param f_rand a random number generator called as `f_rand(nPatches, p1, p2)`
+#' that returns a numeric vector of length `nPatches`
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
-#' @return a configuration object for [F_q.random]
+#' @return a static port object for [F_q.static]
 #' @export
 make_F_q_random = function(nPatches, options=list(), f_rand = stats::rbeta,
                            p1=960, p2=1000) {
   with(options, {
     q_obj <- list(f_rand=f_rand, p1=p1, p2=p2)
-    class(q_obj) <- "random"
+    q_obj$q <- f_rand(nPatches, p1, p2)
+    class(q_obj) <- "static"
     return(q_obj)
   })
 }
 
 
-#' @title WVB human feeding fraction
+#' @title WVB human fraction (**MY**)
 #'
-#' @description Computes the human feeding fraction from the availability of
+#' @description Compute the baseline human fraction from the availability of
 #' resident hosts (\eqn{W}), visitors (\eqn{V}), and all available blood hosts
 #' (\eqn{B}).
 #' 
@@ -238,7 +235,7 @@ make_F_q_random = function(nPatches, options=list(), f_rand = stats::rbeta,
 #'
 #' @inheritParams F_q
 #'
-#' @return \eqn{q}, the human feeding fraction
+#' @return \eqn{q}, the baseline human fraction
 #' @keywords internal
 #' @export
 F_q.WVB = function(t, xds_obj, s){
@@ -249,9 +246,9 @@ F_q.WVB = function(t, xds_obj, s){
   return(q)
 }
 
-#' @title Set up WVB human feeding fraction
+#' @title Set up WVB human fraction (**MY**)
 #' 
-#' @description Configure the WVB human feeding fraction method.
+#' @description Configure the WVB human fraction method.
 #' 
 #' @inheritParams setup_F_q
 #' @return an **`xds`** model object
@@ -262,9 +259,9 @@ setup_F_q.WVB = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make a WVB human feeding fraction configuration
+#' @title Make a WVB human fraction configuration (**MY**)
 #' 
-#' @description Create a configuration object for the WVB human feeding
+#' @description Create a configuration object for the WVB human
 #' fraction method.
 #' 
 #' @param nPatches is the number of patches

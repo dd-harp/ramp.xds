@@ -2,12 +2,12 @@
 % Please edit documentation in R/habitats-search_weights.R
 \name{setup_habitat_search_weights.as_is}
 \alias{setup_habitat_search_weights.as_is}
-\title{Set up a habitat_search_weights}
+\title{Set up habitat_search_weights}
 \usage{
 \method{setup_habitat_search_weights}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured habitat_search_weights. If it passes
+Pass pre-configured habitat_search_weights. If it passes
 the checks, it replaces the current habitat_search_weights.
 
 If called with \code{name = "as_is"}, the habitat_search_weights
-must be at \code{options$habitat_search_weights}
+must be at \code{options$weights}.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{setup_MY_obj.basicM}
 \alias{setup_MY_obj.basicM}
-\title{Set up \code{basicM} (\strong{MY})}
+\title{Set up the module object for \code{basicM} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{basicM}(MYname, xds_obj, options = list(), s = 1)
 }
@@ -16,18 +16,24 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} model object
 }
 \description{
-This sets up a \code{basicM} model object for the \strong{MY} module for the \eqn{s^{th}} vector species
+Set up a \code{basicM} module object for the \strong{MY} component and the \eqn{s^{th}} vector species.
 \itemize{
-\item the object is created by \link{make_M_obj_basicM}
-\item the initial conditions are set by \link{setup_MY_inits}
-\item \code{options} is passed to both to override the defaults
+\item Set the module name to \code{basicM}.
+\item Create the module object with \link{make_M_obj_basicM}, passing \code{nPatches} and \code{options}.
+\item Set the skill set using \link{get_skillset_MY}.
+\item Initialize the circadian function using \link{setup_F_circadian.setup}.
+\item Initialize the mosquito demographic matrix port.
+\item Initialize the mosquito dispersal matrix using \link{setup_K_matrix.zero}.
+\item Set initial values using \link{setup_MY_inits}, passing \code{options} to override defaults.
+\item Return the updated \strong{\code{xds}} model object.
 }
 }
 \note{
-The module object is stored at \code{xds_obj$MY_obj[[s]]}
+The module object is stored at \code{xds_obj$MY_obj[[s]]}.
+Its classes are \code{basicM} and \code{basicM_} followed by \code{xds_obj$xds}.
 }
 \section{State Variables}{
 
@@ -43,16 +49,16 @@ The module object is stored at \code{xds_obj$MY_obj[[s]]}
 \item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 
 After basic setup, \link{change_MY_pars.basicM} can be used to change static
-parameter values. The \code{basicM} module does not implement dynamic bionomic
-ports.
+parameter values. The \code{basicM} module evaluates bionomic parameter functions
+through \link{MBionomics}.
 }
 
 \seealso{

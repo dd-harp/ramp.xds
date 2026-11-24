@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{update_blood_traps.static}
 \alias{update_blood_traps.static}
-\title{Update the blood_traps}
+\title{Update blood trap availability}
 \usage{
 \method{update_blood_traps}{static}(t, y, xds_obj, s)
 }

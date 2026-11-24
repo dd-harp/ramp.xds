@@ -1,7 +1,7 @@
-# List variables (**L**)
+# Get the state variables (**L**)
 
-Extract the variables describing **L** Component states for the
-\\(s^{th}\\) species and return them as a named list
+Extract the **L** variables from the state variables vector \\(y\\),
+parse, and return the variables by name in a list.
 
 ## Usage
 
@@ -27,7 +27,3 @@ get_L_vars(y, xds_obj, s)
 
 a named [list](https://rdrr.io/r/base/list.html): the variables of
 \\(\cal L\\) by name
-
-## Note
-
-This method dispatches on the class of `xds_obj$L_obj[[s]]`.

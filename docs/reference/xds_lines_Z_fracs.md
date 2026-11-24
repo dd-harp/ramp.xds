@@ -1,11 +1,11 @@
-# Add lines for the fraction of infected and infective mosquitoes
+# Add lines for the fraction of infective mosquitoes
 
-Add lines for the fraction of infected and infective mosquitoes
+Add lines for the fraction of infective mosquitoes
 
 ## Usage
 
 ``` r
-xds_lines_Z_fracs(xds_obj, s, clrs = "darkred", llty = 1)
+xds_lines_Z_fracs(xds_obj, s = 1, clrs = "darkred", llty = 1)
 ```
 
 ## Arguments

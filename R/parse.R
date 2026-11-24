@@ -3,14 +3,15 @@
 #' @title Parsing
 #' @description
 #' After solving a system of equations using [xds_solve], the outputs
-#' are parsed and attached to `xds_obj$outputs`.
+#' are parsed.
 #' 
 #' Use `get_*_orbits` to inspect the orbits. 
 #' 
-#' **Note:** `xds_obj$outputs` are overwritten each time
+#' @note The parsed outputs are attached to `xds_obj$outputs`.
+#' `xds_obj$outputs` are overwritten each time
 #' [xds_solve] is called.
 #' 
-#' @section Internals:
+#' @note **Internals:**
 #' 
 #' 1. Each module defines a method `parse_*_orbits`.
 #' 

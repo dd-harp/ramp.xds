@@ -1,7 +1,9 @@
-# Set up a mosquito mortality bionomic object
+# Set up bionomic port for mosquito mortality rate (**MY**)
 
-Set up an object to return a constant baseline mosquito mortality rate,
-\\(g\\)
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline mosquito mortality rate, \\(g\\), for a static
+model.
 
 ## Usage
 
@@ -17,8 +19,8 @@ setup_g_obj(g, MY_obj)
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

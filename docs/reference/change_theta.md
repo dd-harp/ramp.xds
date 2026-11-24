@@ -1,7 +1,7 @@
-# Change theta, density dependent mortality
+# Change the slope of density-dependent mortality (**L**)
 
-Change the density dependent mortality parameter for basicL for a static
-model
+Change the slope of density-dependent mortality for `basicL` for a
+static model
 
 ## Usage
 
@@ -13,7 +13,7 @@ change_theta(theta, xds_obj, s)
 
 - theta:
 
-  the density independent mortality rate
+  the slope of density-dependent mortality
 
 - xds_obj:
 
@@ -26,3 +26,7 @@ change_theta(theta, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[get_theta](https://dd-harp.github.io/ramp.xds/reference/get_theta.md)

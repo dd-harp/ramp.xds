@@ -38,23 +38,6 @@ any of the component model objects.
 This function sets up the interfaces and the
 core objects used by \strong{\code{ramp.xds}}.
 
-First, the function sets up some
-short text strings (assigned to the same \code{S3} class)
-to dispatch \strong{cases} of \code{S3} functions:
-\itemize{
-\item \strong{\code{xds}} is either "xde" for differential equations or "dts" for discrete-time systems
-\item \strong{\code{xde}} is either "ode" for ordinary differential equations, "dde" for delay differential equations, or "dts" for discrete-time systems
-\item \strong{\code{frame}} is one of several cases:
-\itemize{
-\item "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; an adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}, in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup()}})
-\item "mosy" is for mosquito ecology models (see \code{\link[=xds_setup_mosy]{xds_setup_mosy()}}), including models without pathogen infection dynamics in mosquitoes
-\item "aquatic" is for aquatic mosquito ecology models (see \code{\link[=xds_setup_aquatic]{xds_setup_aquatic()}}), forced by a function describing egg laying
-\item "human" is for human/host infection dynamics (see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
-\item "eir" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_eir]{xds_setup_eir()}}), forced by a function \code{F_eir}
-}
-\item \strong{\code{forcing}} is set to "none"
-}
-
 Second, the function sets the values of the \strong{structural parameters}:
 \itemize{
 \item \strong{\code{nPatches}} or \eqn{N_p} is the number of patches
@@ -76,6 +59,23 @@ Next, the function sets up empty lists to hold the model objects for all three d
 Finally, the function sets up some junctions.
 }
 \note{
+First, the function sets up some
+short text strings (assigned to the same \code{S3} class)
+to dispatch \strong{cases} of \code{S3} functions:
+\itemize{
+\item \strong{\code{xds}} is either "xde" for differential equations or "dts" for discrete-time systems
+\item \strong{\code{xde}} is either "ode" for ordinary differential equations, "dde" for delay differential equations, or "dts" for discrete-time systems
+\item \strong{\code{frame}} is one of several cases:
+\itemize{
+\item "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; an adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}, in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup()}})
+\item "mosy" is for mosquito ecology models (see \code{\link[=xds_setup_mosy]{xds_setup_mosy()}}), including models without pathogen infection dynamics in mosquitoes
+\item "aquatic" is for aquatic mosquito ecology models (see \code{\link[=xds_setup_aquatic]{xds_setup_aquatic()}}), forced by a function describing egg laying
+\item "human" is for human/host infection dynamics (see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
+\item "eir" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_eir]{xds_setup_eir()}}), forced by a function \code{F_eir}
+}
+\item \strong{\code{forcing}} is set to "none"
+}
+
 \code{xds} stands for an eXtensible Dynamical System
 }
 \seealso{

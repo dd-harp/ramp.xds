@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{F_pfpr_by_lm.trivialXH}
 \alias{F_pfpr_by_lm.trivialXH}
-\title{Compute the prevalence of infection by light microscopy}
+\title{Compute observed prevalence by light microscopy}
 \usage{
 \method{F_pfpr_by_lm}{trivialXH}(vars, XH_obj)
 }

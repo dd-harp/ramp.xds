@@ -1,8 +1,6 @@
-# Set up random mosquito mortality rate
+# Set up random mosquito mortality rate (**MY**)
 
-Implements the "random" case for
-[setup_F_g](https://dd-harp.github.io/ramp.xds/reference/setup_F_g.md).
-See
+Configure random mosquito mortality rates using
 [make_F_g_random](https://dd-harp.github.io/ramp.xds/reference/make_F_g_random.md).
 
 ## Usage
@@ -16,7 +14,7 @@ setup_F_g(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a mosquito mortality rate or setup method name
 
 - xds_obj:
 

@@ -1,6 +1,6 @@
 # Human/host births
 
-No births
+No births.
 
 ## Usage
 

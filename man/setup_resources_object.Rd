@@ -14,8 +14,8 @@ an \strong{\code{xds}} model object
 }
 \description{
 Resources is a junction. When set to its default class (\code{none}),
-all resource parameters (blood hosts, habitat weights, traps, sugar) retain
-their static zero-initialized defaults. Dynamic port machinery is provided
+resource parameters retain their configured values without modification.
+Dynamic port machinery is provided
 by satellite packages (e.g., \code{ramp.forcing}).
 }
 \keyword{internal}

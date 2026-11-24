@@ -46,18 +46,24 @@ xds_solve_cohort = function(xds_obj, birthday=0, eir = c(), Amax=365, da=1, ages
   return(xds_obj)
 }
 
+#' @title Make cohort ages
+#' @inheritParams xds_solve_cohort
 #' @keywords internal
 make_ages <- function(xds_obj, Amax=365, da=1, ages=NULL){
   UseMethod("make_ages", xds_obj$xds)
 }
+#' @title Make cohort ages
 
+#' @inheritParams make_ages
 #' @keywords internal
 #' @export
 make_ages.xde <- function(xds_obj, Amax=365, da=1, ages=NULL){
   stopifnot(da>0)
   make_times_xde(Amax, da, ages)
 }
+#' @title Make cohort ages
 
+#' @inheritParams make_ages
 #' @keywords internal
 #' @export
 make_ages.dts <- function(xds_obj, Amax=365, da=1, ages=NULL){

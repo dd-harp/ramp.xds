@@ -1,3 +1,5 @@
+# X
+
 #' @title Transmission 
 #' 
 #' @description
@@ -24,12 +26,13 @@ NULL
 #' @name xds_info_local_fraction 
 NULL
 
-# Methods to compute mixing and parasite / pathogen transmission during bloood feeding
+# Methods to compute mixing and parasite / pathogen transmission during blood feeding
 
 #' @title Setup the interface for parasite / pathogen transmission
 #' @description Sets up the object that defines the transmission interface for an `xds` model object.
 #' @details
-#' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
+#' Initialize storage for biting distribution matrices, EIR, HBR,
+#' infectiousness, and local fractions, and initialize a static transmission object.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
@@ -80,22 +83,23 @@ setup_transmission <- function(xds_obj){
 
 
 #' @title Compute beta, the biting distribution matrix
-#' @param H human / host population density
+#' @inheritSection mixing_matrix Mixing Matrix
 #' @param W human / host availability in the patches
-#' @param wts_f the blood feeding search weights
-#' @param TaR (time at risk), a [matrix]  dimensions `nPatches` by `nStrata`
+#' @param wts the blood feeding search weights, adjusted for the fraction of time not traveling
+#' @param TaR (time at risk), a [matrix] with dimensions `nPatches` by `nStrata`
 #' @return a [matrix] of dimensions `nStrata` by `nPatches`
 #' @keywords internal
 #' @export
-F_beta = function(H, W, wts_f, TaR){
+F_beta = function(W, wts, TaR){
   ix = which(W==0)
   if(length(ix)>0) W[ix]=1
-  beta = diag(wts_f, length(H)) %*% t(TaR) %*% diag(1/W, length(W))
+  beta = diag(wts, length(wts)) %*% t(TaR) %*% diag(1/W, length(W))
   return(beta)
 }
 
 #' @title Compute beta
 #' @description This function computes the mixing matrix, beta
+#' using search weights adjusted for the fraction of time not traveling.
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
@@ -104,12 +108,12 @@ F_beta = function(H, W, wts_f, TaR){
 #' @export
 compute_beta <- function(t, y, xds_obj){with(xds_obj,{
   for(i in 1:nHostSpecies){
-    H = F_H(t, y, xds_obj, i)
+    time_away <- get_time_away(xds_obj, i)
     for(s in 1:nVectorSpecies){
       W = terms$W[[s]]
-      wts = XH_obj[[i]]$search_weights[[s]]
+      wts = XH_obj[[i]]$search_weights
       TaR = xds_obj$terms$TaR[[s]][[i]]
-      xds_obj$terms$beta[[s]][[i]] <- F_beta(H, W, wts, TaR)
+      xds_obj$terms$beta[[s]][[i]] <- F_beta(W, wts*(1-time_away), TaR)
     }
   }
   return(xds_obj)
@@ -297,7 +301,7 @@ compute_local_frac <- function(xds_obj){with(xds_obj,{
 })}
 
 #' @title Compute the mixing matrix and transmission terms
-#' @description This method dispatches on the type of `xds_obj$beta`
+#' @description This method dispatches on the class of `xds_obj$transmission_obj`.
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object

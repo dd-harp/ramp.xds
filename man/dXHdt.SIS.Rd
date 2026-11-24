@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{dXHdt.SIS}
 \alias{dXHdt.SIS}
-\title{Compute derivatives for \code{SIS} (\strong{XH})}
+\title{Compute the derivatives for \code{SIS} (\strong{XH})}
 \usage{
 \method{dXHdt}{SIS}(t, y, xds_obj, i)
 }
@@ -22,9 +22,12 @@ the derivatives, as a vector
 The derivatives for the \code{SIS} module are:
 
 \deqn{\begin{array}{rl}
-dH/dt &= \mathbf{B}(t,H) - \mathbf{D}(H) \\
-dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) 
+dH/dt &= \mathbf{B}(t,y) - \mathbf{D}(t,H) \\
+dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma + \Xi(t)) I - \mathbf{D}(t,I)
 \end{array}}
+Here \eqn{h} is \code{foi}, \eqn{\Xi(t)=mda(t)+msat(t)},
+\eqn{\mathbf{B}(t,y)} is returned by \link{Births}, and
+\eqn{\mathbf{D}(t,X)} is returned by \link{Deaths} for population \eqn{X}.
 }
 \section{Infection Dynamics}{
 

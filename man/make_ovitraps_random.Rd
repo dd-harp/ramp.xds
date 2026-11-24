@@ -27,5 +27,5 @@ make_ovitraps_random(
 a numeric vector
 }
 \description{
-Set up a random vector describing ovitrap availability
+Set up a random vector describing ovitrap availability.
 }

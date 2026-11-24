@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{F_eip}
 \alias{F_eip}
-\title{Compute the EIP}
+\title{Compute the EIP (\strong{MY})}
 \usage{
 F_eip(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_eip(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{eip_obj} and computes
-the extrinsic incubation period.
+Compute the extrinsic incubation period.
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
-# Set the initial values to the last values of the last simulation
+# Get component state variables
 
-Set the initial values to the last values of the last simulation
+Get component state variables
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{make_F_sigma_type2}
 \alias{make_F_sigma_type2}
-\title{Make a patch emigration configuration}
+\title{Make a patch emigration configuration (\strong{MY})}
 \usage{
 make_F_sigma_type2(
   nPatches,
@@ -18,7 +18,7 @@ make_F_sigma_type2(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{sigX}{the emigration rate from a patch with no resources}
+\item{sigX}{the emigration rate scaling parameter}
 
 \item{sigB}{the shape parameter for blood hosts}
 
@@ -30,8 +30,8 @@ make_F_sigma_type2(
 a configuration object for \link{F_sigma.type2}
 }
 \description{
-Make an object to model patch emigration as a
-type 2 functional response
+Build a configuration object for a type 2 patch emigration rate
+response to blood host, aquatic habitat, and sugar availability.
 }
 \seealso{
 \link{F_sigma.type2}

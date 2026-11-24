@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{get_blood_search_weights}
 \alias{get_blood_search_weights}
-\title{Get availability of blood search weights}
+\title{Get blood search weights}
 \usage{
 get_blood_search_weights(xds_obj, i = 1)
 }
@@ -12,8 +12,8 @@ get_blood_search_weights(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a vector
+a numeric vector with one weight per population stratum
 }
 \description{
-Get availability of blood search weights
+Get blood search weights
 }

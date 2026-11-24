@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{check_MY.RMdts}
 \alias{check_MY.RMdts}
-\title{Run a check before solving}
+\title{Check \code{RMdts} (\strong{MY})}
 \usage{
 \method{check_MY}{RMdts}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Run a check before solving
+Check \code{RMdts} (\strong{MY})
 }
 \keyword{internal}

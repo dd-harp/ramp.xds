@@ -3,7 +3,7 @@
 \name{setup_mu}
 \alias{setup_mu}
 \alias{setup_emigration_loss}
-\title{Set up emigration-loss fraction}
+\title{Set up emigration-loss fraction (\strong{MY})}
 \usage{
 setup_mu(name, xds_obj, options = list(), s = 1)
 

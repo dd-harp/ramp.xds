@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{make_XH_inits_SIS}
 \alias{make_XH_inits_SIS}
-\title{Make initial values \code{SIS} (\strong{XH})}
+\title{Make initial values for \code{SIS} (\strong{XH})}
 \usage{
 make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 }
@@ -16,12 +16,19 @@ make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 \item{I}{the initial number of humans infected}
 }
 \value{
-initial values as a named \link{list}
+a named \link{list} of initial values
 }
 \description{
-Make a named list of initial values
+Create a named list of initial values for the \code{SIS} module.
+Values in \code{options} override the defaults.
+}
+\details{
+Initial values must be numeric scalars or have length \code{nStrata}.
+Scalars are expanded to that length.
 }
 \seealso{
 \link{SIS}, \link{setup_XH_inits.SIS}
+
+\link{change_XH_inits.SIS}
 }
 \keyword{internal}

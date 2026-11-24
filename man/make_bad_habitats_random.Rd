@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-bad.R
 \name{make_bad_habitats_random}
 \alias{make_bad_habitats_random}
-\title{Make other blood hosts}
+\title{Make random bad habitat availability}
 \usage{
 make_bad_habitats_random(
   nPatches,
@@ -27,5 +27,5 @@ make_bad_habitats_random(
 a numeric vector
 }
 \description{
-Set up a random vector
+Set up a random vector.
 }

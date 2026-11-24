@@ -12,13 +12,16 @@ get_MY_inits(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the initial values, as a named list
+a named \link{list} of initial values, or \code{NULL} if the field is absent
 }
 \description{
-Inspect the initial values for the \strong{MY} module
+Return the stored initial values for the selected \strong{MY} module
+and vector species.
 }
 \note{
-The initial values are stored as a named list called \code{xds_obj$MY_obj[[s]]$inits}
+Initial values are stored at \code{xds_obj$MY_obj[[s]]$inits}.
+If the field is absent, as in the \code{trivialMY} module, return \code{NULL}.
+An empty list is returned unchanged.
 }
 \seealso{
 \link{change_MY_inits}, \link{setup_MY_inits}

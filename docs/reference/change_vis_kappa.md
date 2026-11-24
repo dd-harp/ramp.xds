@@ -13,7 +13,7 @@ change_vis_kappa(vis_kappa, xds_obj, s = 1)
 
 - vis_kappa:
 
-  a vis_kappa
+  the net infectiousness of the visitor population
 
 - xds_obj:
 

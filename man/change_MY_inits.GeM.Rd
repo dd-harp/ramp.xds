@@ -17,8 +17,12 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{GeM} module (\strong{MY}) for the \eqn{s^{th}} species,
-change initial values named in \code{options} leaving other values unchanged.
+Change initial values named in \code{options} for the \code{GeM}
+module, leaving other values unchanged.
+}
+\note{
+Stored initial values for this module are at
+\code{xds_obj$MY_obj[[s]]$inits}.
 }
 \section{State Variables}{
 
@@ -30,4 +34,7 @@ change initial values named in \code{options} leaving other values unchanged.
 }
 }
 
+\seealso{
+\link{make_MY_inits_GeM}, \link{setup_MY_inits.GeM}
+}
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{get_XH_vars.hMoI}
 \alias{get_XH_vars.hMoI}
-\title{List variables for \code{hMoI} (\strong{XH})}
+\title{Get the state variables for \code{hMoI} (\strong{XH})}
 \usage{
 \method{get_XH_vars}{hMoI}(y, xds_obj, i)
 }
@@ -14,11 +14,15 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-Get the value of variables from the flat state variable vector \eqn{y}, and return
-the values as a named list
+Extract the state variables for the \code{hMoI} module
+from \code{y} and return them by name in a list for use during model solving.
+Also return \code{H} from the module object rather than from \code{y}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$XH_obj[[i]]$ix}.
 }
 \seealso{
 \link{hMoI}

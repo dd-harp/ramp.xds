@@ -13,6 +13,7 @@
 #'   \item \code{\link{F_infectivity}} -- compute infectivity (pre-erythrocytic immunity)
 #'   \item \code{\link{F_ni}} -- compute net infectiousness
 #'   \item \code{\link{F_prevalence}} -- compute true prevalence
+#'   \item \code{\link{F_pr_obs}} -- compute observed prevalence
 #'   \item \code{\link{F_pfpr_by_lm}} -- compute prevalence by light microscopy
 #'   \item \code{\link{F_pfpr_by_rdt}} -- compute prevalence by RDT
 #'   \item \code{\link{F_pfpr_by_pcr}} -- compute prevalence by PCR

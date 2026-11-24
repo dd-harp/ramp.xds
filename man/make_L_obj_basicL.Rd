@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{make_L_obj_basicL}
 \alias{make_L_obj_basicL}
-\title{Make \code{L_obj} for \code{basicL} (\strong{L} component)}
+\title{Make a module object for \code{basicL} (\strong{L})}
 \usage{
 make_L_obj_basicL(
   nHabitats,
@@ -24,22 +24,29 @@ make_L_obj_basicL(
 
 \item{phi}{density-independent mortality rates for each aquatic habitat}
 
-\item{theta}{density-dependent mortality terms for each aquatic habitat}
+\item{theta}{slope of density-dependent mortality for each aquatic habitat}
 }
 \value{
-\strong{\code{L_obj}} an \strong{L} component object
+a \link{list}: an \strong{L} module object
 }
 \description{
-The following parameters will be set to the values in
-\code{options}. If they are not found, default values will be used.
-\itemize{
-\item \eqn{\psi} or \code{psi}: maturation rate
-\item \eqn{\xi} or \code{xi}: delayed maturation response due to mean crowding
-\item \eqn{\phi} or \code{phi}: density-independent death rate
-\item \eqn{\theta} or \code{theta}: density dependence in mortality: the slope of the response to mean crowding
+Create a \code{basicL} module object and initialize its parameters.
+Inspect parameters with \link{get_L_pars.basicL} and change supported values
+with \link{change_L_pars.basicL}. Values in \code{options} override parameter arguments.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
 }
 }
+
 \seealso{
+\link{get_L_pars.basicL}, \link{change_L_pars.basicL}
+
 Called by: \link{setup_L_obj.basicL}. Related: \link{dLdt.basicL} & \link{Update_Lt.basicL}
 }
 \keyword{internal}

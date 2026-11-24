@@ -1,6 +1,6 @@
 # Get the shock parameters
 
-Get the shock parameters for a model forced by emergence
+Get the shock parameters for a model forced by emergence.
 
 ## Usage
 

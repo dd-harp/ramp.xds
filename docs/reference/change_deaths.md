@@ -1,7 +1,9 @@
 # Change the deaths
 
-Modify the death rates for a model with static population rates. The
-birth rate gets adjusted to ensure the \\(dH/dt=0\\)
+Modify the death rates. Birth rates are unchanged;
+[setup_deaths.constant](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.constant.md)
+also adjusts births to balance deaths at the configured population
+density.
 
 ## Usage
 

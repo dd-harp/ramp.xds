@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_MY_vars.GeM}
 \alias{get_MY_vars.GeM}
-\title{List variables for \code{GeM} (\strong{MY})}
+\title{Get the state variables for \code{GeM} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{GeM}(y, xds_obj, s)
 }
@@ -14,10 +14,15 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}
+Extract the state variables for the \code{GeM} module
+from \code{y} and return them by name in a list for use during model solving.
+Return \code{U} as an \code{nPatches} by \code{nPatches} matrix.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
 }
 \section{State Variables}{
 

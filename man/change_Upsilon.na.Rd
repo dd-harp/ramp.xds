@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{change_Upsilon.na}
 \alias{change_Upsilon.na}
-\title{Change Upsilon}
+\title{Leave Upsilon unchanged (\strong{MY})}
 \usage{
 \method{change_Upsilon}{na}(xds_obj, s = 1)
 }
@@ -15,7 +15,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Update \eqn{\Upsilon}, the matrix describing
-mosquito survival and dispersal through an EIP in delay equations
+Return the model object without changing \eqn{\Upsilon} when
+the survival-and-dispersal matrix is not required.
 }
 \keyword{internal}

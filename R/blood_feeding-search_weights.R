@@ -18,10 +18,10 @@ check_blood_search_weights = function(blood_search_weights, nStrata){
 
 #' @title Change the blood search weights
 #' 
-#' @description
-#' Change the *static* blood search weights
+#' @description Change the static blood search weights for host species `i`
+#' and recompute derived blood-feeding and transmission terms.
 #' 
-#' @param blood_search_weights a blood_search_weights
+#' @param blood_search_weights a numeric vector with one weight per population stratum
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #'
@@ -39,9 +39,9 @@ change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
 #' @title Set up blood search weights
 #' 
 #' @description Advanced setup for heterogeneous biting. Useful methods include:
-#' + "as_is" changes the values to a vector of values
-#' + "random" sets random search weights (see [make_blood_search_weights_random])
-#' @param name a or setup function name
+#' + `"as_is"` sets the supplied vector of weights
+#' + `"random"` generates random search weights (see [make_blood_search_weights_random])
+#' @param name a setup method name or a numeric vector of weights
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
@@ -56,7 +56,7 @@ setup_blood_search_weights = function(name, xds_obj, options = list(), i=1){
   UseMethod("setup_blood_search_weights", options)
 }
 
-#' @title Set up a blood_search_weights
+#' @title Set up blood search weights
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
@@ -66,7 +66,7 @@ setup_blood_search_weights = function(name, xds_obj, options = list(), i=1){
 #'
 #' @inheritParams setup_blood_search_weights
 #'
-#' @return a numeric vector
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -78,8 +78,8 @@ setup_blood_search_weights.list = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up no blood_search_weights 
-#' @description Don't change anything 
+#' @title Set up default blood search weights
+#' @description Initialize unit blood search weights for host species `i`.
 #' @inheritParams setup_blood_search_weights
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -92,8 +92,8 @@ setup_blood_search_weights.setup = function(name, xds_obj, options = list(), i=1
   return(xds_obj)
 }
 
-#' @title Set up no blood_search_weights 
-#' @description Don't change anything 
+#' @title Leave blood search weights unchanged
+#' @description Return `xds_obj` without changing the configured search weights.
 #' @inheritParams setup_blood_search_weights
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -102,9 +102,10 @@ setup_blood_search_weights.no_setup = function(name, xds_obj, options = list(), 
   return(xds_obj)
 }
 
-#' @title Set up a blood_search_weights
+#' @title Set up random blood search weights
 #' 
-#' @description Implements the "method1" case for [setup_blood_search_weights]. See [make_blood_search_weights_random]
+#' @description Generate random blood search weights using
+#' [make_blood_search_weights_random].
 #' 
 #' @inheritParams setup_blood_search_weights
 #' @return an **`xds`** model object
@@ -136,7 +137,7 @@ make_blood_search_weights_random = function(nStrata, options=list(), f_rand = st
   return(blood_search_weights)
 })}
 
-#' @title Set up a blood_search_weights
+#' @title Set up blood search weights from supplied values
 #' @description 
 #' Pass a pre-configured blood_search_weights. If it passes 
 #' the checks, it replaces the current blood_search_weights.
@@ -144,9 +145,7 @@ make_blood_search_weights_random = function(nStrata, options=list(), f_rand = st
 #' If the first argument to `setup_blood_search_weights` is a
 #' numeric vector, the `"as_is"` method is used. 
 #' 
-#' The conventional way to call this method is `name = "as_is"`, 
-#' and the new blood search weights are passed as
-#' `options$blood_search_weights` 
+#' When `name = "as_is"`, pass the new vector in `options$weights`.
 #' 
 #' @inheritParams setup_blood_search_weights
 #' @return an **`xds`** model object
@@ -166,8 +165,8 @@ setup_blood_search_weights.as_is = function(name, xds_obj, options=list(), i=1){
 
 #' @title Update the blood search weights
 #' 
-#' @description 
-#' This is called to update dy
+#' @description Dispatch the update for blood search weights of host species
+#' `i`.
 #' 
 #' @param t time
 #' @param y dependent variables
@@ -182,22 +181,20 @@ update_blood_search_weights <- function(t, y, xds_obj, i){
 }
 
 #' @title Update the blood_search_weights
-#' @description The `static` method returnStrata `xds_obj` unmodified
+#' @description The static method returns `xds_obj` unmodified.
 #' @inheritParams update_blood_search_weights
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_blood_search_weights.static <- function(t, y, xds_obj, i) { return(xds_obj) }
 
-#' @title Get availability of blood search weights
+#' @title Get blood search weights
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return a vector 
+#' @return a numeric vector with one weight per population stratum
 #' @export
 get_blood_search_weights = function(xds_obj, i=1){
   return(xds_obj$XH_obj[[i]]$search_weights)
 }
-
-

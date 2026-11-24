@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_eggs.trivialMY}
 \alias{F_eggs.trivialMY}
-\title{Net egg laying rate}
+\title{Egg production rate for \code{trivialMY}}
 \usage{
 \method{F_eggs}{trivialMY}(t, y, xds_obj, s)
 }

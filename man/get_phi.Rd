@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-get.R
 \name{get_phi}
 \alias{get_phi}
-\title{Get phi, density independent mortality}
+\title{Get the density-independent mortality rate (\strong{L})}
 \usage{
 get_phi(xds_obj, s = 1)
 }
@@ -12,8 +12,15 @@ get_phi(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-Get phi, density independent mortality
+Return the stored realized density-independent mortality rate per habitat.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+This function does not evaluate ports or apply effect sizes.
+}
+\seealso{
+\link{change_phi}
 }

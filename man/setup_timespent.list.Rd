@@ -16,7 +16,7 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
 If an options list is passed
@@ -24,7 +24,7 @@ as the first argument, then set
 \itemize{
 \item \code{TSname = name$name}
 \item \code{options = name}
-and call \code{setup_timespent(TSname, xds_obj, options, s)}
+and call \code{setup_timespent(TSname, xds_obj, options, i)}
 }
 }
 \keyword{internal}

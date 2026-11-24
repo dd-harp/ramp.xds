@@ -9,29 +9,43 @@ F_W_available(search_weights, H, TaR)
 \arguments{
 \item{search_weights}{blood feeding search weights for the host strata}
 
-\item{H}{host density}
+\item{H}{host density, adjusted for the fraction of time not traveling}
 
-\item{TaR}{the host species index}
+\item{TaR}{the time-at-risk matrix for this vector-host species pair}
 }
 \value{
-host available, a \link{vector}
+a numeric vector of local availability, one value per patch
 }
 \description{
-Compute the available of the population strata defined
-in the model as hosts for blood feeding by mosquitoes
+Compute local human/host availability in the patches.
 }
-\details{
-Host available to blood searching mosquitoes in patches is
-the sum of search weights of the human strata, a vector \eqn{\omega},
-weighted by time at risk, defined by a matrix \eqn{\Psi}
-that is \eqn{N_p \times N_h}. The search weight is a \emph{per-capita} measure
-so we weight it by human population density, \eqn{H}. available, \eqn{W}
-is computed as \deqn{\Psi \cdot (\omega H).}
+\section{Human Availability}{
+
+Blood feeding is modeled as an interaction between hosts that spend time in
+patches and mosquitoes that search for blood hosts. Each host population
+stratum has a per-capita search weight \eqn{(w)}. The fraction of time
+spent outside the patches is time away \eqn{(\delta)} (see \link{time_away}), so
+the population density present in the spatial domain is \eqn{(1-\delta)H}.
+
+The time-spent matrix \eqn{(\Theta)} describes how hosts allocate their
+time among patches. Ambient host population density by patch is
+\deqn{A = \Theta \cdot ((1-\delta)H),}
+where vector multiplication is element-wise.
+
+The time-at-risk matrix \eqn{(\Psi)} weights time spent by relative
+mosquito activity over the day (see \link{time_at_risk}). Human availability
+in patches is
+\deqn{W = \Psi \cdot (w(1-\delta)H),}
+where the product inside the parentheses is element-wise. Search weights
+are specific to host species and shared across vector species. Availability
+can differ by vector species because each can have a different
+time-at-risk matrix.
 }
+
 \references{
 {\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }
 \seealso{
-available of all vertebrate hosts for blood feeding is computed by \code{\link[=F_B_available]{F_B_available()}}
+\link{available_blood_hosts}, \link{F_B_available}
 }
 \keyword{internal}

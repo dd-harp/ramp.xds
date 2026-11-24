@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_F_nu}
 \alias{setup_F_nu}
-\title{Set up F_nu}
+\title{Configure the oviposition rate function (\strong{MY})}
 \usage{
 setup_F_nu(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an oviposition rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,5 @@ setup_F_nu(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up F_nu
+Configure the function used to compute the baseline oviposition rate.
 }

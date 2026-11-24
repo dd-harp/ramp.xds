@@ -13,6 +13,8 @@
 #' + **Model Structure** --- set up the basic model structure
 #'
 #' + **Basic Spatial Dynamics** --- set up the basic spatial parameters
+#'  
+#' **Advanced Setup** --- [xds_advanced_setup]
 #'
 #' @section Basic Setup Functions:
 #'
@@ -30,7 +32,7 @@
 #' + [xds_setup_eir] sets up an **XH** module to study disease dynamics forced by the daily EIR.
 #'
 #'
-#' Each function sets `class(xds_obj$frame)` to dispatch functions that are used to solve dynamical systems.
+#' @note Each function sets `class(xds_obj$frame)` to dispatch functions that are used to solve dynamical systems.
 #'
 #' @section [xds_setup]:
 #'

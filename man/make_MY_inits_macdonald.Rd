@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{make_MY_inits_macdonald}
 \alias{make_MY_inits_macdonald}
-\title{Make inits for macdonald adult mosquito model}
+\title{Make initial values for \code{macdonald} (\strong{MY})}
 \usage{
 make_MY_inits_macdonald(nPatches, options = list(), M = 5, P = 1, Y = 1, Z = 1)
 }
@@ -20,10 +20,17 @@ make_MY_inits_macdonald(nPatches, options = list(), M = 5, P = 1, Y = 1, Z = 1)
 \item{Z}{infectious mosquito density at each patch}
 }
 \value{
-a \link{list}
+a named \link{list} of initial values
 }
 \description{
-Make inits for macdonald adult mosquito model
+Create a named list of initial values for the \code{macdonald} module.
+Values in \code{options} override the defaults.
+}
+\details{
+Initial mosquito densities must be numeric scalars or have length
+\code{nPatches}. Scalars are expanded to that length.
+Initialize \code{dk_ix} to zero in each patch. This accessory value is constructed
+internally rather than independently set through \code{options}.
 }
 \section{State Variables}{
 
@@ -37,5 +44,7 @@ Make inits for macdonald adult mosquito model
 
 \seealso{
 \link{macdonald}, \link{setup_MY_inits.macdonald}
+
+\link{change_MY_inits.macdonald}
 }
 \keyword{internal}

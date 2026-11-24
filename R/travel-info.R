@@ -1,3 +1,5 @@
+# X
+
 #' @title Travel Malaria 
 #' 
 #' @description
@@ -8,7 +10,7 @@
 #' + time spent away / here: see [xds_port_time_away]
 #' + the travel EIR: see [xds_port_travel_eir] 
 #' 
-#' Travel malaria is implemented in the **Exposure**
+#' Travel malaria is implemented in [Exposure].
 #' 
 #' @seealso [xds_port_travel_eir] | [xds_port_time_away] | [xds_info_exposure] | [xds_info_malaria_importation]
 #' 

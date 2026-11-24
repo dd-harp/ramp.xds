@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_skillset_MY}
 \alias{get_skillset_MY}
-\title{Get the skill set}
+\title{Get the skill set (\strong{MY})}
 \usage{
 get_skillset_MY(xds_obj, s = 1)
 }
@@ -15,6 +15,14 @@ get_skillset_MY(xds_obj, s = 1)
 the \strong{MY} module skill set, as a list
 }
 \description{
-Return the capabilities and compatibilities of an \strong{MY} module.
+Return the selected module's capabilities and compatibilities as a list.
+Non-trivial modules include logical \verb{<parameter>_is_port} flags for
+\code{f}, \code{q}, \code{g}, \code{sigma}, \code{sigma_b}, \code{sigma_q}, \code{mu}, \code{nu}, \code{eip}, and \code{K_matrix}.
+A flag is \code{TRUE} when the module implements that parameter as a port,
+and \code{FALSE} when the parameter is a direct value or is absent.
+}
+\note{
+Dispatch is on the class of \code{xds_obj$MY_obj[[s]]}.
+If a module name is passed instead of a model object, that name selects the method.
 }
 \keyword{internal}

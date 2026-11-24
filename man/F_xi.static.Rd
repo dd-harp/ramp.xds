@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_xi.static}
 \alias{F_xi.static}
-\title{Static model for the maturation delay parameter}
+\title{Static model for the delayed maturation parameter (\strong{L})}
 \usage{
 \method{F_xi}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{xi}, the baseline human fraction
+\eqn{xi}, the baseline delayed maturation parameter in response to mean crowding
 }
 \description{
-Implements \link{F_xi} for a static model
+Return the baseline delayed maturation parameter in response to mean crowding for a static model.
 }
 \keyword{internal}

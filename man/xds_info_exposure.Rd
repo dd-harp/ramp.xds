@@ -5,16 +5,16 @@
 \title{Exposure}
 \description{
 The EIR computed by \link{xds_info_transmission} is a measure of \emph{local} risk: it is
-the expected number of infected
+the expected number of infective
 bites, per person, and it is computed for every population stratum. In
-\strong{exposure,} the daily local EIR is computed into a measure
+\strong{exposure,} the daily local EIR is converted into a measure
 of the population FoI in three steps:
 \itemize{
-\item the total EIR is the weighted sum of local exposure and travel exposure, using
-the concept of time here \emph{vs.} time away;
+\item local and travel exposure are evaluated separately;
 \item the distribution of the number of bites per person is computed under a
-model of environmental heterogeneity ;
-\item the number of infections is computed under a model of partial immunity.
+model of environmental heterogeneity;
+\item local and travel FoI are computed under a model of partial immunity
+and combined using time here \emph{vs.} time away.
 }
 }
 \section{Environmental Heterogeneity}{
@@ -29,7 +29,7 @@ binomially distributed. For more, see \link{xds_info_environmental_heterogeneity
 
 Travel malaria is defined by exposure to malaria while spending
 time outside of the spatial domain represented by the patches.
-See \link{xds_info_travel_malaria}
+See \link{xds_info_travel_malaria}.
 }
 
 \section{Pre-Erythrocytic Immunity}{

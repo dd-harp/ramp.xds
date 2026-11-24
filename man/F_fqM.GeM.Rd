@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{F_fqM.GeM}
 \alias{F_fqM.GeM}
-\title{Mosquito biting rate for \code{GeM}}
+\title{Compute mosquito biting density for \code{GeM} (\strong{MY})}
 \usage{
 \method{F_fqM}{GeM}(t, y, xds_obj, s)
 }
@@ -19,8 +19,9 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Returns \code{fqM}, the daily mosquito biting density on humans
-for each patch in the GeM model.
+Return the daily mosquito biting density on humans,
+\code{fqM}, for each patch in the \code{GeM} module.
+Compute \code{fqM = f*q*M}.
 }
 \section{Infective Biting}{
 
@@ -34,6 +35,6 @@ the same matrix, and resident-bite fraction to compute stratum-level \code{HBR}.
 }
 
 \seealso{
-\link{GeM}, \link{F_hbr}
+\link{GeM}, \link{F_hbr}, \link{F_fqZ.GeM}
 }
 \keyword{internal}

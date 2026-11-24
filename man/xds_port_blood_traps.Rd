@@ -4,12 +4,16 @@
 \alias{xds_port_blood_traps}
 \title{Blood Traps}
 \description{
-The \strong{XY} - interface has a port to handle the availability of traps
-that catch
-blood feeding mosquitoes. The port sets up a variable for the availability
-of mosquito traps, but it is set to zero (no effect). It can not be
-used in \strong{\code{ramp.xds}}, but there are
+Availability of traps that attract blood-seeking mosquitoes.
 }
+\section{Blood Traps}{
+
+The blood-feeding interface has a port for blood trap availability.
+It contributes to total availability \eqn{B} and is initialized to zero
+in each patch. Values are configured for each vector species through
+\link{setup_blood_traps}.
+}
+
 \seealso{
-\link{xds_info_available_blood_hosts} | \link{xds_info_mosquito_traps}
+\link{available_blood_hosts}, \link{xds_info_mosquito_traps}, \link{update_blood_traps}
 }

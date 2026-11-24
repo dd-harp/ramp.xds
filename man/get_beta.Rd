@@ -2,7 +2,7 @@
 % Please edit documentation in R/transmission-get.R
 \name{get_beta}
 \alias{get_beta}
-\title{Get xi, delayed maturation}
+\title{Get beta, the biting distribution matrix}
 \usage{
 get_beta(xds_obj, s = 1, i = 1)
 }
@@ -17,5 +17,5 @@ get_beta(xds_obj, s = 1, i = 1)
 the mixing matrix, beta
 }
 \description{
-Get xi, delayed maturation
+Get beta, the biting distribution matrix
 }

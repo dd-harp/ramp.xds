@@ -1,6 +1,6 @@
 # Get seasonality parameters
 
-Get seasonality parameters when `forced_by` = "none"
+Get seasonality parameters when `forced_by` = "none".
 
 ## Usage
 
@@ -21,4 +21,4 @@ get_season(xds_obj, s = 1)
 
 ## Value
 
-an empty vector
+`NULL`

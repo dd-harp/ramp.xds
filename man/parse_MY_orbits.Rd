@@ -7,17 +7,24 @@
 parse_MY_orbits(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }
 \value{
-\link{list}
+a \link{list}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
-It computes the variables by name and returns a named list.
+Extract the model state outputs for the selected \strong{MY} module
+and return them by name in a list.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
+These methods process output trajectories after solving, rather than a
+single state vector during solving. They return results without modifying
+the model object; the output-processing pipeline stores the parsed results
+at \code{xds_obj$outputs$orbits$MY[[s]]}.
 }
 \keyword{internal}

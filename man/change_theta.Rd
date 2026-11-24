@@ -2,12 +2,12 @@
 % Please edit documentation in R/aquatic-change.R
 \name{change_theta}
 \alias{change_theta}
-\title{Change theta, density dependent mortality}
+\title{Change the slope of density-dependent mortality (\strong{L})}
 \usage{
 change_theta(theta, xds_obj, s)
 }
 \arguments{
-\item{theta}{the density independent mortality rate}
+\item{theta}{a numeric slope of density-dependent mortality for all habitats or a vector of length \code{nHabitats}}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,27 @@ change_theta(theta, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Change the density dependent mortality
-parameter for basicL for a static model
+Change the stored slope of density-dependent mortality per
+habitat for a static \code{basicL} model.
+}
+\note{
+Store the supplied values at \code{xds_obj$L_obj[[s]]$theta}.
+When \code{theta_obj} is present, also update \code{theta_t} and \code{theta_obj$theta}
+on that module object. The port class and \code{es_theta} are unchanged;
+this function does not evaluate ports or apply effect sizes.
+Inputs must be numeric, with length 1 or \code{nHabitats}; scalar values are
+repeated across habitats. Invalid types or lengths cause an error.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
+}
+}
+
+\seealso{
+\link{get_theta}
 }

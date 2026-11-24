@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{get_MY_vars.RMdts}
 \alias{get_MY_vars.RMdts}
-\title{List variables for \code{RMdts} (\strong{MY})}
+\title{Get the state variables for \code{RMdts} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{RMdts}(y, xds_obj, s)
 }
@@ -14,9 +14,14 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}
+Extract the state variables for the \code{RMdts} module
+from \code{y} and return them by name in a list for use during model solving.
+Return \code{Y} as an \code{nPatches} by \code{max_eip} cohort matrix.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
 }
 \keyword{internal}

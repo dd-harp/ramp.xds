@@ -1,4 +1,5 @@
 # X
+# TODO: Complete the deferred trivialXH documentation/NULL-anchor and setup review.
 
 #' @title `trivialXH` --- **XH** module
 #' 
@@ -11,7 +12,7 @@
 #' the functions are built from function objects (see [ramp.func::F_obj]) using [make_function],
 #' which returns a function of the form \eqn{F(t,V).} 
 #' 
-#' The variables passed to the functions, \eqn{V}, are returned by  
+#' @note The variables passed to the functions, \eqn{V}, are returned by
 #' [get_variables], which dispatches on the class of the stored function
 #' object (by default, an empty list).
 #' 
@@ -42,6 +43,7 @@
 #' Note: \eqn{0 \leq F_\kappa(t) \leq 1} 
 #' 
 #' @section Parameters:
+#' Test positivity `q` defaults to `0.8`.
 #' 
 #' **Net Infectiousness**
 #' \describe{
@@ -49,9 +51,6 @@
 #'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
 #'   \item{`F_trend`}{a trend function, \eqn{T(t,V_t)}}
 #'   \item{`F_shock`}{a shock function, \eqn{K(t,V_k)}}
-#'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
-#'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
-#'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
 #' }
 #' 
 #' **Human Population Density**
@@ -60,19 +59,32 @@
 #'   \item{`H_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
 #'   \item{`H_trend`}{a trend function, \eqn{T(t,V_t)}}
 #'   \item{`H_shock`}{a shock function, \eqn{K(t,V_k)}}
-#'   \item{`H_season_par`}{dispatches [get_variables] to get \eqn{V_s}}
-#'   \item{`H_trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
-#'   \item{`H_shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
 #' }
-#' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
-#' use by `ramp.func`
-#' 
+#' By default, `season_par`, `trend_par`, and `shock_par` configure
+#' constant-one forcing functions for net infectiousness. The corresponding
+#' `H_season_par`, `H_trend_par`, and `H_shock_par` configure constant-one
+#' forcing functions for human population density.
+#'
+#' @section Prevalence:
+#' [F_pr_obs.trivialXH] returns an empty numeric vector, as does
+#' [F_prevalence.trivialXH], because this module has no infection states.
+#'
 #' @section Get and Change:
 #' 
 #' + `get_XH_pars` --- the `trivialXH` method returns all the parameters
 #' + `change_XH_pars` --- change parameters by name 
 #' 
-#' @section Notes:
+#' @note
+#' \describe{
+#'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
+#'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
+#'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
+#'   \item{`H_season_par`}{dispatches [get_variables] to get \eqn{V_s}}
+#'   \item{`H_trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
+#'   \item{`H_shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
+#' }
+#'
+#' @note
 #' 
 #' 1. The module has no state variables.
 #'   
@@ -93,48 +105,38 @@
 #' @rdname trivialXH
 NULL
 
-# specialized methods for a human trivial model
-
-#' @title The **XH** module skill set
-#'
-#' @description The **XH** skill set is a list of
-#' a module's capabilities
-#'
-#'
-#' @inheritParams get_skillset_XH
-#'
-#' @note The compatibility name `"trivial"` returns the same skill set as
-#' `"trivialXH"`.
-#'
-#' @return the **XH** module skill set, as a list
-#'
+#' @title Compute the derivatives for `trivialXH` (**XH**)
+#' @description Return an empty numeric vector because the `trivialXH` module has no state variables.
+#' @inheritParams dXHdt
+#' @return a [numeric] vector
 #' @keywords internal
 #' @export
-get_skillset_XH.trivialXH = function(xds_obj, i){
-  skills = list(
-   dts = FALSE,
-   xde = TRUE,
-   delay = FALSE,
-   not_implemented = TRUE
-  )
-  return(skills)
+dXHdt.trivialXH <- function(t, y, xds_obj, i) {
+  numeric(0)
 }
 
-#' @rdname get_skillset_XH.trivialXH
-#' @export
-get_skillset_XH.trivial = function(xds_obj, i){
-  get_skillset_XH.trivialXH(xds_obj, i)
-}
-
-#' Check / update before solving
-#'
-#' @inheritParams check_XH
-#'
-#' @return an **`xds`** model object
+#' @title Update states for `trivialXH` (**XH**)
+#' @description The trivial model has no state variables so it returns
+#' a numeric vector of length 0
+#' @inheritParams Update_XHt
+#' @return a [numeric] vector
 #' @keywords internal
 #' @export
-check_XH.trivialXH = function(xds_obj, i){
-  return(xds_obj)
+Update_XHt.trivialXH <- function(t, y, xds_obj, i) {
+  numeric(0)
+}
+
+
+#' @title Get the state variables for `trivialXH` (**XH**)
+#'
+#' @description Return an empty list
+#'
+#' @inheritParams get_XH_vars
+#' @return a [list]
+#' @keywords internal
+#' @export
+get_XH_vars.trivialXH<- function(y, xds_obj, i) {
+    return(list())
 }
 
 #' @title Size of effective infectious human population
@@ -179,7 +181,7 @@ F_infectivity.trivialXH <- function(y, xds_obj, i) {
   return(1)
 }
 
-#' @title Make parameters for trivial human model
+#' @title Make the module object for `trivialXH` (**XH**)
 #' 
 #' @description 
 #' This builds a forcing function as a *composed time series function* using either functions or parameters:
@@ -207,6 +209,7 @@ F_infectivity.trivialXH <- function(y, xds_obj, i) {
 #' 
 #' @return a [list]
 #' @keywords internal
+#' @param q test positivity; a numeric scalar or input of length `nPatches`
 #' @export
 make_XH_obj_trivial <- function(nPatches, options,
                                 kappa=0, 
@@ -222,7 +225,7 @@ make_XH_obj_trivial <- function(nPatches, options,
                                 H_shock = list(),
                                 H_season_par = list(name = "F_one"),
                                 H_trend_par = list(name = "F_one"),
-                                H_shock_par = list(name = "F_one")){
+                                H_shock_par = list(name = "F_one"), q=0.8){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivialXH')
@@ -230,132 +233,20 @@ make_XH_obj_trivial <- function(nPatches, options,
     XH_obj$H = checkIt(H, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
-    if(is.function(F_season)){
-      XH_obj$season_par = list()
-      XH_obj$F_season = F_season  
-    } else {
-      XH_obj$season_par = season_par
-      XH_obj$F_season = make_function(season_par)  
-    }
+    XH_obj <- make_ts_obj(XH_obj, list(
+      F_season=F_season, F_trend=F_trend, F_shock=F_shock,
+      season_par=season_par, trend_par=trend_par, shock_par=shock_par,
+      H_season=H_season, H_trend=H_trend, H_shock=H_shock,
+      H_season_par=H_season_par, H_trend_par=H_trend_par,
+      H_shock_par=H_shock_par
+    ))
     
-    if(is.function(F_trend)){
-      XH_obj$trend_par = list()
-      XH_obj$F_trend = F_trend  
-    } else {
-      XH_obj$trend_par = trend_par
-      XH_obj$F_trend = make_function(trend_par)  
-    }
+    XH_obj$q = checkIt(q, nPatches)
 
-    if(is.function(F_shock)){
-      XH_obj$shock_par = list() 
-      XH_obj$F_shock = F_shock  
-    } else {
-      XH_obj$shock_par = shock_par
-      XH_obj$F_shock = make_function(shock_par)  
-    }
-
-    if(is.function(H_season)){
-      XH_obj$H_season_par = list()
-      XH_obj$H_season = H_season  
-    } else {
-      XH_obj$H_season_par = H_season_par
-      XH_obj$H_season = make_function(H_season_par)  
-    }
-    
-    if(is.function(H_trend)){
-      XH_obj$H_trend_par = list()
-      XH_obj$H_trend = H_trend  
-    } else {
-      XH_obj$H_trend_par = H_trend_par
-      XH_obj$H_trend = make_function(H_trend_par)  
-    }
-    
-    if(is.function(H_shock)){
-      XH_obj$H_shock_par = list() 
-      XH_obj$H_shock = H_shock  
-    } else {
-      XH_obj$H_shock_par = H_shock_par
-      XH_obj$H_shock = make_function(H_shock_par)  
-    }
-    
     return(XH_obj)
 })}
 
-#' @title Compute derivatives for `trivialXH` (**XH**)
-#' @description The trivial model has no state variables so it returns
-#' a numeric vector of length 0
-#' @inheritParams dXHdt
-#' @return a [numeric] vector
-#' @keywords internal
-#' @export
-dXHdt.trivialXH <- function(t, y, xds_obj, i) {
-  numeric(0)
-}
-
-#' @title Handle state updating for the `trivialXH` **X**-module
-#' @description The trivial model has no state variables so it returns
-#' a numeric vector of length 0
-#' @inheritParams Update_XHt
-#' @return a [numeric] vector
-#' @keywords internal
-#' @export
-Update_XHt.trivialXH <- function(t, y, xds_obj, i) {
-  numeric(0)
-}
-
-#' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_prevalence] for the trivial model.
-#' @inheritParams F_prevalence
-#' @return a [numeric] vector numeric(0)
-#' @keywords internal
-#' @export
-F_prevalence.trivialXH <- function(vars, XH_obj) {
-  return(numeric(0))
-}
-
-#' @title Compute the NI
-#' @description Implements [F_ni] for the trivial model.
-#' @inheritParams F_ni
-#' @return a [numeric] vector numeric(0)
-#' @keywords internal
-#' @export
-F_ni.trivialXH <- function(vars, XH_obj) {
-  return(numeric(0))
-}
-
-#' @title Compute the prevalence of infection by light microscopy
-#' @description Implements [F_pfpr_by_lm] for the trivial model.
-#' @inheritParams F_prevalence
-#' @return a [numeric] vector numeric(0)
-#' @keywords internal
-#' @export
-F_pfpr_by_lm.trivialXH <- function(vars, XH_obj) {
-  return(numeric(0))
-}
-
-
-#' @title Compute the prevalence of infection by RDT
-#' @description Implements [F_pfpr_by_rdt] for the trivial model.
-#' @inheritParams F_prevalence
-#' @return a [numeric] vector numeric(0)
-#' @keywords internal
-#' @export
-F_pfpr_by_rdt.trivialXH <- function(vars, XH_obj) {
-  return(numeric(0))
-}
-
-
-#' @title Compute the prevalence of infection by PCR
-#' @description Implements [F_pfpr_by_pcr] for the trivial model.
-#' @inheritParams F_prevalence
-#' @return a [numeric] vector numeric(0)
-#' @keywords internal
-#' @export
-F_pfpr_by_pcr.trivialXH <- function(vars, XH_obj) {
-  return(numeric(0))
-}
-
-#' @title Set up `trivialXH` (**XH**)
+#' @title Set up the module object for `trivialXH` (**XH**)
 #' @description
 #'
 #' This sets up a `trivialXH` model object for the **XH** module for the \eqn{i^{th}} host species
@@ -378,7 +269,6 @@ setup_XH_obj.trivialXH = function(XHname, residence, xds_obj, options=list(), i=
   xds_obj$XHname = "trivialXH"
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nStrata[i], options)
   xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
-  xds_obj$XH_obj[[i]]$skill_set <- get_skillset_XH(xds_obj, i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_time_away("setup", xds_obj, i=i)
@@ -386,10 +276,54 @@ setup_XH_obj.trivialXH = function(XHname, residence, xds_obj, options=list(), i=
   return(xds_obj)
 }
 
+#' @inheritParams setup_XH_obj
 #' @rdname setup_XH_obj.trivialXH
 #' @export
 setup_XH_obj.trivial = function(XHname, residence, xds_obj, options=list(), i=1){
   setup_XH_obj.trivialXH(XHname, residence, xds_obj, options=options, i=i)
+}
+
+
+#' @title Get parameters for `trivialXH` (**XH**)
+#' @description Return stored parameter values for the `trivialXH` module.
+#' @inheritParams get_XH_pars
+#' @return a [list]
+#' @keywords internal
+#' @export
+get_XH_pars.trivialXH <- function(xds_obj, i=1) {
+  with(xds_obj$XH_obj[[i]], list(q=q,
+    kappa=kappa,
+    season_par=season_par,
+    trend_par=trend_par,
+    shock_par=shock_par,
+    H=H,
+    H_season_par=H_season_par,
+    H_trend_par=H_trend_par,
+    H_shock_par=H_shock_par
+  ))
+}
+
+#' @title Change parameters for `trivialXH` (**XH**)
+#' @description Change parameter values named in `options`,
+#' leaving other parameter values unchanged. Rebuild only forcing functions
+#' whose parameters are named in `options`; an empty parameter list resets
+#' the corresponding function to constant one.
+#' @inheritParams change_XH_pars
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+change_XH_pars.trivialXH <- function(xds_obj, options=list(), i=1) {
+  for(par in intersect(c("kappa", "H", "q"), names(options)))
+    xds_obj$XH_obj[[i]][[par]] = options[[par]]
+
+  forcing_functions = c(season_par="F_season", trend_par="F_trend",
+                        shock_par="F_shock", H_season_par="H_season",
+                        H_trend_par="H_trend", H_shock_par="H_shock")
+  for(par in intersect(names(forcing_functions), names(options))){
+    xds_obj$XH_obj[[i]][[par]] = options[[par]]
+    xds_obj$XH_obj[[i]][[forcing_functions[[par]]]] = make_function(options[[par]])
+  }
+  return(xds_obj)
 }
 
 
@@ -427,58 +361,115 @@ parse_XH_orbits.trivialXH <- function(outputs, xds_obj,i) {
   return(list())
 }
 
-
-#' @title List variables for `trivialXH` (**XH**)
-#'
-#' @description Return an empty list
-#'
-#' @inheritParams get_XH_vars
-#' @return a [list]
+#' @title Compute the "true" prevalence of infection / parasite rate
+#' @description Implements [F_prevalence] for the trivial model.
+#' @inheritParams F_prevalence
+#' @return a [numeric] vector numeric(0)
 #' @keywords internal
 #' @export
-get_XH_vars.trivialXH<- function(y, xds_obj, i) {
-    return(list())
+F_prevalence.trivialXH <- function(vars, XH_obj) {
+  return(numeric(0))
+}
+
+#' @title Compute observed prevalence
+#' @description Return observed prevalence for the `trivialXH` module as
+#' `q` times the true prevalence returned by [F_prevalence].
+#' True prevalence is empty for this module, so observed prevalence is empty too.
+#' @inheritParams F_pr_obs
+#' @return an empty [numeric] vector
+#' @seealso [trivialXH]
+#' @keywords internal
+#' @export
+F_pr_obs.trivialXH <- function(vars, XH_obj) {
+  XH_obj$q * F_prevalence(vars, XH_obj)
+}
+
+#' @title Compute the NI
+#' @description Implements [F_ni] for the trivial model.
+#' @inheritParams F_ni
+#' @return a [numeric] vector numeric(0)
+#' @keywords internal
+#' @export
+F_ni.trivialXH <- function(vars, XH_obj) {
+  return(numeric(0))
+}
+
+#' @title Compute observed prevalence by light microscopy
+#' @description Implements [F_pfpr_by_lm] for the trivial model.
+#' @inheritParams F_pfpr_by_lm
+#' @return a [numeric] vector numeric(0)
+#' @keywords internal
+#' @export
+F_pfpr_by_lm.trivialXH <- function(vars, XH_obj) {
+  return(numeric(0))
 }
 
 
-#' @title Get parameters for `trivialXH` (**XH**)
-#' @description Return stored parameter values for the `trivialXH` module.
-#' @inheritParams get_XH_pars
-#' @return a [list]
+#' @title Compute observed prevalence by RDT
+#' @description Implements [F_pfpr_by_rdt] for the trivial model.
+#' @inheritParams F_pfpr_by_rdt
+#' @return a [numeric] vector numeric(0)
 #' @keywords internal
 #' @export
-get_XH_pars.trivialXH <- function(xds_obj, i=1) {
-  with(xds_obj$XH_obj[[i]], list(
-    kappa=kappa,
-    season_par=season_par,
-    trend_par=trend_par,
-    shock_par=shock_par,
-    H=H,
-    H_season_par=H_season_par,
-    H_trend_par=H_trend_par,
-    H_shock_par=H_shock_par
-  ))
+F_pfpr_by_rdt.trivialXH <- function(vars, XH_obj) {
+  return(numeric(0))
 }
 
-#' @title Change parameters for `trivialXH` (**XH**)
-#' @description Change parameter values named in `options`,
-#' leaving other parameter values unchanged. Rebuild only forcing functions
-#' whose parameters are named in `options`; an empty parameter list resets
-#' the corresponding function to constant one.
-#' @inheritParams change_XH_pars
+
+#' @title Compute observed prevalence by PCR
+#' @description Implements [F_pfpr_by_pcr] for the trivial model.
+#' @inheritParams F_pfpr_by_pcr
+#' @return a [numeric] vector numeric(0)
+#' @keywords internal
+#' @export
+F_pfpr_by_pcr.trivialXH <- function(vars, XH_obj) {
+  return(numeric(0))
+}
+
+#' @title Check `trivialXH` (**XH**)
+#'
+#' @inheritParams check_XH
+#'
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-change_XH_pars.trivialXH <- function(xds_obj, options=list(), i=1) {
-  for(par in intersect(c("kappa", "H"), names(options)))
-    xds_obj$XH_obj[[i]][[par]] = options[[par]]
-
-  forcing_functions = c(season_par="F_season", trend_par="F_trend",
-                        shock_par="F_shock", H_season_par="H_season",
-                        H_trend_par="H_trend", H_shock_par="H_shock")
-  for(par in intersect(names(forcing_functions), names(options))){
-    xds_obj$XH_obj[[i]][[par]] = options[[par]]
-    xds_obj$XH_obj[[i]][[forcing_functions[[par]]]] = make_function(options[[par]])
-  }
+check_XH.trivialXH = function(xds_obj, i){
   return(xds_obj)
+}
+
+# specialized methods for a human trivial model
+
+#' @title Get the skill set for `trivialXH` (**XH**)
+#'
+#' @description Return the capabilities and compatibilities of the `trivialXH` module as a list.
+#'
+#'
+#' @inheritParams get_skillset_XH
+#'
+#' @note The compatibility name `"trivial"` returns the same skill set as
+#' `"trivialXH"`.
+#'
+#' @return the **XH** module skill set, as a list
+#'
+#' @keywords internal
+#' @export
+get_skillset_XH.trivialXH = function(xds_obj, i){
+  skills = list(
+    dts         = FALSE,
+    xde         = TRUE,
+    delay       = FALSE,
+    demography  = FALSE,
+    malaria     = FALSE,
+    pr_obs      = TRUE,
+    mda         = FALSE,
+    msat        = FALSE
+  )
+  return(skills)
+}
+
+#' @inheritParams get_skillset_XH
+#' @rdname get_skillset_XH.trivialXH
+#' @export
+get_skillset_XH.trivial = function(xds_obj, i){
+  get_skillset_XH.trivialXH(xds_obj, i)
 }

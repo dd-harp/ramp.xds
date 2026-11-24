@@ -1,6 +1,6 @@
 # Get initial values (**MY**)
 
-Inspect the initial values for the **MY** module
+Inspect the initial values for the **MY** module.
 
 ## Usage
 
@@ -20,12 +20,12 @@ get_MY_inits(xds_obj, s = 1)
 
 ## Value
 
-the initial values, as a named list
+the initial values as a named list for non-trivial modules
 
 ## Note
 
-The initial values are stored as a named list called
-`xds_obj$MY_obj[[s]]$inits`
+The initial values for non-trivial modules are stored as a named list
+called `xds_obj$MY_obj[[s]]$inits`
 
 ## See also
 

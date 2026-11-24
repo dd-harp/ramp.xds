@@ -1,13 +1,14 @@
+# X
 
-#' @title Set up a patch emigration bionomic object
+#' @title Set up bionomic port for patch emigration rate (**MY**)
 #'
-#' @description Set up an object
-#' to compute the patch emigration rate, \eqn{\sigma}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline patch emigration
+#' rate, \eqn{\sigma}, for a static model.
 #'
 #' @param sigma the mosquito patch emigration rate
-#' @param MY_obj an **`MY`** model object
+#' @param MY_obj an **`MY`** module object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** module object
 #'
 #' @keywords internal
 #' @export
@@ -21,10 +22,9 @@ setup_sigma_obj = function(sigma, MY_obj){
   return(MY_obj)
 }
 
-#' @title Compute the mosquito patch emigration rate
+#' @title Compute the baseline patch emigration rate (**MY**)
 #'
-#' @description This method dispatches on the type of `sigma_obj` and computes
-#' the patch emigration rate, \eqn{\sigma}.
+#' @description Compute the baseline patch emigration rate, \eqn{\sigma}.
 #'
 #' @inheritParams F_f
 #'
@@ -36,13 +36,13 @@ F_sigma = function(t, xds_obj, s){
   UseMethod("F_sigma", xds_obj$MY_obj[[s]]$sigma_obj)
 }
 
-#' @title Static model patch emigration rate
+#' @title Static model patch emigration rate (**MY**)
 #'
-#' @description Implements [F_sigma] for a static model
+#' @description Return the baseline patch emigration rate for a static model.
 #'
 #' @inheritParams F_sigma
 #'
-#' @return \eqn{sigma}, the patch emigration rate
+#' @return \eqn{sigma}, the baseline patch emigration rate
 #' @keywords internal
 #' @export
 F_sigma.static = function(t, xds_obj, s){
@@ -72,7 +72,7 @@ check_sigma = function(xds_obj, s=1){
   return(sigma)
 }
 
-#' @title Change the patch emigration rate
+#' @title Change the patch emigration rate (**MY**)
 #' 
 #' @description Update and validate the patch emigration rate for the
 #' \eqn{s^{th}} vector species, then update the demographic matrix.
@@ -93,9 +93,12 @@ change_sigma = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up F_sigma
+#' @title Configure the patch emigration rate function (**MY**)
 #'
-#' @param name a or setup function name
+#' @description Configure the function used to compute the baseline patch
+#' emigration rate.
+#'
+#' @param name a patch emigration rate or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -109,13 +112,13 @@ setup_F_sigma = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_F_sigma", options)
 }
 
-#' @title Set up F_sigma
+#' @title Set up F_sigma (**MY**)
 #'
-#' @description If an options list is passed
-#' as the first argument, then set 
-#' + `Fsigma_name = name$name` 
-#' + `options = name`
-#' and call `setup_F_sigma(Fsigma_name, xds_obj, options, s)` 
+#' @description Set up patch emigration rates using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_F_sigma].
 #'
 #' @inheritParams setup_F_sigma
 #'
@@ -131,8 +134,8 @@ setup_F_sigma.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no F_sigma 
-#' @description Don't change anything 
+#' @title Set up F_sigma (no setup) (**MY**)
+#' @description Leave the existing patch emigration rate configuration unchanged.
 #' @inheritParams setup_F_sigma
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -141,9 +144,9 @@ setup_F_sigma.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up sigma
+#' @title Set up static patch emigration rates (**MY**)
 #'
-#' @description Change the static values. 
+#' @description Set up supplied static patch emigration rates.
 #'
 #' @inheritParams setup_F_sigma
 #' @return an **`xds`** model object
@@ -161,9 +164,9 @@ setup_F_sigma.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up F_sigma
+#' @title Set up random patch emigration rates (**MY**)
 #' 
-#' @description Implements the "random" case for [setup_F_sigma]. See [make_F_sigma_random]
+#' @description Configure random patch emigration rates using [make_F_sigma_random].
 #' 
 #' @inheritParams setup_F_sigma
 #' @return an **`xds`** model object
@@ -174,45 +177,35 @@ setup_F_sigma.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Random patch emigration rate
-#'
-#' @description Generate patch emigration rates using the configured random
-#' number generator.
-#'
-#' @inheritParams F_sigma
-#' @return a [numeric] vector of length `nPatches`
-#' @keywords internal
-#' @export
-F_sigma.random = function(t, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$sigma_obj, {
-    sigma <- f_rand(xds_obj$nPatches, p1, p2)
-    return(sigma)
-  })
-}
-
-#' @title Make random patch emigration rates
+#' @title Make random patch emigration rates (**MY**)
 #' 
-#' @description Set up a random vector 
+#' @description Draw patch emigration rates once during setup.
+#' Subsequent evaluations reuse these values.
+#'
+#' @note The values are stored in a static port object.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param f_rand a random number generator
+#' @param f_rand a random number generator called as `f_rand(nPatches, p1, p2)`
+#' that returns a numeric vector of length `nPatches`
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
-#' @return a configuration object for [F_sigma.random]
+#' @return a static port object for [F_sigma.static]
 #' @export
 make_F_sigma_random = function(nPatches, options=list(), f_rand = stats::rbeta, p1=100, p2=1000) {
   with(options, {
     sigma_obj <- list(f_rand=f_rand, p1=p1, p2=p2)
-    class(sigma_obj) <- "random"
+    sigma_obj$sigma <- f_rand(nPatches, p1, p2)
+    class(sigma_obj) <- "static"
     return(sigma_obj)
   })
 }
 
 
-#' @title Patch emigration rate
+#' @title Compute the baseline patch emigration rate (type 2) (**MY**)
 #'
-#' @description Implements a type 2 functional response to the availability of three resources: 
+#' @description Compute the baseline patch emigration rate using a type 2
+#' functional response to the availability of three resources:
 #' blood hosts (\eqn{B}), aquatic habitats (\eqn{Q}), and sugar (\eqn{S}). 
 #' 
 #' \deqn{\sigma = \sigma_X \left( \frac{\sigma_Q Q}{1+\sigma_Q Q} 
@@ -222,7 +215,7 @@ make_F_sigma_random = function(nPatches, options=list(), f_rand = stats::rbeta, 
 #'
 #' @inheritParams F_sigma
 #'
-#' @return \eqn{\sigma}, the patch emigration rate
+#' @return \eqn{\sigma}, the baseline patch emigration rate
 #' @keywords internal
 #' @export
 F_sigma.type2 = function(t, xds_obj, s){
@@ -233,14 +226,13 @@ F_sigma.type2 = function(t, xds_obj, s){
   with(xds_obj$MY_obj[[s]]$sigma_obj, {
     sigma = sigX*(sigQ*Q/(1+sigQ*Q)+
                   sigB*B/(1+sigB*B)+ 
-                  sigS*S/(1+sigB*S))
+                  sigS*S/(1+sigS*S))
     return(sigma)
 })}
 
-#' @title Set up F_sigma
+#' @title Set up type 2 patch emigration rates (**MY**)
 #' 
-#' @description Set up a type 2 functional response
-#' to model the patch emigration rate
+#' @description Configure a type 2 functional response for the patch emigration rate.
 #' 
 #' @inheritParams setup_F_sigma
 #' @return an **`xds`** model object
@@ -252,15 +244,15 @@ setup_F_sigma.type2 = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make a patch emigration configuration
+#' @title Make a patch emigration configuration (**MY**)
 #' 
-#' @description Make an object to model patch emigration as a 
-#' type 2 functional response 
+#' @description Build a configuration object for a type 2 patch emigration rate
+#' response to blood host, aquatic habitat, and sugar availability.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
 #' 
-#' @param sigX the emigration rate from a patch with no resources
+#' @param sigX the emigration rate scaling parameter
 #' @param sigB the shape parameter for blood hosts
 #' @param sigQ the shape parameter for aquatic habitats
 #' @param sigS the shape parameter for sugar
@@ -279,7 +271,7 @@ make_F_sigma_type2 = function(nPatches, options=list(), sigX=.3, sigB=.1,
   })
 }
 
-#' @title Set up patch emigration rate
+#' @title Set up patch emigration rate (**MY**)
 #'
 #' @description Configure and validate the patch emigration rate.
 #'
@@ -298,4 +290,4 @@ setup_sigma = function(name, xds_obj, options=list(), s=1){
 
 #' @rdname setup_sigma
 #' @export
-setup_emigration_rates <- setup_sigma
+setup_mosy_emigration <- setup_sigma

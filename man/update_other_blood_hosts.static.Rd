@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{update_other_blood_hosts.static}
 \alias{update_other_blood_hosts.static}
-\title{Update other blood hosts}
+\title{Update other blood host availability}
 \usage{
 \method{update_other_blood_hosts}{static}(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-The \code{static} method returns \code{xds_obj} unmodified
+The static method returns \code{xds_obj} unmodified.
 }
 \keyword{internal}

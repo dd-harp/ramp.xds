@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{check_MY}
 \alias{check_MY}
-\title{Run a check before solving}
+\title{Check model (\strong{MY})}
 \usage{
 check_MY(xds_obj, s)
 }
@@ -15,6 +15,6 @@ check_MY(xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Run a check before solving
+Check model (\strong{MY})
 }
 \keyword{internal}

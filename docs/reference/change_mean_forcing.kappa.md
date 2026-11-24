@@ -1,6 +1,6 @@
 # Change mean forcing
 
-Change mean net infectiousness (NI)
+Change the mean net infectiousness (NI).
 
 ## Usage
 

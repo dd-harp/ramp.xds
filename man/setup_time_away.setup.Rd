@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-time_away.R
 \name{setup_time_away.setup}
 \alias{setup_time_away.setup}
-\title{Set up a time spent}
+\title{Set up default time away}
 \usage{
 \method{setup_time_away}{setup}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured time spent . If it passes
-the checks, it replaces the current time_away .
-
-If called with \code{name = "as_is"}, the time spent
-must be at \code{options$time_away}
+Initialize time away to zero for each stratum of the selected
+host species and initialize a static port.
 }
 \keyword{internal}

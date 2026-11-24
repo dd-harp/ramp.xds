@@ -19,7 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{MBionomics} for models with no exogenous forcing
+Implements \link{MBionomics} for the \code{basicM} module.
 }
 \section{Parameters}{
 
@@ -27,16 +27,16 @@ Implements \link{MBionomics} for models with no exogenous forcing
 \item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 
 After basic setup, \link{change_MY_pars.basicM} can be used to change static
-parameter values. The \code{basicM} module does not implement dynamic bionomic
-ports.
+parameter values. The \code{basicM} module evaluates bionomic parameter functions
+through \link{MBionomics}.
 }
 
 \section{Survival and Dispersal}{
@@ -45,7 +45,7 @@ Mosquito survival and dispersal are described by the demographic matrix
 \eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
 rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
-lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+lost. The combined rate of mortality and loss during emigration is \deqn{g+\mu\sigma.}
 
 The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
 non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal

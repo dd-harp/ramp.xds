@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{F_eggs.RMdts}
 \alias{F_eggs.RMdts}
-\title{Number of eggs laid by adult mosquitoes}
+\title{Compute egg production for \code{RMdts} (\strong{MY})}
 \usage{
 \method{F_eggs}{RMdts}(t, y, xds_obj, s)
 }
@@ -19,6 +19,18 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_eggs} for the RMdts model.
+Return the number of eggs laid by the adult mosquito population, per patch
+}
+\section{Egg Laying}{
+
+The daily number of eggs laid per patch is \code{M*nu*eggsPerBatch}, where
+\code{M} is total adult mosquito density, \code{nu} is the oviposition rate,
+and \code{eggsPerBatch} is the number of eggs per batch.
+\link{F_eggs.RMdts} returns this quantity before distribution among aquatic
+habitats by \link{EggLaying}.
+}
+
+\seealso{
+\link{RMdts}, \link{EggLaying}
 }
 \keyword{internal}

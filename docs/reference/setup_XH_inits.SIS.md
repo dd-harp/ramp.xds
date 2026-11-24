@@ -1,4 +1,4 @@
-# Setup initial values for `SIS` (**XH**)
+# Set up initial values for `SIS` (**XH**)
 
 Set initial values for all the variables in the `SIS` module (**XH**)
 for the \\(i^{th}\\) host species.

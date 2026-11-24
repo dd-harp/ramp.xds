@@ -1,6 +1,6 @@
 # Set Up the first (null) other variable
 
-The description for each method should include the equations.
+Initialize an empty placeholder for auxiliary variables.
 
 ## Usage
 

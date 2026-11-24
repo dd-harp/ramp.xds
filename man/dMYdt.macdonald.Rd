@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{dMYdt.macdonald}
 \alias{dMYdt.macdonald}
-\title{Compute derivatives for \code{macdonald} (\strong{MY})}
+\title{Compute the derivatives for \code{macdonald} (\strong{MY})}
 \usage{
 \method{dMYdt}{macdonald}(t, y, xds_obj, s)
 }
@@ -16,11 +16,27 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{numeric} vector
+a \link{numeric} vector of derivatives in the module's state-variable order
 }
 \description{
-Implements the delay differential equations for the
-\code{macdonald} module.
+Compute the derivatives for the \code{macdonald} module:
+\deqn{\begin{array}{rl}
+dM/dt &= \Lambda-\Omega\cdot M \\
+dP/dt &= f(M-P)-\Omega\cdot P \\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\
+dZ/dt &= \Upsilon\cdot\left(fq\kappa_\tau(M_\tau-Y_\tau)\right)-\Omega\cdot Z \\
+dA_\kappa/dt &= \kappa
+\end{array}}
+Here \eqn{\tau} is \code{eip} and \eqn{\Upsilon} is \code{Upsilon}.
+For \eqn{t>\tau}, \eqn{M_\tau} and \eqn{Y_\tau} are the states at
+\eqn{t-\tau}, and \eqn{\kappa_\tau} is the derivative of the accessory
+variable \eqn{A_\kappa} at that time.
+For \eqn{t\leq\tau}, the delayed states use their initial values and
+\eqn{\kappa_\tau} uses the current \eqn{\kappa}.
+}
+\note{
+Derivatives are returned in patch-ordered blocks for \code{M}, \code{P}, \code{Y},
+and \code{Z}, followed by \code{kappa}, the derivative of the accessory state.
 }
 \section{State Variables}{
 
@@ -47,10 +63,10 @@ Implements the delay differential equations for the
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 

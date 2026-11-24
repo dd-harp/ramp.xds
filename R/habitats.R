@@ -101,7 +101,7 @@ AquaticHabitats = function(t, y, xds_obj){
 }
 
 #' @title Aquatic Habitat Dynamics
-#' @description Computes eggs laid leaving the 
+#' @description Computes eggs laid, leaving the
 #' habitat interface unmodified. 
 #' @inheritParams AquaticHabitats
 #' @return an **`xds`** model object
@@ -198,7 +198,7 @@ F_available_habitat = function(habitat_matrix, search_weights){
 #' also available, then total availability of laying sites is
 #' \deqn{Q_{all} = Q + Q_t + Q_b.}
 #'
-#' Habitat availability is computed elsewhere and stored in `xds_obj$terms$Q`, ovitrap availability in `xds_obj$patches$ovitraps`, and bad-habitat availability in `xds_obj$patches$bad_habitats`.
+#' @note Habitat availability is computed elsewhere and stored in `xds_obj$terms$Q`, ovitrap availability in `xds_obj$patches$ovitraps`, and bad-habitat availability in `xds_obj$patches$bad_habitats`.
 #'
 #' @param Q the availability of habitats
 #' @param Q_traps the availability of traps

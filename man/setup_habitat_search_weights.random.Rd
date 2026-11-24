@@ -2,12 +2,12 @@
 % Please edit documentation in R/habitats-search_weights.R
 \name{setup_habitat_search_weights.random}
 \alias{setup_habitat_search_weights.random}
-\title{Set up a habitat_search_weights}
+\title{Set up habitat_search_weights}
 \usage{
 \method{setup_habitat_search_weights}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,8 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "method1" case for \link{setup_habitat_search_weights}. See \link{make_habitat_search_weights_random}
+Generate random habitat search weights using
+\link{make_habitat_search_weights_random} and apply them using
+\link{change_habitat_search_weights}.
 }
 \keyword{internal}

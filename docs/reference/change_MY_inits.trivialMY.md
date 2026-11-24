@@ -1,7 +1,7 @@
 # Change initial values for `trivialMY` (**MY**)
 
-For the `trivialMY` module (**MY**) for the \\(s^{th}\\) species, change
-initial values named in `options` leaving other values unchanged.
+The module has no state variables; return the model object unchanged.
+`options` is unused.
 
 ## Usage
 

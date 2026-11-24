@@ -19,6 +19,11 @@ MBionomics(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute the adult mosquito bionomic parameter values
+Compute the adult mosquito bionomic parameter values.
+Store each port-backed parameter \code{x} as \code{x_t} and reset \code{es_x} to 1.
+Parameters without ports are stored directly as \code{x}.
+}
+\seealso{
+\link{MosquitoBionomics}
 }
 \keyword{internal}

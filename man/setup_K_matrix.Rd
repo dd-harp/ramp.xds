@@ -37,12 +37,12 @@ The function was designed to work using arguments passed to \link{xds_setup}:
 }
 
 Pre-dispatch cases were developed to make the function call more flexible: any
-matrix can be passed as the first argument: or the user could set up an options list
-ansd pass it
+matrix can be passed as the first argument, or the user could set up an options list
+and pass it
 (\emph{e.g.} \code{Koptions} is passed to \code{setup_K_matrix} in \code{xds_setup}). The pre-dispatch
 parsing:
 \itemize{
-\item if \code{name} is a method name, set \code{class(options) = "name"}
+\item if \code{name} is a method name, set \code{class(options) = name}
 \item if \code{name} is a matrix, set \code{class(options) = "as_matrix"}
 \item if \code{name} is a list of options, then \code{list} is dispatched
 }

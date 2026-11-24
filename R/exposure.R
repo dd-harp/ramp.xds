@@ -1,16 +1,18 @@
+# X
+
 #' @title Exposure 
 #' 
 #' @description
 #' The EIR computed by [xds_info_transmission] is a measure of *local* risk: it is 
-#' the expected number of infected
+#' the expected number of infective
 #' bites, per person, and it is computed for every population stratum. In 
-#' **exposure,** the daily local EIR is computed into a measure 
+#' **exposure,** the daily local EIR is converted into a measure
 #' of the population FoI in three steps: 
-#' + the total EIR is the weighted sum of local exposure and travel exposure, using
-#' the concept of time here *vs.* time away;
+#' + local and travel exposure are evaluated separately;
 #' + the distribution of the number of bites per person is computed under a 
-#' model of environmental heterogeneity ; 
-#' + the number of infections is computed under a model of partial immunity.  
+#' model of environmental heterogeneity;
+#' + local and travel FoI are computed under a model of partial immunity
+#' and combined using time here *vs.* time away.
 #' 
 #' @section Environmental Heterogeneity:
 #' While EIR is an expected value, the expected value can have a distribution
@@ -21,7 +23,7 @@
 #' @section Travel Malaria:
 #' Travel malaria is defined by exposure to malaria while spending
 #' time outside of the spatial domain represented by the patches.
-#' See [xds_info_travel_malaria]   
+#' See [xds_info_travel_malaria].
 #' 
 #' @section Pre-Erythrocytic Immunity:
 #' Depending on the X module, a parameter called \eqn{b} describes the probability
@@ -93,7 +95,7 @@ Exposure <- function(t, y, xds_obj){
 #' as defined by an \eqn{\cal X} model).
 #' The total FoI is a weighted sum of the local FoI and
 #' exposure to malaria while traveling,
-#' computed from the the travel EIR, \eqn{E_T}:
+#' computed from the travel EIR, \eqn{E_T}:
 #' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 #' @inheritParams Exposure
 #' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [xds_info_travel_malaria] 
@@ -111,14 +113,14 @@ Exposure.xde <- function(t, y, xds_obj){
     teir= xds_obj$XH_obj[[i]]$travel_eir
     travel_foi = F_foi(teir, b, xds_obj$env_het_obj[[i]])
     xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
-  
+  }
   return(xds_obj)
-}}
+}
 
 #' @title Compute Attack Rates
 #' @description For `dts` models, compute
-#' the attack rates, the expected probability of infection
-#' over one time step, is a weighted sum of local and travel exposure.
+#' the attack rates, the expected probabilities of infection
+#' over one time step, from the time-weighted local and travel FoI.
 #' @details
 #' Local attack rates (AR or \eqn{\alpha}) are
 #' a function of local daily entomological inoculation
@@ -126,9 +128,9 @@ Exposure.xde <- function(t, y, xds_obj){
 #' a model for the probability of infection
 #' per infectious bite, \eqn{b} (from \eqn{F_infectivity},
 #' as defined by an \eqn{\cal X} model).
-#' The total attack rates also consider
-#' exposure to malaria while traveling, (\eqn{T_\delta}):
-#' \deqn{\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))}
+#' The total attack rates are computed from the time-weighted local and travel
+#' FoI, using the travel EIR, \eqn{E_T}:
+#' \deqn{\alpha = 1-\exp(-((1-\delta) F_h(E,b) + \delta F_h(E_T,b)))}
 #' @inheritParams Exposure
 #' @return an **`xds`** model object
 #' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [xds_info_travel_malaria]
@@ -146,9 +148,9 @@ Exposure.dts <- function(t, y, xds_obj){
     travel_foi = F_foi(teir, b, xds_obj$env_het_obj[[i]])
     xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
     xds_obj$terms$AR[[i]] = 1 - exp(-(local_foi*at_home + travel_foi*away)) 
-
-    return(xds_obj)
-  }}
+  }
+  return(xds_obj)
+}
 
 #' @title Compute the Local FoI
 #' @description Compute the daily local FoI as a function
@@ -161,8 +163,8 @@ Exposure.dts <- function(t, y, xds_obj){
 #' heterogeneous exposure --
 #' the distribution of bites per person.
 #'
-#' The model for human / host infection (\eqn{\cal X}) provide
-#' a term \eqn{b}, from [F_infectivity] that describe the probability of infection
+#' The model for human / host infection (\eqn{\cal X}) provides
+#' a term \eqn{b}, from [F_infectivity], that describes the probability of infection
 #' per infectious bite, possibly affected by
 #' pre-erythrocytic immunity.
 #'
@@ -187,10 +189,10 @@ F_foi <- function(eir, b, env_het_obj){
 #' heterogeneous exposure --
 #' the distribution of bites per person.
 #'
-#' The model for human / host infection (\eqn{\cal X}) provide
-#' a term \eqn{b}, from [F_infectivity] that describe the probability of infection
+#' The model for human / host infection (\eqn{\cal X}) provides
+#' a term \eqn{b}, from [F_infectivity], that describes the probability of infection
 #' per infectious bite, possibly affected by
-#' pre-erythrocytic immunity
+#' pre-erythrocytic immunity.
 #'
 #' @param eir the daily eir for each stratum
 #' @param b the probability of infection, per bite
@@ -234,5 +236,3 @@ foi2eir <- function(foi, b, env_het_obj){
 ar2eir <- function(ar, b, env_het_obj){
   UseMethod("ar2eir", env_het_obj)
 }
-
-

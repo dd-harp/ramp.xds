@@ -38,9 +38,9 @@ xds_setup(
 
 \item{nPatches}{the number of patches}
 
-\item{residence}{the index of the patch where each human population stratum resides}
+\item{residence}{the index of the patch where each human population stratum resides (see \link{residence_vector})}
 
-\item{membership}{the index of the patch where each aquatic habitat is found}
+\item{membership}{the habitat membership vector or \link{habitat_vector}}
 
 \item{HPop}{the initial human population density for each stratum}
 
@@ -105,7 +105,7 @@ initial conditions, see \link{xds_info_change_parameters} or \link{xds_info_init
 Set up the model structure:
 \itemize{
 \item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
-\item \code{residence} - the human residence vector (see \link{xds_info_human_populations})
+\item \code{residence} - the human residence vector (see \link{residence_vector} and \link{residence_matrix})
 \item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats})
 }
 
@@ -125,10 +125,14 @@ During setup:
 If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
 \itemize{
 \item \code{searchQ} the habitat search weights (see \link{xds_info_search_weights_habitat})
-\item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
+\item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood} and \link{human_availability})
 \item \code{Koptions} sets up a mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal})
 \item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
+
+Blood host availability and time at risk determine the \link{mixing_matrix},
+which maps biting density in patches to biting rates in population strata.
+See \link{blood_feeding} for the blood-feeding framework.
 }
 
 \seealso{

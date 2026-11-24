@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{make_MY_obj_trivial}
 \alias{make_MY_obj_trivial}
-\title{Make parameters for trivial aquatic mosquito model}
+\title{Make the module object for \code{trivialMY} (\strong{MY})}
 \usage{
 make_MY_obj_trivial(
   nPatches,
@@ -11,9 +11,9 @@ make_MY_obj_trivial(
   q = 1,
   Z = 1,
   eggs = 1,
-  F_season = F_one,
-  F_trend = F_one,
-  F_shock = F_one,
+  F_season = list(),
+  F_trend = list(),
+  F_shock = list(),
   season_par = list(name = "F_one"),
   trend_par = list(name = "F_one"),
   shock_par = list(name = "F_one")
@@ -48,6 +48,8 @@ make_MY_obj_trivial(
 a \link{list}
 }
 \description{
-Make parameters for trivial aquatic mosquito model
+Use a supplied pattern function if passed, setting its corresponding
+parameter object to an empty list. Otherwise, construct the function from
+the corresponding parameter object using \link[ramp.func:make_function]{make_function}.
 }
 \keyword{internal}

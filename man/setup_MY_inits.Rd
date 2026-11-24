@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_inits}
 \alias{setup_MY_inits}
-\title{Setup initial values (\strong{MY})}
+\title{Set up initial values (\strong{MY})}
 \usage{
 setup_MY_inits(xds_obj, options = list(), s = 1)
 }
@@ -17,18 +17,15 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values
-for all the variables.
-\itemize{
-\item Each module (\emph{MYname}) defines
-a function \code{make_MY_inits_}\emph{MYname}
-that supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_MY_inits} or
-see the inline module documentation.
+Set up initial values for the selected \strong{MY} module and
+vector species. Values in \code{options} override the defaults.
 }
+\note{
+Dispatch uses the class of \code{xds_obj$MY_obj[[s]]}.
 }
 \seealso{
 \link{get_MY_inits}, \link{xds_info_initial_conditions}
+
+\link{change_MY_inits}
 }
 \keyword{internal}

@@ -1,7 +1,7 @@
-# List variables for `basicL` (**L**)
+# Get the state variables for `basicL` (**L**)
 
-Extract the **L** component variables from the vector of state variables
-(`y`) and return them as a named list
+Extract the `basicL` variables from the state variables vector \\(y\\),
+parse, and return the variables by name in a list.
 
 ## Usage
 

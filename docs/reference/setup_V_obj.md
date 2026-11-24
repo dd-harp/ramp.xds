@@ -1,6 +1,6 @@
-# Setup an **V** Module (Human / Host Epidemiology & Demography)
+# Set up a **V** module
 
-Set the parameter values and configure a model for the **X** Component
+Set the parameter values and configure a model for the **V** component.
 
 ## Usage
 
@@ -24,7 +24,7 @@ setup_V_obj(XHname, xds_obj, options = list(), i = 1)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 

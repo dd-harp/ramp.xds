@@ -16,10 +16,10 @@ get_time_away(xds_obj, i = 1)
 \value{
 a \link{numeric} vector of length \code{nStrata}
 
-a []
+a \link{numeric} vector of length \code{nStrata[i]}
 }
 \description{
 Get the Time Away Vector
 
-Get the Time Spent
+Get time away
 }

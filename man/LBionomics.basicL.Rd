@@ -19,8 +19,26 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Compute the bionomic parameter values for \code{basicL}
-by calling the forcing functions for each parameter. Also resets
-all effect sizes (\code{es_psi}, \code{es_phi}, \code{es_xi}, \code{es_theta}) to 1.
+Compute the baseline bionomic parameter values for the \code{basicL}
+module and reset their effect sizes to 1.
+}
+\note{
+Evaluate \link{F_psi}, \link{F_phi}, \link{F_xi}, and \link{F_theta} at \code{t}.
+Store their values as \code{psi_t}, \code{phi_t}, \code{xi_t}, and \code{theta_t} at
+\code{xds_obj$L_obj[[s]]}, and reset the corresponding \code{es_} fields to 1
+per habitat. Realized parameter values are set by \link{LEffectSizes.basicL}.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
+}
+}
+
+\seealso{
+\link{basicL}, \link{LEffectSizes.basicL}
 }
 \keyword{internal}

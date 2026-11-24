@@ -7,7 +7,7 @@
 \method{parse_MY_orbits}{basicM}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,7 +17,12 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_MY_orbits} for the basicM model.
+Extract the model state outputs for the \code{basicM} module
+from \code{outputs} and return them by name in a list.
+Also compute \code{parous = P/M}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
 }
 \section{State Variables}{
 
@@ -27,7 +32,7 @@ Implements \link{parse_MY_orbits} for the basicM model.
 }
 }
 
-\section{Dynamics}{
+\section{ODE}{
 
 Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
 disperse and die according to \eqn{\Omega}. The ODE model is
@@ -37,9 +42,21 @@ dM/dt &= \Lambda-\Omega\cdot M \\\\
 dP/dt &= f(M-P)-\Omega\cdot P
 \end{array}}
 Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
-once. Parity, \eqn{P/M}, is computed during parsing and stored as \code{parous}.
-For discrete-time models, \link{Update_MYt.basicM} uses the one-day update
-equations.
+once.
+}
+
+\section{DTS}{
+
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
+disperse and die according to \eqn{\Omega}. The one-day update in
+\link{Update_MYt.basicM} is
+\deqn{
+\begin{array}{rl}
+M_t &= \Lambda+e^{-\Omega}\cdot M_{t-1} \\\\
+P_t &= f(M_{t-1}-P_{t-1})+e^{-\Omega}\cdot P_{t-1}
+\end{array}}
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once.
 }
 
 \seealso{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{update_blood_traps}
 \alias{update_blood_traps}
-\title{Update the blood_traps}
+\title{Update blood trap availability}
 \usage{
 update_blood_traps(t, y, xds_obj, s)
 }
@@ -19,7 +19,7 @@ update_blood_traps(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Port function for the blood_traps, \eqn{\Theta}.
+Dispatch updates for blood trap availability.
 Dispatches on \code{class(xds_obj$patches$blood_traps_obj[[s]])}.
 }
 \keyword{internal}

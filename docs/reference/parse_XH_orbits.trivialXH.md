@@ -15,8 +15,7 @@ parse_XH_orbits(outputs, xds_obj, i)
 
 - outputs:
 
-  an output matrix returned by
-  [deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html)
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 

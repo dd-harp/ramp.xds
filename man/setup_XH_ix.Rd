@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{setup_XH_ix}
 \alias{setup_XH_ix}
-\title{Add indices for human population to parameter list}
+\title{Set up variable indices (\strong{XH})}
 \usage{
 setup_XH_ix(xds_obj, i)
 }
@@ -15,6 +15,10 @@ setup_XH_ix(xds_obj, i)
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}
+Set up variable indices for the selected \strong{XH} module and
+host species.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$XH_obj[[i]]}.
 }
 \keyword{internal}

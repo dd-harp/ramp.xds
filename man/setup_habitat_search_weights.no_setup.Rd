@@ -7,7 +7,7 @@
 \method{setup_habitat_search_weights}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Don't change anything.
 }
 \keyword{internal}

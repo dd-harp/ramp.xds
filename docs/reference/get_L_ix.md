@@ -1,4 +1,4 @@
-# Get indices (**L**)
+# Get variable indices (**L**)
 
 The indices are stored on the **L** object as a named list called `ix`;
 `get_L_ix` returns that list.
@@ -23,3 +23,7 @@ get_L_ix(xds_obj, s = 1)
 
 a named [list](https://rdrr.io/r/base/list.html) of indices for the
 **L** variables
+
+## See also
+
+[setup_L_ix](https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.md)

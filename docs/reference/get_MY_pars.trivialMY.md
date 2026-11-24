@@ -1,7 +1,7 @@
 # Get parameters for `trivialMY` (**MY**)
 
 Return the parameters in the trivial **MY**-Component model as a named
-list
+list.
 
 ## Usage
 

@@ -26,4 +26,4 @@ an **`xds`** model object
 ## Note
 
 The algorithm sets \\(t\_{-\infty}\\) to \\(-\|\\)`t_neg_inf`\\(\|\\),
-the negative absolute value of `t_neg_inf`
+the negative absolute value of `t_neg_inf`.

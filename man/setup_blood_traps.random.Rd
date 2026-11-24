@@ -2,23 +2,24 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{setup_blood_traps.random}
 \alias{setup_blood_traps.random}
-\title{Set up a blood_traps}
+\title{Set up blood traps}
 \usage{
 \method{setup_blood_traps}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_blood_traps}. See \link{make_blood_traps_random}
+Generate random blood trap availability using
+\link{make_blood_traps_random}.
 }
 \keyword{internal}

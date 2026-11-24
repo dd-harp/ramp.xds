@@ -1,7 +1,7 @@
 # Apply effect sizes (**L**)
 
-Apply vector control effect sizes to immature mosquito bionomic
-parameters
+Apply vector control effect sizes to baseline aquatic mosquito bionomic
+parameter values.
 
 ## Usage
 
@@ -30,3 +30,8 @@ LEffectSizes(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md),
+[VectorControlEffectSizes](https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.md)

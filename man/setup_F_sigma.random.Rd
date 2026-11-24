@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_F_sigma.random}
 \alias{setup_F_sigma.random}
-\title{Set up F_sigma}
+\title{Set up random patch emigration rates (\strong{MY})}
 \usage{
 \method{setup_F_sigma}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a patch emigration rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_F_sigma}. See \link{make_F_sigma_random}
+Configure random patch emigration rates using \link{make_F_sigma_random}.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{Compute derivatives for \code{basicL} (\strong{L})}
+\title{Compute the derivatives for \code{basicL} (\strong{L})}
 \usage{
 \method{dLdt}{basicL}(t, y, xds_obj, s)
 }
@@ -16,58 +16,74 @@
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector
+a \link{numeric} vector of derivatives in the module's state-variable
+order, with length \code{nHabitats}
 }
 \description{
-This implements differential equation model for aquatic mosquito ecology.
-The equations have been modified slightly from a version published by
-Smith DL, \emph{et al.} (2013).
+Compute the derivatives for the \code{basicL} module:
+\deqn{dL/dt = \eta-\left(\psi e^{-\xi L}+\phi+\theta L\right)L.}
+}
+\note{
+Derivatives for \code{L} are returned in habitat order.
+The egg input is read from \code{xds_obj$terms$eta[[s]]}.
+}
+\section{State Variables}{
 
-\strong{Variables:}
-\itemize{
-\item \eqn{L}: the density of mosquito larvae in each habitat
+\describe{
+\item{\code{L}}{density of mosquito larvae in each habitat}
+}
 }
 
-\strong{Input Term:}
-\itemize{
-\item \eqn{\eta} or \code{eta}: egg deposition rate (from \link{F_eggs})
+\section{Dynamical Term}{
+
+
+\describe{
+\item{\code{eta} or \eqn{\eta}}{the number of eggs laid in each habitat, per day}
+}
 }
 
-\strong{Parameters:}
-\itemize{
-\item \eqn{\psi} or \code{psi}: maturation rate
-\item \eqn{\xi} or \code{xi}: delayed maturation parameter in response to mean crowding
-\item \eqn{\phi} or \code{phi}: density-independent death rate
-\item \eqn{\theta} or \code{theta}: the slope of the mortality rate in response to mean crowding
+\section{Parameters}{
+
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
+}
 }
 
-\strong{Dynamical System:}
+\section{ODE}{
 
-\deqn{dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L}
 
-\strong{Output Term:}
-\itemize{
-\item The function \link{F_emerge} computes the net emergence rate (\eqn{\alpha}):
+The derivatives in \link{dLdt.basicL} are:
+\deqn{dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L}
 }
 
-\deqn{\alpha = \psi e^{-\xi L} L }
+\section{Emergence}{
 
-\strong{Regulation:}
+
+The emergence rate of adult female mosquitoes from each habitat is computed by \link{F_emerge.basicL}:
+\deqn{\alpha = \psi e^{-\xi L} L}
+}
+
+\section{Regulation}{
+
 
 In this model, population is regulated in two ways.
 First, per-capita mortality increases with mean crowding;
 per-capita mortality is \eqn{\phi + \theta L.}
-Second, maturation is delayed in response to mean crowding \eqn{\psi\;e^{-\xi L.}}
+Second, maturation is delayed in response to mean crowding \eqn{\psi\;e^{-\xi L}}.
 Depending on the values of \eqn{\xi,}
 productivity in some habitats might not be a monotonically increasing function of egg laying.
 
 The model by Smith DL, \emph{et al.} (2013) did not include delayed maturation;
 that model is recovered by setting \eqn{\xi=0.}
 }
+
 \references{
 {\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 }
 \seealso{
-\link{make_L_obj_basicL}
+\link{basicL}, \link{make_L_obj_basicL}, \link{Update_Lt.basicL}, \link{EggLaying}
 }
 \keyword{internal}

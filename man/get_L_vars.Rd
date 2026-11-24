@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_vars}
 \alias{get_L_vars}
-\title{List variables (\strong{L})}
+\title{Get the state variables (\strong{L})}
 \usage{
 get_L_vars(y, xds_obj, s)
 }
@@ -14,13 +14,15 @@ get_L_vars(y, xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-a named \link{list}: the variables of \eqn{\cal L} by name
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-Extract the variables describing \strong{L} Component
-states for the \eqn{s^{th}} species and return them as a named list
+Extract the state variables for the selected \strong{L} module and vector species
+from \code{y} and return them by name in a list for use during model solving.
 }
 \note{
-This method dispatches on the class of \code{xds_obj$L_obj[[s]]}.
+Dispatch uses the class of \code{xds_obj$L_obj[[s]]}.
+These functions support solver evaluations that need variables by name;
+users rarely need to call them directly.
 }
 \keyword{internal}

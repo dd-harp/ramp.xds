@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_F_q.as_is}
 \alias{setup_F_q.as_is}
-\title{Set up static human feeding fraction}
+\title{Set up static human fraction (\strong{MY})}
 \usage{
 \method{setup_F_q}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a human fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up supplied static human feeding fractions.
+Set up supplied static human fractions from \code{options$q}
+or a numeric \code{name}. Values in \code{options$q} take precedence.
 }
 \keyword{internal}

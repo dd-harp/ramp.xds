@@ -12,6 +12,14 @@ In basic setup, modules are selected by passing the name as a character string:
 \item{\code{Lname}}{\strong{L} Component module name: see \link{L_module_list}}
 }
 }
+\note{
+\strong{Internals:}
+\itemize{
+\item \strong{\code{xds_obj$XH_obj[[1]]}} defines the module for human / host infection dynamics of class \code{XHname} (the \strong{XH} component). The parameter values are passed in a named list, \code{XHoptions}.
+\item \strong{\code{xds_obj$MY_obj[[1]]}} defines the module for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions}.
+\item \strong{\code{xds_obj$L_obj[[1]]}} defines the module for aquatic mosquito ecology of class \code{Lname} (the \strong{L} Component). The parameter values are passed in a named list, \code{Loptions}.
+}
+}
 \section{Modules}{
 
 
@@ -31,15 +39,6 @@ five core processes. There is also a generic interface to add other variables:
 }
 \item \strong{L} - a system of equations describing immature mosquito ecology
 \item \strong{V} - other dynamical components: see \link{Other_State_Variables}
-}
-}
-
-\section{Internals}{
-
-\itemize{
-\item \strong{\code{xds_obj$XH_obj[[1]]}} defines the module for human / host infection dynamics of class \code{XHname} (the \strong{XH} component). The parameter values are passed in a named list, \code{XHoptions}.
-\item \strong{\code{xds_obj$MY_obj[[1]]}} defines the module for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions}.
-\item \strong{\code{xds_obj$L_obj[[1]]}} defines the module for aquatic mosquito ecology of class \code{Lname} (the \strong{L} Component). The parameter values are passed in a named list, \code{Loptions}.
 }
 }
 

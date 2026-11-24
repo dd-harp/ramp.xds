@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{blood_traps}
 \alias{blood_traps}
-\title{blood_traps}
+\title{Blood trap update method}
 \usage{
 blood_traps(t, y, xds_obj, s)
 }

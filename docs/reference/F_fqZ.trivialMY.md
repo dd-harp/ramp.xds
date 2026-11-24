@@ -14,11 +14,17 @@ Returns \$\$F\_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)\$\$ where
 
 - \\(F_K(t)\\) or `F_shock` is a perturbation
 
-- \\(season_par\\) a list to dispatch options for
+- `season_par` — parameters used by
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to obtain \\(V_s\\)
 
-- \\(trend_par\\) or `F_season` is a seasonal pattern
+- `trend_par` — parameters used by
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to obtain \\(V_t\\)
 
-- \\(shock_par\\) or `F_season` is a seasonal pattern
+- `shock_par` — parameters used by
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to obtain \\(V_k\\)
 
 ## Usage
 

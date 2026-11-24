@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{check_L.trivialL}
 \alias{check_L.trivialL}
-\title{Check the \code{trivialL} module}
+\title{Check \code{trivialL} (\strong{L})}
 \usage{
 \method{check_L}{trivialL}(xds_obj, s)
 }

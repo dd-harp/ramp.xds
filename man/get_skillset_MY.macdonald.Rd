@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{get_skillset_MY.macdonald}
 \alias{get_skillset_MY.macdonald}
-\title{The skill set for \code{macdonald} (\strong{MY})}
+\title{Get the skill set for \code{macdonald} (\strong{MY})}
 \usage{
 \method{get_skillset_MY}{macdonald}(xds_obj, s)
 }
@@ -15,7 +15,7 @@
 the \strong{MY} module skill set, as a list
 }
 \description{
-The skill set for \code{macdonald} (\strong{MY})
+Return the capabilities and compatibilities of the \code{macdonald} module as a list.
 }
 \seealso{
 \link{macdonald}

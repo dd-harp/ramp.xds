@@ -1,7 +1,6 @@
-# Compute eggs laid
+# Egg laying dynamics
 
-Computes eggs laid with exogenous forcing on parameter affecting host
-availability.
+Update the laying matrix and compute eggs laid.
 
 ## Usage
 
@@ -26,3 +25,8 @@ egg_laying_dynamics(t, y, xds_obj)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[laying_matrix](https://dd-harp.github.io/ramp.xds/reference/laying_matrix.md),
+[egg_laying](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_F_eip}
 \alias{setup_F_eip}
-\title{Set up F_eip}
+\title{Configure the extrinsic incubation period function (\strong{MY})}
 \usage{
 setup_F_eip(name, xds_obj, options = list(), s = 1)
 }
@@ -19,5 +19,5 @@ setup_F_eip(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up F_eip
+Configure the function used to compute the extrinsic incubation period.
 }

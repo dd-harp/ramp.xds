@@ -1,4 +1,4 @@
-# Setup initial values for `GeM` (**MY**)
+# Set up initial values for `GeM` (**MY**)
 
 Set initial values for all the variables in the `GeM` module (**MY**)
 for the \\(s^{th}\\) species.
@@ -35,7 +35,7 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object
 
 ## State Variables
 

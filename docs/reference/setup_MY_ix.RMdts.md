@@ -23,4 +23,4 @@ setup_MY_ix(xds_obj, s)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object

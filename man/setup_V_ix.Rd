@@ -15,5 +15,8 @@ setup_V_ix(xds_obj, i)
 an \strong{\code{xds}} model object
 }
 \description{
+Add indices for auxiliary variables to the parameter list
+}
+\note{
 This method dispatches on the type of \code{xds_obj$V_obj[[i]]}.
 }

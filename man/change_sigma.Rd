@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{change_sigma}
 \alias{change_sigma}
-\title{Change the patch emigration rate}
+\title{Change the patch emigration rate (\strong{MY})}
 \usage{
 change_sigma(xds_obj, s = 1)
 }

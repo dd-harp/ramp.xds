@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_XH_vars.SIS}
 \alias{get_XH_vars.SIS}
-\title{List variables for \code{SIS} (\strong{XH})}
+\title{Get the state variables for \code{SIS} (\strong{XH})}
 \usage{
 \method{get_XH_vars}{SIS}(y, xds_obj, i)
 }
@@ -14,13 +14,15 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-Get the value of variables
-from the flat state variable
-vector \eqn{y}, and return
-the values as a named list
+Extract the state variables for the \code{SIS} module
+from \code{y} and return them by name in a list for use during model solving.
+Also compute susceptible density \code{S = H - I}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$XH_obj[[i]]$ix}.
 }
 \seealso{
 \link{SIS}

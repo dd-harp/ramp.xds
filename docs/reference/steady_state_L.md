@@ -1,7 +1,7 @@
-# Compute steady states for **L** component modules
+# Compute steady states (**L**)
 
-For differential equation models, compute steady states as a function of
-daily eggs laid, \\(\eta\\)
+Compute steady states as a function of the number of eggs laid in each
+habitat, per day, \\(\eta\\).
 
 ## Usage
 
@@ -13,7 +13,7 @@ steady_state_L(eta, xds_obj, s = 1)
 
 - eta:
 
-  the egg-laying rate
+  the number of eggs laid in each habitat, per day
 
 - xds_obj:
 
@@ -27,7 +27,3 @@ steady_state_L(eta, xds_obj, s = 1)
 
 a named [list](https://rdrr.io/r/base/list.html): values of the state
 variables at the steady state
-
-## Note
-
-This method dispatches on the class of `L_obj`.

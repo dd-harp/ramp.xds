@@ -1,6 +1,6 @@
 # Set up no vis_kappa
 
-Don't change anything
+Don't change anything.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 
@@ -25,7 +25,7 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

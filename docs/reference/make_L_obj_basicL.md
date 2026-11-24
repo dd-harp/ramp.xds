@@ -1,16 +1,6 @@
-# Make `L_obj` for `basicL` (**L** component)
+# Make the module object for `basicL` (**L**)
 
-The following parameters will be set to the values in `options`. If they
-are not found, default values will be used.
-
-- \\(\psi\\) or `psi`: maturation rate
-
-- \\(\xi\\) or `xi`: delayed maturation response due to mean crowding
-
-- \\(\phi\\) or `phi`: density-independent death rate
-
-- \\(\theta\\) or `theta`: density dependence in mortality: the slope of
-  the response to mean crowding
+Values in `options` override the corresponding parameter arguments.
 
 ## Usage
 
@@ -49,11 +39,29 @@ make_L_obj_basicL(
 
 - theta:
 
-  density-dependent mortality terms for each aquatic habitat
+  slope of density-dependent mortality for each aquatic habitat
 
 ## Value
 
-**`L_obj`** an **L** component object
+a [list](https://rdrr.io/r/base/list.html): an **L** module object
+
+## Parameters
+
+- `psi` or \\(\psi\\):
+
+  maturation rate
+
+- `xi` or \\(\xi\\):
+
+  delayed maturation parameter in response to mean crowding
+
+- `phi` or \\(\phi\\):
+
+  density-independent mortality rate
+
+- `theta` or \\(\theta\\):
+
+  slope of density-dependent mortality
 
 ## See also
 

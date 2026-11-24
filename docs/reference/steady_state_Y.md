@@ -1,4 +1,4 @@
-# Compute steady states for **Y**
+# Compute steady states (**Y**)
 
 Given adult mosquito population density (\\(M\\) or `M`) and the net
 infectiousness of humans (\\(\kappa\\) or `kappa`), compute the steady

@@ -70,11 +70,11 @@ Q
 
 + The fraction of eggs laid in one of the habitats is the availability of habitats in as a fraction of total availability of all water is the availability of habitats plus bad habitats or ovitraps: $$\frac{\textstyle{Q}}{\textstyle{Q + T + O}}$$ 
 
-+ $\nu$ --- the egg laying rate, the number of oviposition events, per adult mosquito,  is a function of all available habitats and the availability of other things that compete with aquatic habitats for adult mosquito attention while egg laying: $$\nu = F_\nu(Q+T+O)$$ 
++ $\nu$ --- the oviposition rate, the number of egg batches laid in each patch, per mosquito, per day, is a function of all available habitats and the availability of other things that compete with aquatic habitats for adult mosquito attention while egg laying: $$\nu = F_\nu(Q+T+O)$$ 
 
 + $\sigma$ --- the patch emigration rate can be computed using habitat availability (and the availability of other resources a mosquito needs): $$\sigma = F_\sigma(Q+T+O)$$ 
 
-We note that egg laying rates and patch emigration rates can be set up without using the concept of searching. 
+We note that oviposition rates and patch emigration rates can be set up without using the concept of searching. 
 
 ## The Egg Laying Matrix
 
@@ -85,5 +85,4 @@ $$U = \left(N \cdot \left<w\right>\right)^T \cdot \left<\frac 1 {Q+ \epsilon} \r
 ```{r}
 ramp.xds::make_U_matrix(weights, N, Q)
 ```
-
 

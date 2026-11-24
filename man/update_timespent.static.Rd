@@ -19,7 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-A utility to ensure that the timespent
-is updated properly after a change
+Return \code{xds_obj} unchanged for a static time spent port.
 }
 \keyword{internal}

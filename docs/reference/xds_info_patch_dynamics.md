@@ -10,11 +10,10 @@ used to model adult mosquito ecology,
 and
 [xds_info_transmission](https://dd-harp.github.io/ramp.xds/reference/xds_info_transmission.md).
 
-Each patch could some number of aquatic habitats (see
+Each patch could contain some number of aquatic habitats (see
 [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)).
-Mosquitoes disperse among patches as they search for or resources and
-blood feed (if there are any blood hosts), lay eggs (if there are any
-aquatic habitats), nd other resources they need (see
+Mosquitoes disperse among patches as they search for resources,
+including blood hosts and aquatic habitats (see
 [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)).
 
 Patches are used to model blood feeding (see

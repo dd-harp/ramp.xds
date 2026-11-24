@@ -21,7 +21,7 @@ A Poisson model for the force of infection as a function of the daily EIR.
 }
 \details{
 This function computes the daily FoI (\eqn{h})
-as function of the local daily EIR (\eqn{E})
+as a function of the local daily EIR (\eqn{E})
 under a Poisson model for the distribution
 of bites per person, and the probability of
 infection per infective bite (\eqn{b}):

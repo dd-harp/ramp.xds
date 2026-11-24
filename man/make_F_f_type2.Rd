@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{make_F_f_type2}
 \alias{make_F_f_type2}
-\title{Make type 2 blood feeding rate configuration}
+\title{Make type 2 blood feeding rate configuration (\strong{MY})}
 \usage{
 make_F_f_type2(nPatches, options = list(), fx = 0.3, sf = 0.1)
 }
@@ -19,7 +19,7 @@ make_F_f_type2(nPatches, options = list(), fx = 0.3, sf = 0.1)
 a configuration object for \link{F_f.type2}
 }
 \description{
-Build a configuration object for the type 2 blood feeding
-response in response to the availability of blood hosts:
+Build a configuration object for a type 2 blood feeding rate
+response to blood host availability.
 \deqn{F_f(B)= f_x \frac{s_f B}{1+s_f B}}.
 }

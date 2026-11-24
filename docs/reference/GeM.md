@@ -65,7 +65,7 @@ through a potentially time-varying extrinsic incubation period (EIP).
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
@@ -81,7 +81,8 @@ through a potentially time-varying extrinsic incubation period (EIP).
 
 - `nu` or \\(\nu\\):
 
-  egg batch rate in batches per mosquito per day — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -150,7 +151,7 @@ accessory variables used to evaluate the delayed values of
 
 ## Egg Laying
 
-The egg batch rate \\(\nu\\) and the number of eggs per batch,
+The oviposition rate \\(\nu\\) and the number of eggs per batch,
 `eggs_per_batch`, determine the egg production rate per patch: \$\$G=\nu
 M\cdot\texttt{eggs\\\_per\\\_batch}.\$\$
 [F_eggs.GeM](https://dd-harp.github.io/ramp.xds/reference/F_eggs.GeM.md)

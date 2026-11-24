@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_F_q.random}
 \alias{setup_F_q.random}
-\title{Set up F_q}
+\title{Set up random human fractions (\strong{MY})}
 \usage{
 \method{setup_F_q}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a human fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_F_q}. See \link{make_F_q_random}.
+Configure random human fractions using \link{make_F_q_random}.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{change_q}
 \alias{change_q}
-\title{Change human feeding fraction}
+\title{Change human fraction (\strong{MY})}
 \usage{
 change_q(xds_obj, s = 1)
 }
@@ -15,6 +15,6 @@ change_q(xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the human feeding fraction for the \eqn{s^{th}} vector
+Update the human fraction for the \eqn{s^{th}} vector
 species.
 }

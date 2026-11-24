@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_f_obj}
 \alias{setup_f_obj}
-\title{Set up blood feeding rates}
+\title{Set up bionomic port for blood feeding rate (\strong{MY})}
 \usage{
 setup_f_obj(f, MY_obj)
 }
 \arguments{
 \item{f}{the blood feeding rate}
 
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{MY_obj}{an \strong{\code{MY}} module object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} module object
 }
 \description{
-Set up an object
-to compute dynamic blood feeding rates
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline blood feeding rate
+for a static model.
 }
 \keyword{internal}

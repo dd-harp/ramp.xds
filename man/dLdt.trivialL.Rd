@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{dLdt.trivialL}
 \alias{dLdt.trivialL}
-\title{Compute derivatives for \code{trivialL} (\strong{L})}
+\title{Compute the derivatives for \code{trivialL} (\strong{L})}
 \usage{
 \method{dLdt}{trivialL}(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@
 a \link{numeric} vector of length 0
 }
 \description{
-Returns a numeric vector of length 0
+Return an empty numeric vector because the \code{trivialL} module has no state variables.
 }
 \keyword{internal}

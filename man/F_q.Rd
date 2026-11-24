@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{F_q}
 \alias{F_q}
-\title{Compute the human feeding fraction, q}
+\title{Compute the baseline human fraction (\strong{MY})}
 \usage{
 F_q(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_q(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{q_obj} and computes
-the human feeding fraction, \eqn{q}.
+Compute the baseline human fraction, \eqn{q}.
 }
 \keyword{internal}

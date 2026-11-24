@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_F_g}
 \alias{setup_F_g}
-\title{Set up F_g}
+\title{Configure the mosquito mortality rate function (\strong{MY})}
 \usage{
 setup_F_g(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a mosquito mortality rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,6 @@ setup_F_g(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up F_g
+Configure the function used to compute the baseline mosquito
+mortality rate.
 }

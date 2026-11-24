@@ -1,6 +1,9 @@
-# Make parameters for trivial aquatic mosquito model
+# Make the module object for `trivialMY` (**MY**)
 
-Make parameters for trivial aquatic mosquito model
+Use a supplied pattern function if passed, setting its corresponding
+parameter object to an empty list. Otherwise, construct the function
+from the corresponding parameter object using
+[make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html).
 
 ## Usage
 
@@ -12,9 +15,9 @@ make_MY_obj_trivial(
   q = 1,
   Z = 1,
   eggs = 1,
-  F_season = F_one,
-  F_trend = F_one,
-  F_shock = F_one,
+  F_season = list(),
+  F_trend = list(),
+  F_shock = list(),
   season_par = list(name = "F_one"),
   trend_par = list(name = "F_one"),
   shock_par = list(name = "F_one")

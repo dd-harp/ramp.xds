@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{change_nu}
 \alias{change_nu}
-\title{Change F_nu}
+\title{Change the oviposition rate (\strong{MY})}
 \usage{
 change_nu(xds_obj, s = 1)
 }
@@ -15,5 +15,5 @@ change_nu(xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update F_nu for the \eqn{s^{th}} vector species.
+Update the oviposition rate for the \eqn{s^{th}} vector species.
 }

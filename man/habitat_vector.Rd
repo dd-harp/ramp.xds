@@ -6,16 +6,17 @@
 \description{
 Each aquatic habitat is located in a patch.
 
-Information
-about patch locations is stored in the
-\emph{habitat vector.}
-
 The habitat vector is passed to a basic setup function
 through the argument \code{membership}.
 \itemize{
 \item \code{membership} is a vector of positive integers
 \item \code{nHabitats <- length(membership)}
 }
+}
+\note{
+Information
+about patch locations is stored in the
+\emph{habitat vector.}
 }
 \section{Habitat Vector}{
 

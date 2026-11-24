@@ -6,15 +6,15 @@
 #'
 #' Each aquatic habitat is located in a patch.
 #'
-#' Information
-#' about patch locations is stored in the
-#' *habitat vector.*
-#'
 #' The habitat vector is passed to a basic setup function
 #' through the argument `membership`.
 #'
 #' + `membership` is a vector of positive integers
 #' + `nHabitats <- length(membership)`
+#'
+#' @note Information
+#' about patch locations is stored in the
+#' *habitat vector.*
 #'
 #' @section Habitat Vector:
 #'
@@ -111,11 +111,11 @@ NULL
 #' The algorithm is motivated by *searching* for aquatic habitat.
 #' Each habitat is assigned a *search weight* \eqn{(w).} Habitat
 #' availability \eqn{(Q)} sums the search weights by patch.
-#' The fraction of all eggs laid in the \eqn{j^{th}} patch that
-#' end up in the \eqn{i^{th}} habitat is \eqn{w_i / Q_j.}
+#' Of the eggs laid in productive habitats in the \eqn{j^{th}} patch,
+#' the fraction laid in the \eqn{i^{th}} habitat is \eqn{w_i / Q_j.}
 #'
 #' This is computed by constructing the laying matrix, \eqn{\mathbf U},
-#' a `nHabitats` \eqn{\times} `nPatches` matrix. To
+#' an `nHabitats` \eqn{\times} `nPatches` matrix. To
 #' avoid division-by-zero errors
 #' for patches with no available habitats, a quantity
 #' \eqn{\epsilon = 1e-14} is added
@@ -186,21 +186,29 @@ NULL
 #' @title Unproductive Aquatic Habitats
 #'
 #' @description
+#' Availability of unproductive aquatic habitats.
+#'
+#' @section Unproductive Aquatic Habitats:
 #' To model egg laying, a port
 #' was developed to model the availability
 #' of unproductive aquatic habitats: water
 #' where mosquitoes
 #' lay eggs, but no mature adults ever emerge.
 #'
-#' @name xds_port_bad_habitats
+#' @name bad_habitats
+#' @aliases xds_port_bad_habitats
 NULL
 
 #' @title Ovitraps
 #'
 #' @description
+#' Availability of ovitraps.
+#'
+#' @section Ovitraps:
 #' To simulate ovitraps, a port
 #' was developed to model the availability
 #' of the ovitraps.
 #'
-#' @name xds_port_ovitraps
+#' @name ovitraps
+#' @aliases xds_port_ovitraps
 NULL

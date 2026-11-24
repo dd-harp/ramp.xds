@@ -1,6 +1,6 @@
-# Set up F_sigma
+# Set up type 2 patch emigration rates (**MY**)
 
-Set up a type 2 functional response to model the patch emigration rate
+Configure a type 2 functional response for the patch emigration rate.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a patch emigration rate or setup method name
 
 - xds_obj:
 

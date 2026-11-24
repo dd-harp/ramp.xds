@@ -7,11 +7,15 @@
 make_K_matrix_xy(xy, F_K = F_exp, V = list())
 }
 \arguments{
-\item{xy}{is a vector of the xy-coordinates of patch locations}
+\item{xy}{a numeric matrix or data frame with one row per patch and columns
+for the x and y coordinates}
 
 \item{F_K}{is a function that weights putative locations by distance}
 
 \item{V}{variables}
+}
+\value{
+a mosquito dispersal \link{matrix} with one row and column per patch location
 }
 \description{
 Build a mosquito dispersal matrix using the \eqn{x} and \eqn{y} locations and

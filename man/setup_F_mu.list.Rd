@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_F_mu.list}
 \alias{setup_F_mu.list}
-\title{Set up F_mu}
+\title{Set up F_mu (\strong{MY})}
 \usage{
 \method{setup_F_mu}{list}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an emigration-loss fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,12 +19,11 @@
 an \strong{\code{xds}} model object
 }
 \description{
-If an options list is passed
-as the first argument, then set
-\itemize{
-\item \code{Fmu_name = name$name}
-\item \code{options = name}
-and call \code{setup_F_mu(Fmu_name, xds_obj, options, s)}
+Set up emigration-loss fractions using an options list.
 }
+\note{
+If an options list is passed as the first argument, use its
+\code{name} field to select the setup method. If \code{name} is NULL, use the
+\code{no_setup} method. Pass the list as \code{options} to \link{setup_F_mu}.
 }
 \keyword{internal}

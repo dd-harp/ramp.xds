@@ -102,6 +102,9 @@ reference:
   contents:
   - xds_help_guide 
   - xds_help_info
+- title: Glossary
+  contents:
+  - xds_glossary
 - title: Model Building
 - subtitle: Basic Setup 
   desc: | 
@@ -118,7 +121,6 @@ reference:
   - xds_info_demographic_change
   - xds_info_advanced_setup
   - xds_object 
-  - xds_info_setup_options
 - subtitle: Dynamical Modules 
   desc: | 
     Setting the value of structural parameters 
@@ -390,6 +392,8 @@ reference:
   contents:
   - xds_info_time_spent
   - xds_info_time_at_risk
+  - residence_vector
+  - residence_matrix
   - setup_timespent
   - check_timespent_matrix
   - change_timespent_matrix
@@ -426,6 +430,12 @@ reference:
   - xds_info_search_weights 
   - xds_info_relative_biting_rates 
   - xds_info_transmission
+- subtitle: Host Availability
+  desc: |
+    Human/host availability and mosquito biting allocation
+  contents:
+  - human_availability
+  - mixing_matrix
 - subtitle: Search Weights
   desc: "The ports for resources\n"
   contents:
@@ -492,7 +502,7 @@ reference:
   - check_g
   - make_F_g_random
   - setup_sigma
-  - setup_emigration_rates
+  - setup_mosy_emigration
   - setup_F_sigma
   - check_sigma
   - make_F_sigma_random
@@ -517,6 +527,7 @@ reference:
   - make_F_f_type2
   - setup_q
   - setup_human_fractions
+  - setup_human_fraction
   - setup_F_q
   - check_q
   - make_F_q_random
@@ -637,6 +648,7 @@ reference:
     Time spent traveling
   contents:
   - xds_port_time_away
+  - time_away
   - setup_time_away
   - change_time_away
   - check_time_away

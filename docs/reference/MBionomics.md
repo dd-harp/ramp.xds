@@ -1,6 +1,6 @@
 # Mosquito bionomics (**MY**)
 
-Compute the adult mosquito bionomic parameter values
+Compute the adult mosquito bionomic parameter values.
 
 ## Usage
 
@@ -29,3 +29,7 @@ MBionomics(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[MosquitoBionomics](https://dd-harp.github.io/ramp.xds/reference/MosquitoBionomics.md)

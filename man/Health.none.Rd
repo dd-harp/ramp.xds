@@ -19,6 +19,6 @@ an \strong{\code{xds}} model object
 \description{
 After none setup, no exogenous
 variables are configured so \code{Health} returns
-the \strong{\code{ramp.xds}} model object without modification
+the \strong{\code{ramp.xds}} model object without modification.
 }
 \keyword{internal}

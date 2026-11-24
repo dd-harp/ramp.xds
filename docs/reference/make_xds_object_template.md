@@ -2,11 +2,11 @@
 
 This function is called by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-to create a structured object, called an **`xds`** model object
-template. The template has configured interfaces, created stubs for the
-model objects, created junctions, and set up empty ports. A template has
-set up all the basic structural elements, but it has not configured any
-of the component model objects.
+to create a structured **`xds`** model object template. The template has
+configured interfaces, created stubs for the model objects, set up empty
+ports, and created junctions. A template has set up all the basic
+structural elements, but it has not configured any of the component
+model objects.
 
 ## Usage
 
@@ -24,9 +24,8 @@ make_xds_object_template(
 
 - xds:
 
-  is used to dispatch various functions to set up and solve systems of
-  differential equations. 'xde' for ordinary or delay differential
-  equations; 'dts' for "discrete time systems"
+  selects the solver: `xde` for ordinary or delay differential
+  equations, or `dts` for discrete-time systems.
 
 - frame:
 
@@ -54,21 +53,20 @@ This function sets up the interfaces and the core objects used by
 **`ramp.xds`**.
 
 First, the function sets up some short text strings (assigned to the
-same `S3` class) to dispatch various **cases** of various `S3`
-functions:
+same `S3` class) to dispatch **cases** of `S3` functions:
 
-- **`xds`** is either "xde" for differential equations, or "dts" for
-  discrete time systems
+- **`xds`** is either "xde" for differential equations or "dts" for
+  discrete-time systems
 
-- **`xde`** is either "ode" for ordinary differential equations; "dde"
-  for delay differential equations; or "dts" for discrete time systems
+- **`xde`** is either "ode" for ordinary differential equations, "dde"
+  for delay differential equations, or "dts" for discrete-time systems
 
 - **`frame`** is one of several cases:
 
   - "full" includes all three dynamical components: a human/host
-    dynamical component, \\(\cal XH\\); and adult mosquito dynamical
+    dynamical component, \\(\cal XH\\); an adult mosquito dynamical
     component, \\(\cal MYZ\\); and an aquatic mosquito dynamical
-    component, \\(\cal L\\). in some form (possibly the trivial case)
+    component, \\(\cal L\\), in some form (possibly the trivial case)
     (see
     [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md))
 
@@ -80,7 +78,7 @@ functions:
     [`xds_setup_aquatic()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)),
     forced by a function describing egg laying
 
-  - "human" is for human/host infection dynamics(see
+  - "human" is for human/host infection dynamics (see
     [`xds_setup_human()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)),
     forced by the infective density of adult mosquitoes, \\(fqZ\\)
 
@@ -88,7 +86,7 @@ functions:
     [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)),
     forced by a function `F_eir`
 
-- **`forcing`** is set to "static"
+- **`forcing`** is set to "none"
 
 Second, the function sets the values of the **structural parameters**:
 
@@ -97,8 +95,8 @@ Second, the function sets the values of the **structural parameters**:
 - **`nHabitats`** or \\(N_q\\), the number of aquatic habitats, is set
   to `length(membership)`
 
-- **`nStrata`** or \\(N_h\\), the number of human/ host population
-  strata, is set to `length(HPop)`
+- **`nStrata`** or \\(N_h\\), the number of human/host population
+  strata, is set to `length(residence)`
 
 - **`nVectorSpecies`** or \\(N_s\\), the number of vector species is set
   to 1;
@@ -106,7 +104,7 @@ Second, the function sets the values of the **structural parameters**:
 - **`nHostSpecies`** or \\(N_i\\), the number of host species is set to
   1;
 
-Next, the function sets up egg laying, blood feeding, importation,
+Next, the function sets up egg-laying, blood-feeding, importation,
 transmission, and exposure.
 
 Next, the function sets up empty lists to hold the model objects for all
@@ -122,7 +120,7 @@ Finally, the function sets up some junctions.
 
 ## Note
 
-`xds` stands for extensible differential equation
+`xds` stands for an eXtensible Dynamical System
 
 ## See also
 

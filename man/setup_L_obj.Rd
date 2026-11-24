@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{setup_L_obj}
 \alias{setup_L_obj}
-\title{Set up an \strong{L} model object}
+\title{Set up the module object (\strong{L})}
 \usage{
 setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 }
@@ -21,18 +21,21 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-This setup creates an \strong{L} object for the \eqn{s^{th}} species
-and sets up the interface ports:
+Set up the selected module and its interface ports for the
+\eqn{s^{th}} vector species in the \strong{L} component.
 \itemize{
-\item calls \code{make_L_obj_}\emph{Lname} to set up the dynamics, including parameters
-\item calls \link{setup_L_inits} to set initial values
-\item calls \link{setup_habitat_search_weights}
+\item Pass \code{membership}, \code{xds_obj}, \code{options}, and \code{s} to the selected setup method.
+\item Let that method construct the module object and configure its
+initial values and habitat interface as appropriate for the module.
+\item Return the updated \strong{\code{xds}} model object.
 }
 
 The function is typically called by \link{xds_setup}, but it is also used to add vector species.
 }
 \note{
-The model object is stored as \code{xds_obj$L_obj[[s]]}
+The module object is stored at \code{xds_obj$L_obj[[s]]}.
+Dispatch is on \code{Lname}, whose class is set to the supplied module name,
+not on an existing module object.
 }
 \seealso{
 \link{xds_setup}, \link{change_L_pars}, \link{setup_L_inits}, \link{setup_habitat_search_weights}

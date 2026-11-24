@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_F_nu.type2}
 \alias{setup_F_nu.type2}
-\title{Setup F_nu}
+\title{Set up type 2 oviposition rates (\strong{MY})}
 \usage{
 \method{setup_F_nu}{type2}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an oviposition rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,7 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a type 2 functional response for
-egg laying
+Configure a type 2 functional response for the oviposition rate.
 }
 \keyword{internal}

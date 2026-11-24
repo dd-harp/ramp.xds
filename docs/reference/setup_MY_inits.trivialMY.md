@@ -1,4 +1,4 @@
-# Setup initial values for `trivialMY` (**MY**)
+# Set up initial values for `trivialMY` (**MY**)
 
 The `trivialMY` module (**MY**) for the \\(s^{th}\\) species has no
 dynamical variables requiring initial values. This method returns the

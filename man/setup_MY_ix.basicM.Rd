@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{setup_MY_ix.basicM}
 \alias{setup_MY_ix.basicM}
-\title{Add indices for adult mosquitoes to parameter list}
+\title{Set up variable indices for \code{basicM} (\strong{MY})}
 \usage{
 \method{setup_MY_ix}{basicM}(xds_obj, s)
 }
@@ -12,9 +12,16 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_MY_ix} for the basic M model.
+Assign consecutive variable indices for the \code{basicM} module,
+starting after \code{xds_obj$max_ix}, and update the maximum index.
+Allocate blocks in the order \code{M_ix}, \code{P_ix}.
+Each block has length \code{nPatches}.
+}
+\note{
+Indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
+The maximum index is stored at \code{xds_obj$max_ix}.
 }
 \keyword{internal}

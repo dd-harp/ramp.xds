@@ -1,7 +1,7 @@
 # Update NI of visitors
 
-Port function to compute the availability of vis_kappa. Dispatches on
-`class(xds_obj$patches$vis_kappa_obj[[s]])`.
+Port function to compute the net infectiousness of visitors. Dispatches
+on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
 
 ## Usage
 

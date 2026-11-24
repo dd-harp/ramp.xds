@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_XH_vars}
 \alias{get_XH_vars}
-\title{List variables (\strong{XH})}
+\title{Get the state variables (\strong{XH})}
 \usage{
 get_XH_vars(y, xds_obj, i = 1)
 }
@@ -14,12 +14,15 @@ get_XH_vars(y, xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-Variables as a named list
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-Get the values
-of variables from the flat state
-variable vector \eqn{y}, and return
-the values as a named list
+Extract the state variables for the selected \strong{XH} module and host species
+from \code{y} and return them by name in a list for use during model solving.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$XH_obj[[i]]}.
+These functions support solver evaluations that need variables by name;
+users rarely need to call them directly.
 }
 \keyword{internal}

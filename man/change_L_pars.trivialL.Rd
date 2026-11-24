@@ -22,6 +22,10 @@ change parameter values named in \code{options} leaving other values unchanged.
 
 Parameters: \code{Lambda}, \code{F_season}, \code{F_trend}, or \code{F_shock}.
 }
+\details{
+After the updates, call \link{LBionomics} at time zero with the flattened
+initial state. Do not call \link{LEffectSizes}; bionomics is a no-op for this module.
+}
 \note{
 Utilities for forcing functions are in \code{ramp.func}
 }

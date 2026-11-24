@@ -12,13 +12,15 @@ get_XH_pars(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+a named \link{list} of parameter values
 }
 \description{
-Inspect the parameter values for the \strong{XH} module for the \eqn{i^{th}} species
+Return the parameters for the selected \strong{XH} module
+for the \eqn{i^{th}} host species as a named list.
 }
 \note{
-The parameter values are stored on \code{xds_obj$XH_obj[[i]]}
+The parameter values are stored on \code{xds_obj$XH_obj[[i]]}.
+Dispatch is on the class of \code{xds_obj$XH_obj[[i]]}.
 }
 \seealso{
 \link{change_XH_pars}, \link{setup_XH_obj}, \link{xds_info_change_parameters}

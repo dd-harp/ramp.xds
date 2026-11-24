@@ -1,4 +1,4 @@
-# Get the skill set
+# Get the skill set (**MY**)
 
 Return the capabilities and compatibilities of an **MY** module.
 

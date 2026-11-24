@@ -19,6 +19,25 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{LEffectSizes} for the \code{basicL}
+Apply effect sizes to the baseline bionomic parameter values for the \code{basicL} module.
+}
+\note{
+At \code{xds_obj$L_obj[[s]]}, set \code{psi = psi_t * es_psi},
+\code{phi = phi_t * es_phi}, \code{xi = xi_t * es_xi}, and
+\code{theta = theta_t * es_theta} per habitat.
+This function does not evaluate parameter ports or reset effect sizes.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
+}
+}
+
+\seealso{
+\link{basicL}, \link{LBionomics.basicL}
 }
 \keyword{internal}

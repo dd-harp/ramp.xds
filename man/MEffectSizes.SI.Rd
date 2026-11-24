@@ -19,13 +19,8 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Reset the effect sizes for static models.
-When modules are added to compute effect sizes
-from baseline parameters, those functions store
-an effect size. The total effect size is the
-product of the effect sizes for each intervention.
-Since coverage could be changing dynamically, these
-must be reset each time the derivatives are computed.
+Apply the accumulated effect sizes to the baseline bionomic
+parameters for the \code{SI} module and update the mosquito demographic matrix.
 }
 \section{Parameters}{
 
@@ -34,14 +29,14 @@ must be reset each time the derivatives are computed.
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
-\item{\code{mu} or \eqn{\mu}}{emigration loss rate --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{the egg batch rate, in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{the oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
 }
 
-After basic setup, \link{change_MY_pars} can be used for static parameters, or for
+After basic setup, \link{change_MY_pars} can be used for static parameters, or
 for parameters that are set up as static ports (the default).
 Use advanced setup to modify dynamic ports.
 }

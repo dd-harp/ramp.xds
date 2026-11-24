@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-time_away.R
 \name{setup_time_away.list}
 \alias{setup_time_away.list}
-\title{Set up a time spent}
+\title{Set up time away}
 \usage{
 \method{setup_time_away}{list}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -24,7 +24,7 @@ as the first argument, then set
 \itemize{
 \item \code{TAname = name$name}
 \item \code{options = name}
-and call \code{setup_time_away(TAname, xds_obj, options, s)}
+and call \code{setup_time_away(TAname, xds_obj, options, i)}
 }
 }
 \keyword{internal}

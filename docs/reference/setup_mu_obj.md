@@ -1,6 +1,9 @@
-# Set up a dispersal loss bionomic object
+# Set up bionomic port for emigration-loss fraction (**MY**)
 
-Set up an object to compute the dispersal loss fraction, \\(\mu\\)
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline emigration-loss fraction, \\(\mu\\), for a static
+model.
 
 ## Usage
 
@@ -16,8 +19,8 @@ setup_mu_obj(mu, MY_obj)
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

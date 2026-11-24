@@ -20,6 +20,8 @@ an \strong{\code{xds}} model object
 }
 \description{
 Port function to compute the net infectiousness of visitors.
+}
+\note{
 Dispatches on \code{class(xds_obj$patches$vis_kappa_obj[[s]])}.
 }
 \keyword{internal}

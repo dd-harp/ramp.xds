@@ -17,7 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid leaving the
+Computes eggs laid, leaving the
 habitat interface unmodified.
 }
 \keyword{internal}

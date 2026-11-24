@@ -1,7 +1,7 @@
 # Compute eggs laid
 
-Computes eggs laid with exogenous forcing on parameter affecting host
-availability.
+Computes eggs laid with exogenous forcing on a parameter affecting
+habitat availability.
 
 ## Usage
 

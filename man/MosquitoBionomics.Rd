@@ -14,10 +14,10 @@ MosquitoBionomics(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-This calls MBionomics and LBionomics for each species.
+This calls \link{MBionomics} and \link{LBionomics} for each species.
 
 This function computes the bionomic parameters for each vector species,
 before any vector control effect sizes are applied. In some models, these

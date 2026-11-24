@@ -15,6 +15,7 @@ compute_TaR(xds_obj, t = 0)
 an \strong{\code{xds}} model object
 }
 \description{
-Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
+Make a time-at-risk matrix from a time-spent matrix and a
+circadian function.
 }
 \keyword{internal}

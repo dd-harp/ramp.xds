@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{setup_XH_obj.hMoI}
 \alias{setup_XH_obj.hMoI}
-\title{Set up \code{hMoI} (\strong{XH})}
+\title{Set up the module object for \code{hMoI} (\strong{XH})}
 \usage{
 \method{setup_XH_obj}{hMoI}(XHname, residence, xds_obj, options = list(), i = 1)
 }
@@ -21,11 +21,16 @@
 an \strong{\code{xds}} model object
 }
 \description{
-This sets up an \code{hMoI} model object for the \strong{XH} module for the \eqn{i^{th}} host species
+Set up an \code{hMoI} module object for the \strong{XH} component and the \eqn{i^{th}} host species.
 \itemize{
-\item the object is created by \link{make_XH_obj_hMoI}
-\item the initial conditions are set by \link{setup_XH_inits}
-\item \code{options} is passed to both to override the defaults
+\item Set the module name to \code{hMoI}.
+\item Create the module object with \link{make_XH_obj_hMoI}, passing \code{nStrata[i]} and \code{options}.
+\item Set initial values using \link{setup_XH_inits}, passing \code{options} to override defaults.
+\item Initialize blood search weights using \link{setup_blood_search_weights.setup}.
+\item Initialize the time-spent matrix using \link{setup_timespent.setup}.
+\item Initialize time away using \link{setup_time_away.setup}.
+\item Initialize travel EIR using \link{setup_travel_eir.no_travel}.
+\item Return the updated \strong{\code{xds}} model object.
 }
 }
 \note{

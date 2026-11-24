@@ -1,24 +1,32 @@
+# X
+
 #' @title Mosquito Bionomics 
 #' 
 #' @description
-#' The value of a mosquito bionomic parameters gets computed in two stages:
 #' 
-#' + [MosquitoBionomics] computes the bionomic parameter values;
+#' The values of some mosquito bionomic parameters (generically, \eqn{x}) are
+#' computed in two stages, with vector control effect sizes computed between them:
 #' 
-#' + [VectorControlEffectSizes] applies the effect sizes of vector control
+#' + [MosquitoBionomics] computes a *baseline* value, \eqn{x_b}
 #' 
-#' @section Baseline:
-#' The concept of a *baseline* here is not exactly corre 
-#'   
-#' @section Modified by Control:
-#' The concept of a *baseline* is 
-#' The value of a parameter 
+#' + Vector control functions compute and store the *net effect size,* \eqn{e_x}
 #' 
+#' + [VectorControlEffectSizes] computes the realized value \deqn{x = x_b \times e_x}
+#'
+#' The parameter values can be modified by vector control through one 
+#' of two distinct approaches, called *integrated effects* or *independent 
+#' effect sizes*. 
+#' 
+#' In models with integrated effects, \eqn{x_b} could include
+#' some effects of vector control, so it may not be correct to call it a 
+#' baseline, strictly speaking. 
+#'
+#' @seealso [xds_info_port]
 #' @name xds_info_mosquito_bionomics
 NULL
 
 #' @title Compute mosquito bionomic parameters
-#' @description This calls MBionomics and LBionomics for each species.
+#' @description This calls [MBionomics] and [LBionomics] for each species.
 #'
 #' This function computes the bionomic parameters for each vector species,
 #' before any vector control effect sizes are applied. In some models, these
@@ -26,7 +34,7 @@ NULL
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return a [list]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MosquitoBionomics <- function(t, y, xds_obj){
@@ -45,7 +53,7 @@ MosquitoBionomics <- function(t, y, xds_obj){
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return a [list]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 VectorControlEffectSizes <- function(t, y, xds_obj){

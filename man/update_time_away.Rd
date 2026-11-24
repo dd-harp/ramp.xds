@@ -2,7 +2,7 @@
 % Please edit documentation in R/travel-time_away.R
 \name{update_time_away}
 \alias{update_time_away}
-\title{Update the time spent}
+\title{Update time away}
 \usage{
 update_time_away(t, y, xds_obj, i)
 }
@@ -19,7 +19,7 @@ update_time_away(t, y, xds_obj, i)
 an \strong{\code{xds}} model object
 }
 \description{
-Port function for the time spent , \eqn{\Theta}.
-Dispatches on \code{class(xds_obj$XY_interface$time_away_obj[[i]])}.
+Port function for time away.
+Dispatches on \code{class(xds_obj$XH_obj[[i]]$time_away_obj)}.
 }
 \keyword{internal}

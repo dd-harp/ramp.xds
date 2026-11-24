@@ -3,6 +3,7 @@
 
 
 
+
 #' @title Get the Time Away Vector
 #'
 #' @param xds_obj an **`xds`** model object
@@ -37,13 +38,20 @@ get_H = function(xds_obj, i=1){
   y = get_inits(xds_obj, flatten=TRUE)
   F_H(0, y, xds_obj, i)
 }
-
 #' @title Get orbits (**XH**)
+#'
+#' @description Return the saved, parsed orbits (trajectories) for **XH**
+#' for the selected species after solving.
+#' @note Orbits are stored at `xds_obj$outputs$orbits$XH[[i]]`.
+#' The returned list includes `time` from `xds_obj$outputs$time`.
+#' This function does not parse outputs
+#' or modify the model object.
+#' @seealso [parse_XH_orbits], [xds_solve]
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return the orbits for the **XH** component
+#' @return a [list] of module-specific orbits (trajectories) with a `time` vector
 #'
 #' @export
 get_XH_orbits = function(xds_obj, i=1){
@@ -57,6 +65,7 @@ get_XH_orbits = function(xds_obj, i=1){
 #' @title Get the *Pf*PR from a malaria model
 #' @description `'method'` should be
 #' + `true` for the true *Pf*PR (default)
+#' + `obs` for observed prevalence
 #' + `lm` for the *Pf*PR by light microscopy
 #' + `rdt` for the *Pf*PR by RDT
 #' + `pcr` for the *Pf*PR by PCR
@@ -105,6 +114,18 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
   XH <- get_XH_orbits(xds_obj, i)
   pr = F_pfpr_by_lm(XH, xds_obj$XH_obj[[i]])
   return(list(time=XH$time, pr=pr, method="lm"))
+}
+
+#' @title Get observed prevalence
+#' @description Return observed prevalence using [F_pr_obs].
+#' @inheritParams get_PR
+#' @return a [list] containing `time`, `pr`, and `method`
+#' @keywords internal
+#' @export
+get_PR.obs <- function(xds_obj, method = "obs", i=1) {
+  XH <- get_XH_orbits(xds_obj, i)
+  pr = F_pr_obs(XH, xds_obj$XH_obj[[i]])
+  return(list(time=XH$time, pr=pr, method="obs"))
 }
 
 #' @title Get the *Pf*PR from a malaria model

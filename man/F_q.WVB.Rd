@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{F_q.WVB}
 \alias{F_q.WVB}
-\title{WVB human feeding fraction}
+\title{WVB human fraction (\strong{MY})}
 \usage{
 \method{F_q}{WVB}(t, xds_obj, s)
 }
@@ -14,10 +14,10 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{q}, the human feeding fraction
+\eqn{q}, the baseline human fraction
 }
 \description{
-Computes the human feeding fraction from the availability of
+Compute the baseline human fraction from the availability of
 resident hosts (\eqn{W}), visitors (\eqn{V}), and all available blood hosts
 (\eqn{B}).
 

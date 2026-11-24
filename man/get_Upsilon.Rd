@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-get.R
 \name{get_Upsilon}
 \alias{get_Upsilon}
-\title{Get Upsilon}
+\title{Get the EIP survival-and-dispersal matrix (\strong{MY})}
 \usage{
 get_Upsilon(xds_obj, s = 1)
 }
@@ -12,13 +12,17 @@ get_Upsilon(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the demographic matrix
+a \link{matrix} of dimensions \code{nPatches} by \code{nPatches},
+or \code{NULL} if no matrix is stored
 }
 \description{
-Return \eqn{\Upsilon},
-a matrix describing survival and dispersal
-through the EIP.
+Return the stored matrix describing mosquito survival and
+dispersal through the EIP, \eqn{\Upsilon}, for the selected species.
+}
+\note{
+The matrix is stored at \code{xds_obj$MY_obj[[s]]$Upsilon}.
+This function does not recompute the matrix or modify the model object.
 }
 \seealso{
-\link{xds_info_mosquito_demography}
+\link{get_Omega}, \link{change_Upsilon}, \link{xds_info_mosquito_demography}
 }

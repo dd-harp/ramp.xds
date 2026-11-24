@@ -1,8 +1,6 @@
-# Compute the Laying Matrix
+# Make the laying matrix
 
-The egg laying matrix, \\(O\\), allocates a portion of eggs laid by
-adult mosquitoes in a patch to each one of the aquatic habitats in the
-patch
+Make the egg laying matrix \\((\mathbf {U})\\).
 
 ## Usage
 
@@ -26,36 +24,67 @@ make_U_matrix(search_weights, habitat_matrix, Q)
 
 ## Value
 
-a `nHabitats` \\(\times\\) `nPatches`
+an `nHabitats` \\(\times\\) `nPatches`
 [matrix](https://rdrr.io/r/base/matrix.html) describing egg
-distribution, \\(O\\)
+distribution, \\(U\\)
 
-## Details
+## Habitat Matrix
 
-The algorithm is motivated by the notion of mosquito *searching* for
-aquatic habitat and a quantity we call *habitat availability*, \\(Q\\).
-Each habitat is assigned a *search weight,* \\(\omega\\). In the
-simplest case, habitat availability is the sum of \\(\omega\\) by patch,
-which uses the habitat membership matrix, \\(N\\). If the habitats in
-the model got all the eggs, then \$\$Q = N \cdot \omega.\$\$
+The habitat matrix \\((\mathbf N)\\) is an
+`nPatches`\\(\times\\)`nHabitats` matrix that is constructed from the
+[habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md).
 
-The fraction of eggs in the \\(j^{th}\\) patch laid in the \\(i^{th}\\)
-habitat is \\(\omega_i / Q_j.\\)
+If the \\(i^{th}\\) habitat is in the \\(j^{th}\\) patch, then
+\\({N}\_{j,i}=1.\\) Otherwise, \\({N}\_{j,i}=0.\\)
 
-To make the model extensible, habitat availability sums all the places
-where mosquitoes might lay eggs, including ovitraps and unsuitable
-habitats. If every element in \\(Q\\) were positive, the egg
-distribution matrix would be: \$\${O} = \mbox{diag}\left(\omega \right)
-\cdot {N}^T \cdot \mbox{diag} \left(\frac{1}{Q}\right).\$\$ To avoid
-dividing by zero, the zero elements in \\(Q\\) are set to an arbitrary
-positive value.
+If \\(x\\) is any vector describing a quantity in habitats (*i.e.*,
+\\(\left\|x\right\|=\\)`nHabitats`), then \$\$X=\mathbf{N}\cdot x\$\$ is
+a vector that has summed \\(x\\) by patch, and
+\\(\left\|X\right\|=\\)`nPatches`.
+
+## Habitat Availability
+
+Egg laying by adult mosquitoes was modeled as the outcome of *searching*
+for aquatic habitats.
+
+Each habitat is assigned a *search weight* \\((w).\\)
+
+Habitat availability in a patch is the sum of the search weights of all
+the habitats in that patch.
+
+Habitat availability \\((Q)\\) is computed using the habitat matrix
+\\((\mathbf{N})\\):
+
+\$\$Q = \mathbf{N}\cdot w\$\$
+
+- Patch emigration rates and egg laying rates by adult mosquitoes can be
+  modeled as a functional response to habitat availability.
+
+## Laying Matrix
+
+The egg laying matrix \\((\mathbf {U})\\) distributes the eggs laid by
+the adult mosquitoes in each patch among the aquatic habitats in that
+patch by relative availability.
+
+The algorithm is motivated by *searching* for aquatic habitat. Each
+habitat is assigned a *search weight* \\((w).\\) Habitat availability
+\\((Q)\\) sums the search weights by patch. The fraction of all eggs
+laid in the \\(j^{th}\\) patch that end up in the \\(i^{th}\\) habitat
+is \\(w_i / Q_j.\\)
+
+This is computed by constructing the laying matrix, \\(\mathbf U\\), a
+`nHabitats` \\(\times\\) `nPatches` matrix. To avoid division-by-zero
+errors for patches with no available habitats, a quantity \\(\epsilon =
+1e-14\\) is added to availability: \$\$ \mathbf{U}= \mbox{diag}\left( w
+\right) \cdot \mathbf{N}^T \cdot \mbox{diag} \left(
+\frac{1}{\textstyle{Q + \epsilon}} \right) \$\$
 
 ## See also
 
 The membership matrix \\(N\\) is computed by
 [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 
-Total habitat availability, \\(\cal Q\\), is computed by
+Total habitat availability, \\(Q\\), is computed by
 [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md)
 
 The availability of ovitraps and bad habitats is set up in

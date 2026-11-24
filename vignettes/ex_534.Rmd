@@ -227,7 +227,7 @@ W
 A mixing matrix, $\beta$, describes the expected proportion of each infective bite that would be received be each population stratum. 
 
 ```{r beta}
-F_beta(HPop, W, searchWtsH, TaR)
+F_beta(W, searchWtsH, TaR)
 ```
 
 ## Aquatic Mosquito Dynamics 

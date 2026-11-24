@@ -1,11 +1,22 @@
+# X
+
 #' @title Time Spent
 #' 
 #' @description
-#' The risk of exposure to mosquito-borne pathogens
-#' is related to time spent in places where vectors are
-#' blood feeding. Each human / host population resides
-#' in a patch. Let \eqn{N_p} denote the number of patches
-#' and \eqn{N_h} the number of strata. 
+#' 
+#' \describe{
+#'   \item{\eqn{\Theta}}{time spent matrix}
+#' }
+#' 
+#' @section Time-Spent Matrix: 
+#' 
+#' Some fraction of time is spent spent traveling, defined herein as time spent
+#' outside of the patches, or *time away* (see [time_away]). The remainder of time is spent in one of the patches. 
+#' The risk of exposure here computed with a 
+#' *time spent matrix.* 
+#' 
+#' Let \eqn{N_p} denote the number of patches
+#' and \eqn{N_h} the number of strata.
 #' The time spent matrix, \eqn{\Theta}, is an \eqn{N_p \times N_h} matrix with the form:
 #' \deqn{
 #' {\Theta} =
@@ -59,22 +70,38 @@
 #' \end{array}
 #' \right]
 #' }
-#' 
-#' Each columns describes the fraction of time spent by a single
+#'
+#' Each column describes the fraction of time spent by members of a single
 #' population stratum in each patch *when not traveling,* so \eqn{\sum_i \theta_{i,j}\leq 1}.
-#' Time away - or time spent outside of the spatial domain - is handled 
-#' separately (see [xds_port_time_away]). If the columns do not sum up to one, 
-#' then it implies that when a person is not traveling, 
-#' some time is spent in places within the spatial domain where they are not at risk. 
-#'  
+#' The columns need not sum to one. If they do not, it implies 
+#' that when a person *here* (in the patches), 
+#' some time is spent in places where they are not at risk (*e.g.* in an office building). 
 #' It is expected that most 
 #' time is spent in the patch where
 #' the stratum resides. 
-#' 
-#' In **`ramp.xds`,** the time spent matrix is static. In **`xds.forcing`**, 
-#' time spent can have a daily pattern, and time at risk weights 
-#' time spent by a function describing mosquito daily activity rates  
-#' (see [xds_info_time_at_risk]).
+#'
 #'  
-#' @name xds_info_time_spent 
+#' @seealso [setup_timespent], [time_away], [time_at_risk]
+#' 
+#' @name time_spent_matrix
+#' @aliases xds_info_time_spent 
 NULL
+
+#' @title Time at Risk
+#' 
+#' @description
+#' 
+#' 
+#' \describe{
+#'   \item{\eqn{\Psi}}{time-at-risk matrix}
+#' }
+#' 
+#' @inheritSection setup_F_circadian Circadian Pattern Function 
+#' @inheritSection F_TaR Time at Risk
+#'
+#' @seealso [xds_info_time_spent], [F_TaR], [setup_F_circadian],
+#' [time_away], [available_blood_hosts]
+#' @name time_at_risk
+#' @aliases xds_info_time_at_risk
+NULL
+

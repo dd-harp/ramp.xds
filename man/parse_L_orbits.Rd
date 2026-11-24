@@ -7,7 +7,7 @@
 parse_L_orbits(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} with the solutions to a dynamical system}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,10 +17,14 @@ parse_L_orbits(outputs, xds_obj, s)
 a \link{list}
 }
 \description{
-After solving a dynamical system, parse the outputs and
-return the variables by name in a list.
+Extract the model state outputs for the selected \strong{L} module
+and return them by name in a list.
 }
 \note{
-This method dispatches on the class of \code{xds_obj$L_obj[[s]]}
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+These methods process output trajectories after solving, rather than a
+single state vector during solving. They return results without modifying
+the model object; the output-processing pipeline stores the parsed results
+at \code{xds_obj$outputs$orbits$L[[s]]}.
 }
 \keyword{internal}

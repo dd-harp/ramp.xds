@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{setup_Omega_obj}
 \alias{setup_Omega_obj}
-\title{Setup the Omega obj}
+\title{Set up mosquito demographic matrix port (\strong{MY})}
 \usage{
 setup_Omega_obj(ch, up, xds_obj, s = 1)
 }
@@ -19,8 +19,7 @@ setup_Omega_obj(ch, up, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-The Omega object handles
-dispatching for \code{change_Omega} and \code{update_Omega}
+Set up the mosquito demographic matrix port.
 
 Options for \code{change_Omega} are:
 \itemize{
@@ -35,5 +34,10 @@ Options for \code{update_Omega} are:
 \item \code{static} --- for autonomous systems
 \item \code{dynamic} --- for non-autonomous systems
 }
+}
+\note{
+The Omega object stores the change and update options.
+The Omega object controls dispatch for \link{update_Omega}.
+The \link{change_Omega} generic dispatches on \code{xds_obj$xds}.
 }
 \keyword{internal}

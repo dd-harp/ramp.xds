@@ -18,39 +18,59 @@ on Smith DL, \emph{et al.} (2013).
 \section{Parameters}{
 
 \describe{
-\item{\code{psi}}{maturation rate (\eqn{\psi})}
-\item{\code{xi}}{delayed maturation parameter in response to mean crowding (\eqn{\xi})}
-\item{\code{phi}}{density-independent death rate (\eqn{\phi})}
-\item{\code{theta}}{slope of density-dependent mortality (\eqn{\theta})}
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
 }
 }
 
-\section{Egg Laying}{
+\section{Dynamical Term}{
 
 
 \describe{
-\item{\code{eta}}{the egg laying rate, (\eqn{\eta})}
+\item{\code{eta} or \eqn{\eta}}{the number of eggs laid in each habitat, per day}
 }
 }
 
-\section{Dynamics}{
+\section{ODE}{
 
 
+The derivatives in \link{dLdt.basicL} are:
 \deqn{dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L}
+}
+
+\section{DTS}{
+
+
+The one-day update in \link{Update_Lt.basicL} is:
+\deqn{L_t = \eta + e^{-(\psi e^{-\xi L_{t-1}} + \phi + \theta L_{t-1})} L_{t-1}}
 }
 
 \section{Emergence}{
 
 
-The emergence rate of adult, female mosquitoes from each patch is:
+The emergence rate of adult female mosquitoes from each habitat is computed by \link{F_emerge.basicL}:
 \deqn{\alpha = \psi e^{-\xi L} L}
 }
 
-\section{Notes}{
+\section{Regulation}{
 
-Setting \eqn{\xi = 0} recovers the model of Smith DL, \emph{et al.} (2013).
+
+In this model, population is regulated in two ways.
+First, per-capita mortality increases with mean crowding;
+per-capita mortality is \eqn{\phi + \theta L.}
+Second, maturation is delayed in response to mean crowding \eqn{\psi\;e^{-\xi L}}.
+Depending on the values of \eqn{\xi,}
+productivity in some habitats might not be a monotonically increasing function of egg laying.
+
+The model by Smith DL, \emph{et al.} (2013) did not include delayed maturation;
+that model is recovered by setting \eqn{\xi=0.}
 }
 
 \references{
-Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013) Mosquito Population Regulation and Larval Source Management in Heterogeneous Environments. PLOS ONE 8(8): e71247. \href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071247}{https://doi.org/10.1371/journal.pone.0071247}.
+{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
+}
+\seealso{
+\link{make_L_obj_basicL}, \link{setup_L_obj.basicL}
 }

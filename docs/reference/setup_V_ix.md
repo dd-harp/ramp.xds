@@ -1,6 +1,6 @@
-# Add indices for human population to parameter list
+# Add indices for auxiliary variables to the parameter list
 
-This method dispatches on the type of `xds_obj$V_obj[[i]]`
+This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 
 ## Usage
 
@@ -16,7 +16,7 @@ setup_V_ix(xds_obj, i)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 

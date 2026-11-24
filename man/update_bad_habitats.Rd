@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-bad.R
 \name{update_bad_habitats}
 \alias{update_bad_habitats}
-\title{Update other blood hosts}
+\title{Update bad habitat availability}
 \usage{
 update_bad_habitats(t, y, xds_obj, s)
 }

@@ -7,7 +7,7 @@
 setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,7 +19,7 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-The advanced set up function for habitat search weights
+The advanced setup function for habitat search weights.
 
 Available methods are:
 \itemize{

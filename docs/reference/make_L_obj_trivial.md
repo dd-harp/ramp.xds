@@ -1,19 +1,23 @@
-# Make `L_obj` for `trivialL` (**L** component)
+# Make the module object for `trivialL` (**L**)
 
-The number of emerging adults is a function \$\$\Lambda S(t) T(t)
-K(t)\$\$ where
+The number of emerging adults is a function \$\$\Lambda F_S(t) F_T(t)
+F_K(t)\$\$ where
 
 - \\(\Lambda\\) or `Lambda` is the mean number of adult female
-  mosquitoes emerging per day
+  mosquitoes emerging from each aquatic habitat per day
 
-- \\(S(t)\\) or `F_season` is a seasonal pattern function (ideally, with
-  an average annual mean of 1)
+- \\(F_S(t)\\) or `F_season` is a seasonal pattern function (ideally,
+  with an average annual mean of 1)
 
-- \\(T(t)\\) or `F_trend` is a trend pattern function (ideally, with an
-  average value of 1)
+- \\(F_T(t)\\) or `F_trend` is a trend pattern function (ideally, with
+  an average value of 1)
 
-- \\(K(t)\\) or `F_shock` is a perturbation function (by default, it is
-  set to `F_one`)
+- \\(F_K(t)\\) or `F_shock` is a perturbation function
+
+Use a supplied pattern function if passed, setting its corresponding
+parameter object to an empty list. Otherwise, construct the function
+from the corresponding parameter object using
+[make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html).
 
 ## Usage
 
@@ -22,9 +26,9 @@ make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 100,
-  F_season = F_one,
-  F_trend = F_one,
-  F_shock = F_one,
+  F_season = list(),
+  F_trend = list(),
+  F_shock = list(),
   season_par = list(name = "F_one"),
   trend_par = list(name = "F_one"),
   shock_par = list(name = "F_one")

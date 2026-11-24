@@ -28,3 +28,6 @@ Available methods are:
 
 If the first argument is a matrix, the \code{as_matrix} method is used.
 }
+\seealso{
+\link{time_spent_matrix}
+}

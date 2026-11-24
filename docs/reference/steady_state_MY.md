@@ -1,4 +1,4 @@
-# Compute steady states for **MY**
+# Compute steady states (**MY**)
 
 Given the emergence rate of adult mosquitoes (\\(\Lambda\\) or `Lambda`)
 and the net infectiousness of humans (\\(\kappa\\) or `kappa`), compute

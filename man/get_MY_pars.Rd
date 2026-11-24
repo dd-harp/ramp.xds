@@ -12,14 +12,15 @@ get_MY_pars(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of parameter values
 }
 \description{
-Inspect the stored parameter values for the
-\strong{MY} module for the \eqn{s^{th}} species
+Return the parameters for the selected \strong{MY} module
+for the \eqn{s^{th}} vector species as a named list.
 }
 \note{
-Parameter values are stored on \code{xds_obj$MY_obj[[s]]}
+Parameter values are stored on \code{xds_obj$MY_obj[[s]]}.
+Dispatch is on the class of \code{xds_obj$MY_obj[[s]]}.
 }
 \seealso{
 \link{change_MY_pars}, \link{setup_MY_obj}, \link{xds_info_change_parameters}

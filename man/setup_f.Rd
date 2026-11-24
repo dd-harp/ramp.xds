@@ -3,7 +3,7 @@
 \name{setup_f}
 \alias{setup_f}
 \alias{setup_blood_feeding_rates}
-\title{Set up constant blood feeding rate}
+\title{Set up constant blood feeding rate (\strong{MY})}
 \usage{
 setup_f(name, xds_obj, options = list(), s = 1)
 
@@ -24,7 +24,7 @@ an \strong{\code{xds}} model object
 \description{
 Configure and validate models with
 constant blood feeding rates. This calls \link{setup_F_f}
-to configure a function \eqn{F_f}, and call
+to configure a function \eqn{F_f}, and calls
 \link{change_f}.
 }
 \note{

@@ -7,7 +7,7 @@
 \method{parse_MY_orbits}{macdonald}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,7 +17,12 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_MY_orbits} for the macdonald model
+Extract the model state outputs for the \code{macdonald} module
+from \code{outputs} and return them by name in a list.
+Also compute \code{y = Y/M}, \code{z = Z/M}, and \code{parous = P/M}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
 }
 \section{State Variables}{
 
@@ -44,8 +49,7 @@ EIP.
 \link{F_fqZ.macdonald} and \link{F_fqM.macdonald} compute these patch-level
 quantities. \link{compute_EIR} combines \code{fqZ} with the biting distribution
 matrix and resident-bite fraction to compute stratum-level EIR; \link{F_hbr}
-computes HBR from \code{fqM} in the same way. The resulting \code{EIR} and \code{HBR}
-orbits are attached to the XH output during parsing.
+computes HBR from \code{fqM} in the same way.
 }
 
 \seealso{

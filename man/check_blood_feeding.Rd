@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{check_blood_feeding}
 \alias{check_blood_feeding}
-\title{Check the XY Interface}
+\title{Check the blood-feeding interface}
 \usage{
 check_blood_feeding(xds_obj)
 }
@@ -13,6 +13,7 @@ check_blood_feeding(xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Run a set of consistency checks for the \code{blood_feeding}
+Currently returns \code{xds_obj} unchanged; no consistency checks
+are performed.
 }
 \keyword{internal}

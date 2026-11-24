@@ -4,7 +4,7 @@ Check that
 
 - all elements are non-negative
 
-- length(visitors) = nPatches
+- `length(visitors) == nP`
 
 ## Usage
 

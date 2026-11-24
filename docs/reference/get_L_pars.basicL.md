@@ -1,6 +1,6 @@
 # Get parameters for `basicL` (**L**)
 
-Get the **L** component parameters
+Get the stored bionomic parameter values for `basicL`.
 
 ## Usage
 

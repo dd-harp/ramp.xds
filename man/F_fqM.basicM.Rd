@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{F_fqM.basicM}
 \alias{F_fqM.basicM}
-\title{Mosquito biting rate for \code{basicM}}
+\title{Compute mosquito biting density for \code{basicM} (\strong{MY})}
 \usage{
 \method{F_fqM}{basicM}(t, y, xds_obj, s)
 }
@@ -19,8 +19,9 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Returns \code{fqM}, the daily mosquito biting density on humans
-for each patch in the basicM model.
+Return the daily mosquito biting density on humans,
+\code{fqM}, for each patch in the \code{basicM} module.
+Compute \code{fqM = f*q*M}.
 }
 \section{Infective Biting}{
 
@@ -34,6 +35,6 @@ module because there are no infective bites.
 }
 
 \seealso{
-\link{basicM}, \link{F_hbr}
+\link{basicM}, \link{F_hbr}, \link{F_fqZ.basicM}
 }
 \keyword{internal}

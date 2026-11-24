@@ -1,5 +1,6 @@
+# X
 
-#' @title Set up a nbson model for Exposure and Infection
+#' @title Set up a negative binomial model for Exposure and Infection
 #'
 #' @inheritParams setup_exposure
 #'
@@ -13,9 +14,9 @@ setup_exposure.nb <- function(EHname, xds_obj, options=list(), i=1) {
   return(xds_obj)
 }
 
-#' @title Make a nbson Exposure Model Object
+#' @title Make a Negative Binomial Exposure Model Object
 #'
-#' @description Set up the nbson model for
+#' @description Set up the negative binomial model for
 #' exposure for continuous time models
 #'
 #' @param nStrata the number of population strata
@@ -39,13 +40,14 @@ make_exposure_nb <- function(nStrata, options, sz=1) {
 #' under a negative binomial model for exposure
 #'
 #' @details
-#' This function computes the local daily FoI, \eqn{h} as a function of
+#' This function computes the local daily FoI, \eqn{h}, as a function of
 #' the local daily EIR, \eqn{E},
 #' under a negative binomial model for the distribution
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
-#' \deqn{h = \phi \log{\frac{1 + b E}\phi}}
-#' The expression is derived by solving the expression in [F_ar.nb] for \eqn{E}
+#' \deqn{h = \phi \log(1 + b E/\phi)}
+#' The daily attack rate satisfies \eqn{\alpha = 1-\exp(-h)}.
+#' Combining this relation with [F_ar.nb] gives the expression above.
 #' This negative binomial model uses the **mu** \eqn{= bE} and **size** \eqn{=\phi}
 #' parameterization (see [pnbinom]).
 #' @inheritParams F_foi
@@ -57,14 +59,14 @@ F_foi.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
   log(1 + b*eir/sz)*sz
 })}
 
-#' @title A negative binomial model for the daily FoI as a function of the daily EIR.
+#' @title A negative binomial model for the daily EIR as a function of the daily FoI
 #' @description Implements [foi2eir] for a negative binomial model
-#' @details Compute the daily AR, \eqn{h},
-#' given the daily EIR, \eqn{E},
+#' @details Compute the daily EIR, \eqn{E},
+#' given the daily FoI, \eqn{h},
 #' under a negative binomial model for the distribution
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
-#' \deqn{\alpha = \left(e^{h/\phi} -1\right) \frac \phi b }
+#' \deqn{E = \left(e^{h/\phi} -1\right) \frac \phi b }
 #' @inheritParams foi2eir
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso [F_foi.nb]
@@ -97,7 +99,7 @@ F_ar.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
   1 - (1+b*eir/sz)^(-sz)
 })}
 
-#' @title A negative binomial model for the daily EIR. as a function of the daily attack rate
+#' @title A negative binomial model for the daily EIR as a function of the daily attack rate
 #' @description Implements [ar2eir] for a negative binomial model
 #' @inheritParams ar2eir
 #' @return a [numeric] vector of length `nStrata`

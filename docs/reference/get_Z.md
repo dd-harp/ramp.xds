@@ -1,6 +1,6 @@
-# Get the density of infectious, blood feeding mosquitoes
+# Get the initial infective mosquito density
 
-Get the density of infectious, blood feeding mosquitoes
+Get the initial infective mosquito density
 
 ## Usage
 
@@ -20,5 +20,5 @@ get_Z(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the initial density as a [numeric](https://rdrr.io/r/base/numeric.html)
+vector

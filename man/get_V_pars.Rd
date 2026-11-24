@@ -15,5 +15,8 @@ get_V_pars(xds_obj, i = 1)
 a \link{list}
 }
 \description{
+Return the parameters as a list
+}
+\note{
 This method dispatches on the type of \code{xds_obj$V_obj[[i]]}.
 }

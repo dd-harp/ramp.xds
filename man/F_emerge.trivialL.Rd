@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{F_emerge.trivialL}
 \alias{F_emerge.trivialL}
-\title{Compute emergent adults for \code{trivialL} (\strong{L} component)}
+\title{Compute emergent adults for \code{trivialL} (\strong{L})}
 \usage{
 \method{F_emerge}{trivialL}(t, y, xds_obj, s)
 }
@@ -21,7 +21,7 @@ a \link{numeric} vector of length \code{nHabitats}
 \description{
 The number of emerging adults is a function \deqn{\Lambda F_S(t) F_T(t) F_K(t)} where
 \itemize{
-\item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
+\item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging from each aquatic habitat per day
 \item \eqn{F_S(t)} or \code{F_season} is a seasonal signal (ideally, with an average annual mean of 1)
 \item \eqn{F_T(t)} or \code{F_trend} is a function returning a trend (ideally, with an average value of 1)
 \item \eqn{F_K(t)} or \code{F_shock} is a function describing a perturbation (by default, set to 1)

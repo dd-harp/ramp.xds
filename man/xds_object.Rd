@@ -4,14 +4,16 @@
 \alias{xds_object}
 \title{The \strong{\code{xds}} Model Object}
 \description{
+A properly constructed xds object is
+returned by \link{xds_setup} or one of its variants (see \link{xds_info_basic_setup}).
+}
+\note{
 A dynamical system is encoded and stored
 on an \strong{\code{xds}} model
 object,
 a compound \link{list} with
 a specific set of features.
 
-A properly constructed xds object is
-returned by \link{xds_setup} or one of its variants (see \link{xds_info_basic_setup}).
 The object is created in several steps:
 \itemize{
 \item a basic template for an xds object is returned by

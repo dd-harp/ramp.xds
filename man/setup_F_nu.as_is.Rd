@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_F_nu.as_is}
 \alias{setup_F_nu.as_is}
-\title{Setup egg laying}
+\title{Set up static oviposition rates (\strong{MY})}
 \usage{
 \method{setup_F_nu}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an oviposition rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change the static values.
+Set up supplied static oviposition rates from \code{options$nu}
+or a numeric \code{name}. Values in \code{options$nu} take precedence.
 }
 \keyword{internal}

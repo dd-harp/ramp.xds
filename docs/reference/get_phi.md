@@ -1,6 +1,6 @@
-# Get phi, density independent mortality
+# Get the density-independent mortality rate (**L**)
 
-Get phi, density independent mortality
+Get the density-independent mortality rate (**L**)
 
 ## Usage
 
@@ -20,5 +20,8 @@ get_phi(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the density-independent mortality rate(s)
+
+## See also
+
+[change_phi](https://dd-harp.github.io/ramp.xds/reference/change_phi.md)

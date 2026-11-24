@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{check_XH.trivialXH}
 \alias{check_XH.trivialXH}
-\title{Check / update before solving}
+\title{Check \code{trivialXH} (\strong{XH})}
 \usage{
 \method{check_XH}{trivialXH}(xds_obj, i)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Check / update before solving
+Check \code{trivialXH} (\strong{XH})
 }
 \keyword{internal}

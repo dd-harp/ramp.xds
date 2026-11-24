@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{make_F_mu_random}
 \alias{make_F_mu_random}
-\title{Make random emigration-loss fractions}
+\title{Make random emigration-loss fractions (\strong{MY})}
 \usage{
 make_F_mu_random(
   nPatches,
@@ -17,15 +17,20 @@ make_F_mu_random(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{f_rand}{a random number generator}
+\item{f_rand}{a random number generator called as \code{f_rand(nPatches, p1, p2)}
+that returns a numeric vector of length \code{nPatches}}
 
 \item{p1}{argument for f_rand}
 
 \item{p2}{argument for f_rand}
 }
 \value{
-a configuration object for \link{F_mu.random}
+a static port object for \link{F_mu.static}
 }
 \description{
-Build a configuration object for random emigration-loss fractions.
+Draw emigration-loss fractions once during setup.
+Subsequent evaluations reuse these values.
+}
+\note{
+The values are stored in a static port object.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{F_emerge.basicL}
 \alias{F_emerge.basicL}
-\title{Compute emergent adults for \code{basicL} (\strong{L} component)}
+\title{Compute adult mosquito emergence for \code{basicL} (\strong{L})}
 \usage{
 \method{F_emerge}{basicL}(t, y, xds_obj, s)
 }
@@ -19,11 +19,16 @@
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-The number of adults emerging from the habitats,
-per day, is:
-\deqn{\psi e^{-\xi L} L.}
+Return adult female mosquito emergence per habitat.
 }
+\section{Emergence}{
+
+
+The emergence rate of adult female mosquitoes from each habitat is computed by \link{F_emerge.basicL}:
+\deqn{\alpha = \psi e^{-\xi L} L}
+}
+
 \seealso{
-\link{dLdt.basicL}
+\link{basicL}, \link{dLdt.basicL}, \link{Emergence}
 }
 \keyword{internal}

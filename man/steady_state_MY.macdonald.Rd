@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{steady_state_MY.macdonald}
 \alias{steady_state_MY.macdonald}
-\title{Compute the steady states as a function of the daily EIR}
+\title{Compute steady states for \code{macdonald} (\strong{MY})}
 \usage{
 \method{steady_state_MY}{macdonald}(Lambda, kappa, xds_obj, s = 1)
 }
@@ -16,10 +16,13 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} with elements \code{M}, \code{P}, \code{Y}, and \code{Z}, each
+containing one value per patch
 }
 \description{
-This method dispatches on the type of \code{MY_obj}.
+Compute steady-state mosquito densities for the \code{macdonald} module
+given adult mosquito emergence \code{Lambda} and net infectiousness \code{kappa}
+for the differential-equation system.
 }
 \section{State Variables}{
 

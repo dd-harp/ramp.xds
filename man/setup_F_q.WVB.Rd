@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_F_q.WVB}
 \alias{setup_F_q.WVB}
-\title{Set up WVB human feeding fraction}
+\title{Set up WVB human fraction (\strong{MY})}
 \usage{
 \method{setup_F_q}{WVB}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a human fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Configure the WVB human feeding fraction method.
+Configure the WVB human fraction method.
 }
 \keyword{internal}

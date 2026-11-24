@@ -20,5 +20,5 @@ get_H(xds_obj, i = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+human population density as a
+[numeric](https://rdrr.io/r/base/numeric.html) vector

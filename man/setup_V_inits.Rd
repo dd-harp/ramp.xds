@@ -19,5 +19,8 @@ setup_V_inits(xds_obj, H, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
+Set up initial values for \strong{V} modules
+}
+\note{
 This method dispatches on \code{xds_obj$V_obj[[i]]}.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{F_nu.type2}
 \alias{F_nu.type2}
-\title{Egg batch rate}
+\title{Compute the baseline oviposition rate (type 2) (\strong{MY})}
 \usage{
 \method{F_nu}{type2}(t, xds_obj, s)
 }
@@ -14,13 +14,11 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{\nu}, the baseline egg batch rate
+\eqn{\nu}, the baseline oviposition rate
 }
 \description{
-Egg batch rates are a type2 functional response
-to available water.
-
-Letting \eqn{Q} be the availability of all water. The egg batch rate is
+Compute the baseline oviposition rate using a type 2 functional
+response to water availability, \eqn{Q}.
 \deqn{\nu = \nu_x \frac{s_\nu Q}{1+s_\nu Q}}
 }
 \keyword{internal}

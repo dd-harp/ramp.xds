@@ -1,6 +1,6 @@
 # Get the trend parameters
 
-Get the trend parameters for an **MY** trivial model
+Get the trend parameters for a trivial **MY** model.
 
 ## Usage
 

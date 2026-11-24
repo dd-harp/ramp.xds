@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{setup_XH_obj.SIS}
 \alias{setup_XH_obj.SIS}
-\title{Set up \code{SIS} (\strong{XH})}
+\title{Set up the module object for \code{SIS} (\strong{XH})}
 \usage{
 \method{setup_XH_obj}{SIS}(XHname, residence, xds_obj, options = list(), i = 1)
 }
@@ -21,11 +21,18 @@
 an \strong{\code{xds}} model object
 }
 \description{
-This sets up a \code{SIS} model object for the \strong{XH} module for the \eqn{i^{th}} host species
+Set up a \code{SIS} module object for the \strong{XH} component and the \eqn{i^{th}} host species.
 \itemize{
-\item the object is created by \link{make_XH_obj_SIS}
-\item the initial conditions are set by \link{setup_XH_inits}
-\item \code{options} is passed to both to override the defaults
+\item Set the module name to \code{SIS}.
+\item Create the module object with \link{make_XH_obj_SIS}, passing \code{nStrata[i]} and \code{options}.
+\item Set initial values using \link{setup_XH_inits}, passing \code{options} to override defaults.
+\item Initialize blood search weights using \link{setup_blood_search_weights.setup}.
+\item Initialize the time-spent matrix using \link{setup_timespent.setup}.
+\item Initialize mass-treatment functions using \link{setup_mass_treatment}.
+\item Initialize birth and death rates using \link{setup_demog_obj}.
+\item Initialize time away using \link{setup_time_away.setup}.
+\item Initialize travel EIR using \link{setup_travel_eir.no_travel}.
+\item Return the updated \strong{\code{xds}} model object.
 }
 }
 \note{
@@ -45,7 +52,7 @@ The module object is stored at \code{xds_obj$XH_obj[[i]]}
 
 
 The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
-the dynamics, or detection by diagnostic methods.
+the dynamics or test positivity.
 
 \describe{
 \item{\code{b}}{the fraction of infective bites that would cause an infection}
@@ -53,9 +60,7 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{test positivity by light microscopy}
-\item{\code{q_rdt}}{test positivity by RDT}
-\item{\code{q_pcr}}{test positivity by PCR}
+\item{\code{q}}{test positivity}
 }
 }
 

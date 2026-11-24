@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_MY_vars}
 \alias{get_MY_vars}
-\title{List variables (\strong{MY})}
+\title{Get the state variables (\strong{MY})}
 \usage{
 get_MY_vars(y, xds_obj, s)
 }
@@ -14,9 +14,15 @@ get_MY_vars(y, xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
+Extract the state variables for the selected \strong{MY} module and vector species
+from \code{y} and return them by name in a list for use during model solving.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$MY_obj[[s]]}.
+These functions support solver evaluations that need variables by name;
+users rarely need to call them directly.
 }
 \keyword{internal}

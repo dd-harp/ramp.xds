@@ -8,6 +8,8 @@ Rebuild forcing functions on the EIR object using `make_function`:
 
 - `F_shock` is made from `shock_par`
 
+- `F_age` is made from `age_par`
+
 ## Usage
 
 ``` r

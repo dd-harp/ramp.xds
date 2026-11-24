@@ -6,12 +6,13 @@
 \description{
 \strong{\code{ramp.xds}} was designed to explore heterogeneous exposure & transmission:
 \itemize{
-\item \emph{heterogeneous biting rates} - differences in the expected number of expected
-bites, per person, among heterogeneous biting rates:
+\item \emph{heterogeneous biting rates} - differences in the expected number of
+bites, per person, among population strata:
 see \link{xds_info_heterogeneous_biting_rates}.
 \item \emph{environmental heterogeneity} - describes variability in the distribution
-of the number of bites, per person in a homogenous population stratum:
-see \link{xds_info_environmental_heterogeneity}
-\item heterogeneous mixing describes
+of the number of bites, per person in a homogeneous population stratum:
+see \link{xds_info_environmental_heterogeneity}.
+\item \emph{heterogeneous mixing} describes differences in how population strata
+spend time in patches and encounter mosquitoes.
 }
 }

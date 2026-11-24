@@ -1,6 +1,7 @@
-# List variables for `GeM` (**MY**)
+# Get the state variables for `GeM` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`
+Extract the `GeM` variables from the state variables vector \\(y\\),
+parse, and return the variables by name in a list.
 
 ## Usage
 

@@ -3,7 +3,7 @@
 \name{setup_MY_obj.trivialMY}
 \alias{setup_MY_obj.trivialMY}
 \alias{setup_MY_obj.trivial}
-\title{Set up \code{trivialMY} (\strong{MY})}
+\title{Set up the module object for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{trivialMY}(MYname, xds_obj, options = list(), s = 1)
 
@@ -35,7 +35,7 @@ the user configures \code{F_eggs}; in the latter,
 
 This builds a forcing function as a \emph{composed time series function} using either functions or parameters:
 \itemize{
-\item Use a function if passed, and set the function object to an empty list
+\item Use a function if passed, and set the corresponding parameter object to an empty list
 \item If no function is passed, the parameters should be a function object (see \link[ramp.func:F_obj]{ramp.func::F_obj})
 \item Use \code{make_function} to create a function \eqn{F(t,V)}
 }

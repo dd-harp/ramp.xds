@@ -29,18 +29,20 @@ version of the *S-I-S* compartmental model both
 \
 `dts_mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, xds``=`` ``"dts"``)`` `
 
-Individuals are either infected and infectious \\((I)\\) or uninfected
-and susceptible to infection \\((S)\\), and the total population sizes
-is \\(H=S+I.\\) This vignette describes the model and its implementation
-in **`ramp.xds.`**
+This vignette describes the basic model and its generalized
+implementation in **`ramp.xds.`**
 
 ### The Basic S-I-S model
+
+In the S-I-S model, individuals are either infected and infectious
+\\((I)\\) or uninfected and susceptible to infection \\((S)\\), and the
+total population sizes is \\(H=S+I.\\)
 
 The rate that susceptible individuals become infected is called the
 *force of infection* (or FoI, Ross called it the *happenings* rate,
 denoted \\(h\\)). The rate of clearance is \\(r.\\) After clearing an
 infection, individuals are susceptible to infection again. In its
-simplest form:
+simplest form.
 
 \\\[\begin{array}{rl} \frac{dS}{dt} &= - h S + r I \\\\ \frac{dI}{dt} &=
 h S - r I \\\\ \end{array}\\\] For this system, note that
@@ -68,14 +70,15 @@ dynamics (**H**):
 B(t,H) - \mu S \\\\ \frac{dI}{dt} =& h S - r I &- \mu I \\\\
 \end{array}\\\] Since \\(H=S+I,\\) one of these equations is redundant.
 To implement *progressive stratification,* we drop \\(S,\\) and use a
-function \\(\mathbf{D}\\) that computes per-capita mortality in a
-generic way:
+function \\(\mathbf{D}\\) that computes deaths for some variable in a
+consistent way:
 
 \\\[\begin{array}{rcr} \frac{dH}{dt} =& &B(t,H) - \mathbf{D}(t,H)\\\\
 \frac{dI}{dt} =& h (H-I) - r I &- \mathbf{D}(t,I)\\\\ \end{array}\\\]
 After solving, we compute \\(S=H+I\\) and attach its orbit. By default,
 birth rates and death rates are set to zero, a constant population
-model. The birth and death functions are modified using:
+model, equivalent to the basis S-I-S model. The birth and death
+functions are modified using:
 
 - [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.html)
 
@@ -101,6 +104,9 @@ chemo-protection follows treatment.) The module assumes that
 
 - The total rate that infections clear is thus: \\\[r + \rho h +
   \sigma + \Xi(t)\\\]
+
+By default, treatment probabilities and rates are set to zero, so it is
+equivalent to the basis S-I-S model.
 
 ## Dynamics
 

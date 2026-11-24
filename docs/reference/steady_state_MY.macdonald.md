@@ -1,6 +1,6 @@
-# Compute the steady states as a function of the daily EIR
+# Compute steady states for `macdonald` (**MY**)
 
-This method dispatches on the type of `MY_obj`.
+Compute steady-state mosquito densities for the `macdonald` module.
 
 ## Usage
 

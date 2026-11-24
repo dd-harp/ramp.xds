@@ -9,5 +9,9 @@ A list of change functions for aquatic mosquito modules.
 \itemize{
 \item \code{\link{change_L_inits}} -- change initial values
 \item \code{\link{change_L_pars}} -- change parameters
+\item \code{\link{change_psi}} -- change the maturation rate
+\item \code{\link{change_phi}} -- change the density-independent mortality rate
+\item \code{\link{change_xi}} -- change the delayed maturation parameter
+\item \code{\link{change_theta}} -- change the slope of density-dependent mortality
 }
 }

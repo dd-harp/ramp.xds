@@ -1,8 +1,6 @@
-# Static model for the EIP
+# Time derivative of the EIP for a static model (**MY**)
 
-Implements
-[F_eip](https://dd-harp.github.io/ramp.xds/reference/F_eip.md) for a
-static model
+Return zero because the extrinsic incubation period is constant.
 
 ## Usage
 
@@ -27,4 +25,4 @@ dF_eip(t, xds_obj, s)
 
 ## Value
 
-\\(eip\\), the extrinsic incubation period in days
+zero

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{check_XH.SIS}
 \alias{check_XH.SIS}
-\title{Check / update before solving}
+\title{Check \code{SIS} (\strong{XH})}
 \usage{
 \method{check_XH}{SIS}(xds_obj, i)
 }
@@ -15,7 +15,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Check / update before solving
+Check \code{SIS} (\strong{XH})
 }
 \seealso{
 \link{SIS}

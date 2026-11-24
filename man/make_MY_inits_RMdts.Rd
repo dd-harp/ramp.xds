@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{make_MY_inits_RMdts}
 \alias{make_MY_inits_RMdts}
-\title{Make inits for RMdts adult mosquito model}
+\title{Make initial values for \code{RMdts} (\strong{MY})}
 \usage{
 make_MY_inits_RMdts(
   nPatches,
@@ -28,14 +28,24 @@ make_MY_inits_RMdts(
 
 \item{U}{total uninfected mosquito density at each patch}
 
-\item{Y}{infected mosquito density at each patch}
+\item{Y}{initial infected mosquito densities across EIP cohorts, a numeric
+scalar or input of length \code{nPatches * max_eip}}
 
 \item{Z}{infectious mosquito density at each patch}
 }
 \value{
-a \link{list}
+a named \link{list} of initial values
 }
 \description{
-Make inits for RMdts adult mosquito model
+Create a named list of initial values for the \code{RMdts} module.
+Values in \code{options} override the defaults.
+}
+\details{
+Initial values must be numeric scalars or have the required length:
+\code{nPatches} for \code{M}, \code{P}, \code{U}, and \code{Z}, and \code{nPatches * max_eip} for \code{Y}.
+Scalars are expanded to the required length.
+}
+\seealso{
+\link{setup_MY_inits.RMdts}, \link{change_MY_inits.RMdts}
 }
 \keyword{internal}

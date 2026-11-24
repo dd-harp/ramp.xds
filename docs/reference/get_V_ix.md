@@ -1,6 +1,6 @@
-# Add indices for human population to parameter list
+# Get indices for auxiliary variables
 
-Get and display the values of the indices for the variables
+Retrieve the values of the indices for the variables.
 
 ## Usage
 
@@ -16,8 +16,8 @@ get_V_ix(xds_obj, i = 1)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 
-an **`xds`** model object
+the index [vector](https://rdrr.io/r/base/vector.html)

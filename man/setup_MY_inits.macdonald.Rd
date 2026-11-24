@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{setup_MY_inits.macdonald}
 \alias{setup_MY_inits.macdonald}
-\title{Setup initial values for \code{macdonald} (\strong{MY})}
+\title{Set up initial values for \code{macdonald} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{macdonald}(xds_obj, options = list(), s = 1)
 }
@@ -17,14 +17,11 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{macdonald} module
-(\strong{MY}) for the \eqn{s^{th}} species.
-\itemize{
-\item \link{make_MY_inits_macdonald} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_MY_inits} or
-see the inline module documentation.
+Set up initial values for the \code{macdonald} module using
+\link{make_MY_inits_macdonald}. Values in \code{options} override the defaults.
 }
+\note{
+Initial values are stored at \code{xds_obj$MY_obj[[s]]$inits}.
 }
 \section{State Variables}{
 
@@ -38,5 +35,9 @@ see the inline module documentation.
 
 \seealso{
 \link{macdonald}, \link{make_MY_inits_macdonald}
+
+\link{change_MY_inits.macdonald}
+
+\link{get_MY_inits}
 }
 \keyword{internal}

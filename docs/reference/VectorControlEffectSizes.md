@@ -29,4 +29,4 @@ VectorControlEffectSizes(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object

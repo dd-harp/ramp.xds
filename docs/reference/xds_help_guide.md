@@ -1,26 +1,26 @@
 # **`ramp.xds`**: Getting Help
 
-**`ramp.xds`** concepts and functions are well documented. Use these
-guides to find a concept or function.
+**`ramp.xds`** concepts and functions are documented. Use these guides
+to find information about a concept or function.
 
 - [xds_help_info](https://dd-harp.github.io/ramp.xds/reference/xds_help_info.md)
-  – a guide to help functions for **`ramp.xds`** concepts
+  – a guide to help on **`ramp.xds`** concepts
 
-- [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+- [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
   – an overview of basic setup
 
 - [xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
-  – setup for other features
+  – setup options for other features
 
-- **`get_`** functions inspect a model component or outputs
+- **`get_`** functions inspect a model component or its outputs
 
-- **`change_`** functions modify part of a model component
+- **`change_`** functions modify a model component
 
-- **`setup_`** functions replace a model component
+- **`setup_`** functions set up a model component
 
 ## XH Component
 
-Help guides for human / host demography, infection, & immunity.
+Help guides for human/host demography, infection, and immunity.
 
 `?XH_`
 
@@ -41,7 +41,7 @@ Help guides for human / host demography, infection, & immunity.
 
 ## MY Component
 
-Help guides for adult mosquito ecology & infection dynamics.
+Help guides for adult mosquito ecology and infection dynamics.
 
 `?MY_`
 

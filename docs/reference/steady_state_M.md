@@ -1,7 +1,7 @@
-# Compute steady states for **M**
+# Compute steady states (**M**)
 
 Given the emergence rate of adult mosquitoes (\\(\Lambda\\) or `Lambda`)
-compute the population density of adult mosquitoes at the steady state
+compute the steady-state densities of adult mosquitoes
 
 ## Usage
 

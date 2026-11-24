@@ -1,8 +1,7 @@
 # Update state variables for `trivialMY` (**MY**)
 
-Implements
-[Update_MYt](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
-for the trivial (forced emergence) model.
+Return an empty update vector because the `trivialMY` module has no
+state variables.
 
 ## Usage
 

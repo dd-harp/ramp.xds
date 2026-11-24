@@ -21,4 +21,4 @@ print(x, ...)
 
 ## Value
 
-a description of the model
+the **`xds`** model object, invisibly

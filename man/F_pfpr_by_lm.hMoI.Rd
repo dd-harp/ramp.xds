@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{F_pfpr_by_lm.hMoI}
 \alias{F_pfpr_by_lm.hMoI}
-\title{Compute the prevalence of infection by light microscopy}
+\title{Compute observed prevalence by light microscopy}
 \usage{
 \method{F_pfpr_by_lm}{hMoI}(vars, XH_obj)
 }
@@ -15,7 +15,8 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_pfpr_by_lm} for the \code{hMoI} model.
+Compatibility alias for \link{F_pr_obs.hMoI}. All diagnostic
+aliases return apparent prevalence based on \code{m2}.
 }
 \seealso{
 \link{hMoI}

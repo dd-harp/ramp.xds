@@ -1,6 +1,6 @@
 # Change shock parameters
 
-Change parameters for the shock function
+Change parameters for the shock function.
 
 ## Usage
 

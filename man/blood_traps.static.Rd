@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{blood_traps.static}
 \alias{blood_traps.static}
-\title{Compute availability of other blood hosts}
+\title{Update static blood trap availability}
 \usage{
 \method{blood_traps}{static}(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-This sets up...
+The static method returns \code{xds_obj} unmodified.
 }
 \keyword{internal}

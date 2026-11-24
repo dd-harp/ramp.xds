@@ -1,10 +1,10 @@
 # Add Variable
 
 This is a generic method to add new dependent state variables that are
-computed by `dVdt.`
+computed by `dVdt`.
 
-The model object for the new variable should fully define an other
-variables module, including methods to set up initial values.
+The model object for the new variable should fully define an
+other-variables module, including methods to set up initial values.
 
 The description for each method should include the equations.
 

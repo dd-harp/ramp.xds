@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_g}
 \alias{get_g}
-\title{Get the adult mosquito mortality rate(s)}
+\title{Get the adult mosquito mortality rate (\strong{MY})}
 \usage{
 get_g(xds_obj, s = 1)
 }
@@ -12,8 +12,17 @@ get_g(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the mortality rate, as a vector
+a \link{numeric} vector of length \code{nPatches}; empty for trivialMY
 }
 \description{
-Get the adult mosquito mortality rate(s)
+Return the stored realized adult mosquito mortality rate per patch.
+}
+\details{
+Read the realized parameter without evaluating its port or applying
+effect sizes. Run bionomics and effect-size application to refresh port-backed values.
+
+The trivialMY method returns an empty numeric vector.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
 }

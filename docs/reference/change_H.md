@@ -24,4 +24,4 @@ change_H(H, xds_obj, i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object

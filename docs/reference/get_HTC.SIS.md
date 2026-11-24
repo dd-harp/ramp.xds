@@ -1,6 +1,6 @@
 # Compute the get_HTC for the `SIS` model
 
-Implements `get_HTC` for the `SIS` model with demography.
+Implements `get_HTC` for the `SIS` model with no demography.
 
 ## Usage
 

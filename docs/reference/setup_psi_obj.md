@@ -1,6 +1,8 @@
-# Set up psi object (maturation rate)
+# Set up bionomic port for maturation rate (**L**)
 
-Set up an object to compute the maturation rate \\(psi\\)
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline maturation rate, \\(psi\\), for a static model.
 
 ## Usage
 
@@ -16,8 +18,8 @@ setup_psi_obj(psi, L_obj)
 
 - L_obj:
 
-  an **`L`** model object
+  an **`L`** module object
 
 ## Value
 
-a **`L`** model object
+an **`L`** module object

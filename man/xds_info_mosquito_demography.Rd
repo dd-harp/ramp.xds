@@ -4,7 +4,7 @@
 \alias{xds_info_mosquito_demography}
 \title{Mosquito Demography}
 \description{
-Mosquito survival and dispersal is described by a \emph{demographic matrix,} denoted \eqn{\Omega.} It is
+Mosquito survival and dispersal are described by a \emph{demographic matrix,} denoted \eqn{\Omega.} It is
 computed using several parameters:
 \describe{
 \item{\code{g}}{mortality rate}
@@ -20,7 +20,7 @@ The matrix is computed as:
 }
 
 In delay differential equations with a constant EIP (\eqn{\tau}),
-survival and dispersal through the EIP is given by:
+survival and dispersal through the EIP are given by:
 \deqn{
  \Upsilon = e^{-\Omega \tau} 
 }

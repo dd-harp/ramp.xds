@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{setup_L_ix.basicL}
 \alias{setup_L_ix.basicL}
-\title{Setup variable indices for \code{basicL} (\strong{L} component)}
+\title{Set up variable indices for \code{basicL} (\strong{L})}
 \usage{
 \method{setup_L_ix}{basicL}(xds_obj, s)
 }
@@ -15,7 +15,13 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set the values of the indices for the \strong{L} component variables
-for the \code{basicL} module
+Assign consecutive variable indices for the \code{basicL} module,
+starting after \code{xds_obj$max_ix}, and update the maximum index.
+Allocate blocks in the order \code{L_ix}.
+Each block has length \code{nHabitats}.
+}
+\note{
+Indices are stored at \code{xds_obj$L_obj[[s]]$ix}.
+The maximum index is stored at \code{xds_obj$max_ix}.
 }
 \keyword{internal}
