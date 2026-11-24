@@ -1,6 +1,6 @@
 # Make habitat search weights
 
-Set up a random vector of habitat search weights
+Set up a random vector of habitat search weights.
 
 ## Usage
 
@@ -18,7 +18,7 @@ make_habitat_search_weights_random(
 
 - nPatches:
 
-  is the number of patches
+  the number of habitats (the argument retains its legacy name)
 
 - options:
 

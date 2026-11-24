@@ -1,6 +1,11 @@
-# Make the module object for `SI` (**MY**)
+# Make a module object for `SI` (**MY**)
 
-Make the module object for `SI` (**MY**)
+Create an `SI` module object and initialize its parameters. Inspect
+parameters with
+[get_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md)
+and change supported values with
+[change_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.SI.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -128,6 +133,9 @@ can be used for static parameters, or for parameters that are set up as
 static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## See also
+
+[get_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md),
+[change_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.SI.md)
 
 [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
 [setup_MY_obj.SI](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.SI.md)

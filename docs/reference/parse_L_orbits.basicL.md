@@ -1,7 +1,8 @@
 # Parse outputs for `basicL` (**L**)
 
-The function extracts the \\(L\\) outputs from the solution matrix and
-returns them as a named list.
+Extract the model state outputs for the `basicL` module from `outputs`
+and return them by name in a list. Return the aquatic mosquito density
+`L`.
 
 ## Usage
 
@@ -27,3 +28,7 @@ parse_L_orbits(outputs, xds_obj, s)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$L_obj[[s]]$ix`.

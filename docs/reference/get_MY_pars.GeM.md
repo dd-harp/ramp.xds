@@ -21,7 +21,7 @@ get_MY_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Parameters
 
@@ -86,6 +86,9 @@ parameters are configured as static baselines; advanced setup can be
 used to define dynamic ports.
 
 ## See also
+
+[make_MY_obj_GeM](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_GeM.md),
+[change_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeM.md)
 
 [GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
 [change_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeM.md)

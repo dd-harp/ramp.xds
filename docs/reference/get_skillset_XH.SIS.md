@@ -1,6 +1,7 @@
-# Get the **XH** module skill set
+# Get the skill set for `SIS` (**XH**)
 
-Return a list of the **XH** module's capabilities.
+Return the capabilities and compatibilities of the `SIS` module as a
+list.
 
 ## Usage
 
@@ -13,7 +14,7 @@ get_skillset_XH(xds_obj, i)
 
 - xds_obj:
 
-  an **`xds`** model object
+  an **`xds`** model object (or the module name)
 
 - i:
 

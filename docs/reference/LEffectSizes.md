@@ -1,7 +1,8 @@
 # Apply effect sizes (**L**)
 
 Apply vector control effect sizes to baseline aquatic mosquito bionomic
-parameter values.
+parameter values. For each port-backed parameter, set `x = x_t * es_x`.
+Leave parameters without ports unchanged.
 
 ## Usage
 
@@ -30,6 +31,10 @@ LEffectSizes(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`.
 
 ## See also
 

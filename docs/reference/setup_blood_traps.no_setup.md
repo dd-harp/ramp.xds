@@ -1,6 +1,6 @@
-# Set up no blood_traps
+# Leave blood trap availability unchanged
 
-Don't change anything
+Return `xds_obj` without changing the configured availability.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 
@@ -25,7 +25,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

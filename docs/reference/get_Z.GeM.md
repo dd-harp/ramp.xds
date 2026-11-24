@@ -1,6 +1,6 @@
-# Get the initial infective mosquito density
+# Get the initial infective mosquito density for `GeM` (**MY**)
 
-Get the initial infective mosquito density
+Return the initial infective mosquito density per patch.
 
 ## Usage
 
@@ -21,4 +21,28 @@ get_Z(xds_obj, s = 1)
 
 ## Value
 
-the initial infective mosquito population density
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes
+
+- `Y`:
+
+  density of infected adult mosquitoes
+
+- `Z`:
+
+  density of infectious adult mosquitoes
+
+## See also
+
+[GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)

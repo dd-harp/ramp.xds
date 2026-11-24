@@ -1,4 +1,4 @@
-# Set up a other_blood_hosts
+# Set up other blood hosts
 
 If an options list is passed as the first argument, then set
 
@@ -18,7 +18,7 @@ setup_other_blood_hosts(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 

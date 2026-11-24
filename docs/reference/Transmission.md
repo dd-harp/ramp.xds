@@ -1,6 +1,6 @@
 # Compute the mixing matrix and transmission terms
 
-This method dispatches on the type of `xds_obj$beta`
+This method dispatches on the class of `xds_obj$transmission_obj`.
 
 ## Usage
 

@@ -70,6 +70,8 @@ xds_setup(
 - residence:
 
   the index of the patch where each human population stratum resides
+  (see
+  [residence_vector](https://dd-harp.github.io/ramp.xds/reference/residence_vector.md))
 
 - membership:
 
@@ -171,7 +173,9 @@ Set up the model structure:
   [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md))
 
 - `residence` - the human residence vector (see
-  [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
+  [residence_vector](https://dd-harp.github.io/ramp.xds/reference/residence_vector.md)
+  and
+  [residence_matrix](https://dd-harp.github.io/ramp.xds/reference/residence_matrix.md))
 
 - `membership` - the habitat membership vector (see
   [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md))
@@ -197,13 +201,22 @@ feeding, mosquito spatial dynamics, and exposure:
   [xds_info_search_weights_habitat](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md))
 
 - `searchB` the blood feeding search weights (see
-  [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md))
+  [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md)
+  and
+  [human_availability](https://dd-harp.github.io/ramp.xds/reference/human_availability.md))
 
 - `Koptions` sets up a mosquito dispersal matrix (see
   [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
 - `TSoptions` sets up a time spent matrix (see
-  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
+  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md))
+
+Blood host availability and time at risk determine the
+[mixing_matrix](https://dd-harp.github.io/ramp.xds/reference/mixing_matrix.md),
+which maps biting density in patches to biting rates in population
+strata. See
+[blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
+for the blood-feeding framework.
 
 ## See also
 

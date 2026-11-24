@@ -1,7 +1,7 @@
 # Get variable indices (**L**)
 
-The indices are stored on the **L** object as a named list called `ix`;
-`get_L_ix` returns that list.
+Return the stored variable indices for the selected **L** module and
+vector species.
 
 ## Usage
 
@@ -21,8 +21,13 @@ get_L_ix(xds_obj, s = 1)
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html) of indices for the
-**L** variables
+a named [list](https://rdrr.io/r/base/list.html) of variable indices, or
+`NULL` if the field is absent
+
+## Note
+
+Variable indices are stored at `xds_obj$L_obj[[s]]$ix`. If the field is
+absent, return `NULL`. An empty list is returned unchanged.
 
 ## See also
 

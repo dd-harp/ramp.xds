@@ -29,3 +29,11 @@ change_MY_pars(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+After the updates, call
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
+at time zero with the flattened initial state. Do not call
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md);
+bionomics is a no-op for this module.

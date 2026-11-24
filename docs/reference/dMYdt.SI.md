@@ -1,6 +1,6 @@
 # Compute the derivatives for `SI` (**MY**)
 
-The derivatives for the `SI` module are:
+Compute the derivatives for the `SI` module:
 
 \$\$ \begin{array}{rl} dM/dt = & \Lambda - \Omega \cdot M \\\\ dP/dt = &
 f q(M-P) - \Omega \cdot P \\\\ dY/dt = & f q \kappa (M-Y) - \Omega \cdot
@@ -33,7 +33,13 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-a vector with the derivatives
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order
+
+## Note
+
+Derivatives are returned in blocks for `M`, `P`, and `Y`, each in patch
+order.
 
 ## State Variables
 
@@ -132,8 +138,7 @@ Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
 disperse and die according to \\(\Omega\\): \$\$ dM/dt = \Lambda -
 \Omega \cdot M \$\$ The model also computes the density of parous adult
 mosquitoes: those that have blood fed at least once: \$\$ dP/dt =
-fq(M-P) - \Omega \cdot P \\\\ \$\$ Parity is computed during parsing as
-\\(P/M\\) and its orbit is stored as `parity`.
+fq(M-P) - \Omega \cdot P \\\\ \$\$
 
 **Infection Dynamics**
 

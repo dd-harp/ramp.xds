@@ -1,11 +1,6 @@
 # Set up visitor net infectiousness
 
-If an options list is passed as the first argument, then set
-
-- `Vname = name$name`
-
-- `options = name` and call
-  `setup_vis_kappa(Vname, xds_obj, options, s)`.
+Set up the net infectiousness of visitors using an options list.
 
 ## Usage
 
@@ -35,3 +30,12 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, then set
+
+- `Vname = name$name`
+
+- `options = name` and call
+  `setup_vis_kappa(Vname, xds_obj, options, s)`.

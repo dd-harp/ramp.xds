@@ -1,7 +1,8 @@
 # Change parameters (**XH**)
 
-For the **XH** module for the \\(i^{th}\\) species, change parameter
-values named in `options`, leaving other values unchanged.
+Change parameter values named in `options` for the selected **XH**
+module for the \\(i^{th}\\) host species, leaving other values
+unchanged.
 
 ## Usage
 
@@ -26,6 +27,10 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch is on the class of `xds_obj$XH_obj[[i]]`.
 
 ## See also
 

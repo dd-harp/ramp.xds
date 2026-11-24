@@ -1,6 +1,6 @@
-# Update other blood hosts
+# Update other blood host availability
 
-The `static` method returns `xds_obj` unmodified
+The static method returns `xds_obj` unmodified.
 
 ## Usage
 

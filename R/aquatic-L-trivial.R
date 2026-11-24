@@ -200,7 +200,6 @@ setup_L_obj.trivialL = function(Lname, membership, xds_obj, options=list(), s=1)
   class(forced_by) = "Lambda"
   xds_obj$forced_by = forced_by
   xds_obj$L_obj[[s]] = make_L_obj_trivial(length(membership), options)
-  xds_obj$L_obj[[s]]$skill_set <- get_skillset_L(xds_obj, s)
   if(length(membership)!= xds_obj$nHabitats) xds_obj <- setup_habitats(xds_obj, membership)
   xds_obj <- setup_habitat_search_weights("setup", xds_obj, options=list(membership=membership), s=s)
   return(xds_obj)

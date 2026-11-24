@@ -1,6 +1,6 @@
 # Size of human population denominators
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+Size of human population denominators
 
 ## Usage
 
@@ -30,3 +30,7 @@ F_H(t, y, xds_obj, i)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## Note
+
+This method dispatches on the type of `xds_obj$XH_obj[[i]]`.

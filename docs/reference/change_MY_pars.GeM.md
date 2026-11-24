@@ -1,8 +1,11 @@
 # Change parameters for `GeM` (**MY**)
 
-For the `GeM` module (**MY**) for the \\(s^{th}\\) species, change
-parameter values named in `options` leaving other values unchanged. To
-change `K_matrix`, use
+Change parameter values named in `options` for the `GeM` module, leaving
+other values unchanged. Refresh baseline bionomics at time zero using
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md),
+without calling
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md).
+To change `K_matrix`, use
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md);
 this method does not change the dispersal matrix.
 
@@ -90,3 +93,8 @@ an **`xds`** model object
 After basic setup, change_MY_pars.GeM can be used to change static
 parameter values. By default, bionomic parameters are configured as
 static baselines; advanced setup can be used to define dynamic ports.
+
+## See also
+
+[make_MY_obj_GeM](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_GeM.md),
+[get_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.GeM.md)

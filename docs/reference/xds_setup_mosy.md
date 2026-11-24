@@ -82,16 +82,20 @@ an **`xds`** model object
 This is a modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that streamlines setup for models without parasite / pathogen infection
-dynamics. It sets
+dynamics.
+
+The solver ignores infection dynamics (the **X** and **Y** processes). A
+trivial **XH** component is set up to handle human/host population
+density.
+
+## Note
+
+It sets
 
 `class(xds_obj$frame) = 'mosy'`
 
 to dispatch functions that compute derivatives (`xde`), update variables
-(`dts`), and parse outputs. The solver ignores infection dynamics (the
-**X** and **Y** processes). A trivial **XH** component is set up to
-handle human/host population density.
-
-## Note
+(`dts`), and parse outputs.
 
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 calls
@@ -154,6 +158,12 @@ feeding, mosquito spatial dynamics, and exposure:
 
 - `Koptions` sets up a mosquito dispersal matrix (see
   [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
+
+Human/host populations are represented by a trivial **XH** module. See
+[human_availability](https://dd-harp.github.io/ramp.xds/reference/human_availability.md)
+and
+[blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
+for their role in mosquito blood feeding.
 
 ## See also
 

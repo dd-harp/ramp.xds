@@ -1,13 +1,16 @@
 # The **`xds`** Model Object
 
-A dynamical system is encoded and stored on an **`xds`** model object, a
-compound [list](https://rdrr.io/r/base/list.html) with a specific set of
-features.
-
 A properly constructed xds object is returned by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 or one of its variants (see
 [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)).
+
+## Note
+
+A dynamical system is encoded and stored on an **`xds`** model object, a
+compound [list](https://rdrr.io/r/base/list.html) with a specific set of
+features.
+
 The object is created in several steps:
 
 - a basic template for an xds object is returned by

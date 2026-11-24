@@ -7,6 +7,11 @@ published by Aron and May (1982). Unlike the `SI` module, it includes
 infectious mosquitoes as an explicit state variable and uses delayed
 values to represent the extrinsic incubation period.
 
+## Note
+
+The resulting `EIR` and `HBR` orbits are attached to the XH output
+during parsing.
+
 ## State Variables
 
 - `M`:
@@ -165,8 +170,7 @@ compute these patch-level quantities.
 combines `fqZ` with the biting distribution matrix and resident-bite
 fraction to compute stratum-level EIR;
 [F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md) computes
-HBR from `fqM` in the same way. The resulting `EIR` and `HBR` orbits are
-attached to the XH output during parsing.
+HBR from `fqM` in the same way.
 
 ## Egg Laying
 
@@ -180,8 +184,10 @@ for distribution among aquatic habitats.
 
 ## Note
 
-This model is not capable of handling exogenous forcing by weather or
-vector control. Use the `GeM` module instead.
+Scalar parameters have no ports for exogenous forcing or vector control.
+Use the `GeM` module for those capabilities. The standard
+dispersal-matrix port follows the shared bionomics and effect-size
+convention.
 
 ## References
 

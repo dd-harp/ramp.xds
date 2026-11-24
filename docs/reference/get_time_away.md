@@ -2,7 +2,7 @@
 
 Get the Time Away Vector
 
-Get the Time Spent
+Get time away
 
 ## Usage
 
@@ -27,4 +27,5 @@ get_time_away(xds_obj, i = 1)
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
 
-a \[\]
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nStrata[i]`

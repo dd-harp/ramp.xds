@@ -33,9 +33,9 @@ their time at risk in or around home.
 The human population is thus stratified around the concept of patch
 residency – the patch where home is found. Exposure is based on the
 notions of *time spent* (see
-[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
+[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md))
 and *time at risk* (see
-[xds_info_time_at_risk](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_at_risk.md)).
+[xds_info_time_at_risk](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md)).
 The model is configured by passing a vector, called `residence`. The
 residence vector is the index of the patch where each human population
 resides, and multiple strata can reside in the same patch. Conversely,

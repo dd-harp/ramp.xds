@@ -1,6 +1,7 @@
-# Change Omega
+# Recompute the mosquito demographic matrix (**MY**)
 
-Update a static demographic matrix
+Recompute the mosquito demographic matrix and call
+[change_Upsilon](https://dd-harp.github.io/ramp.xds/reference/change_Upsilon.md).
 
 ## Usage
 

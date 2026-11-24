@@ -1,7 +1,7 @@
 # Make random oviposition rates (**MY**)
 
-Draw oviposition rates once during setup and store them in a static port
-object. Subsequent evaluations reuse these values.
+Draw oviposition rates once during setup. Subsequent evaluations reuse
+these values.
 
 ## Usage
 
@@ -42,3 +42,7 @@ make_F_nu_random(
 
 a static port object for
 [F_nu.static](https://dd-harp.github.io/ramp.xds/reference/F_nu.static.md)
+
+## Note
+
+The values are stored in a static port object.

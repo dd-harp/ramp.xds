@@ -1,6 +1,6 @@
 # Vector Control, Stage 2
 
-A junction to implement stage two vector control functions
+A junction to implement stage two vector control functions.
 
 ## Usage
 

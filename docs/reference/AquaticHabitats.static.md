@@ -1,6 +1,6 @@
 # Aquatic Habitat Dynamics
 
-Computes eggs laid leaving the habitat interface unmodified.
+Computes eggs laid, leaving the habitat interface unmodified.
 
 ## Usage
 

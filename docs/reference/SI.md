@@ -31,6 +31,15 @@ The [SI
 Vignette](https://dd-harp.github.io/ramp.xds/articles/adult_si.html)
 discusses the model family, and the module design and implementation.
 
+## Note
+
+Parity is computed during parsing as \\(P/M\\) and its orbit is stored
+as `parity`.
+
+The orbits of `fqZ` and `EIR` are computed and stored by
+[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
+by the functions that parse the outputs.
+
 ## State Variables
 
 - `M`:
@@ -167,8 +176,7 @@ Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
 disperse and die according to \\(\Omega\\): \$\$ dM/dt = \Lambda -
 \Omega \cdot M \$\$ The model also computes the density of parous adult
 mosquitoes: those that have blood fed at least once: \$\$ dP/dt =
-fq(M-P) - \Omega \cdot P \\\\ \$\$ Parity is computed during parsing as
-\\(P/M\\) and its orbit is stored as `parity`.
+fq(M-P) - \Omega \cdot P \\\\ \$\$
 
 **Infection Dynamics**
 
@@ -188,8 +196,7 @@ is: \$\$M_t = \Lambda + e^{-\Omega}\cdot M\_{t-1}\$\$ The model also
 computes the density of parous adult mosquitoes: those that have blood
 fed at least once: \$\$P_t =
 e^{-\Omega}\cdot\left\[(1-e^{-fq})(M\_{t-1}-P\_{t-1}) +
-P\_{t-1}\right\]\$\$ Parity is computed during parsing as \\(P/M\\) and
-its orbit is stored as `parity`.
+P\_{t-1}\right\]\$\$
 
 **Infection Dynamics**
 
@@ -236,10 +243,7 @@ to compute and store `EIR`, the local daily EIR \\((E)\\). Note that
 `fqZ` is a vector of length `nPatches` but the local EIR is a vector of
 length `nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\(\beta,\\) and if
-there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
-`fqZ` and `EIR` are computed and stored by
-[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-by the functions that parse the outputs.
+there are no visitors, then \$\$E = \beta \cdot fqZ\$\$
 
 **The HBR**
 

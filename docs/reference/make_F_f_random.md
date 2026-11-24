@@ -1,7 +1,7 @@
 # Make random blood feeding rate object (**MY**)
 
-Draw blood feeding rates once during setup and store them in a static
-port object. Subsequent evaluations reuse these values.
+Draw blood feeding rates once during setup. Subsequent evaluations reuse
+these values.
 
 ## Usage
 
@@ -42,3 +42,7 @@ make_F_f_random(
 
 a static port object for
 [F_f.static](https://dd-harp.github.io/ramp.xds/reference/F_f.static.md)
+
+## Note
+
+The values are stored in a static port object.

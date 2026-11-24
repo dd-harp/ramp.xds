@@ -1,7 +1,7 @@
 # Make TaR
 
-Make a time at risk matrix (TaR) from a time spent matrix and a
-circadian function
+Make a time-at-risk matrix from a time-spent matrix and a circadian
+function.
 
 ## Usage
 

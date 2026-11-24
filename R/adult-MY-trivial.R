@@ -306,7 +306,6 @@ setup_MY_obj.trivialMY = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$forced_by = MY
 
   xds_obj$MY_obj[[s]] <- make_MY_obj_trivial(xds_obj$nPatches, options)
-  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s)
   return(xds_obj)
 }

@@ -5,7 +5,7 @@ If an options list is passed as the first argument, then set
 - `TSname = name$name`
 
 - `options = name` and call
-  `setup_timespent(TSname, xds_obj, options, s)`
+  `setup_timespent(TSname, xds_obj, options, i)`
 
 ## Usage
 
@@ -34,4 +34,4 @@ setup_timespent(name, xds_obj, options = list(), i = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

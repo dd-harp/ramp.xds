@@ -1,6 +1,7 @@
 # Make initial values for `macdonald` (**MY**)
 
-Make initial values for `macdonald` (**MY**)
+Create a named list of initial values for the `macdonald` module. Values
+in `options` override the defaults.
 
 ## Usage
 
@@ -37,7 +38,14 @@ make_MY_inits_macdonald(nPatches, options = list(), M = 5, P = 1, Y = 1, Z = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values
+
+## Details
+
+Initial mosquito densities must be numeric scalars or have length
+`nPatches`. Scalars are expanded to that length. Initialize `dk_ix` to
+zero in each patch. This accessory value is constructed internally
+rather than independently set through `options`.
 
 ## State Variables
 
@@ -61,3 +69,5 @@ a [list](https://rdrr.io/r/base/list.html)
 
 [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
 [setup_MY_inits.macdonald](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.macdonald.md)
+
+[change_MY_inits.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.macdonald.md)

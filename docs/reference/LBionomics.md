@@ -1,7 +1,8 @@
 # Mosquito bionomics (**L**)
 
 Compute baseline bionomic parameter values for an **L** component
-module.
+module. Store each port-backed parameter `x` as `x_t` and reset `es_x`
+to 1. Parameters without ports are stored directly as `x`.
 
 ## Usage
 
@@ -30,6 +31,10 @@ LBionomics(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`.
 
 ## See also
 

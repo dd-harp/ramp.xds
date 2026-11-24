@@ -1,8 +1,7 @@
-# Infective mosquito biting rate for `RMdts`
+# Compute infective mosquito biting density for `RMdts` (**MY**)
 
-Implements
-[F_fqZ](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) for the
-RMdts model.
+Return the daily infective mosquito biting density on humans, `fqZ`, for
+each patch in the `RMdts` module. Compute `fqZ = f*q*Z`.
 
 ## Usage
 
@@ -33,3 +32,7 @@ F_fqZ(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## See also
+
+[F_fqM.RMdts](https://dd-harp.github.io/ramp.xds/reference/F_fqM.RMdts.md)

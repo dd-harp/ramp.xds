@@ -1,8 +1,8 @@
 # Compute the derivatives for `hMoI` (**XH**)
 
-Implements
-[dXHdt](https://dd-harp.github.io/ramp.xds/reference/dXHdt.md) for the
-hybrid MoI model.
+The derivatives for the hybrid MoI (`hMoI`) module are:
+\$\$\begin{array}{rl} dm_1/dt &= h-r_1m_1 \\\\ dm_2/dt &= h-r_2m_2
+\end{array}\$\$ Here \\(h\\) is the force of infection (`foi`).
 
 ## Usage
 

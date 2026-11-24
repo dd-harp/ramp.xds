@@ -1,4 +1,4 @@
-# Make other blood hosts
+# Make random travel EIR
 
 Set up a random vector
 

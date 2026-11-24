@@ -1,7 +1,6 @@
 # Compute Host available for Blood Feeding
 
-Compute the available of the population strata defined in the model as
-hosts for blood feeding by mosquitoes
+Compute local human/host availability in the patches.
 
 ## Usage
 
@@ -17,24 +16,40 @@ F_W_available(search_weights, H, TaR)
 
 - H:
 
-  host density
+  host density, adjusted for the fraction of time not traveling
 
 - TaR:
 
-  the host species index
+  the time-at-risk matrix for this vector-host species pair
 
 ## Value
 
-host available, a [vector](https://rdrr.io/r/base/vector.html)
+a numeric vector of local availability, one value per patch
 
-## Details
+## Human Availability
 
-Host available to blood searching mosquitoes in patches is the sum of
-search weights of the human strata, a vector \\(\omega\\), weighted by
-time at risk, defined by a matrix \\(\Psi\\) that is \\(N_p \times
-N_h\\). The search weight is a *per-capita* measure so we weight it by
-human population density, \\(H\\). available, \\(W\\) is computed as
-\$\$\Psi \cdot (\omega H).\$\$
+Blood feeding is modeled as an interaction between hosts that spend time
+in patches and mosquitoes that search for blood hosts. Each host
+population stratum has a per-capita search weight \\((w)\\). The
+fraction of time spent outside the patches is time away \\((\delta)\\)
+(see
+[time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md)),
+so the population density present in the spatial domain is
+\\((1-\delta)H\\).
+
+The time-spent matrix \\((\Theta)\\) describes how hosts allocate their
+time among patches. Ambient host population density by patch is \$\$A =
+\Theta \cdot ((1-\delta)H),\$\$ where vector multiplication is
+element-wise.
+
+The time-at-risk matrix \\((\Psi)\\) weights time spent by relative
+mosquito activity over the day (see
+[time_at_risk](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md)).
+Human availability in patches is \$\$W = \Psi \cdot (w(1-\delta)H),\$\$
+where the product inside the parentheses is element-wise. Search weights
+are specific to host species and shared across vector species.
+Availability can differ by vector species because each can have a
+different time-at-risk matrix.
 
 ## References
 
@@ -47,5 +62,5 @@ transmission.” *PLoS Computational Biology*, **19**(6), e1010684.
 
 ## See also
 
-available of all vertebrate hosts for blood feeding is computed by
-[`F_B_available()`](https://dd-harp.github.io/ramp.xds/reference/F_B_available.md)
+[available_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/available_blood_hosts.md),
+[F_B_available](https://dd-harp.github.io/ramp.xds/reference/F_B_available.md)

@@ -1,6 +1,6 @@
-# Compute availability of other blood hosts
+# Update static blood trap availability
 
-This sets up...
+The static method returns `xds_obj` unmodified.
 
 ## Usage
 

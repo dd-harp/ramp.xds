@@ -1,6 +1,6 @@
 # Compute the human transmitting capacity
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+Compute the human transmitting capacity
 
 ## Usage
 
@@ -21,3 +21,7 @@ get_HTC(xds_obj, i)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+This method dispatches on the type of `xds_obj$XH_obj[[i]]`.

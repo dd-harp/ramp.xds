@@ -2,14 +2,16 @@
 
 Each aquatic habitat is located in a patch.
 
-Information about patch locations is stored in the *habitat vector.*
-
 The habitat vector is passed to a basic setup function through the
 argument `membership`.
 
 - `membership` is a vector of positive integers
 
 - `nHabitats <- length(membership)`
+
+## Note
+
+Information about patch locations is stored in the *habitat vector.*
 
 ## Habitat Vector
 

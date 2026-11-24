@@ -1,6 +1,6 @@
-# Get the mortality rates
+# Get the adult mosquito mortality rate for `RMdts` (**MY**)
 
-Get the mortality rates
+Return the stored realized adult mosquito mortality rate per patch.
 
 ## Usage
 
@@ -21,7 +21,50 @@ get_g(xds_obj, s = 1)
 
 ## Value
 
-the mortality rate, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `g` without evaluating ports or applying effect sizes.
+
+## Parameters
+
+- `f`:
+
+  blood feeding rate
+
+- `q`:
+
+  human blood fraction
+
+- `eip`:
+
+  extrinsic incubation period (time steps)
+
+- `g`:
+
+  mosquito mortality rate
+
+- `sigma`:
+
+  emigration rate
+
+- `mu`:
+
+  emigration loss rate
+
+- `K`:
+
+  mosquito dispersal matrix
+
+- `Omega`:
+
+  adult mosquito demographic matrix (mortality + migration)
+
+- `Upsilon`:
+
+  survival and dispersal through the eip
 
 ## See also
 

@@ -1,4 +1,4 @@
-# Mosquito biting rate
+# Compute mosquito biting density (**MY**)
 
 Return the daily mosquito biting density on humans, `fqM`, for each
 patch.
@@ -32,6 +32,12 @@ F_fqM(t, y, xds_obj, s)
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
 
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`. This is a
+patch-level biting density, not a per-host biting rate.
+
 ## See also
 
-[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md),
+[F_fqZ](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md)

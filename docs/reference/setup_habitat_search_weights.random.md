@@ -1,9 +1,9 @@
-# Set up a habitat_search_weights
+# Set up habitat_search_weights
 
-Implements the "method1" case for
-[setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md).
-See
+Generate random habitat search weights using
 [make_habitat_search_weights_random](https://dd-harp.github.io/ramp.xds/reference/make_habitat_search_weights_random.md)
+and apply them using
+[change_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/change_habitat_search_weights.md).
 
 ## Usage
 
@@ -16,7 +16,7 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

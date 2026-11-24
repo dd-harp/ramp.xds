@@ -1,4 +1,4 @@
-# Compute the prevalence of infection by RDT
+# Compute observed prevalence by RDT
 
 A function that translates the state variables into the predicted *Pf*PR
 by rapid diagnostic test (RDT)

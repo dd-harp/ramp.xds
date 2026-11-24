@@ -1,8 +1,20 @@
 # Compute the derivatives for `GeM` (**MY**)
 
-Compute the derivatives for the generalized, non-autonomous Macdonald
-model for mosquito ecology and infection dynamics. See
-[GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md).
+Compute the derivatives for the `GeM` module: \$\$\begin{array}{rl}
+dM/dt &= \Lambda-\Omega\cdot M \\\\ dP/dt &= f(M-P)-\Omega\cdot P \\\\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\ dZ/dt &=
+\Upsilon\cdot\left((fq\kappa)\_\tau(M\_\tau-Y\_\tau)\right)-\Omega\cdot
+Z \\\\ d\Upsilon/dt &=
+\left((1-\dot{\ell})\Omega\_\tau-\Omega\right)\cdot\Upsilon \\\\
+dA\_{fq\kappa}/dt &= fq\kappa \\\\ dA_g/dt &= g \\\\ dA\_\sigma/dt &=
+\sigma \end{array}\$\$
+
+Survival and dispersal through the EIP \\((\Upsilon)\\) is computed as
+an accessory variable: \$\$ d\Upsilon/dt =
+\left((1-\dot{\ell})\Omega\_\tau-\Omega\right)\cdot\Upsilon \$\$
+
+The model also adds variables to internalize lags for \\(\sigma\\),
+\\(g\\), and \\(fq\kappa\\).
 
 ## Usage
 
@@ -31,7 +43,14 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order
+
+## Note
+
+Derivatives are returned in patch-ordered blocks for `M`, `P`, `Y`, and
+`Z`, followed by the column-wise flattened derivative of `U` and
+patch-ordered accessory derivatives `f*q*kappa`, `g`, and `sigma`.
 
 ## State Variables
 

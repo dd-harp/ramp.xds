@@ -1,6 +1,7 @@
 # Get the density-independent mortality rate for `basicL` (**L**)
 
-Get the density-independent mortality rate for `basicL` (**L**)
+Return the stored realized density-independent mortality rate per
+habitat.
 
 ## Usage
 
@@ -21,4 +22,28 @@ get_phi(xds_obj, s = 1)
 
 ## Value
 
-the density-independent mortality rate
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nHabitats`
+
+## Parameters
+
+- `psi` or \\(\psi\\):
+
+  maturation rate
+
+- `xi` or \\(\xi\\):
+
+  delayed maturation parameter in response to mean crowding
+
+- `phi` or \\(\phi\\):
+
+  density-independent mortality rate
+
+- `theta` or \\(\theta\\):
+
+  slope of density-dependent mortality
+
+## See also
+
+[basicL](https://dd-harp.github.io/ramp.xds/reference/basicL.md),
+[change_phi](https://dd-harp.github.io/ramp.xds/reference/change_phi.md)

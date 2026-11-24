@@ -1,7 +1,7 @@
 # Get orbits (**MY**)
 
-After solving, the orbits are parsed and stored. Get orbits retrieves
-the parsed outputs for the **MY** module.
+Return the saved, parsed orbits (trajectories) for **MY** for the
+selected species after solving.
 
 ## Usage
 
@@ -21,4 +21,16 @@ get_MY_orbits(xds_obj, s = 1)
 
 ## Value
 
-the orbits for the **MY** component
+a [list](https://rdrr.io/r/base/list.html) of module-specific orbits
+(trajectories) with a `time` vector
+
+## Note
+
+Orbits are stored at `xds_obj$outputs$orbits$MY[[s]]`. The returned list
+includes `time` from `xds_obj$outputs$time`. This function does not
+parse outputs or modify the model object.
+
+## See also
+
+[parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md),
+[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)

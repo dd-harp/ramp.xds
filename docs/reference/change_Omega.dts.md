@@ -1,4 +1,4 @@
-# Change Omega
+# Recompute the mosquito demographic matrix for dts (**MY**)
 
 Update the demographic matrix for discrete time systems
 

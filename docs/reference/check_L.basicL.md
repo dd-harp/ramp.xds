@@ -1,4 +1,4 @@
-# Check the `basicL` module
+# Check `basicL` (**L**)
 
 Run no consistency checks
 

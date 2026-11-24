@@ -1,7 +1,7 @@
 # Update the time spent Matrix
 
 Port function for the time spent matrix, \\(\Theta\\). Dispatches on
-`class(xds_obj$XY_interface$timespent_obj[[i]])`.
+`class(xds_obj$XH_obj[[i]]$timespent_obj)`.
 
 ## Usage
 

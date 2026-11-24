@@ -1,8 +1,7 @@
-# Egg production rate for `GeM`
+# Compute egg production for `GeM` (**MY**)
 
-Implements
-[F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-GeM model.
+Return the number of eggs laid by the adult mosquito population, per
+patch
 
 ## Usage
 

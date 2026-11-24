@@ -1,4 +1,4 @@
-# Set up no time spent
+# Leave time away unchanged
 
 Don't change anything
 
@@ -13,7 +13,7 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

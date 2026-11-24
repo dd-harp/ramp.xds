@@ -4,6 +4,8 @@
 
 - `true` for the true *Pf*PR (default)
 
+- `obs` for observed prevalence
+
 - `lm` for the *Pf*PR by light microscopy
 
 - `rdt` for the *Pf*PR by RDT

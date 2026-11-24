@@ -1,8 +1,7 @@
 # Make random EIP configuration (**MY**)
 
-Draw extrinsic incubation periods once during setup and store them in a
-static port object. Subsequent evaluations reuse these values. The
-stored time derivative is zero.
+Draw extrinsic incubation periods once during setup. Subsequent
+evaluations reuse these values.
 
 ## Usage
 
@@ -43,3 +42,8 @@ make_F_eip_random(
 
 a static port object for
 [F_eip.static](https://dd-harp.github.io/ramp.xds/reference/F_eip.static.md)
+
+## Note
+
+The values are stored in a static port object. The stored time
+derivative is zero.

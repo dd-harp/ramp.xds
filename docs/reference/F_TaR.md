@@ -1,18 +1,19 @@
-# Compute blood feeding available of all vertebrate hosts
+# Compute time at risk
 
-Computes available all vertebrate hosts to blood feeding mosquitoes
+Computes time at risk from time spent \\(\Theta\\) and a circadian
+pattern function evaluated at simulation time \\(t\\).
 
 ## Usage
 
 ``` r
-F_TaR(t, TiSp, F_circadian, time_away)
+F_TaR(t, TiSp, F_circadian)
 ```
 
 ## Arguments
 
 - t:
 
-  time
+  simulation time in days, passed directly to the circadian function
 
 - TiSp:
 
@@ -20,22 +21,28 @@ F_TaR(t, TiSp, F_circadian, time_away)
 
 - F_circadian:
 
-  a function to compute relative activity rates by time of day
-
-- time_away:
-
-  the fraction of time spent at home
+  a function that returns relative mosquito activity at time \\(t\\)
 
 ## Value
 
-a TaR [matrix](https://rdrr.io/r/base/matrix.html)
+a time-at-risk matrix
 
-## Details
+## Time at Risk
 
-The available of other vertebrate hosts is a sum of available local
-hosts \\(W\\), and visitors \\(W\_\delta\\), and other available
-vertebrate hosts, \\(O\\). Total available is a simple sum: \$\$B = W +
-W\_\delta + O\$\$
+The time at risk matrix describes time spent in the patches weighted by
+relative mosquito activity rates.
+
+The time at risk matrix \\((\Psi)\\) is computed from the time spent
+matrix \\((\Theta)\\) and the circadian mosquito activity function
+\\(F_c(t)\\): \$\$\Psi = F_c(t) \Theta\$\$
+
+Both \\(\Theta\\) and \\(\Psi\\) have dimensions `nPatches` \\(\times\\)
+`nStrata` for a host species. Time at risk is computed for each
+vector-host species pair. By default, \\(F_c(t)=1\\), so
+\\(\Psi=\Theta\\).
+
+The time-at-risk matrix is used to compute human availability \\((W)\\)
+and the biting distribution matrix \\((\beta)\\).
 
 ## References
 
@@ -45,3 +52,10 @@ RCR, Kiware S, Smith DL (2023). “Spatial dynamics of malaria
 transmission.” *PLoS Computational Biology*, **19**(6), e1010684.
 [doi:10.1371/journal.pcbi.1010684](https://doi.org/10.1371/journal.pcbi.1010684)
 , [2023-06-27](https://dd-harp.github.io/ramp.xds/reference/2023-06-27).
+
+## See also
+
+[time_spent_matrix](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md),
+[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md),
+[setup_F_circadian](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.md),
+[human_availability](https://dd-harp.github.io/ramp.xds/reference/human_availability.md)

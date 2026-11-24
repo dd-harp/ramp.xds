@@ -8,8 +8,7 @@ This sets up a `trivialL` model object for the **L** module for the
 
 - `options` is passed to override the defaults
 
-There are no dynamical variables requiring initial values. This method
-sets `class(xds_obj$forced_by) = "Lambda"`.
+There are no dynamical variables requiring initial values.
 
 ## Usage
 
@@ -48,6 +47,8 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 an **`xds`** model object
 
 ## Note
+
+This method sets `class(xds_obj$forced_by) = "Lambda"`.
 
 The module object is stored at `xds_obj$L_obj[[s]]` The compatibility
 name `"trivial"` creates the same `trivialL` object.

@@ -1,6 +1,6 @@
-# Check / update before solving
+# Check `trivialXH` (**XH**)
 
-Check / update before solving
+Check `trivialXH` (**XH**)
 
 ## Usage
 

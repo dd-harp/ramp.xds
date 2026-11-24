@@ -2,6 +2,10 @@
 
 A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 
+See
+[xds_info_glossary](https://dd-harp.github.io/ramp.xds/reference/xds_glossary.md)
+for a vocabulary guide.
+
 **Setup & Structure**
 
 - [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
@@ -59,10 +63,10 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 - [xds_info_exposure](https://dd-harp.github.io/ramp.xds/reference/xds_info_exposure.md)
   – exposure
 
-- [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
+- [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md)
   – time spent
 
-- [xds_info_time_at_risk](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_at_risk.md)
+- [xds_info_time_at_risk](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md)
   – time at risk
 
 - [xds_info_local_fraction](https://dd-harp.github.io/ramp.xds/reference/xds_info_local_fraction.md)
@@ -94,13 +98,13 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 - [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)
   – mosquito dispersal
 
-- [xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+- [xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
   – blood feeding
 
 - [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md)
   – blood search weights
 
-- [xds_info_available_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_blood_hosts.md)
+- [xds_info_available_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/available_blood_hosts.md)
   – available blood hosts
 
 **Habitats and Egg Laying**

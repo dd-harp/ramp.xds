@@ -1,6 +1,7 @@
-# Get XH indices
+# Get variable indices (**XH**)
 
-Get the values of the indices for the variables.
+Return the stored variable indices for the selected **XH** module and
+host species.
 
 ## Usage
 
@@ -20,4 +21,14 @@ get_XH_ix(xds_obj, i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) of variable indices
+a named [list](https://rdrr.io/r/base/list.html) of variable indices, or
+`NULL` if the field is absent
+
+## Note
+
+Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`. If the field is
+absent, return `NULL`. An empty list is returned unchanged.
+
+## See also
+
+[setup_XH_ix](https://dd-harp.github.io/ramp.xds/reference/setup_XH_ix.md)

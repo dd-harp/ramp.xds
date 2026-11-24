@@ -5,7 +5,7 @@ If an options list is passed as the first argument, then set
 - `Teirname = name$name`
 
 - `options = name` and call
-  `setup_travel_eir(Teirname, xds_obj, options, s)`
+  `setup_travel_eir(Teirname, xds_obj, options, i)`
 
 ## Usage
 
@@ -18,7 +18,7 @@ setup_travel_eir(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

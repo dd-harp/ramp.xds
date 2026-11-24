@@ -1,4 +1,4 @@
-# Update the blood_traps
+# Update blood trap availability
 
 The `static` method returns `xds_obj` unmodified
 

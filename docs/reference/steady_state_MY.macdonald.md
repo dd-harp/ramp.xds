@@ -1,6 +1,8 @@
 # Compute steady states for `macdonald` (**MY**)
 
-Compute steady-state mosquito densities for the `macdonald` module.
+Compute steady-state mosquito densities for the `macdonald` module given
+adult mosquito emergence `Lambda` and net infectiousness `kappa` for the
+differential-equation system.
 
 ## Usage
 
@@ -29,7 +31,8 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) with elements `M`, `P`,
+`Y`, and `Z`, each containing one value per patch
 
 ## State Variables
 

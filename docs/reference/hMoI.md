@@ -9,6 +9,12 @@ This model is derived under a restrictive set of assumptions, so it
 cannot be extended to model dynamic changes in population size or
 treatment with anti-malarial drugs.
 
+## Note
+
+The force of infection is computed and stored by
+[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md) as
+`FoI`.
+
 ## State Variables
 
 - `m1` or \\(m_1\\):
@@ -30,9 +36,7 @@ using
 
 - \\(h\\) or `foi`:
 
-  The force of infection is computed and stored by
-  [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
-  as `FoI`
+  The force of infection
 
 In the `hMoI` module, there is no effect of pre-erythrocytic immunity,
 so a constant fraction of infectious bites causes an infection: the
@@ -78,6 +82,16 @@ m_2 \\\\ \end{array}\$\$
 - \\(x_2\\):
 
   apparent prevalence: \\(x_2 = 1-e^{-m_2}\\)
+
+[F_pr_obs.hMoI](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.hMoI.md)
+returns apparent prevalence \\(x_2\\).
+[F_pfpr_by_lm](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md),
+[F_pfpr_by_rdt](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_rdt.md),
+and
+[F_pfpr_by_pcr](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)
+are compatibility aliases for
+[F_pr_obs](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.md) in
+this module.
 
 ## Infectiousness
 

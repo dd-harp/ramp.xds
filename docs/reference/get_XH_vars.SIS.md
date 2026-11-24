@@ -1,7 +1,8 @@
 # Get the state variables for `SIS` (**XH**)
 
-Extract the `SIS` variables from the state variables vector \\(y\\),
-parse, and return the variables by name in a list.
+Extract the state variables for the `SIS` module from `y` and return
+them by name in a list for use during model solving. Also compute
+susceptible density `S = H - I`.
 
 ## Usage
 
@@ -26,7 +27,12 @@ get_XH_vars(y, xds_obj, i)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of state variables and
+module-specific derived quantities
+
+## Note
+
+Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`.
 
 ## See also
 

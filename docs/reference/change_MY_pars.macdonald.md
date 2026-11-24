@@ -1,9 +1,12 @@
 # Change parameters for `macdonald` (**MY**)
 
-For the `macdonald` module (**MY**) for the \\(s^{th}\\) species, change
-static parameter values named in `options` leaving other values
-unchanged. Recompute the demographic matrix and survival through the
-EIP. To change `K_matrix`, use
+Change parameter values named in `options` for the `macdonald` module,
+leaving other values unchanged. Call
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
+at time zero after updating parameters, without calling
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md).
+This method changes static parameter values. Recompute the demographic
+matrix and survival through the EIP. To change `K_matrix`, use
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md);
 this method does not change the dispersal matrix.
 
@@ -92,6 +95,9 @@ After basic setup, change_MY_pars.macdonald can be used to change static
 parameter values. This module does not support dynamic bionomic ports.
 
 ## See also
+
+[make_MY_obj_macdonald](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_macdonald.md),
+[get_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md)
 
 [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
 [get_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md)

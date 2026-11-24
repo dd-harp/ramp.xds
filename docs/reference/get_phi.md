@@ -1,6 +1,7 @@
 # Get the density-independent mortality rate (**L**)
 
-Get the density-independent mortality rate (**L**)
+Return the stored realized density-independent mortality rate per
+habitat.
 
 ## Usage
 
@@ -20,7 +21,13 @@ get_phi(xds_obj, s = 1)
 
 ## Value
 
-the density-independent mortality rate(s)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nHabitats`
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. This function
+does not evaluate ports or apply effect sizes.
 
 ## See also
 

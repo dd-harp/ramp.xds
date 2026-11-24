@@ -1,10 +1,10 @@
-# Set up a blood_traps
+# Set up blood traps from supplied values
 
 Pass a pre-configured blood_traps. If it passes the checks, it replaces
 the current blood_traps.
 
 If called with `name = "as_is"`, the blood_traps must be at
-`options$blood_traps`
+`options$blood_traps_asis`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 
@@ -29,7 +29,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

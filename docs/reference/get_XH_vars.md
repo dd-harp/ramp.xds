@@ -1,7 +1,8 @@
 # Get the state variables (**XH**)
 
-Extract the **XH** variables from the state variables vector \\(y\\),
-parse, and return the variables by name in a list.
+Extract the state variables for the selected **XH** module and host
+species from `y` and return them by name in a list for use during model
+solving.
 
 ## Usage
 
@@ -25,4 +26,11 @@ get_XH_vars(y, xds_obj, i = 1)
 
 ## Value
 
-Variables as a named list
+a named [list](https://rdrr.io/r/base/list.html) of state variables and
+module-specific derived quantities
+
+## Note
+
+Dispatch uses the class of `xds_obj$XH_obj[[i]]`. These functions
+support solver evaluations that need variables by name; users rarely
+need to call them directly.

@@ -1,4 +1,11 @@
-# Make the module object for `hMoI` (**XH**)
+# Make a module object for `hMoI` (**XH**)
+
+Create an `hMoI` module object and initialize its parameters. Inspect
+parameters with
+[get_XH_pars.hMoI](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.hMoI.md)
+and change supported values with
+[change_XH_pars.hMoI](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.hMoI.md).
+Values in `options` override parameter arguments.
 
 MoI stands for Multiplicity of Infection, and refers to malarial
 superinfection.
@@ -60,5 +67,8 @@ make_XH_obj_hMoI(
 a [list](https://rdrr.io/r/base/list.html)
 
 ## See also
+
+[get_XH_pars.hMoI](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.hMoI.md),
+[change_XH_pars.hMoI](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.hMoI.md)
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

@@ -1,6 +1,6 @@
-# Change Omega
+# Leave the static demographic matrix unchanged (**MY**)
 
-Update a static demographic matrix
+Return the model object without changing the demographic matrix.
 
 ## Usage
 

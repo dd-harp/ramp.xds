@@ -25,35 +25,28 @@ This implements a model for egg laying described by Wu SL, *et al.*,
 (2023).
 
 Modular computation in **`ramp.xds`** requires a rigid interface to
-guarantee mathematical consistency for egg laying and emergence. The
-interface is defined by an object called `egg_laying` that is attached
-to the `xds` object `xds_obj` as `xds_obj$egg_laying`. The interface
-includes
+guarantee mathematical consistency for egg laying and emergence. This
+function initializes lists in `xds_obj$terms` for the first vector
+species:
 
-- a habitat membership matrix, \\(N\\) made by
-  [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
+- `G`: eggs laid in each patch
 
-- the habitat search weights
+- `eta`: eggs laid in each habitat
 
-- a quantity that is motivated by mosquito searching for resources,
-  called habitat availability \\(Q\\), computed by
-  [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md);
+- `alpha`: emergence from each habitat
 
-- the availability of ovitraps
+- `Lambda`: emergence in each patch
 
-- the availability of unsuitable habitats
+- `Q` and `Qall`: habitat availability in each patch, initialized to one
 
-- the availability of anything that attracts egg laying mosquitoes,
-  including ovitraps and unsuitable habitats
+The egg-laying and emergence terms are initialized to zero. In
+`xds_obj$patches`, it initializes `bad_habitats` and `ovitraps` to zero
+in each patch, with static port objects.
 
-- the egg distribution matrix \\(O\\), made by
-  [make_U_matrix](https://dd-harp.github.io/ramp.xds/reference/make_U_matrix.md)
-
-- a vector that stores eggs laid
-
-This function is called by `compute_xds_object_template` to set up
-`egg_laying` and the variables and parameters with all the variables it
-might depend on.
+This function is called by
+[make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md).
+Habitat membership is configured separately by
+[setup_habitats](https://dd-harp.github.io/ramp.xds/reference/setup_habitats.md).
 
 ## References
 

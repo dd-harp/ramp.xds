@@ -52,6 +52,38 @@ an **`xds`** model object
 This function sets up the interfaces and the core objects used by
 **`ramp.xds`**.
 
+Second, the function sets the values of the **structural parameters**:
+
+- **`nPatches`** or \\(N_p\\) is the number of patches
+
+- **`nHabitats`** or \\(N_q\\), the number of aquatic habitats, is set
+  to `length(membership)`
+
+- **`nStrata`** or \\(N_h\\), the number of human/host population
+  strata, is set to `length(residence)`
+
+- **`nVectorSpecies`** or \\(N_s\\), the number of vector species is set
+  to 1;
+
+- **`nHostSpecies`** or \\(N_i\\), the number of host species is set to
+  1;
+
+Next, the function sets up egg-laying, blood-feeding, importation,
+transmission, and exposure.
+
+Next, the function sets up empty lists to hold the model objects for all
+three dynamical components:
+
+- `XH_obj`
+
+- `MY_obj`
+
+- `L_obj`
+
+Finally, the function sets up some junctions.
+
+## Note
+
 First, the function sets up some short text strings (assigned to the
 same `S3` class) to dispatch **cases** of `S3` functions:
 
@@ -87,38 +119,6 @@ same `S3` class) to dispatch **cases** of `S3` functions:
     forced by a function `F_eir`
 
 - **`forcing`** is set to "none"
-
-Second, the function sets the values of the **structural parameters**:
-
-- **`nPatches`** or \\(N_p\\) is the number of patches
-
-- **`nHabitats`** or \\(N_q\\), the number of aquatic habitats, is set
-  to `length(membership)`
-
-- **`nStrata`** or \\(N_h\\), the number of human/host population
-  strata, is set to `length(residence)`
-
-- **`nVectorSpecies`** or \\(N_s\\), the number of vector species is set
-  to 1;
-
-- **`nHostSpecies`** or \\(N_i\\), the number of host species is set to
-  1;
-
-Next, the function sets up egg-laying, blood-feeding, importation,
-transmission, and exposure.
-
-Next, the function sets up empty lists to hold the model objects for all
-three dynamical components:
-
-- `XH_obj`
-
-- `MY_obj`
-
-- `L_obj`
-
-Finally, the function sets up some junctions.
-
-## Note
 
 `xds` stands for an eXtensible Dynamical System
 

@@ -1,6 +1,6 @@
-# Compute available blood hosts of the i^th species
+# Compute blood host availability
 
-Compute the available for the pathogen's hosts for blood feeding
+Compute local and total blood host availability for each vector species.
 
 ## Usage
 

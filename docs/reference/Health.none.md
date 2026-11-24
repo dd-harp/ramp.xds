@@ -1,7 +1,7 @@
 # Set no exogenous health variables
 
 After none setup, no exogenous variables are configured so `Health`
-returns the **`ramp.xds`** model object without modification
+returns the **`ramp.xds`** model object without modification.
 
 ## Usage
 

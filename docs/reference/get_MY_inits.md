@@ -1,6 +1,7 @@
 # Get initial values (**MY**)
 
-Inspect the initial values for the **MY** module.
+Return the stored initial values for the selected **MY** module and
+vector species.
 
 ## Usage
 
@@ -20,12 +21,14 @@ get_MY_inits(xds_obj, s = 1)
 
 ## Value
 
-the initial values as a named list for non-trivial modules
+a named [list](https://rdrr.io/r/base/list.html) of initial values, or
+`NULL` if the field is absent
 
 ## Note
 
-The initial values for non-trivial modules are stored as a named list
-called `xds_obj$MY_obj[[s]]$inits`
+Initial values are stored at `xds_obj$MY_obj[[s]]$inits`. If the field
+is absent, as in the `trivialMY` module, return `NULL`. An empty list is
+returned unchanged.
 
 ## See also
 

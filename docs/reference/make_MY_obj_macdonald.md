@@ -1,6 +1,11 @@
-# Make the module object for `macdonald` (**MY**)
+# Make a module object for `macdonald` (**MY**)
 
-Make the module object for `macdonald` (**MY**)
+Create a `macdonald` module object and initialize its parameters.
+Inspect parameters with
+[get_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md)
+and change supported values with
+[change_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -147,6 +152,9 @@ can be used to change static parameter values. This module does not
 support dynamic bionomic ports.
 
 ## See also
+
+[get_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md),
+[change_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md)
 
 [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
 [setup_MY_obj.macdonald](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.macdonald.md)

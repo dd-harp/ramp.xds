@@ -1,6 +1,6 @@
-# Get availability of other blood hosts
+# Get blood trap availability
 
-Get availability of other blood hosts
+Get blood trap availability
 
 ## Usage
 

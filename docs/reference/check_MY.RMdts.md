@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check `RMdts` (**MY**)
 
-Run a check before solving
+Check `RMdts` (**MY**)
 
 ## Usage
 

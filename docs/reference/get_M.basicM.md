@@ -1,6 +1,6 @@
-# Get the initial mosquito population density
+# Get the initial adult mosquito density for `basicM` (**MY**)
 
-Get the initial mosquito population density
+Return the initial adult mosquito density per patch.
 
 ## Usage
 
@@ -21,8 +21,8 @@ get_M(xds_obj, s = 1)
 
 ## Value
 
-the initial density as a [numeric](https://rdrr.io/r/base/numeric.html)
-vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
 
 ## State Variables
 

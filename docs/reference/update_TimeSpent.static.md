@@ -1,7 +1,6 @@
 # Update timespent
 
-A utility to ensure that the timespent is updated properly after a
-change
+Return `xds_obj` unchanged for a static time spent port.
 
 ## Usage
 

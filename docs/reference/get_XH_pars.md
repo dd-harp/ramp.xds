@@ -1,7 +1,7 @@
 # Get parameters (**XH**)
 
-Inspect the parameter values for the **XH** module for the \\(i^{th}\\)
-species
+Return the parameters for the selected **XH** module for the
+\\(i^{th}\\) host species as a named list.
 
 ## Usage
 
@@ -21,11 +21,12 @@ get_XH_pars(xds_obj, i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Note
 
-The parameter values are stored on `xds_obj$XH_obj[[i]]`
+The parameter values are stored on `xds_obj$XH_obj[[i]]`. Dispatch is on
+the class of `xds_obj$XH_obj[[i]]`.
 
 ## See also
 

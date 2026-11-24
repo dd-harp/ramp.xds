@@ -1,6 +1,6 @@
-# Make other blood hosts
+# Make random bad habitat availability
 
-Set up a random vector
+Set up a random vector.
 
 ## Usage
 

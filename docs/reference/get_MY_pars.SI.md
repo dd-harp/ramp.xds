@@ -1,6 +1,6 @@
 # Get parameters for `SI` (**MY**)
 
-Get the stored bionomic parameter values for `SI`.
+Return the parameters for the `SI` module as a named list.
 
 ## Usage
 
@@ -21,7 +21,7 @@ get_MY_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Parameters
 
@@ -85,6 +85,9 @@ can be used for static parameters, or for parameters that are set up as
 static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## See also
+
+[make_MY_obj_SI](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md),
+[change_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.SI.md)
 
 [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
 [change_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.SI.md)

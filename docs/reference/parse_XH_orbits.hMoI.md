@@ -1,9 +1,9 @@
 # Parse outputs for `hMoI` (**XH**)
 
-Implements
-[parse_XH_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.md)
-for the `hMoI` model. The fixed population parameter `H` is repeated
-across output times.
+Extract the model state outputs for the `hMoI` module from `outputs` and
+return them by name in a list. Return `m1`, `m2`, and a matrix `H` with
+one row per output time and `nStrata[i]` columns. The fixed population
+parameter `H` is repeated across output times.
 
 ## Usage
 
@@ -29,6 +29,10 @@ parse_XH_orbits(outputs, xds_obj, i)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`.
 
 ## See also
 

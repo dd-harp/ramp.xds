@@ -1,4 +1,4 @@
-# Check other blood hosts
+# Check bad habitat availability
 
 Check that
 
@@ -24,4 +24,4 @@ check_bad_habitats(bad_habitats, nP)
 
 ## See also
 
-[xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+[xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)

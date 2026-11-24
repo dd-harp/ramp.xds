@@ -1,6 +1,9 @@
 # Compute steady states for `basicM` (**MY**)
 
-Compute steady-state mosquito densities for the `basicM` module.
+Compute steady-state mosquito densities for the `basicM` module given
+adult mosquito emergence `Lambda` for the discrete-time system. Minimize
+the sum of squared fixed-point residuals using
+[stats::nlm](https://rdrr.io/r/stats/nlm.html).
 
 ## Usage
 
@@ -25,8 +28,8 @@ steady_state_M_basicM(Lambda, xds_obj, s = 1)
 
 ## Value
 
-the steady states as a named
-[numeric](https://rdrr.io/r/base/numeric.html) vector
+a named [numeric](https://rdrr.io/r/base/numeric.html) vector containing
+`M` followed by `P`, each with one value per patch
 
 ## State Variables
 
@@ -47,8 +50,7 @@ disperse and die according to \\(\Omega\\). The one-day update in
 is \$\$ \begin{array}{rl} M_t &= \Lambda+e^{-\Omega}\cdot M\_{t-1}
 \\\\\\\\ P_t &= f(M\_{t-1}-P\_{t-1})+e^{-\Omega}\cdot P\_{t-1}
 \end{array}\$\$ Here, \\(P\\) is the density of mosquitoes that have
-blood-fed at least once. Parity, \\(P/M\\), is computed during parsing
-and stored as `parous`.
+blood-fed at least once.
 
 ## See also
 

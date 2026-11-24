@@ -1,9 +1,7 @@
-# Set up a other_blood_hosts
+# Set up other blood hosts
 
-Implements the "method1" case for
-[setup_other_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/setup_other_blood_hosts.md).
-See
-[make_other_blood_hosts_random](https://dd-harp.github.io/ramp.xds/reference/make_other_blood_hosts_random.md)
+Generate random other blood host availability using
+[make_other_blood_hosts_random](https://dd-harp.github.io/ramp.xds/reference/make_other_blood_hosts_random.md).
 
 ## Usage
 
@@ -16,7 +14,7 @@ setup_other_blood_hosts(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 

@@ -1,6 +1,6 @@
-# Get the patch emigration rates
+# Get the patch emigration rate (**MY**)
 
-Get the patch emigration rates
+Return the stored realized patch emigration rate per patch.
 
 ## Usage
 
@@ -20,4 +20,18 @@ get_sigma(xds_obj, s = 1)
 
 ## Value
 
-the patch emigration rates, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`; empty for trivialMY
+
+## Details
+
+Read the realized parameter without evaluating its port or applying
+effect sizes. Run bionomics and effect-size application to refresh
+port-backed values.
+
+Behavioral-state modules BQ, BQm, and BRQS return `sigma_b`. The
+trivialMY method returns an empty numeric vector.
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.

@@ -1,7 +1,7 @@
 # Make the residence matrix
 
-This function creates the residence matrix (see
-[get_residence_matrix](https://dd-harp.github.io/ramp.xds/reference/get_residence_matrix.md)).
+Create the residence matrix (see
+[residence_matrix](https://dd-harp.github.io/ramp.xds/reference/residence_matrix.md)).
 
 ## Usage
 
@@ -17,7 +17,7 @@ make_residence_matrix(nPatches, residence)
 
 - residence:
 
-  the residence matrix
+  a residence vector of patch indices, one per population stratum
 
 ## Value
 

@@ -1,7 +1,7 @@
-# Update other blood hosts
+# Update other blood host availability
 
-Port function for the other_blood_hosts, \\(\Theta\\). Dispatches on
-`class(xds_obj$XY_interface$other_blood_hosts_obj[[s]])`.
+Dispatch the update for other blood host availability of vector species
+`s`. Dispatches on `class(xds_obj$patches$other_blood_hosts_obj[[s]])`.
 
 ## Usage
 

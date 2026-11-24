@@ -1,6 +1,8 @@
 # Apply effect sizes (**MY**)
 
 Apply vector control effect sizes to adult mosquito bionomic parameters.
+For each port-backed parameter, set `x = x_t * es_x`. Leave parameters
+without ports unchanged.
 
 ## Usage
 

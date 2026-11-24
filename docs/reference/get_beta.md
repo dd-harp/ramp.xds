@@ -1,6 +1,6 @@
-# Get xi, delayed maturation
+# Get beta, the biting distribution matrix
 
-Get xi, delayed maturation
+Get beta, the biting distribution matrix
 
 ## Usage
 

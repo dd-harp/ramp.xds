@@ -1,6 +1,11 @@
-# Make the module object for `basicL` (**L**)
+# Make a module object for `basicL` (**L**)
 
-Values in `options` override the corresponding parameter arguments.
+Create a `basicL` module object and initialize its parameters. Inspect
+parameters with
+[get_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.basicL.md)
+and change supported values with
+[change_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.basicL.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -64,6 +69,9 @@ a [list](https://rdrr.io/r/base/list.html): an **L** module object
   slope of density-dependent mortality
 
 ## See also
+
+[get_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.basicL.md),
+[change_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.basicL.md)
 
 Called by:
 [setup_L_obj.basicL](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.basicL.md).

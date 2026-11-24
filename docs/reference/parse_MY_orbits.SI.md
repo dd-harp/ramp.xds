@@ -1,7 +1,9 @@
 # Parse outputs for `SI` (**MY**)
 
-Parse the `SI` state outputs and compute infective mosquito density,
-infected and infective fractions, and parity.
+Extract the model state outputs for the `SI` module from `outputs` and
+return them by name in a list. Compute `Z = t(Upsilon %*% t(Y))` using
+the module's survival matrix, and return `y = Y/M`, `z = Z/M`, and
+`parity = P/M`.
 
 ## Usage
 
@@ -27,6 +29,10 @@ parse_MY_orbits(outputs, xds_obj, s)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
 
 ## State Variables
 
@@ -79,10 +85,7 @@ to compute and store `EIR`, the local daily EIR \\((E)\\). Note that
 `fqZ` is a vector of length `nPatches` but the local EIR is a vector of
 length `nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\(\beta,\\) and if
-there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
-`fqZ` and `EIR` are computed and stored by
-[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-by the functions that parse the outputs.
+there are no visitors, then \$\$E = \beta \cdot fqZ\$\$
 
 **The HBR**
 

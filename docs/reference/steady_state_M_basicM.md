@@ -1,7 +1,8 @@
 # Compute steady states for `basicM` (**MY**)
 
-Select the `basicM` steady-state calculation using `xds`. Both
-differential equations and discrete-time systems are supported.
+Compute steady-state mosquito densities for the `basicM` module given
+adult mosquito emergence `Lambda`. Both differential equations and
+discrete-time systems are supported.
 
 ## Usage
 
@@ -25,5 +26,9 @@ steady_state_M_basicM(Lambda, xds_obj, s = 1)
 
 ## Value
 
-the steady states as a named
-[numeric](https://rdrr.io/r/base/numeric.html) vector
+a named [numeric](https://rdrr.io/r/base/numeric.html) vector containing
+`M` followed by `P`, each with one value per patch
+
+## Note
+
+Dispatch on `xds_obj$xds` to select the `xde` or `dts` method.

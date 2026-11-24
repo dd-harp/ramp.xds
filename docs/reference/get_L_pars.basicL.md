@@ -1,6 +1,6 @@
 # Get parameters for `basicL` (**L**)
 
-Get the stored bionomic parameter values for `basicL`.
+Return the parameters for the `basicL` module as a named list.
 
 ## Usage
 
@@ -21,9 +21,30 @@ get_L_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
+
+## Parameters
+
+- `psi` or \\(\psi\\):
+
+  maturation rate
+
+- `xi` or \\(\xi\\):
+
+  delayed maturation parameter in response to mean crowding
+
+- `phi` or \\(\phi\\):
+
+  density-independent mortality rate
+
+- `theta` or \\(\theta\\):
+
+  slope of density-dependent mortality
 
 ## See also
+
+[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md),
+[change_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.basicL.md)
 
 [dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
 or

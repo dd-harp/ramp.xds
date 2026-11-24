@@ -1,15 +1,14 @@
-# Steady states: MY-SI
+# Compute steady states for `SI` (**MY**)
 
-Compute steady-state mosquito densities for the `SI` module.
+Compute steady-state mosquito densities for the `SI` module given adult
+mosquito emergence `Lambda` and net infectiousness `kappa` for the
+differential-equation system.
 
 ## Usage
 
 ``` r
 # S3 method for class 'xde'
 steady_state_MY_SI(Lambda, kappa, xds_obj, s = 1)
-
-# S3 method for class 'SI_ode'
-steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 ```
 
 ## Arguments
@@ -32,7 +31,8 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) with elements `M`, `P`,
+and `Y`, each containing one value per patch
 
 ## ODE
 
@@ -42,8 +42,7 @@ Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
 disperse and die according to \\(\Omega\\): \$\$ dM/dt = \Lambda -
 \Omega \cdot M \$\$ The model also computes the density of parous adult
 mosquitoes: those that have blood fed at least once: \$\$ dP/dt =
-fq(M-P) - \Omega \cdot P \\\\ \$\$ Parity is computed during parsing as
-\\(P/M\\) and its orbit is stored as `parity`.
+fq(M-P) - \Omega \cdot P \\\\ \$\$
 
 **Infection Dynamics**
 

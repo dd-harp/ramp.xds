@@ -1,6 +1,7 @@
-# The skill set for `trivialL` (**L**)
+# Get the skill set for `trivialL` (**L**)
 
-The **L** skill set is a list of a module's capabilities
+Return the capabilities and compatibilities of the `trivialL` module as
+a list.
 
 ## Usage
 

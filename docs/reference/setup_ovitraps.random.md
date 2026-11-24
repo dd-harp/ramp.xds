@@ -1,6 +1,6 @@
 # Set up ovitraps
 
-Set up random values for ovitrap availability
+Set up random values for ovitrap availability.
 
 ## Usage
 

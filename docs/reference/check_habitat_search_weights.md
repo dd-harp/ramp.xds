@@ -4,7 +4,7 @@ Check that
 
 - all elements are non-negative
 
-- length(habitat_search_weights) == nHabitats
+- length(search_weights) == nQ
 
 ## Usage
 

@@ -30,6 +30,14 @@ change_L_pars(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Details
+
+After the updates, call
+[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
+at time zero with the flattened initial state. Do not call
+[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md);
+bionomics is a no-op for this module.
+
 ## Note
 
 Utilities for forcing functions are in `ramp.func`

@@ -39,3 +39,7 @@ setup_timespent(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[time_spent_matrix](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md)

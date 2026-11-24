@@ -1,10 +1,11 @@
 # Change Mosquito Dispersal Matrix
 
 Run
-[check_K_matrix](https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.md)
-then
+[check_K_matrix](https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.md).
 
 After passing checks, `xds_obj` is updated.
+
+For models with two or more dispersal matrices, use `which_K`.
 
 In models with multiple species, use `s` to specify the species to
 update.
@@ -37,6 +38,12 @@ change_K_matrix(K_matrix, xds_obj, which_K = "K", s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+The argument `which_K` supports behavioral state models for mosquito
+ecology with two or more mosquito dispersal matrices. The default "K"
+returns `K_matrix`
 
 ## See also
 

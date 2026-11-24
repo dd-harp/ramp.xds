@@ -1,6 +1,7 @@
 # Compute beta
 
-This function computes the mixing matrix, beta
+This function computes the mixing matrix, beta using search weights
+adjusted for the fraction of time not traveling.
 
 ## Usage
 

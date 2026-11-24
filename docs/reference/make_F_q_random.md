@@ -1,7 +1,7 @@
 # Make random human fractions (**MY**)
 
-Draw human fractions once during setup and store them in a static port
-object. Subsequent evaluations reuse these values.
+Draw human fractions once during setup. Subsequent evaluations reuse
+these values.
 
 ## Usage
 
@@ -42,3 +42,7 @@ make_F_q_random(
 
 a static port object for
 [F_q.static](https://dd-harp.github.io/ramp.xds/reference/F_q.static.md)
+
+## Note
+
+The values are stored in a static port object.

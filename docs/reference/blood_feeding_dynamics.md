@@ -1,8 +1,7 @@
-# Compute blood feeding objects dynamically
+# Compute blood-feeding terms dynamically
 
-Compute host available, \\(W\\), total blood host available, \\(B\\),
-the time spent matrix \\((\Theta)\\), and the time-at-risk matrix
-\\((\Psi)\\) for static models.
+Update time-at-risk matrices and compute local and total blood host
+availability.
 
 ## Usage
 

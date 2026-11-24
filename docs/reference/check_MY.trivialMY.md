@@ -1,4 +1,4 @@
-# Check the `trivialMY` module (**MY**)
+# Check `trivialMY` (**MY**)
 
 Run no consistency checks.
 

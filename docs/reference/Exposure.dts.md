@@ -1,8 +1,8 @@
 # Compute Attack Rates
 
-For `dts` models, compute the attack rates, the expected probability of
-infection over one time step, is a weighted sum of local and travel
-exposure.
+For `dts` models, compute the attack rates, the expected probabilities
+of infection over one time step, from the time-weighted local and travel
+FoI.
 
 ## Usage
 
@@ -35,9 +35,9 @@ Local attack rates (AR or \\(\alpha\\)) are a function of local daily
 entomological inoculation rates (dEIR or \\(E\\)), and a model for the
 probability of infection per infectious bite, \\(b\\) (from
 \\(F_infectivity\\), as defined by an \\(\cal X\\) model). The total
-attack rates also consider exposure to malaria while traveling,
-(\\(T\_\delta\\)): \$\$\alpha = 1-((1-\delta) \\; F\_\alpha(E,
-b))(1-\delta\\; T\_\alpha(b))\$\$
+attack rates are computed from the time-weighted local and travel FoI,
+using the travel EIR, \\(E_T\\): \$\$\alpha = 1-\exp(-((1-\delta)
+F_h(E,b) + \delta F_h(E_T,b)))\$\$
 
 ## See also
 

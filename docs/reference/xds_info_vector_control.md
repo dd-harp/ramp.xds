@@ -1,3 +1,3 @@
 # Vector Control
 
-Vector Control is a junction
+Vector Control is a junction.

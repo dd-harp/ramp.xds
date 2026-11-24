@@ -1,7 +1,7 @@
 # Change initial values for `basicM` (**MY**)
 
-For the `basicM` module (**MY**) for the \\(s^{th}\\) species, change
-initial values named in `options` leaving other values unchanged.
+Change initial values named in `options` for the `basicM` module,
+leaving other values unchanged.
 
 ## Usage
 
@@ -28,6 +28,11 @@ change_MY_inits(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Stored initial values for this module are at
+`xds_obj$MY_obj[[s]]$inits`.
+
 ## State Variables
 
 - `M`:
@@ -38,3 +43,8 @@ an **`xds`** model object
 
   density of parous adult mosquitoes: those that have blood-fed at least
   once
+
+## See also
+
+[make_MY_inits_basicM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_basicM.md),
+[setup_MY_inits.basicM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.basicM.md)

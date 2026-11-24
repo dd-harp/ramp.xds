@@ -539,7 +539,6 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=0,
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MY_obj[[s]] <- make_MY_obj_SI(xds_obj$nPatches, options)
-  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)

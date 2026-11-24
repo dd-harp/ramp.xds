@@ -1,7 +1,7 @@
-# Human biting for `SI`
+# Compute mosquito biting density for `SI` (**MY**)
 
-Compute human biting, the number of bites by the mosquito population on
-humans in each patch, each day.
+Return the daily mosquito biting density on humans, `fqM`, for each
+patch in the `SI` module. Compute `fqM = f*q*M`.
 
 ## Usage
 
@@ -70,10 +70,7 @@ to compute and store `EIR`, the local daily EIR \\((E)\\). Note that
 `fqZ` is a vector of length `nPatches` but the local EIR is a vector of
 length `nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\(\beta,\\) and if
-there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
-`fqZ` and `EIR` are computed and stored by
-[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-by the functions that parse the outputs.
+there are no visitors, then \$\$E = \beta \cdot fqZ\$\$
 
 **The HBR**
 
@@ -85,4 +82,5 @@ during parsing, as \$\$B = \beta \cdot fqM\$\$
 
 ## See also
 
-[SI](https://dd-harp.github.io/ramp.xds/reference/SI.md)
+[SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
+[F_fqZ.SI](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.SI.md)

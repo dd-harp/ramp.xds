@@ -1,6 +1,8 @@
 # Compute the derivatives (**L**)
 
-Compute the derivatives (**L**).
+Compute the derivatives of the aquatic mosquito state variables using
+the selected **L** module. See the module-specific documentation for
+equations and references.
 
 ## Usage
 
@@ -28,5 +30,10 @@ dLdt(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives;
-empty for modules without state variables
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order; empty for modules without state
+variables
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`.

@@ -1,8 +1,8 @@
-# Compute the prevalence of infection by PCR
+# Compute observed prevalence by PCR
 
-Implements
-[F_pfpr_by_pcr](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)
-for the `hMoI` model.
+Compatibility alias for
+[F_pr_obs.hMoI](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.hMoI.md).
+All diagnostic aliases return apparent prevalence based on `m2`.
 
 ## Usage
 

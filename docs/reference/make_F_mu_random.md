@@ -1,7 +1,7 @@
 # Make random emigration-loss fractions (**MY**)
 
-Draw emigration-loss fractions once during setup and store them in a
-static port object. Subsequent evaluations reuse these values.
+Draw emigration-loss fractions once during setup. Subsequent evaluations
+reuse these values.
 
 ## Usage
 
@@ -42,3 +42,7 @@ make_F_mu_random(
 
 a static port object for
 [F_mu.static](https://dd-harp.github.io/ramp.xds/reference/F_mu.static.md)
+
+## Note
+
+The values are stored in a static port object.

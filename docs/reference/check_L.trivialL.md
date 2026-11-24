@@ -1,4 +1,4 @@
-# Check the `trivialL` module
+# Check `trivialL` (**L**)
 
 Run no consistency checks
 

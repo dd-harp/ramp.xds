@@ -1,6 +1,7 @@
 # Make initial values for `GeM` (**MY**)
 
-Make initial values for `GeM` (**MY**)
+Create a named list of initial values for the `GeM` module. Values in
+`options` override the defaults.
 
 ## Usage
 
@@ -24,7 +25,8 @@ make_MY_inits_GeM(
 
 - Upsilon:
 
-  a matrix describing survival and dispersal through the initial EIP
+  an `nPatches` by `nPatches` matrix describing survival and dispersal
+  through the initial EIP
 
 - options:
 
@@ -49,7 +51,15 @@ make_MY_inits_GeM(
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values
+
+## Details
+
+Initial mosquito densities must be numeric scalars or have length
+`nPatches`. Scalars are expanded to that length. Initialize `U` from
+`Upsilon` and `d1`, `d2`, and `d3` to zero in each patch. These
+accessory values are constructed internally rather than independently
+set through `options`.
 
 ## State Variables
 
@@ -83,3 +93,5 @@ internal to the model and is not an output orbit.
 
 [GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
 [setup_MY_inits.GeM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.GeM.md)
+
+[change_MY_inits.GeM](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.GeM.md)

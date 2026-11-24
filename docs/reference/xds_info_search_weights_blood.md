@@ -9,4 +9,4 @@ modeling blood feeding.
 
 ## See also
 
-[xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+[xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)

@@ -1,7 +1,8 @@
 # Compute steady states for `hMoI` (**XH**)
 
-Compute the steady state of the `hMoI` model as a function of the daily
-foi
+Compute steady-state infection values for the `hMoI` module given daily
+FoI `foi` for the differential-equation system. The fixed population
+input `H` is not used in this calculation.
 
 ## Usage
 
@@ -30,7 +31,8 @@ steady_state_X(foi, H, xds_obj, i = 1)
 
 ## Value
 
-the steady states as a named vector
+a named [numeric](https://rdrr.io/r/base/numeric.html) vector containing
+`m1` followed by `m2`
 
 ## See also
 
