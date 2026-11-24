@@ -1,7 +1,8 @@
-# Setup variable indices for `basicL` (**L** component)
+# Set up variable indices for `basicL` (**L**)
 
-Set the values of the indices for the **L** component variables for the
-`basicL` module
+Assign consecutive variable indices for the `basicL` module, starting
+after `xds_obj$max_ix`, and update the maximum index. Allocate blocks in
+the order `L_ix`. Each block has length `nHabitats`.
 
 ## Usage
 
@@ -23,3 +24,8 @@ setup_L_ix(xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Indices are stored at `xds_obj$L_obj[[s]]$ix`. The maximum index is
+stored at `xds_obj$max_ix`.

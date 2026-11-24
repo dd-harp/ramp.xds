@@ -1,6 +1,6 @@
-# Check egg batch rate
+# Check oviposition rate
 
-Check that the egg batch rates are in the expected range and length:
+Check that the oviposition rates are in the expected range and length:
 
 - all elements are non-negative
 
@@ -24,7 +24,7 @@ check_nu(xds_obj, s = 1)
 
 ## Value
 
-the egg batch rate
+the oviposition rate
 
 ## See also
 

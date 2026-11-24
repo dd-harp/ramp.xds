@@ -1,6 +1,6 @@
 # Get parameters for `basicM` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+Return the parameters for the `basicM` module as a named list.
 
 ## Usage
 
@@ -21,7 +21,7 @@ get_MY_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Parameters
 
@@ -48,7 +48,7 @@ a [list](https://rdrr.io/r/base/list.html)
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -64,7 +64,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -75,10 +76,14 @@ a [list](https://rdrr.io/r/base/list.html)
 
 After basic setup,
 [change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
-can be used to change static parameter values. The `basicM` module does
-not implement dynamic bionomic ports.
+can be used to change static parameter values. The `basicM` module
+evaluates bionomic parameter functions through
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md).
 
 ## See also
+
+[make_M_obj_basicM](https://dd-harp.github.io/ramp.xds/reference/make_M_obj_basicM.md),
+[change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
 
 [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md),
 [change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)

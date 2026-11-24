@@ -1,10 +1,7 @@
-# Set up a time spent
+# Set up default time away
 
-Pass a pre-configured time spent . If it passes the checks, it replaces
-the current time_away .
-
-If called with `name = "as_is"`, the time spent must be at
-`options$time_away`
+Initialize time away to zero for each stratum of the selected host
+species and initialize a static port.
 
 ## Usage
 
@@ -17,7 +14,7 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

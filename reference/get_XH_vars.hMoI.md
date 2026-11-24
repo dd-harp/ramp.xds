@@ -1,7 +1,8 @@
-# List variables for `hMoI` (**XH**)
+# Get the state variables for `hMoI` (**XH**)
 
-Get the value of variables from the flat state variable vector \\y\\,
-and return the values as a named list
+Extract the state variables for the `hMoI` module from `y` and return
+them by name in a list for use during model solving. Also return `H`
+from the module object rather than from `y`.
 
 ## Usage
 
@@ -26,7 +27,12 @@ get_XH_vars(y, xds_obj, i)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of state variables and
+module-specific derived quantities
+
+## Note
+
+Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`.
 
 ## See also
 

@@ -1,6 +1,15 @@
-# Compute derivatives for `macdonald` (**MY**)
+# Compute the derivatives for `macdonald` (**MY**)
 
-Implements the delay differential equations for the `macdonald` module.
+Compute the derivatives for the `macdonald` module:
+\$\$\begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\ dP/dt &=
+f(M-P)-\Omega\cdot P \\ dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\ dZ/dt &=
+\Upsilon\cdot\left(fq\kappa\_\tau(M\_\tau-Y\_\tau)\right)-\Omega\cdot Z
+\\ dA\_\kappa/dt &= \kappa \end{array}\$\$ Here \\\tau\\ is `eip` and
+\\\Upsilon\\ is `Upsilon`. For \\t\>\tau\\, \\M\_\tau\\ and \\Y\_\tau\\
+are the states at \\t-\tau\\, and \\\kappa\_\tau\\ is the derivative of
+the accessory variable \\A\_\kappa\\ at that time. For \\t\leq\tau\\,
+the delayed states use their initial values and \\\kappa\_\tau\\ uses
+the current \\\kappa\\.
 
 ## Usage
 
@@ -29,7 +38,13 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order
+
+## Note
+
+Derivatives are returned in patch-ordered blocks for `M`, `P`, `Y`, and
+`Z`, followed by `kappa`, the derivative of the accessory state.
 
 ## State Variables
 
@@ -91,7 +106,7 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -107,7 +122,8 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

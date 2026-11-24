@@ -1,8 +1,6 @@
 # Get parameters for `hMoI` (**XH**)
 
-Parameter values for the \\i^{th}\\ host are stored as
-`xds_obj$XH_obj[[i]]`. This returns the stored parameter values as a
-list.
+Return the parameters for the `hMoI` module as a named list.
 
 ## Usage
 
@@ -23,7 +21,12 @@ get_XH_pars(xds_obj, i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
+
+## Note
+
+Parameter values for the \\i^{th}\\ host are stored as
+`xds_obj$XH_obj[[i]]`.
 
 ## Parameters
 
@@ -52,6 +55,9 @@ a [list](https://rdrr.io/r/base/list.html)
   human or host population density
 
 ## See also
+
+[make_XH_obj_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_hMoI.md),
+[change_XH_pars.hMoI](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.hMoI.md)
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md),
 [make_XH_obj_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_hMoI.md)

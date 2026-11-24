@@ -1,8 +1,7 @@
 # Parse outputs for `SIS` (**XH**)
 
-Implements
-[parse_XH_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.md)
-for the `SIS` model
+Extract the model state outputs for the `SIS` module from `outputs` and
+return them by name in a list. Also compute `S = H-I`.
 
 ## Usage
 
@@ -15,8 +14,7 @@ parse_XH_orbits(outputs, xds_obj, i)
 
 - outputs:
 
-  an output matrix returned by
-  [deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html)
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -29,6 +27,10 @@ parse_XH_orbits(outputs, xds_obj, i)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`.
 
 ## See also
 

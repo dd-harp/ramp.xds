@@ -1,7 +1,7 @@
 # Change parameters for `hMoI` (**XH**)
 
-For the `hMoI` module (**XH**) for the \\i^{th}\\ species, change
-parameter values named in `options` leaving other values unchanged.
+Change parameter values named in `options` for the `hMoI` module,
+leaving other values unchanged.
 
 ## Usage
 
@@ -55,5 +55,8 @@ an **`xds`** model object
   human or host population density
 
 ## See also
+
+[make_XH_obj_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_hMoI.md),
+[get_XH_pars.hMoI](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.hMoI.md)
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

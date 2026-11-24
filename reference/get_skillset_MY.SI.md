@@ -1,6 +1,7 @@
-# Get the `SI` (**MY**) skill set
+# Get the skill set for `SI` (**MY**)
 
-Get the `SI` (**MY**) skill set
+Return the capabilities and compatibilities of the `SI` module as a
+list.
 
 ## Usage
 

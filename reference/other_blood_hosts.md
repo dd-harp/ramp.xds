@@ -1,31 +1,17 @@
-# Other blood hosts
+# Other Blood Hosts
 
-The `S3` definition for the function that computes other_blood_hosts
+Availability of vertebrate hosts that are not represented by an **XH**
+module or by visitors.
 
-## Usage
+## Other Blood Host Availability
 
-``` r
-other_blood_hosts(t, y, xds_obj, s)
-```
+Other blood hosts attract blood-seeking mosquitoes and contribute to
+total blood host availability \\(B)\\, but not to local human/host
+availability \\(W)\\. The availability vector is initialized to zero and
+configured by vector species using
+[setup_other_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/setup_other_blood_hosts.md).
 
-## Arguments
+## See also
 
-- t:
-
-  the time
-
-- y:
-
-  the state variables
-
-- xds_obj:
-
-  an **`xds`** model object
-
-- s:
-
-  the vector species index
-
-## Value
-
-an **`xds`** object
+[available_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/available_blood_hosts.md),
+[update_other_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/update_other_blood_hosts.md)

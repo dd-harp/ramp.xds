@@ -1,7 +1,7 @@
-# Steady states for **XH**
+# Compute steady states (**XH**)
 
-Compute the steady states as a function of the daily FoI for a static
-value of human population density
+Compute steady-state host and infection densities for the selected
+**XH** module given daily FoI `foi`.
 
 ## Usage
 
@@ -25,4 +25,11 @@ steady_state_XH(foi, xds_obj, i = 1)
 
 ## Value
 
-steady states
+module-specific steady-state values; see the selected method for the
+return type and state names
+
+## Note
+
+Dispatch on the module object at `xds_obj$XH_obj[[i]]`. A
+module-specific method must be supplied to use this generic. Return
+values are not stored on the model object.

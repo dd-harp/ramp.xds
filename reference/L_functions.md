@@ -1,6 +1,6 @@
-# Generic methods for the L component
+# Functions for the L component
 
-A list of generic
+A list of functions for the L component
 
 - [`dLdt`](https://dd-harp.github.io/ramp.xds/reference/dLdt.md) –
   compute derivatives
@@ -9,7 +9,7 @@ A list of generic
   – update state variables
 
 - [`LBionomics`](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
-  – compute bionomic parameters
+  – compute baseline bionomic parameter values
 
 - [`LEffectSizes`](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md)
   – apply vector control effect sizes
@@ -21,7 +21,10 @@ A list of generic
   – set up the L module object
 
 - [`setup_L_ix`](https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.md)
-  – set index values
+  – set up variable indices
+
+- [`get_L_ix`](https://dd-harp.github.io/ramp.xds/reference/get_L_ix.md)
+  – get variable indices
 
 - [`setup_L_inits`](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md)
   – set up initial values
@@ -33,7 +36,7 @@ A list of generic
   – change initial values
 
 - [`get_L_vars`](https://dd-harp.github.io/ramp.xds/reference/get_L_vars.md)
-  – list state variables
+  – get the state variables
 
 - [`get_L_pars`](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.md)
   – get parameters
@@ -46,6 +49,12 @@ A list of generic
 
 - [`get_L_orbits`](https://dd-harp.github.io/ramp.xds/reference/get_L_orbits.md)
   – get saved orbits
+
+- [`xds_plot_L`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_L.md)
+  – plot aquatic mosquito population density
+
+- [`xds_lines_L`](https://dd-harp.github.io/ramp.xds/reference/xds_lines_L.md)
+  – add lines for aquatic mosquito population density
 
 - [`steady_state_L`](https://dd-harp.github.io/ramp.xds/reference/steady_state_L.md)
   – compute steady states

@@ -1,7 +1,7 @@
 # Parse outputs (**L**)
 
-After solving a dynamical system, parse the outputs and return the
-variables by name in a list.
+Extract the model state outputs for the selected **L** module and return
+them by name in a list.
 
 ## Usage
 
@@ -13,8 +13,7 @@ parse_L_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) with the solutions to a
-  dynamical system
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -30,4 +29,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 ## Note
 
-This method dispatches on the class of `xds_obj$L_obj[[s]]`
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. These methods
+process output trajectories after solving, rather than a single state
+vector during solving. They return results without modifying the model
+object; the output-processing pipeline stores the parsed results at
+`xds_obj$outputs$orbits$L[[s]]`.

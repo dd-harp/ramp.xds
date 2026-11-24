@@ -1,6 +1,7 @@
-# The skill set for `macdonald` (**MY**)
+# Get the skill set for `macdonald` (**MY**)
 
-The skill set for `macdonald` (**MY**)
+Return the capabilities and compatibilities of the `macdonald` module as
+a list.
 
 ## Usage
 

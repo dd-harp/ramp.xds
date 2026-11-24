@@ -1,6 +1,11 @@
-# Make parameters for `macdonald` adult mosquito model
+# Make a module object for `macdonald` (**MY**)
 
-Make parameters for `macdonald` adult mosquito model
+Create a `macdonald` module object and initialize its parameters.
+Inspect parameters with
+[get_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md)
+and change supported values with
+[change_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -56,7 +61,8 @@ make_MY_obj_macdonald(
 
 - nu:
 
-  egg batch rate, in batches per mosquito per day
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - eggsPerBatch:
 
@@ -114,7 +120,7 @@ a [list](https://rdrr.io/r/base/list.html)
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -130,7 +136,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -145,6 +152,9 @@ can be used to change static parameter values. This module does not
 support dynamic bionomic ports.
 
 ## See also
+
+[get_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md),
+[change_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md)
 
 [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
 [setup_MY_obj.macdonald](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.macdonald.md)

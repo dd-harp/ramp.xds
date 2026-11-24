@@ -1,8 +1,8 @@
 # Parse outputs for `basicL` (**L**)
 
-The function returns the column representing the variable \\L\\ from a
-matrix where each row is a state variable. The variable is returned as a
-named list.
+Extract the model state outputs for the `basicL` module from `outputs`
+and return them by name in a list. Return the aquatic mosquito density
+`L`.
 
 ## Usage
 
@@ -15,8 +15,7 @@ parse_L_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) with the solutions to a
-  dynamical system
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -28,4 +27,8 @@ parse_L_orbits(outputs, xds_obj, s)
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html)
+a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$L_obj[[s]]$ix`.

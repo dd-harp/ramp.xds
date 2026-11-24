@@ -1,6 +1,6 @@
-# Update state variables (**XH**)
+# Update states (**XH**)
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+Update states (**XH**)
 
 ## Usage
 
@@ -29,3 +29,7 @@ Update_XHt(t, y, xds_obj, i)
 ## Value
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector
+
+## Note
+
+This method dispatches on the type of `xds_obj$XH_obj[[i]]`.

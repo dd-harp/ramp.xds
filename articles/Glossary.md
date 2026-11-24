@@ -77,9 +77,9 @@ bionomic parameters, listed below
 - **\\q\\ — human blood feeding fraction**: The fraction of blood meals
   taken on humans (as opposed to other vertebrate hosts).
 
-- **\\\nu\\ — egg laying rate**: The per-capita daily rate at which
-  mosquitoes lay eggs. Since the eggs are laid in a batch, another
-  parameter sets the total number of eggs laid
+- **\\\nu\\ — oviposition rate**: The number of egg batches laid in each
+  patch, per mosquito, per day. Since the eggs are laid in a batch,
+  another parameter sets the total number of eggs laid
 
 - **\\g\\ — mosquito mortality rate**:
 

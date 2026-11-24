@@ -1,17 +1,15 @@
-# Set up an **L** model object
+# Set up the module object (**L**)
 
-This setup creates an **L** object for the \\s^{th}\\ species and sets
-up the interface ports:
+Set up the selected module and its interface ports for the \\s^{th}\\
+vector species in the **L** component.
 
-- calls `make_L_obj_`*Lname* to set up the dynamics, including
-  parameters
+- Pass `membership`, `xds_obj`, `options`, and `s` to the selected setup
+  method.
 
-- calls
-  [setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md)
-  to set initial values
+- Let that method construct the module object and configure its initial
+  values and habitat interface as appropriate for the module.
 
-- calls
-  [setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md)
+- Return the updated **`xds`** model object.
 
 The function is typically called by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
@@ -51,7 +49,9 @@ an **`xds`** model object
 
 ## Note
 
-The model object is stored as `xds_obj$L_obj[[s]]`
+The module object is stored at `xds_obj$L_obj[[s]]`. Dispatch is on
+`Lname`, whose class is set to the supplied module name, not on an
+existing module object.
 
 ## See also
 

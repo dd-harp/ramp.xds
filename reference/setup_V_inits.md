@@ -1,6 +1,6 @@
 # Set up initial values for **V** modules
 
-This method dispatches on `xds_obj$V_obj[[i]]`.
+Set up initial values for **V** modules
 
 ## Usage
 
@@ -29,3 +29,7 @@ setup_V_inits(xds_obj, H, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+This method dispatches on `xds_obj$V_obj[[i]]`.

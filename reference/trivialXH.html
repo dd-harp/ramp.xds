@@ -12,20 +12,14 @@ a forcing function to output human population density, \(H\)
 
 Basic setup uses a function if it is passed. If no function is passed,
 the functions are built from function objects (see ramp.func::F_obj) using make_function,
-which returns a function of the form \(F(t,V).\)
-The variables passed to the functions, \(V\), are returned by
-get_variables, which dispatches on the class of the stored function
-object (by default, an empty list)."><meta property="og:description" content="The trivial module sets up two forcing functions:
+which returns a function of the form \(F(t,V).\)"><meta property="og:description" content="The trivial module sets up two forcing functions:
 a forcing function to output net infectiousness, \(\kappa\)
 a forcing function to output human population density, \(H\)
 
 
 Basic setup uses a function if it is passed. If no function is passed,
 the functions are built from function objects (see ramp.func::F_obj) using make_function,
-which returns a function of the form \(F(t,V).\)
-The variables passed to the functions, \(V\), are returned by
-get_variables, which dispatches on the class of the stored function
-object (by default, an empty list)."></head><body>
+which returns a function of the form \(F(t,V).\)"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -33,7 +27,7 @@ object (by default, an empty list)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,12 +106,44 @@ object (by default, an empty list)."></head><body>
 </ol><p>Basic setup uses a function if it is passed. If no function is passed,
 the functions are built from function objects (see <a href="https://dd-harp.github.io/ramp.func/reference/F_obj.html" class="external-link">ramp.func::F_obj</a>) using <a href="https://dd-harp.github.io/ramp.func/reference/make_function.html" class="external-link">make_function</a>,
 which returns a function of the form \(F(t,V).\)</p>
-<p>The variables passed to the functions, \(V\), are returned by
-<a href="get_variables.html">get_variables</a>, which dispatches on the class of the stored function
-object (by default, an empty list).</p>
     </div>
 
 
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>The variables passed to the functions, \(V\), are returned by
+<a href="get_variables.html">get_variables</a>, which dispatches on the class of the stored function
+object (by default, an empty list).</p>
+<dl><dt><code>season_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_s\)</p></dd>
+
+<dt><code>trend_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_t\)</p></dd>
+
+<dt><code>shock_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_k\)</p></dd>
+
+<dt><code>H_season_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_s\)</p></dd>
+
+<dt><code>H_trend_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_t\)</p></dd>
+
+<dt><code>H_shock_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_k\)</p></dd>
+
+
+</dl><ol><li><p>The module has no state variables.</p></li>
+<li><p>The size of an object saved by <code>saveRDS</code> balloons if it saves a function,
+so the <code>saveXDS</code> function strips the functions and <code>readXDS</code> remakes the function
+from the stored function object using <a href="https://dd-harp.github.io/ramp.func/reference/make_function.html" class="external-link">make_function</a>.</p></li>
+<li><p><code>F_season</code>, <code>F_trend</code>, <code>F_shock</code>, <code>H_season</code>, <code>H_trend</code>, and <code>H_shock</code>
+can be set up manually by passing any
+user-defined function. If so, the user should use <code>saveRDS</code> and <code>readRDS</code>
+rather than <code>saveXDS</code> and <code>readXDS</code>.</p></li>
+<li><p>Setup uses a <code>residence</code> vector. The module constructs <code>H</code> and <code>kappa</code>
+with length <code>nStrata[i]</code>.</p></li>
+</ol></div>
     <div class="section level2">
     <h2 id="net-infectiousness">Net Infectiousness<a class="anchor" aria-label="anchor" href="#net-infectiousness"></a></h2>
 
@@ -155,7 +181,7 @@ where</p><ul><li><p>\(H\) or <code>H</code> is the mean human population density
     <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
 
 
-
+<p>Test positivity <code>q</code> defaults to <code>0.8</code>.</p>
 <p><strong>Net Infectiousness</strong></p><dl><dt><code>kappa</code></dt>
 <dd><p>mean net infectiousness</p></dd>
 
@@ -167,15 +193,6 @@ where</p><ul><li><p>\(H\) or <code>H</code> is the mean human population density
 
 <dt><code>F_shock</code></dt>
 <dd><p>a shock function, \(K(t,V_k)\)</p></dd>
-
-<dt><code>season_par</code></dt>
-<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_s\)</p></dd>
-
-<dt><code>trend_par</code></dt>
-<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_t\)</p></dd>
-
-<dt><code>shock_par</code></dt>
-<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_k\)</p></dd>
 
 
 </dl><p><strong>Human Population Density</strong></p><dl><dt><code>H</code></dt>
@@ -190,18 +207,18 @@ where</p><ul><li><p>\(H\) or <code>H</code> is the mean human population density
 <dt><code>H_shock</code></dt>
 <dd><p>a shock function, \(K(t,V_k)\)</p></dd>
 
-<dt><code>H_season_par</code></dt>
-<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_s\)</p></dd>
 
-<dt><code>H_trend_par</code></dt>
-<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_t\)</p></dd>
+</dl><p>By default, <code>season_par</code>, <code>trend_par</code>, and <code>shock_par</code> configure
+constant-one forcing functions for net infectiousness. The corresponding
+<code>H_season_par</code>, <code>H_trend_par</code>, and <code>H_shock_par</code> configure constant-one
+forcing functions for human population density.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="prevalence">Prevalence<a class="anchor" aria-label="anchor" href="#prevalence"></a></h2>
 
-<dt><code>H_shock_par</code></dt>
-<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_k\)</p></dd>
 
-
-</dl><p>Setup also adds the objects <code>season_par</code> and <code>trend_par</code> and <code>shock_par</code> for
-use by <code>ramp.func</code></p>
+<p><a href="F_pr_obs.trivialXH.html">F_pr_obs.trivialXH</a> returns an empty numeric vector, as does
+<a href="F_prevalence.trivialXH.html">F_prevalence.trivialXH</a>, because this module has no infection states.</p>
     </div>
     <div class="section level2">
     <h2 id="get-and-change">Get and Change<a class="anchor" aria-label="anchor" href="#get-and-change"></a></h2>
@@ -210,21 +227,6 @@ use by <code>ramp.func</code></p>
 <ul><li><p><code>get_XH_pars</code> — the <code>trivialXH</code> method returns all the parameters</p></li>
 <li><p><code>change_XH_pars</code> — change parameters by name</p></li>
 </ul></div>
-    <div class="section level2">
-    <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a></h2>
-
-
-<ol><li><p>The module has no state variables.</p></li>
-<li><p>The size of an object saved by <code>saveRDS</code> balloons if it saves a function,
-so the <code>saveXDS</code> function strips the functions and <code>readXDS</code> remakes the function
-from the stored function object using <a href="https://dd-harp.github.io/ramp.func/reference/make_function.html" class="external-link">make_function</a>.</p></li>
-<li><p><code>F_season</code>, <code>F_trend</code>, <code>F_shock</code>, <code>H_season</code>, <code>H_trend</code>, and <code>H_shock</code>
-can be set up manually by passing any
-user-defined function. If so, the user should use <code>saveRDS</code> and <code>readRDS</code>
-rather than <code>saveXDS</code> and <code>readXDS</code>.</p></li>
-<li><p>Setup uses a <code>residence</code> vector. The module constructs <code>H</code> and <code>kappa</code>
-with length <code>nStrata[i]</code>.</p></li>
-</ol></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

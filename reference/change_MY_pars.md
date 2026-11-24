@@ -1,7 +1,8 @@
 # Change parameters (**MY**)
 
-For the **MY** module for the \\s^{th}\\ species, change parameter
-values named in `options`, leaving other values unchanged.
+Change parameter values named in `options` for the selected **MY**
+module for the \\s^{th}\\ vector species, leaving other values
+unchanged.
 
 ## Usage
 
@@ -32,7 +33,8 @@ an **`xds`** model object
 This is designed to work for static parameters or for parameters that
 are set up as ports, where the class of the bionomic object is "static."
 
-Use advanced setup to modify dynamic bionomic ports.
+Use advanced setup to modify dynamic bionomic ports. Dispatch is on the
+class of `xds_obj$MY_obj[[s]]`.
 
 ## See also
 

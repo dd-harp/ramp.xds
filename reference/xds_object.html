@@ -5,49 +5,9 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The xds Model Object — xds_object"><meta name="description" content="A dynamical system is encoded and stored
-on an xds model
-object,
-a compound list with
-a specific set of features.
-A properly constructed xds object is
-returned by xds_setup or one of its variants (see xds_info_basic_setup).
-The object is created in several steps:
-a basic template for an xds object is returned by
-make_xds_object_template, which
-sets the value of structural parameters;
-creates empty lists to hold the module objects: XH_obj, MY_obj, and L_obj;
-sets up empty ports and junctions;
-
-the core dynamical components are set up; and
-the values of a few modifiable parameters affecting transmission are set.
-
-
-While xds object internals are useful for developers,
-functions have been developed to
-set up (setup_*), inspect (get_*), and modify (change_*) various
-aspects of xds objects."><meta property="og:description" content="A dynamical system is encoded and stored
-on an xds model
-object,
-a compound list with
-a specific set of features.
-A properly constructed xds object is
-returned by xds_setup or one of its variants (see xds_info_basic_setup).
-The object is created in several steps:
-a basic template for an xds object is returned by
-make_xds_object_template, which
-sets the value of structural parameters;
-creates empty lists to hold the module objects: XH_obj, MY_obj, and L_obj;
-sets up empty ports and junctions;
-
-the core dynamical components are set up; and
-the values of a few modifiable parameters affecting transmission are set.
-
-
-While xds object internals are useful for developers,
-functions have been developed to
-set up (setup_*), inspect (get_*), and modify (change_*) various
-aspects of xds objects."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The xds Model Object — xds_object"><meta name="description" content="A properly constructed xds object is
+returned by xds_setup or one of its variants (see xds_info_basic_setup)."><meta property="og:description" content="A properly constructed xds object is
+returned by xds_setup or one of its variants (see xds_info_basic_setup)."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -55,7 +15,7 @@ aspects of xds objects."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,14 +89,19 @@ aspects of xds objects."></head><body>
     </div>
 
     <div class="ref-description section level2">
+    <p>A properly constructed xds object is
+returned by <a href="xds_setup.html">xds_setup</a> or one of its variants (see <a href="xds_basic_setup.html">xds_info_basic_setup</a>).</p>
+    </div>
+
+
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>A dynamical system is encoded and stored
 on an <strong><code>xds</code></strong> model
 object,
 a compound <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> with
 a specific set of features.</p>
-<p>A properly constructed xds object is
-returned by <a href="xds_setup.html">xds_setup</a> or one of its variants (see <a href="xds_basic_setup.html">xds_info_basic_setup</a>).
-The object is created in several steps:</p><ul><li><p>a basic template for an xds object is returned by
+<p>The object is created in several steps:</p><ul><li><p>a basic template for an xds object is returned by
 <a href="make_xds_object_template.html">make_xds_object_template</a>, which</p><ul><li><p>sets the value of structural parameters;</p></li>
 <li><p>creates empty lists to hold the module objects: <code>XH_obj</code>, <code>MY_obj</code>, and <code>L_obj</code>;</p></li>
 <li><p>sets up empty ports and junctions;</p></li>
@@ -148,14 +113,13 @@ functions have been developed to
 set up (<code>setup_*</code>), inspect (<code>get_*</code>), and modify (<code>change_*</code>) various
 aspects of xds objects.</p>
     </div>
-
-
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Vignettes: <a href="https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html">Getting Started</a>, <a href="https://dd-harp.github.io/ramp.xds/articles/Working.html">Working</a>, and <a href="https://dd-harp.github.io/ramp.xds/articles/ex_534.html">The 5-3-4 Model</a></p></div>
     </div>
 
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

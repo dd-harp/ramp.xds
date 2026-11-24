@@ -23,7 +23,7 @@ to represent the extrinsic incubation period."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,6 +107,11 @@ to represent the extrinsic incubation period.</p>
 
 
     <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>The resulting <code>EIR</code> and <code>HBR</code>
+orbits are attached to the XH output during parsing.</p>
+    </div>
+    <div class="section level2">
     <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
 
 
@@ -153,7 +158,7 @@ to represent the extrinsic incubation period.</p>
 <dd><p>extrinsic incubation period — use <a href="setup_eip.html">setup_eip</a></p></dd>
 
 <dt><code>sigma</code> or \(\sigma\)</dt>
-<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_emigration_rates</a></p></dd>
+<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_mosy_emigration</a></p></dd>
 
 <dt><code>mu</code> or \(\mu\)</dt>
 <dd><p>emigration loss fraction — use <a href="setup_mu.html">setup_mu</a> or <a href="setup_mu.html">setup_emigration_loss</a></p></dd>
@@ -162,7 +167,7 @@ to represent the extrinsic incubation period.</p>
 <dd><p>mosquito dispersal matrix — use <a href="setup_K_matrix.html">setup_K_matrix</a></p></dd>
 
 <dt><code>nu</code> or \(\nu\)</dt>
-<dd><p>egg batch rate — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
+<dd><p>oviposition rate: the number of egg batches laid in each patch, per mosquito, per day — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
 
 <dt><code>eggsPerBatch</code> or \(\Gamma\)</dt>
 <dd><p>number of eggs per batch</p></dd>
@@ -179,7 +184,7 @@ parameter values. This module does not support dynamic bionomic ports.</p>
 \(\Omega\). The parameter \(g\) is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
 rates \(\sigma\), and a fraction \(\mu\) of emigrating mosquitoes is
-lost. The total rate of loss from a patch is $$g+\mu\sigma.$$</p>
+lost. The combined rate of mortality and loss during emigration is $$g+\mu\sigma.$$</p>
 <p>The columns of the mosquito dispersal matrix \(K\) sum to zero. For
 non-trivial dispersal matrices, \(\mbox{diag}(K)=-1\); the off-diagonal
 elements describe the fractions of surviving emigrants that arrive in
@@ -236,25 +241,25 @@ EIP.</p>
 </dl><p><a href="F_fqZ.macdonald.html">F_fqZ.macdonald</a> and <a href="F_fqM.macdonald.html">F_fqM.macdonald</a> compute these patch-level
 quantities. <a href="compute_EIR.html">compute_EIR</a> combines <code>fqZ</code> with the biting distribution
 matrix and resident-bite fraction to compute stratum-level EIR; <a href="F_hbr.html">F_hbr</a>
-computes HBR from <code>fqM</code> in the same way. The resulting <code>EIR</code> and <code>HBR</code>
-orbits are attached to the XH output during parsing.</p>
+computes HBR from <code>fqM</code> in the same way.</p>
     </div>
     <div class="section level2">
     <h2 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a></h2>
 
 
-<p>The egg batch rate \(\nu\) and the number of eggs per batch
+<p>The oviposition rate \(\nu\) and the number of eggs per batch
 \(\Gamma\) determine the egg production rate per patch:
 $$G=\nu\Gamma M.$$
 <a href="F_eggs.macdonald.html">F_eggs.macdonald</a> computes \(G\), which is passed to <a href="EggLaying.html">EggLaying</a> for
 distribution among aquatic habitats.</p>
     </div>
     <div class="section level2">
-    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <h2 id="note-1">Note<a class="anchor" aria-label="anchor" href="#note-1"></a></h2>
 
 
-<p>This model is not capable of handling exogenous forcing by weather or
-vector control. Use the <code>GeM</code> module instead.</p>
+<p>Scalar parameters have no ports for exogenous forcing or vector control.
+Use the <code>GeM</code> module for those capabilities. The standard dispersal-matrix
+port follows the shared bionomics and effect-size convention.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

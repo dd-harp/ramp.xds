@@ -14,7 +14,8 @@ make_K_matrix_xy(xy, F_K = F_exp, V = list())
 
 - xy:
 
-  is a vector of the xy-coordinates of patch locations
+  a numeric matrix or data frame with one row per patch and columns for
+  the x and y coordinates
 
 - F_K:
 
@@ -23,6 +24,11 @@ make_K_matrix_xy(xy, F_K = F_exp, V = list())
 - V:
 
   variables
+
+## Value
+
+a mosquito dispersal [matrix](https://rdrr.io/r/base/matrix.html) with
+one row and column per patch location
 
 ## See also
 

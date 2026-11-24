@@ -1,10 +1,10 @@
-# Compute emergent adults for `trivialL` (**L** component)
+# Compute emergent adults for `trivialL` (**L**)
 
 The number of emerging adults is a function \$\$\Lambda F_S(t) F_T(t)
 F_K(t)\$\$ where
 
 - \\\Lambda\\ or `Lambda` is the mean number of adult female mosquitoes
-  emerging per day
+  emerging from each aquatic habitat per day
 
 - \\F_S(t)\\ or `F_season` is a seasonal signal (ideally, with an
   average annual mean of 1)

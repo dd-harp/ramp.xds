@@ -1,4 +1,4 @@
-# A negative binomial model for the daily FoI as a function of the daily EIR.
+# A negative binomial model for the daily EIR as a function of the daily FoI
 
 Implements
 [foi2eir](https://dd-harp.github.io/ramp.xds/reference/foi2eir.md) for a
@@ -32,9 +32,9 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Details
 
-Compute the daily AR, \\h\\, given the daily EIR, \\E\\, under a
+Compute the daily EIR, \\E\\, given the daily FoI, \\h\\, under a
 negative binomial model for the distribution of bites per person, and
-\\b\\, the probability of infection per infective bite: \$\$\alpha =
+\\b\\, the probability of infection per infective bite: \$\$E =
 \left(e^{h/\phi} -1\right) \frac \phi b \$\$
 
 ## See also

@@ -1,17 +1,11 @@
 # Change parameters for `basicL` (**L**)
 
-For the `basicL` module (**L**) for the \\s^{th}\\ species, change
-parameter values named in `options` leaving other values unchanged.
-
-Parameters:
-
-- `psi` or \\\psi\\
-
-- `xi` or \\\xi\\
-
-- `phi` or \\\phi\\
-
-- `theta` or \\\theta\\
+Change parameter values named in `options` for the `basicL` module,
+leaving other values unchanged. Refresh baseline bionomics at time zero
+using
+[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md),
+without calling
+[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md).
 
 ## Usage
 
@@ -38,7 +32,28 @@ change_L_pars(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Parameters
+
+- `psi` or \\\psi\\:
+
+  maturation rate
+
+- `xi` or \\\xi\\:
+
+  delayed maturation parameter in response to mean crowding
+
+- `phi` or \\\phi\\:
+
+  density-independent mortality rate
+
+- `theta` or \\\theta\\:
+
+  slope of density-dependent mortality
+
 ## See also
+
+[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md),
+[get_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.basicL.md)
 
 [dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
 or

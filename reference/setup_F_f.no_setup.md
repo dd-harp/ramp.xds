@@ -1,4 +1,4 @@
-# Set up blood feeding rates
+# Set up F_f (no setup) (**MY**)
 
 Leave the existing blood feeding configuration unchanged.
 
@@ -13,7 +13,7 @@ setup_F_f(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a blood feeding rate or setup method name
 
 - xds_obj:
 

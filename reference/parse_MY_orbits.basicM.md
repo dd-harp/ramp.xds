@@ -1,8 +1,7 @@
 # Parse outputs for `basicM` (**MY**)
 
-Implements
-[parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
-for the basicM model.
+Extract the model state outputs for the `basicM` module from `outputs`
+and return them by name in a list. Also compute `parous = P/M`.
 
 ## Usage
 
@@ -15,7 +14,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) of outputs from deSolve
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -29,6 +28,10 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 a [list](https://rdrr.io/r/base/list.html)
 
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
+
 ## State Variables
 
 - `M`:
@@ -40,17 +43,23 @@ a [list](https://rdrr.io/r/base/list.html)
   density of parous adult mosquitoes: those that have blood-fed at least
   once
 
-## Dynamics
+## ODE
 
 Adult mosquitoes emerge from aquatic habitats at rate \\\Lambda\\ and
 disperse and die according to \\\Omega\\. The ODE model is \$\$
 \begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\\\ dP/dt &=
 f(M-P)-\Omega\cdot P \end{array}\$\$ Here, \\P\\ is the density of
-mosquitoes that have blood-fed at least once. Parity, \\P/M\\, is
-computed during parsing and stored as `parous`. For discrete-time
-models,
+mosquitoes that have blood-fed at least once.
+
+## DTS
+
+Adult mosquitoes emerge from aquatic habitats at rate \\\Lambda\\ and
+disperse and die according to \\\Omega\\. The one-day update in
 [Update_MYt.basicM](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.basicM.md)
-uses the one-day update equations.
+is \$\$ \begin{array}{rl} M_t &= \Lambda+e^{-\Omega}\cdot M\_{t-1} \\\\
+P_t &= f(M\_{t-1}-P\_{t-1})+e^{-\Omega}\cdot P\_{t-1} \end{array}\$\$
+Here, \\P\\ is the density of mosquitoes that have blood-fed at least
+once.
 
 ## See also
 

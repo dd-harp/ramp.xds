@@ -1,15 +1,23 @@
-# Set up `basicL` (**L**)
+# Set up the module object for `basicL` (**L**)
 
-This sets up a `basicL` model object for the **L** module for the
-\\s^{th}\\ vector species
+Set up a `basicL` module object for the **L** component and the
+\\s^{th}\\ vector species.
 
-- the object is created by
-  [make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)
+- Create the module object with
+  [make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md),
+  passing `nHabitats` and `options`.
 
-- the initial conditions are set by
-  [setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md)
+- Set the skill set using
+  [get_skillset_L](https://dd-harp.github.io/ramp.xds/reference/get_skillset_L.md).
 
-- `options` is passed to both to override the defaults
+- Set initial values using
+  [setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md),
+  passing `options` to override defaults.
+
+- Initialize habitat search weights using
+  [setup_habitat_search_weights.setup](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.setup.md).
+
+- Return the updated **`xds`** model object.
 
 ## Usage
 
@@ -46,7 +54,8 @@ an **`xds`** model object
 
 ## Note
 
-The module object is stored at `xds_obj$L_obj[[s]]`
+The module object is stored at `xds_obj$L_obj[[s]]` Its classes are
+`basicL` and `basicL_` followed by `xds_obj$xds`.
 
 ## See also
 

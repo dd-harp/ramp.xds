@@ -2,6 +2,8 @@
 
 For the `trivialMY` module (**MY**) for the \\s^{th}\\ species, change
 parameter values named in `options` leaving other values unchanged.
+Rebuild only forcing functions whose parameters are supplied. An empty
+parameter list resets the corresponding function to constant one.
 
 ## Usage
 
@@ -27,3 +29,11 @@ change_MY_pars(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+After the updates, call
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
+at time zero with the flattened initial state. Do not call
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md);
+bionomics is a no-op for this module.

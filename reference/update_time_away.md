@@ -1,7 +1,7 @@
-# Update the time spent
+# Update time away
 
-Port function for the time spent , \\\Theta\\. Dispatches on
-`class(xds_obj$XY_interface$time_away_obj[[i]])`.
+Port function for time away. Dispatches on
+`class(xds_obj$XH_obj[[i]]$time_away_obj)`.
 
 ## Usage
 

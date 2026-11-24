@@ -13,10 +13,63 @@ using
 [make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html),
 which returns a function of the form \\F(t,V).\\
 
+## Note
+
 The variables passed to the functions, \\V\\, are returned by
 [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
 which dispatches on the class of the stored function object (by default,
 an empty list).
+
+- `season_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_s\\
+
+- `trend_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_t\\
+
+- `shock_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_k\\
+
+- `H_season_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_s\\
+
+- `H_trend_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_t\\
+
+- `H_shock_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_k\\
+
+1.  The module has no state variables.
+
+2.  The size of an object saved by `saveRDS` balloons if it saves a
+    function, so the `saveXDS` function strips the functions and
+    `readXDS` remakes the function from the stored function object using
+    [make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html).
+
+3.  `F_season`, `F_trend`, `F_shock`, `H_season`, `H_trend`, and
+    `H_shock` can be set up manually by passing any user-defined
+    function. If so, the user should use `saveRDS` and `readRDS` rather
+    than `saveXDS` and `readXDS`.
+
+4.  Setup uses a `residence` vector. The module constructs `H` and
+    `kappa` with length `nStrata[i]`.
 
 ## Net Infectiousness
 
@@ -52,6 +105,8 @@ Note: \\0 \leq F\_\kappa(t) \leq 1\\
 
 ## Parameters
 
+Test positivity `q` defaults to `0.8`.
+
 **Net Infectiousness**
 
 - `kappa`:
@@ -69,24 +124,6 @@ Note: \\0 \leq F\_\kappa(t) \leq 1\\
 - `F_shock`:
 
   a shock function, \\K(t,V_k)\\
-
-- `season_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_s\\
-
-- `trend_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_t\\
-
-- `shock_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_k\\
 
 **Human Population Density**
 
@@ -106,46 +143,20 @@ Note: \\0 \leq F\_\kappa(t) \leq 1\\
 
   a shock function, \\K(t,V_k)\\
 
-- `H_season_par`:
+By default, `season_par`, `trend_par`, and `shock_par` configure
+constant-one forcing functions for net infectiousness. The corresponding
+`H_season_par`, `H_trend_par`, and `H_shock_par` configure constant-one
+forcing functions for human population density.
 
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_s\\
+## Prevalence
 
-- `H_trend_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_t\\
-
-- `H_shock_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_k\\
-
-Setup also adds the objects `season_par` and `trend_par` and `shock_par`
-for use by `ramp.func`
+[F_pr_obs.trivialXH](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.trivialXH.md)
+returns an empty numeric vector, as does
+[F_prevalence.trivialXH](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.trivialXH.md),
+because this module has no infection states.
 
 ## Get and Change
 
 - `get_XH_pars` — the `trivialXH` method returns all the parameters
 
 - `change_XH_pars` — change parameters by name
-
-## Notes
-
-1.  The module has no state variables.
-
-2.  The size of an object saved by `saveRDS` balloons if it saves a
-    function, so the `saveXDS` function strips the functions and
-    `readXDS` remakes the function from the stored function object using
-    [make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html).
-
-3.  `F_season`, `F_trend`, `F_shock`, `H_season`, `H_trend`, and
-    `H_shock` can be set up manually by passing any user-defined
-    function. If so, the user should use `saveRDS` and `readRDS` rather
-    than `saveXDS` and `readXDS`.
-
-4.  Setup uses a `residence` vector. The module constructs `H` and
-    `kappa` with length `nStrata[i]`.

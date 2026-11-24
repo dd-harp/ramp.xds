@@ -17,13 +17,20 @@ through several junction. The parameters are handled as *ports*
   are stored and the final value is the product of the baseline and the
   effect size.
 
+For both **MY** and **L**, a parameter `x` configured as a port is
+evaluated into `x_t` during bionomics, which also resets `es_x` to 1.
+Effect-size application then sets `x = x_t * es_x`. Parameters without
+ports are stored directly as `x` and are not modified by effect sizes.
+This rule includes EIP and the standard dispersal-matrix port; matrix
+effects use elementwise multiplication and must preserve the dispersal
+constraints.
+
 Each module in **`ramp.xds`** or in the satellite package
 **`ramp.library`** must be capable of handling time-varying parameters,
-or it should report that does not. For example, the module `macdonald`
-is not capable of handling either forcing or vector control. We would
-say that it is a strictly autonomous model: those capabilities are not
-in its *skill set.* To handle forcing and vector control, we developed
-`GeM.`
+or it should report that does not. For example, the scalar parameters in
+`macdonald` have no ports and remain autonomous. Its standard
+dispersal-matrix port follows the rule above. To handle forcing and
+vector control through scalar parameter ports, we developed `GeM`.
 
 ## Mosquito Dispersal
 

@@ -13,8 +13,7 @@ parse_L_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) with the solutions to a
-  dynamical system
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 

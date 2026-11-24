@@ -1,7 +1,7 @@
-# Compute steady states for **L** component modules
+# Compute steady states (**L**)
 
-For differential equation models, compute steady states as a function of
-daily eggs laid, \\\eta\\
+Compute steady-state aquatic mosquito densities for the selected **L**
+module given the daily egg input `eta` in each habitat.
 
 ## Usage
 
@@ -13,7 +13,7 @@ steady_state_L(eta, xds_obj, s = 1)
 
 - eta:
 
-  the egg-laying rate
+  the number of eggs laid in each habitat, per day
 
 - xds_obj:
 
@@ -30,4 +30,6 @@ variables at the steady state
 
 ## Note
 
-This method dispatches on the class of `L_obj`.
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. Equation-system
+selection and supported steady-state calculations depend on the module.
+Return values are not stored on the model object.

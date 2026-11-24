@@ -1,7 +1,7 @@
-# Mosquito biting rate for `RMdts`
+# Compute mosquito biting density for `RMdts` (**MY**)
 
-Returns `fqM`, the daily mosquito biting density on humans for each
-patch in the RMdts model.
+Return the daily mosquito biting density on humans, `fqM`, for each
+patch in the `RMdts` module. Compute `fqM = f*q*M`.
 
 ## Usage
 
@@ -35,4 +35,5 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## See also
 
-[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md),
+[F_fqZ.RMdts](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.RMdts.md)

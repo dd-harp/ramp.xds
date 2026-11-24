@@ -1,6 +1,6 @@
 # Set up no bad_habitats
 
-Don't change anything
+Don't change anything.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_bad_habitats(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

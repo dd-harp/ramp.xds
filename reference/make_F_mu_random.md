@@ -1,6 +1,7 @@
-# Make random emigration-loss fractions
+# Make random emigration-loss fractions (**MY**)
 
-Build a configuration object for random emigration-loss fractions.
+Draw emigration-loss fractions once during setup. Subsequent evaluations
+reuse these values.
 
 ## Usage
 
@@ -26,7 +27,8 @@ make_F_mu_random(
 
 - f_rand:
 
-  a random number generator
+  a random number generator called as `f_rand(nPatches, p1, p2)` that
+  returns a numeric vector of length `nPatches`
 
 - p1:
 
@@ -38,5 +40,9 @@ make_F_mu_random(
 
 ## Value
 
-a configuration object for
-[F_mu.random](https://dd-harp.github.io/ramp.xds/reference/F_mu.random.md)
+a static port object for
+[F_mu.static](https://dd-harp.github.io/ramp.xds/reference/F_mu.static.md)
+
+## Note
+
+The values are stored in a static port object.

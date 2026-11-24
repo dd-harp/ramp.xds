@@ -1,10 +1,10 @@
 # Set up ovitraps
 
-Pass a pre-configured ovitraps. If it passes the checks, it replaces the
+Pass pre-configured ovitraps. If they pass the checks, they replace the
 current ovitraps.
 
 If called with `name = "as_is"`, the ovitraps must be at
-`options$ovitraps`
+`options$ovitraps`.
 
 ## Usage
 

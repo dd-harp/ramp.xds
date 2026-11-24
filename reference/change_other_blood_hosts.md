@@ -1,7 +1,6 @@
-# Change the other_blood_hosts
+# Change other blood host availability
 
-Update the other_blood_hosts for the \\i^{th}\\ host species, and
-trigger updates for the `XY` interface.
+Set other blood host availability for vector species `s`.
 
 ## Usage
 
@@ -13,7 +12,7 @@ change_other_blood_hosts(other_blood_hosts, xds_obj, s = 1)
 
 - other_blood_hosts:
 
-  a other_blood_hosts
+  a numeric vector of patch-level availability
 
 - xds_obj:
 

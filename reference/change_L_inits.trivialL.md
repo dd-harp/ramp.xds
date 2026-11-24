@@ -1,9 +1,7 @@
 # Change initial values for `trivialL` (**L**)
 
-For the `trivialL` module (**L**) for the \\s^{th}\\ species, change
-initial values named in `options` leaving other values unchanged.
-
-Returns the unmodified **`xds`** object.
+The `trivialL` module has no state variables. Return the **`xds`**
+object unmodified; `options` is unused.
 
 ## Usage
 

@@ -1,6 +1,6 @@
-# Make other blood hosts
+# Make random other blood host availability
 
-Set up a random vector
+Generate a random vector of other blood host availability.
 
 ## Usage
 

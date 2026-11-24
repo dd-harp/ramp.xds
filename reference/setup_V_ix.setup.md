@@ -18,7 +18,7 @@ setup_V_ix(xds_obj, i)
 
 - i:
 
-  the variable index
+  the auxiliary-variable module index
 
 ## Value
 

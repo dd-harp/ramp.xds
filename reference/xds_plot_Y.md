@@ -1,6 +1,7 @@
-# Plot the density of infected and infective mosquitoes
+# Plot infected mosquito density (**MY**)
 
-Plot the density of infected and infective mosquitoes
+Plot saved infected mosquito density over time, one line per patch for
+the selected species.
 
 ## Usage
 
@@ -20,12 +21,28 @@ xds_plot_Y(xds_obj, s = 1, clrs = "purple", llty = 1, add = FALSE)
 
 - clrs:
 
-  a vector of colors for infected mosquitoes
+  a color for all patches or a vector of colors, one per patch
 
 - llty:
 
-  an integer (or integers) to set the `lty` for plotting
+  a line type for all patches or a vector of line types, one per patch,
+  passed to `lty`
 
 - add:
 
-  do not plot axes if TRUE
+  add lines to the existing plot if `TRUE`
+
+## Value
+
+invisible(NULL)
+
+## Note
+
+Reads `Y` and `time` through
+[get_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/get_MY_orbits.md).
+Creates a new plot unless `add = TRUE`; then adds lines to the existing
+plot.
+
+## See also
+
+[xds_lines_Y](https://dd-harp.github.io/ramp.xds/reference/xds_lines_Y.md)

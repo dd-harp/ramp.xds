@@ -26,4 +26,4 @@ check_deaths(death_rates, Nh)
 
 ## See also
 
-[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
+[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md)

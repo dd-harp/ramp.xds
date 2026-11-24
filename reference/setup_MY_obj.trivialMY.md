@@ -1,4 +1,4 @@
-# Set up `trivialMY` (**MY**)
+# Set up the module object for `trivialMY` (**MY**)
 
 This sets up a `trivialMY` model object for the **MY** module for the
 \\s^{th}\\ vector species
@@ -15,7 +15,8 @@ the latter, `F_fqZ`
 This builds a forcing function as a *composed time series function*
 using either functions or parameters:
 
-- Use a function if passed, and set the function object to an empty list
+- Use a function if passed, and set the corresponding parameter object
+  to an empty list
 
 - If no function is passed, the parameters should be a function object
   (see

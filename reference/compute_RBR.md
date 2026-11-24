@@ -1,6 +1,6 @@
-# Compute and attach the relative biting rates
+# Compute and attach relative biting rates
 
-Compute the available for the pathogen's hosts for blood feeding
+Compute and store relative biting rates for each host species.
 
 ## Usage
 

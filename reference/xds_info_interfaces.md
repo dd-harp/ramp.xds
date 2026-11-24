@@ -80,7 +80,7 @@ vignette](https://dd-harp.github.io/ramp.xds/articles/EggLaying.html).
 
 - XY Interface
 
-  - [xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+  - [xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
 
   - [xds_info_transmission](https://dd-harp.github.io/ramp.xds/reference/xds_info_transmission.md)
 

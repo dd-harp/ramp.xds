@@ -1,8 +1,6 @@
-# Static model for the blood feeding rate
+# Static model for the maturation rate (**L**)
 
-Implements
-[F_psi](https://dd-harp.github.io/ramp.xds/reference/F_psi.md) for a
-static model
+Return the baseline maturation rate for a static model.
 
 ## Usage
 
@@ -27,4 +25,4 @@ F_psi(t, xds_obj, s)
 
 ## Value
 
-\\psi\\, the baseline human fraction
+\\psi\\, the baseline maturation rate

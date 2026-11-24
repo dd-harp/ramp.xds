@@ -1,7 +1,7 @@
 # Change initial values for `SIS` (**XH**)
 
-For the `SIS` module (**XH**) for the \\i^{th}\\ host species, change
-initial values named in `options` leaving other values unchanged.
+Change initial values named in `options` for the `SIS` module, leaving
+other values unchanged.
 
 ## Usage
 
@@ -33,6 +33,11 @@ an **`xds`** model object
 The variable \\S\\ is redundant. It is computed as \\S=H-I.\\ Its
 initial value is not stored, so it can't be set or changed.
 
+## Note
+
+Stored initial values for this module are at
+`xds_obj$XH_obj[[i]]$inits`.
+
 ## State Variables
 
 - `H`:
@@ -55,3 +60,5 @@ names are returned by calling
 The function
 [make_XH_inits_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_SIS.md)
 is called during setup.
+
+[setup_XH_inits.SIS](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.SIS.md)

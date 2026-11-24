@@ -1,11 +1,6 @@
 # Set up births
 
-If an options list is passed as the first argument, then set
-
-- `births_name = name$name`
-
-- `options = name` and call
-  `setup_births(births_name, xds_obj, options, i)`.
+Set up births using an options list.
 
 ## Usage
 
@@ -35,3 +30,12 @@ setup_births(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, then set
+
+- `births_name = name$name`
+
+- `options = name` and call
+  `setup_births(births_name, xds_obj, options, i)`.

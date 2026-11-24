@@ -1,6 +1,7 @@
-# Make random EIP configuration
+# Make random EIP configuration (**MY**)
 
-Build a configuration object for random EIP values.
+Draw extrinsic incubation periods once during setup. Subsequent
+evaluations reuse these values.
 
 ## Usage
 
@@ -26,7 +27,8 @@ make_F_eip_random(
 
 - f_rand:
 
-  a positive random number generator
+  a random number generator called as `f_rand(nPatches, p1, p2)` that
+  returns a positive numeric vector of length `nPatches`
 
 - p1:
 
@@ -38,5 +40,10 @@ make_F_eip_random(
 
 ## Value
 
-a configuration object for
-[F_eip.random](https://dd-harp.github.io/ramp.xds/reference/F_eip.random.md)
+a static port object for
+[F_eip.static](https://dd-harp.github.io/ramp.xds/reference/F_eip.static.md)
+
+## Note
+
+The values are stored in a static port object. The stored time
+derivative is zero.

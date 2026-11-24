@@ -1,7 +1,7 @@
 # Change initial values for `SI` (**MY**)
 
-For the `SI` module (**MY**) for the \\s^{th}\\ species, change initial
-values named in `options` leaving other values unchanged.
+Change initial values named in `options` for the `SI` module, leaving
+other values unchanged.
 
 ## Usage
 
@@ -27,6 +27,11 @@ change_MY_inits(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Stored initial values for this module are at
+`xds_obj$MY_obj[[s]]$inits`.
 
 ## State Variables
 

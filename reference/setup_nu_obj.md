@@ -1,6 +1,8 @@
-# Setup Egg Batch Rate Bionomic Object
+# Set up bionomic port for oviposition rate (**MY**)
 
-Set up an object to compute the egg batch rate, \\nu\\
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline oviposition rate, \\nu\\, for a static model.
 
 ## Usage
 
@@ -12,12 +14,13 @@ setup_nu_obj(nu, MY_obj)
 
 - nu:
 
-  the egg batch rate (batches per mosquito per day)
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

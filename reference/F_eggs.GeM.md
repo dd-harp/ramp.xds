@@ -1,8 +1,7 @@
-# Egg production rate for `GeM`
+# Compute egg production for `GeM` (**MY**)
 
-Implements
-[F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-GeM model.
+Return the number of eggs laid by the adult mosquito population, per
+patch
 
 ## Usage
 
@@ -36,7 +35,7 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Egg Laying
 
-The egg batch rate \\\nu\\ and the number of eggs per batch,
+The oviposition rate \\\nu\\ and the number of eggs per batch,
 `eggs_per_batch`, determine the egg production rate per patch: \$\$G=\nu
 M\cdot\texttt{eggs\\per\\batch}.\$\$ F_eggs.GeM computes \\G\\, which is
 passed to

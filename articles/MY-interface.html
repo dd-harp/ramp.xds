@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -219,9 +219,11 @@ and initial values, parameter access, parsed outputs, and consistency
 checks. A module can also implement optional methods such as
 steady-state calculations when those are supported.</p>
 <p>Each module is identified by a class name, generically called
-<code>MYname</code> (for example, <code>SI</code>). Methods dispatch on
-the class of <code>xds_obj$MY_obj[[s]]</code>, where <code>s</code> is
-the vector-species index. MY method signatures use <code>s</code>
+<code>MYname</code> (for example, <code>SI</code>). Most methods
+dispatch on the class of <code>xds_obj$MY_obj[[s]]</code>, where
+<code>s</code> is the vector-species index. The setup generic instead
+dispatches on the supplied module name; the skill-set generic accepts
+either a model or a module name. MY method signatures use <code>s</code>
 consistently.</p>
 <div class="section level3">
 <h3 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
@@ -243,26 +245,151 @@ variables in the model’s state-variable order.</p></li>
 </ul>
 </div>
 <div class="section level3">
+<h3 id="state-variable-extraction">State-variable extraction<a class="anchor" aria-label="anchor" href="#state-variable-extraction"></a>
+</h3>
+<p><code>get_MY_vars.MYname</code> retrieves named state values from the
+dependent-variable vector <span class="math inline">\(y\)</span>.</p>
+<p>State-variable getters primarily serve solver evaluations that need
+variables by name; users rarely call them directly. Follow the shared <a href="XH-interface.html#state-variable-getters">getter conventions</a>:
+describe extraction from <code>y</code>, put index storage in
+<code>@note</code>, and return a named list of state variables and
+module-specific derived quantities. Document GeM’s <code>U</code> matrix
+and RMdts’s <code>Y</code> cohort matrix explicitly.</p>
+</div>
+<div class="section level3">
 <h3 id="bionomics">Bionomics<a class="anchor" aria-label="anchor" href="#bionomics"></a>
 </h3>
 <p>Two methods update bionomic parameter values before the dynamics are
 computed.</p>
 <ul>
-<li><p><code>MBionomics.MYname</code> – evaluates the baseline bionomic
+<li>
+<code>MBionomics.MYname</code> – evaluates the baseline bionomic
 parameter functions for the current time and resets the effect sizes to
-1.</p></li>
-<li><p><code>MEffectSizes.MYname</code> – applies vector control effect
-sizes to the bionomic parameters set by
-<code>MBionomics</code>.</p></li>
+1.</li>
+</ul>
+<p>For every parameter <code>x</code> configured as a port,
+<code>MBionomics</code> stores the baseline in <code>x_t</code> and
+resets <code>es_x</code> to 1. <code>MEffectSizes</code> then sets
+<code>x = x_t * es_x</code>. Parameters without ports are stored
+directly as <code>x</code> and are not modified by effect sizes. This
+includes EIP and the standard dispersal-matrix port: use
+<code>eip_t</code>/<code>es_eip</code> and
+<code>K_matrix_t</code>/<code>es_K_matrix</code>. Matrix multiplication
+by an effect size here is elementwise (<code>*</code>), not
+<code>%*%</code>; effects must preserve the dispersal-matrix
+constraints. Recompute demographic and survival matrices from the
+realized parameters after applying effect sizes. Dynamical parameter
+accessors such as <code>get_f</code> read the realized values rather
+than applying effects again; <code>get_MY_pars</code> retains each
+module’s documented parameter-reporting convention.</p>
+<ul>
+<li>
+<code>MEffectSizes.MYname</code> – applies vector control effect
+sizes to the bionomic parameters set by <code>MBionomics</code>.</li>
 </ul>
 <p>Both methods receive <code>t</code>, <code>y</code>,
 <code>xds_obj</code>, and <code>s</code>, and return the updated
 <code>xds_obj</code>.</p>
 </div>
+<div class="section level3">
+<h3 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
+</h3>
+<p>These methods compute quantities used by other component interfaces.
+Each returns a vector with one value per patch.</p>
+<ul>
+<li><p><code>F_fqZ.MYname</code> - returns the daily density of
+infectious mosquito bites on humans in each patch. The transmission
+interface uses it to compute EIR by human stratum.</p></li>
+<li><p><code>F_fqM.MYname</code> - returns the daily density of mosquito
+bites on humans in each patch. The transmission interface uses it to
+compute HBR by human stratum.</p></li>
+</ul>
+<p>For biting-output documentation, use “Compute infective mosquito
+biting density for <code>module</code> (<strong>MY</strong>)” for
+<code>F_fqZ</code> and “Compute mosquito biting density for
+<code>module</code> (<strong>MY</strong>)” for <code>F_fqM</code>;
+generic titles omit “for <code>module</code>”. Describe daily biting
+density on humans for each patch, not a per-host biting rate. Return
+documentation is “a [numeric] vector of length <code>nPatches</code>”.
+Link each method to its counterpart and document dispatch on
+<code>xds_obj$MY_obj[[s]]</code> in the generic notes.</p>
+<p>Preserve model-specific formulas: basicM returns zero infective
+biting; SI obtains infective density using <code>Upsilon %*% Y</code>;
+BQ, BQm, and BRQS use the blood-feeding states only. Flag implementation
+discrepancies rather than silently changing them: the three
+behavioral-state modules currently obtain <code>q</code> using
+<code>get_f</code>. <code>F_fqZ.SI</code> converts its matrix-product
+result to a numeric vector, preserving one value per patch.</p>
+<ul>
+<li>
+<code>F_eggs.MYname</code> - returns daily egg production by adult
+mosquitoes in each patch. The egg-laying interface distributes the eggs
+among habitats.</li>
+</ul>
+<p>Use “Compute egg production for <code>module</code>
+(<strong>MY</strong>)” for method titles and “Compute egg production
+(<strong>MY</strong>)” for the generic. Use the description “Return the
+number of eggs laid by the adult mosquito population, per patch” and
+return “a [numeric] vector of length <code>nPatches</code>”. Methods
+inherit the module NULL anchor’s <code>Egg Laying</code> section using
+<code>@inheritSection module Egg Laying</code>. In that section, explain
+the egg-laying population and formula: total adult density
+<code>M</code> for basicM, GeM, macdonald, RMdts, SI, and SEI; gravid
+density <code>Qu+Qy+Qz</code> for BQ, BQm, and BRQS. Multiply that
+density by <code>nu</code> and eggs per batch
+(<code>eggs_per_batch</code> in GeM, <code>eggsPerBatch</code> in the
+other modules). Link methods to their module and <code>EggLaying</code>;
+document dispatch on <code>xds_obj$MY_obj[[s]]</code> in the generic
+note.</p>
 </div>
-<div class="section level2">
-<h2 id="my-model-object">MY Model Object<a class="anchor" aria-label="anchor" href="#my-model-object"></a>
-</h2>
+<div class="section level3">
+<h3 id="dynamical-parameter-accessors">Dynamical parameter accessors<a class="anchor" aria-label="anchor" href="#dynamical-parameter-accessors"></a>
+</h3>
+<p><code>get_f</code>, <code>get_q</code>, <code>get_g</code>, and
+<code>get_sigma</code> return the stored realized feeding rate, human
+blood fraction, adult mosquito mortality rate, and patch emigration
+rate, respectively. They do not evaluate ports or apply effect sizes.
+Refresh port-backed values through bionomics and effect-size application
+first. These accessors differ from <code>get_MY_pars</code>, whose
+parameter-reporting convention is documented by each module.</p>
+<p>Use “Get the parameter for <code>module</code> (<strong>MY</strong>)”
+with the parameter’s full name in method titles; generic titles omit
+“for <code>module</code>”. Use a short description identifying the
+stored realized parameter per patch, inherit the module NULL anchor’s
+<code>Parameters</code> section, and return “a [numeric] vector of
+length <code>nPatches</code>”. Put dispatch on
+<code>xds_obj$MY_obj[[s]]</code> in the generic note. For BQ, BQm, and
+BRQS, <code>get_sigma</code> returns <code>sigma_b</code>, the
+blood-feeding emigration rate, not <code>sigma_q</code>. Their
+<code>get_g</code> methods read the generic <code>g</code>; BRQS’s
+mismatch with its state-specific mortality parameters remains deferred.
+The trivialMY mortality and emigration accessors return empty numeric
+vectors.</p>
+</div>
+<div class="section level3">
+<h3 id="mosquito-matrix-accessors">Mosquito-matrix accessors<a class="anchor" aria-label="anchor" href="#mosquito-matrix-accessors"></a>
+</h3>
+<p><code>get_Omega(xds_obj, s = 1)</code> returns the stored mosquito
+demographic matrix, <span class="math inline">\(\Omega\)</span>, and
+<code>get_Upsilon(xds_obj, s = 1)</code> returns the stored EIP
+survival-and-dispersal matrix, <span class="math inline">\(\Upsilon\)</span>, for the selected species. These
+shared functions read <code>xds_obj$MY_obj[[s]]$Omega</code> and
+<code>xds_obj$MY_obj[[s]]$Upsilon</code>, respectively; they do not
+recompute matrices or modify the model object. Each returns a matrix of
+dimensions <code>nPatches</code> by <code>nPatches</code>, or
+<code>NULL</code> if the corresponding matrix is not stored.</p>
+<p>Use the titles “Get the mosquito demographic matrix
+(<strong>MY</strong>)” and “Get the EIP survival-and-dispersal matrix
+(<strong>MY</strong>)”. Keep storage paths and the distinction between
+retrieval and recomputation in <code>@note</code>. Link the getters to
+each other, their corresponding <code>change_Omega</code> or
+<code>change_Upsilon</code> function, and
+<code>xds_info_mosquito_demography</code>. Do not implement
+module-specific getter methods.</p>
+</div>
+<div class="section level3">
+<h3 id="my-model-object">MY Model Object<a class="anchor" aria-label="anchor" href="#my-model-object"></a>
+</h3>
 <p>Each module defines a constructor and setup method for its
 <strong>MY</strong> model object. The constructor returns a list with
 the module’s class; the setup method stores it at
@@ -289,29 +416,16 @@ the object for vector species <code>s</code> at
 <code>xds_obj$MY_obj[[s]]</code>. It also prepares initial values and
 any shared interfaces needed by the module.</p></li>
 </ul>
+</div>
 <div class="section level3">
 <h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
 </h3>
 <ul>
+<li><p><code>get_MY_pars.MYname</code> returns the module’s parameters
+as a named list.</p></li>
 <li><p><code>change_MY_pars.MYname</code> changes supported parameter
 values after setup. New values are passed by name in
 <code>options</code>.</p></li>
-<li><p><code>get_MY_pars.MYname</code> returns the stored parameter
-values for inspection.</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
-</h3>
-<p><code>setup_MY_ix.MYname</code> sets up indices for the model’s state
-variables. <code>get_MY_ix</code> retrieves the stored indices.</p>
-<p>Two other methods use those indices: <code>get_MY_vars.MYname</code>
-retrieves state values from the dependent-variable vector <span class="math inline">\(y\)</span>, and
-<code>parse_MY_orbits.MYname</code> retrieves state values from solver
-output.</p>
-<ul>
-<li>Both methods return named lists. The parsed output can also include
-derived quantities specific to the model.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -328,30 +442,120 @@ constructor and stores the values at
 <code>xds_obj$MY_obj[[s]]$inits</code>.</p></li>
 <li><p><code>get_MY_inits</code> and <code>change_MY_inits.MYname</code>
 - inspect and change the stored initial values.</p></li>
-<li><p><code>change_MY_inits.MYname</code> - a utility to change the
-initial values.</p></li>
 </ul>
+<p><code>get_MY_inits</code> is an ordinary function, not an S3 generic.
+It returns the selected species’ stored <code>inits</code> field
+directly: a named list of initial values, an empty list if stored, or
+<code>NULL</code> if absent (as in <code>trivialMY</code>). Keep storage
+in a documentation note and link to setup/change functions; follow the
+shared getter wording in the <a href="XH-interface.html#initial-value-constructors">documentation
+conventions</a>.</p>
+<p>Title the constructor “Make initial values for <code>module</code>
+(<strong>MY</strong>)” and describe it as “Create a named list of
+initial values for the <code>module</code> module. Values in
+<code>options</code> override the defaults.” Its return description is
+“a named [list] of initial values”. Preserve model-specific
+explanations. Document numeric scalar expansion to
+<code>nPatches</code>, except that <code>RMdts</code> uses
+<code>nPatches * max_eip</code> for <code>Y</code>. State the
+<code>SI</code> restriction <code>Y &lt; P &lt; M</code>. Describe
+accessory initialization: <code>GeM</code> initializes <code>U</code>
+from <code>Upsilon</code> and <code>d1</code>, <code>d2</code>, and
+<code>d3</code> to zero; <code>macdonald</code> initializes
+<code>dk_ix</code> to zero. These accessory values are not independently
+set through <code>options</code>. The constructor, setup method, and
+change method each link to the other two in <code>@seealso</code>,
+following the shared <a href="XH-interface.html#initial-value-constructors">documentation
+conventions</a>.</p>
+<p>Use “Set up initial values for <code>module</code>
+(<strong>MY</strong>)” as the setup-method title. Describe calling the
+initial-value constructor and <code>options</code> overrides. Put the
+actual storage location in <code>@note</code>, and return “an
+<strong><code>xds</code></strong> model object”. Preserve special cases:
+GeM computes an EIP matrix for its constructor.</p>
+<p>Title initial-value changers “Change initial values for
+<code>module</code> (<strong>MY</strong>)”. Use “Change initial values
+named in <code>options</code> for the <code>module</code> module,
+leaving other values unchanged.” Describe supported values and special
+behavior, put storage explanations in <code>@note</code>, and return “an
+<strong><code>xds</code></strong> model object”. Keep reciprocal
+constructor/setup links. Flag implementation discrepancies separately
+rather than treating this contract as validation.</p>
+<p>Read unspecified values from the selected module’s <code>inits</code>
+list. RMdts rebuilds that list with its initial-value constructor and
+the selected species’ <code>max_eip</code>, so its <code>Y</code> values
+have length <code>nPatches * max_eip</code>; scalar overrides are
+expanded by the constructor.</p>
 </div>
 <div class="section level3">
-<h3 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
+<h3 id="initial-density-accessors">Initial-density accessors<a class="anchor" aria-label="anchor" href="#initial-density-accessors"></a>
 </h3>
-<p>These methods compute quantities used by other component interfaces.
-Each returns a vector with one value per patch.</p>
-<ul>
-<li><p><code>F_fqZ.MYname</code> - returns the daily density of
-infectious mosquito bites on humans in each patch. The transmission
-interface uses it to compute EIR by human stratum.</p></li>
-<li><p><code>F_fqM.MYname</code> - returns the daily density of mosquito
-bites on humans in each patch. The transmission interface uses it to
-compute HBR by human stratum.</p></li>
-<li><p><code>F_eggs.MYname</code> - returns daily egg production by
-adult mosquitoes in each patch. The egg-laying interface distributes the
-eggs among habitats.</p></li>
-</ul>
+<p><code>get_M</code> and <code>get_Z</code> return initial adult and
+infective mosquito densities, respectively, not current solver states or
+output trajectories. Use “Get the initial adult mosquito density for
+<code>module</code> (<strong>MY</strong>)” and “Get the initial
+infective mosquito density for <code>module</code>
+(<strong>MY</strong>)” for method titles; generic titles omit “for
+<code>module</code>”. Descriptions are “Return the initial adult
+mosquito density per patch.” and “Return the initial infective mosquito
+density per patch.”</p>
+<p>Methods inherit the module NULL anchor’s <code>State Variables</code>
+section and link to the module and <code>get_MY_inits</code>. Keep SI’s
+infective-density explanation in its inherited anchor section rather
+than repeating the derivation. Return “a [numeric] vector of length
+<code>nPatches</code>”; generic notes describe dispatch on
+<code>xds_obj$MY_obj[[s]]</code>. The implemented methods are
+<code>get_M</code> for basicM, GeM, macdonald, RMdts, and SI, and
+<code>get_Z</code> for GeM, macdonald, RMdts, and SI.</p>
+</div>
+<div class="section level3">
+<h3 id="variable-indices">Variable indices<a class="anchor" aria-label="anchor" href="#variable-indices"></a>
+</h3>
+<p><code>setup_MY_ix.MYname</code> sets up indices for the model’s state
+variables. <code>get_MY_ix</code> retrieves the stored indices.</p>
+<p><code>get_MY_ix(xds_obj, s = 1)</code> is an ordinary function
+defaulting to vector species 1, not an S3 generic. It returns the
+module’s stored <code>ix</code> field directly: a named list of variable
+indices, an empty list if stored, or <code>NULL</code> if absent.
+Document storage in <code>@note</code>, link to
+<code>setup_MY_ix</code>, and follow the shared <a href="XH-interface.html#variable-index-setup">index-getter
+conventions</a>.</p>
+<p>Use the title “Set up variable indices for <code>module</code>
+(<strong>MY</strong>)”. Describe consecutive allocation after
+<code>xds_obj$max_ix</code>, list the actual block order and lengths,
+and return “an <strong><code>xds</code></strong> model object”. Put
+index storage and the updated maximum in <code>@note</code>, following
+the shared <a href="XH-interface.html#variable-index-setup">indexing
+conventions</a>. Most blocks have length <code>nPatches</code>; GeM’s
+<code>U_ix</code> has length <code>nPatches^2</code>, and RMdts’s
+<code>Y_ix</code> has length <code>nPatches * max_eip</code>.</p>
+<p>Store indices at <code>xds_obj$MY_obj[[s]]$ix</code>, including for
+RMdts and BRQS. State extraction, output parsing, and dynamical terms
+must use this same module-level location. Index setup returns the
+updated model object.</p>
 </div>
 <div class="section level3">
 <h3 id="standard-outputs">Standard Outputs<a class="anchor" aria-label="anchor" href="#standard-outputs"></a>
 </h3>
+<p><code>get_MY_orbits(xds_obj, s = 1)</code> retrieves saved, parsed
+orbits (trajectories) after solving for <strong>MY</strong> for the
+selected species. It returns a list of module-specific outputs with
+<code>time</code> added from <code>xds_obj$outputs$time</code>. It reads
+<code>xds_obj$outputs$orbits$MY[[s]]</code>; it does not parse outputs
+or modify the model. Use the title “Get orbits (<strong>MY</strong>)”
+and the shared <a href="XH-interface.html#output-parsers">orbit-getter
+conventions</a>.</p>
+<p>Follow the shared <a href="XH-interface.html#output-parsers">output-parser conventions</a>:
+use “Parse outputs for <code>module</code> (<strong>MY</strong>)”,
+describe extraction from <code>outputs</code> into a named list, and use
+“a [list]” for returns. Document index storage at
+<code>xds_obj$MY_obj[[s]]$ix</code> and any derived quantities,
+including differences between <code>parous</code> and
+<code>parity</code>, cohort aggregation, and omitted auxiliary states.
+Parsers return results; the output-processing pipeline stores them at
+<code>xds_obj$outputs$orbits$MY[[s]]</code>. They do not update the
+model object themselves. The RMdts parser sums cohorts within each patch
+at each output time.</p>
 <p><code>parse_MY_orbits.MYname</code> parses the model’s state
 variables and any model-specific derived quantities from the solver
 output. During output processing, <code>ramp.xds</code> also records
@@ -364,17 +568,25 @@ HBR, respectively.</p>
 <div class="section level3">
 <h3 id="consistency-checks">Consistency Checks<a class="anchor" aria-label="anchor" href="#consistency-checks"></a>
 </h3>
-<p>The skill set describes a module’s capabilities and limitations. The
-consistency check can verify model-specific requirements before
-solving.</p>
+<p>The skill set describes a module’s capabilities and compatibilities.
+The consistency-check interface provides a place to implement
+model-specific checks before solving.</p>
+<p>Non-trivial modules report <code>&lt;parameter&gt;_is_port</code> for
+<code>f</code>, <code>q</code>, <code>g</code>, <code>sigma</code>,
+<code>sigma_b</code>, <code>sigma_q</code>, <code>mu</code>,
+<code>nu</code>, <code>eip</code>, and <code>K_matrix</code>. Each flag
+is <code>TRUE</code> for a parameter implemented as a port and
+<code>FALSE</code> for a direct or absent parameter. These flags
+describe the current module implementation, not whether a port’s current
+value varies with time.</p>
 <ul>
-<li>
-<code>get_skillset_MY.MYname</code> :: returns a list describing the
-module’s capabilities and limitations.</li>
-<li></li>
-<li>
-<code>check_MY.MYname</code> :: checks model-specific setup before
-solving.</li>
+<li><p><code>check_MY.MYname</code> :: provides a hook for
+model-specific checks before solving. Existing methods currently return
+the model unchanged and perform no checks.</p></li>
+<li><p><code>get_skillset_MY.MYname</code> :: returns the module’s
+capabilities and compatibilities as a list. A module without
+<code>Update_MYt.MYname</code> must include
+<code>dts = FALSE</code>.</p></li>
 </ul>
 </div>
 </div>
@@ -382,7 +594,7 @@ solving.</li>
 <h2 id="optional-functions">Optional Functions<a class="anchor" aria-label="anchor" href="#optional-functions"></a>
 </h2>
 <p>Optional methods should be implemented only when they are meaningful
-for the model. Record supported capabilities and limitations in the
+for the model. Record supported capabilities and compatibilities in the
 skill set.</p>
 <div class="section level3">
 <h3 id="steady-states">Steady States<a class="anchor" aria-label="anchor" href="#steady-states"></a>
@@ -400,6 +612,24 @@ for the <strong>MY</strong> component.</p></li>
 population density and net infectiousness, and compute the steady states
 for the <strong>Y</strong> component.</p></li>
 </ul>
+<p>Follow the shared steady-state documentation conventions in the XH
+interface: identify inputs, supported equation systems, actual return
+types, and state names. Method titles use “Compute steady states for
+<code>module</code> (<strong>MY</strong>)”. The three generics dispatch
+on <code>xds_obj$MY_obj[[s]]</code>. The Y generic requires a
+module-specific method; it does not provide a default calculation.</p>
+<p><code>steady_state_M.basicM</code> delegates to
+<code>steady_state_M_basicM</code>, which dispatches on
+<code>xds_obj$xds</code> to select <code>xde</code> or <code>dts</code>.
+Both return a numeric vector with the <code>M</code> block followed by
+the <code>P</code> block. <code>steady_state_MY.SI</code> similarly
+delegates to <code>steady_state_MY_SI</code>, but only its
+<code>xde</code> method is implemented; it returns a list with
+<code>M</code>, <code>P</code>, and <code>Y</code>. GeM and macdonald
+return lists with <code>M</code>, <code>P</code>, <code>Y</code>, and
+<code>Z</code>. These functions return values without storing them on
+the model object. The SEI calculation currently references undefined
+<code>M_eq</code> and requires repair before use.</p>
 </div>
 <div class="section level3">
 <h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
@@ -407,6 +637,120 @@ for the <strong>Y</strong> component.</p></li>
 <p>The MY interface does not define MY-specific plotting generics. A
 module may provide model-specific visualization functions that use its
 parsed outputs.</p>
+<p>The shared helpers <code>xds_plot_M</code>, <code>xds_plot_Y</code>,
+and <code>xds_plot_Z</code> plot saved adult, infected, and infective
+mosquito densities, respectively. <code>xds_plot_Y_fracs</code> and
+<code>xds_plot_Z_fracs</code> plot the saved fractions
+<code>y = Y/M</code> and <code>z = Z/M</code>; they do not calculate
+those fractions. All read the required fields and <code>time</code>
+through <code>get_MY_orbits</code> for the selected species and draw one
+line per patch. The parsed outputs must contain the requested
+quantity.</p>
+<p>Plot helpers create a new plot unless <code>add = TRUE</code>. Their
+corresponding <code>xds_lines_*</code> helpers require an existing plot.
+A single <code>clrs</code> or <code>llty</code> value applies to all
+patches; vectors supply one value per patch. All helpers return
+<code>invisible(NULL)</code>. Use titles such as “Plot infected mosquito
+density (<strong>MY</strong>)” and “Add lines for the infected mosquito
+fraction (<strong>MY</strong>)”, distinguishing infected <code>Y</code>
+from infective <code>Z</code>. Put required fields and plot/overlay
+behavior in <code>@note</code>, document colors and line types by patch,
+and link each plot helper to its corresponding line helper.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="documentation-conventions">Documentation conventions<a class="anchor" aria-label="anchor" href="#documentation-conventions"></a>
+</h2>
+<p>Follow the shared <a href="XH-interface.html#function-order">function
+order</a> in module and component files and in guide implementation
+sections. Keep functions with their documentation and preserve
+file-level review/TODO notes at the top.</p>
+<p>Follow the shared <a href="XH-interface.html#documentation-conventions">documentation
+conventions</a> for titles, equations, descriptions, notes, return
+values, and punctuation. Use <strong>MY</strong> as the component tag.
+For example, a derivative method title is “Compute the derivatives for
+<code>module</code> (<strong>MY</strong>)”, while an update method title
+is “Update states for <code>module</code> (<strong>MY</strong>)”.</p>
+<p>The method description must show the equations it actually computes,
+including accessory states and delay-dependent branches when present.
+For derivative methods, begin “Compute the derivatives for the
+<code>module</code> module:” and retain the equations immediately below.
+Inherit the module’s state, parameter, dynamical-term, and ODE or
+Dynamics sections as appropriate. Use “a [numeric] vector of derivatives
+in the module’s state-variable order” for returns. Document returned
+block order in <code>@note</code>, including matrix flattening and
+accessory derivatives where applicable. The generic documents dispatch
+on <code>xds_obj$MY_obj[[s]]</code>. The trivialMY method retains its
+empty-vector description and return value.</p>
+<p>Update method titles use “Update states for <code>module</code>
+(<strong>MY</strong>)”. Begin descriptions “Update the state variables
+for the <code>module</code> module:” and show the updating equations in
+<code>\deqn{}</code> immediately below. Inherit the same NULL-anchor
+sections as the derivative method, using <code>DTS</code> instead of
+<code>ODE</code>. For the current update methods, these are
+<code>State Variables</code>, <code>Dynamical Terms</code>,
+<code>Parameters</code>, and <code>DTS</code>; SEI’s update inherits
+<code>DTS</code> rather than its continuous-time <code>Dynamics</code>
+section. RMdts has no derivative method and follows the same
+four-section pattern. Document actual returns: basicM and SI return
+numeric vectors, while RMdts returns a list of <code>M</code>,
+<code>P</code>, <code>U</code>, <code>Y</code>, and <code>Z</code> and
+SEI returns a list of <code>M</code> and <code>Z</code>. Their interface
+discrepancies remain TODOs, not runtime changes.</p>
+<p>Keep storage and dispatch mechanics in <code>@note</code>, rather
+than using them as the functional description.</p>
+<p>Constructors use “Make a module object for <code>module</code>
+(<strong>MY</strong>)” as their title. Describe parameter initialization
+and <code>options</code> overrides, and identify the parameter getter
+and changer. The constructor, <code>get_MY_pars.MYname</code>, and
+<code>change_MY_pars.MYname</code> each link to the other two in
+<code>@seealso</code>. Document separately managed parameters, such as
+dispersal matrices, without implying that the changer updates every
+getter output.</p>
+<p>Parameter-changer titles use “Change parameters for
+<code>module</code> (<strong>MY</strong>)”. Start the description with
+“Change parameter values named in <code>options</code> for the
+<code>module</code> module, leaving other values unchanged.” Retain
+static-port restrictions, separate dispersal-setup instructions, and any
+bionomics or matrix refresh performed by that method. After parameter or
+port changes, call <code>MBionomics(0, y, xds_obj, s)</code> using the
+flattened initial state <code>y</code>; do not call
+<code>MEffectSizes</code> from the changer. Return an
+<strong><code>xds</code></strong> model object.</p>
+<div class="section level3">
+<h3 id="setup-documentation">Setup documentation<a class="anchor" aria-label="anchor" href="#setup-documentation"></a>
+</h3>
+<p>Use the title “Set up the module object for <code>module</code>
+(<strong>MY</strong>)” and start the description with “Set up a/an
+<code>module</code> module object for the <strong>MY</strong> component
+and the <span class="math inline">\(s^{th}\)</span> vector species.” In
+roxygen, write the species index as <code>\eqn{s^{th}}</code>.</p>
+<p>List the actual setup actions in code order: module-name assignment
+when present, construction using <code>nPatches</code> and
+<code>options</code>, skill-set setup, initial values, and the shared
+interfaces used by that module. Initial values may occur before or after
+interface setup; follow the implementation. End with “Return the updated
+<strong><code>xds</code></strong> model object.”</p>
+<p>Use these phrases for the corresponding interface steps:</p>
+<ul>
+<li>“Initialize the circadian function using
+<code>[setup_F_circadian.setup]</code>.”</li>
+<li>“Initialize the mosquito demographic matrix port.”</li>
+<li>“Initialize the EIP survival and dispersal matrix port.” Include
+this step for methods that configure the active EIP port; omit it from
+the <code>basicM</code> and <code>SEI</code> setup descriptions.</li>
+<li>“Initialize the mosquito dispersal matrix using
+<code>[setup_K_matrix.zero]</code>.” For behavioral-state models, use
+“matrices” and retain the <code>which_K</code> choices (<code>Kb</code>,
+<code>Kq</code>, and, for <code>BRQS</code>, <code>Ks</code>).</li>
+</ul>
+<p>In roxygen, the bracketed helper names above are links; in
+<code>ramp.library</code>, qualify them with <code>ramp.xds::</code>.
+These phrases describe initialization, not a promise that setup computes
+every matrix. The computation of Omega and Upsilon is outside this
+documentation convention.</p>
+<p>See <a href="https://dd-harp.github.io/ramp.library/articles/MY-How_To_Add_Model.html" class="external-link">Developing
+MY Modules</a> for an adaptable template.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

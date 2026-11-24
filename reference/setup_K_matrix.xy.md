@@ -1,8 +1,8 @@
 # Setup a Kernel-Based Mosquito Dispersal Matrix
 
 Set up a mosquito dispersal matrix from a set of \\x,y\\ coordinates and
-a *kernel,* a function that assigns weights by distance. The fraction
-leaving from each patch that arrive at other patch is the vector of
+a *kernel,* a function that assigns weights by distance. The fractions
+leaving from each patch that arrive at other patches form the vector of
 normalized weights.
 
 ## Usage
@@ -32,4 +32,4 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

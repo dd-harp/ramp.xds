@@ -1,6 +1,7 @@
-# Compute derivatives for `trivialL` (**L**)
+# Compute the derivatives for `trivialL` (**L**)
 
-Returns a numeric vector of length 0
+Return an empty numeric vector because the `trivialL` module has no
+state variables.
 
 ## Usage
 

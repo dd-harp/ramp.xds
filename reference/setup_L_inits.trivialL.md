@@ -1,4 +1,4 @@
-# Setup initial values for `trivialL` (**L**)
+# Set up initial values for `trivialL` (**L**)
 
 The `trivialL` module (**L**) for the \\s^{th}\\ species has no
 dynamical variables requiring initial values. This method sets the

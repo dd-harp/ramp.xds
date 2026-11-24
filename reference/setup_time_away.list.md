@@ -1,11 +1,11 @@
-# Set up a time spent
+# Set up time away
 
 If an options list is passed as the first argument, then set
 
 - `TAname = name$name`
 
 - `options = name` and call
-  `setup_time_away(TAname, xds_obj, options, s)`
+  `setup_time_away(TAname, xds_obj, options, i)`
 
 ## Usage
 
@@ -18,7 +18,7 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

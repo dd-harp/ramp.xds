@@ -9,8 +9,8 @@ to find information about a concept or function.
 - [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
   – an overview of basic setup
 
-- [xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
-  – setup options for other features
+- [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
+  – advanced setup
 
 - **`get_`** functions inspect a model component or its outputs
 

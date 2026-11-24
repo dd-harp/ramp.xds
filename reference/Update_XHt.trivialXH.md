@@ -1,4 +1,4 @@
-# Handle state updating for the `trivialXH` **X**-module
+# Update states for `trivialXH` (**XH**)
 
 The trivial model has no state variables so it returns a numeric vector
 of length 0

@@ -1,8 +1,6 @@
-# Static model for the EIP
+# Static model for the EIP (**MY**)
 
-Implements
-[F_eip](https://dd-harp.github.io/ramp.xds/reference/F_eip.md) for a
-static model
+Return the extrinsic incubation period for a static model.
 
 ## Usage
 

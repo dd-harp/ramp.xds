@@ -1,6 +1,6 @@
-# Get availability of other blood hosts
+# Get bad habitat availability
 
-Get availability of other blood hosts
+Get bad habitat availability
 
 ## Usage
 
@@ -20,4 +20,5 @@ get_bad_habitats(xds_obj, s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`

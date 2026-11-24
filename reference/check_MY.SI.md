@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check `SI` (**MY**)
 
-Run a check before solving
+Check `SI` (**MY**)
 
 ## Usage
 

@@ -1,8 +1,9 @@
-# Compute *Pf*PR by PCR
+# Compute observed prevalence by PCR
 
-Implements
-[F_pfpr_by_pcr](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)
-for the `SIS` model.
+Compatibility alias for
+[F_pr_obs.SIS](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.SIS.md).
+The `SIS` module does not distinguish diagnostic methods; all aliases
+use test positivity `q`.
 
 ## Usage
 

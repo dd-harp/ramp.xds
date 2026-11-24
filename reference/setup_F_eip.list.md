@@ -1,7 +1,6 @@
-# Set up F_eip from options
+# Set up F_eip (**MY**)
 
-If an options list is passed as the first argument, use its `name` field
-to select the setup method.
+Set up extrinsic incubation periods using an options list.
 
 ## Usage
 
@@ -31,3 +30,10 @@ setup_F_eip(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, use its `name` field
+to select the setup method. If `name` is NULL, use the `no_setup`
+method. Pass the list as `options` to
+[setup_F_eip](https://dd-harp.github.io/ramp.xds/reference/setup_F_eip.md).

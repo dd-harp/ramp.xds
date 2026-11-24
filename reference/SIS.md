@@ -19,6 +19,24 @@ Enhancements to the basic S-I-S model include:
 For a longer discussion, see the [SIS
 Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html).
 
+## Note
+
+The force of infection is computed and stored by
+[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md) as
+`FoI`.
+
+After solving, the orbit of the variable \\S=H-I\\ is computed and
+attached.
+
+The `SIS` module does not distinguish diagnostic methods.
+[F_pfpr_by_lm](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md),
+[F_pfpr_by_rdt](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_rdt.md),
+and
+[F_pfpr_by_pcr](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)
+are aliases for
+[F_pr_obs](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.md) for
+this module.
+
 ## State Variables
 
 - `H`:
@@ -37,9 +55,7 @@ Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html).
 
 - \\h\\ or `foi`:
 
-  The force of infection is computed and stored by
-  [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
-  as `FoI`
+  The force of infection
 
 In the `SIS` module, there is no effect of pre-erythrocytic immunity, so
 a constant fraction of infectious bites causes an infection: the
@@ -51,7 +67,7 @@ The parameters that are returned by
 [get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
 and also modifiable by
 [change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md)
-describe the dynamics, or detection by diagnostic methods.
+describe the dynamics or test positivity.
 
 - `b`:
 
@@ -73,17 +89,9 @@ describe the dynamics, or detection by diagnostic methods.
 
   the rate that prevalent infections are treated and cured
 
-- `q_lm`:
+- `q`:
 
-  test positivity by light microscopy
-
-- `q_rdt`:
-
-  test positivity by RDT
-
-- `q_pcr`:
-
-  test positivity by PCR
+  test positivity
 
 ## Infection Dynamics
 
@@ -152,9 +160,6 @@ Also, see
 \$\$ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I -
 \mathbf{D}(I) \$\$
 
-After solving, the orbit of the variable \\S=H-I\\ is computed and
-attached.
-
 ## DTS
 
 **Demography** — Demographic changes (**H**) are given by the equation:
@@ -167,26 +172,15 @@ first, and disease dynamics second: Let \\\alpha = 1-e^{-h}\\.
 \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
 \end{array}\$\$
 
-After solving, the orbit of the variable \\S=H-I\\ is computed and
-attached.
-
 ## Prevalence
 
 - \\x\\:
 
   True prevalence is \\x = I/H\\
 
-- \\x\_{lm}\\:
+- \\x_q\\:
 
-  Expected prevalence by light microscopy is \\q\_{lm}\\ x\\
-
-- \\x\_{rdt}\\:
-
-  Expected prevalence by RDT is \\q\_{rdt}\\ x\\
-
-- \\x\_{pcr}\\:
-
-  Expected prevalence by PCR is \\q\_{pcr}\\ x\\
+  Observed prevalence is \\x_q = q x = q I/H\\
 
 ## Infectiousness
 

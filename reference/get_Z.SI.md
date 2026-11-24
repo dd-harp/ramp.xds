@@ -1,6 +1,6 @@
-# Get the initial infective mosquito density
+# Get the initial infective mosquito density for `SI` (**MY**)
 
-Get the initial infective mosquito density
+Return the initial infective mosquito density per patch.
 
 ## Usage
 
@@ -21,7 +21,22 @@ get_Z(xds_obj, s = 1)
 
 ## Value
 
-the initial infective mosquito population density
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes
+
+- `Y`:
+
+  density of infected adult mosquitoes
 
 ## Infective Biting
 
@@ -42,8 +57,8 @@ time \\t\\, \\Y(t),\\ had survived and dispersed through an EIP of
 
 - `fqM`:
 
-  Human biting density: the number of human infectious bites, per patch,
-  per day
+  Human biting density: the number of bites on humans, per patch, per
+  day
 
 Note that \\e^{-\Omega \tau}\\ is computed with the matrix exponential
 function [expm](https://rdrr.io/pkg/expm/man/expm.html)
@@ -56,14 +71,11 @@ is called by
 [compute_EIR](https://dd-harp.github.io/ramp.xds/reference/compute_EIR.md)
 (in
 [Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md))
-to compute and store `EIR,` the local daily EIR \\(E)\\. Note that `fqZ`
+to compute and store `EIR`, the local daily EIR \\(E)\\. Note that `fqZ`
 is a vector of length `nPatches` but the local EIR is a vector of length
-`nStrata.` The **XY** interface uses information about humans and
+`nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\\beta,\\ and if
-there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
-`fqZ` and `EIR` are computed and stored by
-[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-by the functions that parse the outputs.
+there are no visitors, then \$\$E = \beta \cdot fqZ\$\$
 
 **The HBR**
 

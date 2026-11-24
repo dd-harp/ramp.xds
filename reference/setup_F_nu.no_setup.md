@@ -1,6 +1,6 @@
-# Set up no F_nu
+# Set up F_nu (no setup) (**MY**)
 
-Don't change anything
+Leave the existing oviposition rate configuration unchanged.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_nu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an oviposition rate or setup method name
 
 - xds_obj:
 

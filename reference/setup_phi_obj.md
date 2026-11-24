@@ -1,6 +1,9 @@
-# Set up phi object (density independent mortality)
+# Set up bionomic port for density-independent mortality rate (**L**)
 
-Set up an object to compute the density independent death rate, \\phi\\
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline density-independent mortality rate, \\phi\\, for a
+static model.
 
 ## Usage
 
@@ -12,12 +15,12 @@ setup_phi_obj(phi, L_obj)
 
 - phi:
 
-  the human fraction
+  the density-independent mortality rate
 
 - L_obj:
 
-  an **`L`** model object
+  an **`L`** module object
 
 ## Value
 
-a **`L`** model object
+an **`L`** module object

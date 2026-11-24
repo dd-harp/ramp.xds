@@ -1,7 +1,7 @@
-# Static model for the maturation delay parameter
+# Static model for the delayed maturation parameter (**L**)
 
-Implements [F_xi](https://dd-harp.github.io/ramp.xds/reference/F_xi.md)
-for a static model
+Return the baseline delayed maturation parameter in response to mean
+crowding for a static model.
 
 ## Usage
 
@@ -26,4 +26,5 @@ F_xi(t, xds_obj, s)
 
 ## Value
 
-\\xi\\, the baseline human fraction
+\\xi\\, the baseline delayed maturation parameter in response to mean
+crowding

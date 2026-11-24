@@ -1,7 +1,6 @@
-# Compute the EIP
+# Compute the EIP (**MY**)
 
-This method dispatches on the type of `eip_obj` and computes the
-extrinsic incubation period.
+Compute the extrinsic incubation period.
 
 ## Usage
 

@@ -1,6 +1,6 @@
-# Set up no other_blood_hosts
+# Leave other blood host availability unchanged
 
-Don't change anything
+Return `xds_obj` without changing the configured availability.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_other_blood_hosts(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 

@@ -1,10 +1,14 @@
-# Check Time Spent
+# Check time away
 
 Check that
 
-- there ar \\N_p\\ columns and \\N_h\\ rows
+- the input is numeric
 
-- the column sums are at most 1\`
+- all elements are non-negative
+
+- all elements are at most 1
+
+- the length is `Nh`
 
 ## Usage
 
@@ -16,7 +20,7 @@ check_time_away(TA, Nh)
 
 - TA:
 
-  a time spent vector
+  a time away vector
 
 - Nh:
 
@@ -24,4 +28,4 @@ check_time_away(TA, Nh)
 
 ## See also
 
-[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
+[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md)

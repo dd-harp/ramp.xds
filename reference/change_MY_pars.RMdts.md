@@ -1,7 +1,11 @@
 # Change parameters for `RMdts` (**MY**)
 
-Change static parameter values named in `options`, leaving other values
-unchanged.
+Change parameter values named in `options` for the `RMdts` module,
+leaving other values unchanged. Call
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
+at time zero after updating parameters, without calling
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md).
+This method changes static parameter values.
 
 ## Usage
 

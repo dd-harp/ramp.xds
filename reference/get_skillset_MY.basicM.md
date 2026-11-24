@@ -1,6 +1,7 @@
-# The skill set
+# Get the skill set for `basicM` (**MY**)
 
-The skill set
+Return the capabilities and compatibilities of the `basicM` module as a
+list.
 
 ## Usage
 

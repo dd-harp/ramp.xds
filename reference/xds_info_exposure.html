@@ -6,26 +6,26 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Exposure — xds_info_exposure"><meta name="description" content="The EIR computed by xds_info_transmission is a measure of local risk: it is
-the expected number of infected
+the expected number of infective
 bites, per person, and it is computed for every population stratum. In
-exposure, the daily local EIR is computed into a measure
+exposure, the daily local EIR is converted into a measure
 of the population FoI in three steps:
-the total EIR is the weighted sum of local exposure and travel exposure, using
-the concept of time here vs. time away;
+local and travel exposure are evaluated separately;
 the distribution of the number of bites per person is computed under a
-model of environmental heterogeneity ;
-the number of infections is computed under a model of partial immunity.
+model of environmental heterogeneity;
+local and travel FoI are computed under a model of partial immunity
+and combined using time here vs. time away.
 
 "><meta property="og:description" content="The EIR computed by xds_info_transmission is a measure of local risk: it is
-the expected number of infected
+the expected number of infective
 bites, per person, and it is computed for every population stratum. In
-exposure, the daily local EIR is computed into a measure
+exposure, the daily local EIR is converted into a measure
 of the population FoI in three steps:
-the total EIR is the weighted sum of local exposure and travel exposure, using
-the concept of time here vs. time away;
+local and travel exposure are evaluated separately;
 the distribution of the number of bites per person is computed under a
-model of environmental heterogeneity ;
-the number of infections is computed under a model of partial immunity.
+model of environmental heterogeneity;
+local and travel FoI are computed under a model of partial immunity
+and combined using time here vs. time away.
 
 "></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -35,7 +35,7 @@ the number of infections is computed under a model of partial immunity.
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,14 +110,14 @@ the number of infections is computed under a model of partial immunity.
 
     <div class="ref-description section level2">
     <p>The EIR computed by <a href="xds_info_transmission.html">xds_info_transmission</a> is a measure of <em>local</em> risk: it is
-the expected number of infected
+the expected number of infective
 bites, per person, and it is computed for every population stratum. In
-<strong>exposure,</strong> the daily local EIR is computed into a measure
-of the population FoI in three steps:</p><ul><li><p>the total EIR is the weighted sum of local exposure and travel exposure, using
-the concept of time here <em>vs.</em> time away;</p></li>
+<strong>exposure,</strong> the daily local EIR is converted into a measure
+of the population FoI in three steps:</p><ul><li><p>local and travel exposure are evaluated separately;</p></li>
 <li><p>the distribution of the number of bites per person is computed under a
-model of environmental heterogeneity ;</p></li>
-<li><p>the number of infections is computed under a model of partial immunity.</p></li>
+model of environmental heterogeneity;</p></li>
+<li><p>local and travel FoI are computed under a model of partial immunity
+and combined using time here <em>vs.</em> time away.</p></li>
 </ul></div>
 
 
@@ -136,7 +136,7 @@ binomially distributed. For more, see <a href="xds_info_environmental_heterogene
 
 <p>Travel malaria is defined by exposure to malaria while spending
 time outside of the spatial domain represented by the patches.
-See <a href="xds_info_travel_malaria.html">xds_info_travel_malaria</a></p>
+See <a href="xds_info_travel_malaria.html">xds_info_travel_malaria</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="pre-erythrocytic-immunity">Pre-Erythrocytic Immunity<a class="anchor" aria-label="anchor" href="#pre-erythrocytic-immunity"></a></h2>

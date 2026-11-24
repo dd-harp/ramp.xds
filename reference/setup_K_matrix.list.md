@@ -1,10 +1,6 @@
 # Setup K_matrix
 
-If the options list is passed as the first argument, the set
-
-- `Kname = name$name`
-
-- `options = name` and call `setup_K_matrix(Kname, xds_obj, options, s)`
+Set up the mosquito dispersal matrix using an options list.
 
 ## Usage
 
@@ -33,4 +29,11 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, use its `name` field
+to select the setup method. If `name` is NULL, use the `no_setup`
+method. Pass the list as `options` to
+[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md).

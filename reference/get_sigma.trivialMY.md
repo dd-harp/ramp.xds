@@ -21,4 +21,4 @@ get_sigma(xds_obj, s = 1)
 
 ## Value
 
-the patch emigration rates, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

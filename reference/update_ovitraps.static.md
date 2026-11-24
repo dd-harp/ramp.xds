@@ -1,6 +1,6 @@
 # Update ovitraps
 
-The `static` method returns `xds_obj` unmodified
+The `static` method returns `xds_obj` unmodified.
 
 ## Usage
 

@@ -1,6 +1,6 @@
-# Get mosquito population density
+# Get the initial adult mosquito density (**MY**)
 
-Get mosquito population density
+Return the initial adult mosquito density per patch.
 
 ## Usage
 
@@ -20,5 +20,20 @@ get_M(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Return initial density, not current solver states or output
+trajectories.
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.
+
+## See also
+
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md),
+[get_MY_vars](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.md),
+[get_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/get_MY_orbits.md)

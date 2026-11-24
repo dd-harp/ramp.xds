@@ -1,6 +1,6 @@
-# Add indices for human population to parameter list
+# Set up variable indices (**XH**)
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`
+Set up variable indices for the selected **XH** module and host species.
 
 ## Usage
 
@@ -21,3 +21,7 @@ setup_XH_ix(xds_obj, i)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch uses the class of `xds_obj$XH_obj[[i]]`.

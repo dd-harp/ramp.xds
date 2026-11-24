@@ -1,15 +1,32 @@
-# Set up `macdonald` (**MY**)
+# Set up the module object for `macdonald` (**MY**)
 
-This sets up a `macdonald` model object for the **MY** module for the
-\\s^{th}\\ vector species
+Set up a `macdonald` module object for the **MY** component and the
+\\s^{th}\\ vector species.
 
-- the object is created by
-  [make_MY_obj_macdonald](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_macdonald.md)
+- Set the module name to `macdonald`.
 
-- the initial conditions are set by
-  [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
+- Create the module object with
+  [make_MY_obj_macdonald](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_macdonald.md),
+  passing `nPatches` and `options`.
 
-- `options` is passed to both to override the defaults
+- Set the skill set using
+  [get_skillset_MY](https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.md).
+
+- Initialize the circadian function using
+  [setup_F_circadian.setup](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.setup.md).
+
+- Initialize the mosquito demographic matrix port.
+
+- Initialize the EIP survival and dispersal matrix port.
+
+- Initialize the mosquito dispersal matrix using
+  [setup_K_matrix.zero](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.zero.md).
+
+- Set initial values using
+  [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md),
+  passing `options` to override defaults.
+
+- Return the updated **`xds`** model object.
 
 ## Usage
 
@@ -92,7 +109,7 @@ The module object is stored at `xds_obj$MY_obj[[s]]`
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -108,7 +125,8 @@ The module object is stored at `xds_obj$MY_obj[[s]]`
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

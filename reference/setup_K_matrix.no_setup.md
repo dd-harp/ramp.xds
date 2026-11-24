@@ -1,8 +1,6 @@
-# Setup no dispersal matrix
+# Set up K_matrix (no setup) (**MY**)
 
-Implements
-[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-for the "no_setup" case
+Leave the existing mosquito dispersal configuration unchanged.
 
 ## Usage
 
@@ -31,4 +29,4 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

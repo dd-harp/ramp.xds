@@ -25,7 +25,7 @@ spent matrix and search weights, use xds_setup_human."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -194,11 +194,7 @@ spent matrix and search weights, use <a href="xds_setup_human.html">xds_setup_hu
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This sets</p>
-<p><code>class(xds_obj$frame) = 'eir'</code></p>
-<p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
-and parse outputs.</p>
-<p><strong>Dynamics</strong></p>
+    <p><strong>Dynamics</strong></p>
 <p>Configure the <strong>XH</strong> component:</p><ul><li><p><code>XHname</code> — the name of an <strong>XH</strong> module: see the <a href="XH_module_list.html">XH_module_list</a> for human / host infection dynamics</p></li>
 <li><p><code>HPop</code> — the initial human population density</p></li>
 <li><p><code>XHoptions</code> sets parameter values and initial conditions for the <strong>XH</strong> module</p></li>
@@ -214,12 +210,19 @@ can be configured to compute relative biting rates by age:</p><ul><li><p><code>e
 <li><p><code>F_age</code> or <code>age_par</code> — set up relative biting rates by age</p></li>
 </ul></div>
     <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>This sets</p>
+<p><code>class(xds_obj$frame) = 'eir'</code></p>
+<p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
+and parse outputs.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
 <ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_setup_human.html">xds_setup_human</a>, <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
 <li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
-<li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
+<li><p>Advanced Setup: <a href="xds_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a>, <a href="xds_solve_cohort.html">xds_solve_cohort</a></p></li>
 <li><p>Internals: <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>,
 <a href="xds_object.html">xds_object</a>, <a href="make_xds_object_template.html">make_xds_object_template</a></p></li>

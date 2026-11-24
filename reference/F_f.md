@@ -1,6 +1,6 @@
-# Compute the blood feeding rate, f
+# Compute the baseline blood feeding rate (**MY**)
 
-Set the baseline value of the feeding rate, \\f\\.
+Compute the baseline blood feeding rate, \\f\\.
 
 ## Usage
 
@@ -29,4 +29,5 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Note
 
-This method dispatches on the type of `f_obj` attached to the `MY_obj`.
+This method dispatches on the class of the port object `f_obj` attached
+to the `MY_obj`.

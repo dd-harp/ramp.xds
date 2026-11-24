@@ -1,6 +1,6 @@
-# Run checks before solving (**L**)
+# Check model (**L**)
 
-Run checks before solving (**L**)
+Check model (**L**)
 
 ## Usage
 

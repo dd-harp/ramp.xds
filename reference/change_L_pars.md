@@ -1,7 +1,7 @@
 # Change parameters (**L**)
 
-For the **L** module for the \\s^{th}\\ species, change parameter values
-named in `options`, leaving other values unchanged.
+Change parameter values named in `options` for the selected **L** module
+for the \\s^{th}\\ vector species, leaving other values unchanged.
 
 ## Usage
 
@@ -27,8 +27,12 @@ change_L_pars(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Dispatch is on the class of `xds_obj$L_obj[[s]]`.
+
 ## See also
 
 [get_L_pars](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.md),
 [setup_L_obj](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md),
-[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
+[xds_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)

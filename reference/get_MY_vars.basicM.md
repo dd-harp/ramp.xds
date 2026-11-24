@@ -1,6 +1,7 @@
-# Return the variables as a list
+# Get the state variables for `basicM` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`
+Extract the state variables for the `basicM` module from `y` and return
+them by name in a list for use during model solving.
 
 ## Usage
 
@@ -25,7 +26,12 @@ get_MY_vars(y, xds_obj, s)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of state variables and
+module-specific derived quantities
+
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
 
 ## State Variables
 

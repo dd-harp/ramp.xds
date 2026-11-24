@@ -12,14 +12,16 @@ Dynamics — set up the dynamical components
 Model Structure — set up the basic model structure
 Basic Spatial Dynamics — set up the basic spatial parameters
 
-"><meta property="og:description" content="Basic Setup is defined by the use of xds_setup or one of its variants.
+
+Advanced Setup — xds_advanced_setup"><meta property="og:description" content="Basic Setup is defined by the use of xds_setup or one of its variants.
 It returns an xds model object that can be solved by xds_solve or
 modified through advanced setup. The functions do three things:
 Dynamics — set up the dynamical components
 Model Structure — set up the basic model structure
 Basic Spatial Dynamics — set up the basic spatial parameters
 
-"></head><body>
+
+Advanced Setup — xds_advanced_setup"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -27,7 +29,7 @@ Basic Spatial Dynamics — set up the basic spatial parameters
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,9 +108,14 @@ It returns an <strong>xds</strong> model object that can be solved by <a href="x
 modified through advanced setup. The functions do three things:</p><ul><li><p><strong>Dynamics</strong> — set up the dynamical components</p></li>
 <li><p><strong>Model Structure</strong> — set up the basic model structure</p></li>
 <li><p><strong>Basic Spatial Dynamics</strong> — set up the basic spatial parameters</p></li>
-</ul></div>
+</ul><p><strong>Advanced Setup</strong> — <a href="xds_advanced_setup.html">xds_advanced_setup</a></p>
+    </div>
 
 
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Each function sets <code>class(xds_obj$frame)</code> to dispatch functions that are used to solve dynamical systems.</p>
+    </div>
     <div class="section level2">
     <h2 id="basic-setup-functions">Basic Setup Functions<a class="anchor" aria-label="anchor" href="#basic-setup-functions"></a></h2>
 
@@ -120,8 +127,7 @@ modified through advanced setup. The functions do three things:</p><ul><li><p><s
 <li><p><a href="xds_setup_aquatic.html">xds_setup_aquatic</a> sets up a model for aquatic dynamics forced by egg laying.</p></li>
 <li><p><a href="xds_setup_human.html">xds_setup_human</a> sets up an <strong>XH</strong> module to study disease dynamics forced by infective biting in the patches.</p></li>
 <li><p><a href="xds_setup_eir.html">xds_setup_eir</a> sets up an <strong>XH</strong> module to study disease dynamics forced by the daily EIR.</p></li>
-</ul><p>Each function sets <code>class(xds_obj$frame)</code> to dispatch functions that are used to solve dynamical systems.</p>
-    </div>
+</ul></div>
     <div class="section level2">
     <h2 id="xds-setup"><a href="xds_setup.html">xds_setup</a><a class="anchor" aria-label="anchor" href="#xds-setup"></a></h2>
 

@@ -1,6 +1,6 @@
-# Set up F_q
+# Configure the human fraction function (**MY**)
 
-Set up F_q
+Configure the function used to compute the baseline human fraction.
 
 ## Usage
 
@@ -12,7 +12,7 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a human fraction or setup method name
 
 - xds_obj:
 

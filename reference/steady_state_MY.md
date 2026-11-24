@@ -1,8 +1,7 @@
-# Compute steady states for **MY**
+# Compute steady states (**MY**)
 
-Given the emergence rate of adult mosquitoes (\\\Lambda\\ or `Lambda`)
-and the net infectiousness of humans (\\\kappa\\ or `kappa`), compute
-the steady states for the system
+Compute steady-state mosquito densities for the selected **MY** module
+given adult mosquito emergence `Lambda` and net infectiousness `kappa`.
 
 ## Usage
 
@@ -30,4 +29,11 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-the steady states
+module-specific steady-state values; see the selected method for the
+return type and state names
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`. Equation-system
+selection and supported steady-state calculations depend on the module.
+Return values are not stored on the model object.

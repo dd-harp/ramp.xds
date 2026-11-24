@@ -1,7 +1,6 @@
-# Compute the Egg Laying Rate
+# Compute the baseline oviposition rate (**MY**)
 
-This method dispatches on the type of `nu_obj`. It should set the values
-of the egg batch rate, \\\nu\\
+Compute the baseline oviposition rate, \\\nu\\.
 
 ## Usage
 

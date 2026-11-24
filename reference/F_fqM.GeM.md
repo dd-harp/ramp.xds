@@ -1,7 +1,7 @@
-# Mosquito biting rate for `GeM`
+# Compute mosquito biting density for `GeM` (**MY**)
 
-Returns `fqM`, the daily mosquito biting density on humans for each
-patch in the GeM model.
+Return the daily mosquito biting density on humans, `fqM`, for each
+patch in the `GeM` module. Compute `fqM = f*q*M`.
 
 ## Usage
 
@@ -50,4 +50,5 @@ stratum-level `HBR`.
 ## See also
 
 [GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
-[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md),
+[F_fqZ.GeM](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.GeM.md)

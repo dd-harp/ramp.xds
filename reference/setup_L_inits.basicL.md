@@ -1,16 +1,8 @@
-# Setup initial values for `basicL` (**L**)
+# Set up initial values for `basicL` (**L**)
 
-Set initial values for all the variables in the `basicL` module (**L**)
-for the \\s^{th}\\ species.
-
-- [make_L_inits_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_inits_basicL.md)
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)
-  or see the inline module documentation.
+Set up initial values for the `basicL` module using
+[make_L_inits_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_inits_basicL.md).
+Values in `options` override the defaults.
 
 The initial values of \\L\\ can be passed as `options$L`.
 
@@ -39,6 +31,14 @@ setup_L_inits(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Initial values are stored at `xds_obj$L_obj[[s]]$inits`.
+
 ## See also
 
 [make_L_inits_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_inits_basicL.md)
+
+[change_L_inits.basicL](https://dd-harp.github.io/ramp.xds/reference/change_L_inits.basicL.md)
+
+[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)

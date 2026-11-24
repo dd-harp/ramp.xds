@@ -1,6 +1,6 @@
-# Update other blood hosts
+# Update bad habitat availability
 
-The `static` method returns `xds_obj` unmodified
+The `static` method returns `xds_obj` unmodified.
 
 ## Usage
 

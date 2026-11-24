@@ -1,9 +1,9 @@
 # Set up bad habitats
 
-Implements the "method1" case for
-[setup_bad_habitats](https://dd-harp.github.io/ramp.xds/reference/setup_bad_habitats.md).
-See
+Generate random bad habitat availability using
 [make_bad_habitats_random](https://dd-harp.github.io/ramp.xds/reference/make_bad_habitats_random.md)
+and apply it using
+[change_bad_habitats](https://dd-harp.github.io/ramp.xds/reference/change_bad_habitats.md).
 
 ## Usage
 
@@ -16,7 +16,7 @@ setup_bad_habitats(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

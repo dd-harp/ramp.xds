@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -201,10 +201,10 @@ infection for humans / hosts who are susceptible to infection.</p></li>
 the total dFoI.</p>
 <p>Disease dynamics are specified by one of two methods:</p>
 <ul>
-<li><p>for systems of differential equations, <code>dXHdt</code> compute
-the derivatives using the dFoI</p></li>
-<li><p>for discrete time systems, <code>Update_XHt</code> updates the
-state variables using the dAR</p></li>
+<li><p>for systems of differential equations, <code>dXHdt</code>
+computes the derivatives using the dFoI.</p></li>
+<li><p>for discrete-time systems, <code>Update_XHt</code> updates the
+state variables using the dAR.</p></li>
 </ul>
 <p>All <strong>XH</strong> modules must include a function that computes
 effective infectious host density, <span class="math inline">\(F_I(X,
@@ -216,17 +216,17 @@ true prevalence from the states using <code>F_prevalence</code>.</p>
 diagnostic test, and PCR are available for modules where those outputs
 are relevant and implemented. The module’s skill set records the
 diagnostic capabilities it supports.</p>
-<p>The shared setup initializes mass-treatment ports for mass drug
-administration and mass screen and treat. A module supports those
-interventions only if its state updates use the treatment terms;
+<p>Modules that use the shared mass-treatment setup initialize ports for
+mass drug administration and mass screen and treat. A module supports
+those interventions only if its state updates use the treatment terms;
 supported capabilities are recorded in its skill set.</p>
 </div>
 <div class="section level3">
 <h3 id="the-h-component">The <strong>H</strong> Component<a class="anchor" aria-label="anchor" href="#the-h-component"></a>
 </h3>
 <p>The <strong>H</strong> component handles demographic change in a
-model coupled to disease dynamics. A large number of models has been
-developed that assumes human / host population size is static. In
+model coupled to disease dynamics. A large number of models have been
+developed that assume human / host population size is static. In
 <strong><code>ramp.xds</code></strong>, a module <em>must</em>
 either:</p>
 <ul>
@@ -319,10 +319,35 @@ attack rate is available in <code>xds_obj$terms$AR[[i]]</code>.</li>
 <pre><code><span><span class="va">ar</span> <span class="op">&lt;-</span> <span class="va">xds_obj</span><span class="op">$</span><span class="va">terms</span><span class="op">$</span><span class="va">AR</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span></span></code></pre>
 <hr>
 </div>
+<div class="section level3">
+<h3 id="state-variable-extraction">State-variable extraction<a class="anchor" aria-label="anchor" href="#state-variable-extraction"></a>
+</h3>
+<ul>
+<li>
+<code>get_XH_vars.XHname</code> - extracts variables from the state
+vector <span class="math inline">\(y\)</span> and returns them by name
+for use during model solving. Users rarely need to call it
+directly.</li>
+</ul>
 </div>
-<div class="section level2">
-<h2 id="xh-model-object">XH Model Object<a class="anchor" aria-label="anchor" href="#xh-model-object"></a>
-</h2>
+<div class="section level3">
+<h3 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
+</h3>
+<p>These methods provide quantities used by the rest of the model.</p>
+<ul>
+<li><p><code>F_I.XHname</code> - computes effective infectious host
+density, used by the blood-feeding and transmission interfaces to
+compute <span class="math inline">\(\kappa.\)</span></p></li>
+<li><p><code>F_H.XHname</code> - returns human/host population
+density.</p></li>
+<li><p><code>F_infectivity.XHname</code> - computes the probability a
+host becomes infected per infectious bite. <code>Exposure</code> uses
+this method to translate local and travel EIR into FoI.</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="xh-model-object">XH Model Object<a class="anchor" aria-label="anchor" href="#xh-model-object"></a>
+</h3>
 <p>Each module has a pair of functions that set up a structured list
 called the <strong>XH</strong> model object. The object is a list that
 is assigned to a <code>class</code> that dispatches the <code>S3</code>
@@ -334,47 +359,22 @@ sub-lists are assigned their own <code>class</code> that dispatch other
 <strong>XH</strong> model object, including its parameters and
 class:</p></li>
 <li><p><code>setup_XH_obj.XHname</code> :: attaches that object to
-<code>xds_obj$XH_obj[[i]]</code>, sets initial values and the skill set,
-and initializes shared interface features such as demographic setup,
-mass-treatment ports, time away, and travel EIR.</p></li>
+<code>xds_obj$XH_obj[[i]]</code>, sets initial values, and initializes
+shared interface features such as demographic setup, mass-treatment
+ports, time away, and travel EIR.</p></li>
 <li><p><code>setup_XH_ix.XHname</code> :: assigns indices to the model
 variables. This method is called as part of model setup.</p></li>
 </ul>
+</div>
 <div class="section level3">
 <h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
 </h3>
 <ul>
+<li><p><code>get_XH_pars.XHname</code> is a utility to inspect the
+values of the parameters.</p></li>
 <li><p><code>change_XH_pars.XHname</code> changes the values of some
 parameters. It is designed to be used after setup. New parameter values
 are passed by name in a list called <code>options</code>.</p></li>
-<li><p><code>get_XH_pars.XHname</code> is a utility to inspect the
-values of the parameters.</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
-</h3>
-<p>Since the <strong>XH</strong> component is one of three, a function
-sets up the indices for all the variables in a model.</p>
-<p>Two other functions use those indices: one pulls the variables from
-the state variable vector <span class="math inline">\(y\)</span>; the
-other one pulls the variables by name from an output matrix returned by
-<code>xds_solve</code>.</p>
-<p>After pulling, both functions return the variables by name in a list
-to make it easy to inspect or use.</p>
-<ul>
-<li><p><code>setup_XH_ix.XHname</code> - is the function that assigns an
-index to each variable in the model, and stores it as
-<code>xds_obj$XH_obj[[i]]$ix</code>. The indices are returned as a named
-list.</p></li>
-<li><p><code>get_XH_vars.XHname</code> - retrieves the value of
-variables from the state variables vector <span class="math inline">\(y\)</span> at a point in time and returns the
-values by name in a list; the function gets called by <code>dXHdt</code>
-and by <code>change_XH_inits</code> and it can be useful in other
-contexts.</p></li>
-<li><p><code>parse_XH_orbits.XHname</code> - this function is like
-<code>get_XH_vars</code> but it parses the matrix of outputs returned by
-<code>xds_solve</code>.</p></li>
 </ul>
 </div>
 <div class="section level3">
@@ -394,27 +394,48 @@ variables. These can be overridden by passing new initial values in
 passed to override default values. The initial values are stored as
 <code>XH_obj$inits</code>; this method is called by
 <code>setup_XH_obj.XHname</code> during setup.</p></li>
+<li><p><code>get_XH_inits</code> - returns stored initial values for the
+selected host species directly, without S3 dispatch.</p></li>
 <li><p><code>change_XH_inits.XHname</code> - a utility to change the
 initial values.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
+<h3 id="variable-indices">Variable indices<a class="anchor" aria-label="anchor" href="#variable-indices"></a>
 </h3>
-<p>These methods provide quantities used by the rest of the model.</p>
+<p>Index setup assigns each state variable its position in the full
+model state vector.</p>
 <ul>
-<li><p><code>F_I.XHname</code> - computes effective infectious host
-density, used by the blood-feeding and transmission interfaces to
-compute <span class="math inline">\(\kappa.\)</span></p></li>
-<li><p><code>F_H.XHname</code> - returns human/host population
-density.</p></li>
-<li><p><code>F_infectivity.XHname</code> - computes the probability a
-host becomes infected per infectious bite. <code>Exposure</code> uses
-this method to translate local and travel EIR into FoI.</p></li>
+<li>
+<code>setup_XH_ix.XHname</code> - assigns variable indices and
+stores them as a named list at <code>xds_obj$XH_obj[[i]]$ix</code>. It
+updates <code>xds_obj$max_ix</code> and returns the model object.</li>
 </ul>
+<p>Indexing methods allocate consecutive blocks after the existing
+maximum. For XH, each block normally has length <code>nStrata[i]</code>.
+Document the block order and lengths, including auxiliary variables.
+Store indices on the selected module at
+<code>xds_obj$XH_obj[[i]]$ix</code>, and use that location in state
+extraction, output parsing, and delayed-state lookups.</p>
 </div>
 <div class="section level3">
 <h3 id="standard-outputs">Standard Outputs<a class="anchor" aria-label="anchor" href="#standard-outputs"></a>
+</h3>
+<p><code>get_XH_orbits(xds_obj, i = 1)</code> retrieves saved, parsed
+orbits (trajectories) after solving for <strong>XH</strong> for the
+selected species. It returns a list of module-specific outputs with
+<code>time</code> added from <code>xds_obj$outputs$time</code>. It reads
+<code>xds_obj$outputs$orbits$XH[[i]]</code>; it does not parse outputs
+or modify the model.</p>
+<ul>
+<li>
+<code>parse_XH_orbits.XHname</code> - this function is like
+<code>get_XH_vars</code> but it parses the matrix of outputs returned by
+<code>xds_solve</code>.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="observational-processes-and-analysis">Observational processes and analysis<a class="anchor" aria-label="anchor" href="#observational-processes-and-analysis"></a>
 </h3>
 <p>Each module must output a few key quantities:</p>
 <ul>
@@ -429,38 +450,23 @@ conditions.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="consistency-checks">Consistency Checks<a class="anchor" aria-label="anchor" href="#consistency-checks"></a>
-</h3>
-<p>Some modules in <strong><code>ramp.xds</code></strong> or
-<strong><code>ramp.library</code></strong> have been included for
-various reasons. Not all of those models are capable of being extended.
-To help users avoid using models in ways that are not appropriate, we
-developed two function classes:</p>
-<ul>
-<li><p><code>get_skillset_XH.XHname</code> :: returns a list describing
-the module’s capabilities and limitations</p></li>
-<li><p><code>check_XH.XHname</code> :: at the end of
-<code>xds_setup</code> and at the beginning of <code>xds_solve</code>,
-this function gets run to ensure that some quantities have been properly
-updated, and to see if anything has been added to a model that is not in
-its skill set.</p></li>
-</ul>
-</div>
-</div>
-<div class="section level2">
-<h2 id="optional-functions">Optional Functions<a class="anchor" aria-label="anchor" href="#optional-functions"></a>
-</h2>
-<p>The <strong>XH</strong> interface also sets up <code>S3</code>
-methods for optional functions, but these might not be appropriate for
-all models. The module’s <code>get_skillset_XH.XHname</code> method
-returns its capabilities and limitations as a list, which setup stores
-on the module object.</p>
-<div class="section level3">
 <h3 id="diagnostic-outputs">Diagnostic Outputs<a class="anchor" aria-label="anchor" href="#diagnostic-outputs"></a>
 </h3>
 <p>The interface provides methods for predicted prevalence by diagnostic
 method when these outputs are relevant and implemented by the
 module.</p>
+<p><code>F_pr_obs(vars, XH_obj)</code> is the generic for predicted
+observed prevalence, dispatching on <code>XH_obj</code>. All XH modules
+except <code>hMoI</code> support a test-positivity parameter
+<code>q</code> (default <code>0.8</code>) and compute observed
+prevalence as <code>q * F_prevalence(vars, XH_obj)</code>. The
+<code>SIS</code> method therefore computes <code>q * I / H</code>.
+Retrieve this output after solving with
+<code>get_PR(xds_obj, method = "obs")</code>. For <code>hMoI</code>,
+observed prevalence is apparent prevalence <code>1 - exp(-m2)</code>,
+without a test-positivity parameter <code>q</code>. The three diagnostic
+methods below are compatibility aliases for <code>F_pr_obs</code> in SIS
+and hMoI, not distinct diagnostic models.</p>
 <ul>
 <li><p><code>F_pfpr_by_lm.XHname</code> :: output predicted prevalence
 by light microscopy</p></li>
@@ -470,6 +476,47 @@ by rapid diagnostic test</p></li>
 by PCR</p></li>
 </ul>
 </div>
+<div class="section level3">
+<h3 id="consistency-checks">Consistency Checks<a class="anchor" aria-label="anchor" href="#consistency-checks"></a>
+</h3>
+<p>Some modules in <strong><code>ramp.xds</code></strong> or
+<strong><code>ramp.library</code></strong> have been included for
+various reasons. Not all of those models are capable of being extended.
+To help users avoid using models in ways that are not appropriate, we
+developed two function classes:</p>
+<ul>
+<li><p><code>check_XH.XHname</code> :: provides a hook for
+module-specific checks before solving. Existing methods currently return
+<code>xds_obj</code> unchanged and perform no checks; the presence of a
+check method does not guarantee validation.</p></li>
+<li><p><code>get_skillset_XH.XHname</code> :: returns the module’s
+capabilities and compatibilities as a list. If a module does not define
+<code>Update_XHt.XHname</code>, include
+<code>dts = FALSE</code>.</p></li>
+</ul>
+<p>XH skill sets use these logical fields, in this order:
+<code>dts</code>, <code>xde</code>, <code>delay</code>,
+<code>demography</code>, <code>malaria</code>, <code>pf_lm</code>,
+<code>pf_rdt</code>, <code>pf_pcr</code>, <code>mda</code>, and
+<code>msat</code>. The <code>pf_*</code> fields indicate support for the
+corresponding diagnostic prevalence outputs. Models with
+<code>malaria = FALSE</code>, including SIR, SIRS, SEIR, SEIRV, and
+trivialXH, omit all three <code>pf_*</code> fields. All XH modules
+additionally place <code>pr_obs = TRUE</code> after
+<code>malaria</code>. SIS and hMoI set all three <code>pf_*</code> flags
+to <code>FALSE</code>, because they support observed prevalence without
+distinguishing diagnostic methods. The <code>trivialXH</code>
+observed-prevalence method returns an empty numeric vector, matching its
+true-prevalence method.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="optional-functions">Optional Functions<a class="anchor" aria-label="anchor" href="#optional-functions"></a>
+</h2>
+<p>The <strong>XH</strong> interface also sets up <code>S3</code>
+methods for optional functions, but these might not be appropriate for
+all models. The module’s <code>get_skillset_XH.XHname</code> method
+returns its capabilities and compatibilities as a list.</p>
 <div class="section level3">
 <h3 id="steady-states">Steady States<a class="anchor" aria-label="anchor" href="#steady-states"></a>
 </h3>
@@ -483,6 +530,23 @@ appropriate.</p></li>
 the <strong>XH</strong> component as a function of FoI, if
 appropriate.</p></li>
 </ul>
+<p>Use “Compute steady states (<strong>JJ</strong>)” for generic titles
+and “Compute steady states for <code>module</code>
+(<strong>JJ</strong>)” for method titles, preserving explicitly retained
+titles. Descriptions identify the supplied inputs, module, and supported
+equation system. Return documentation identifies the actual type and
+state names; do not convert numeric vectors to lists merely to align
+documentation. Preserve formulas and model-specific assumptions.</p>
+<p>The X and XH generics dispatch on <code>xds_obj$XH_obj[[i]]</code>.
+For SEIR, SEIRV, SIR, SIRS, SEIS, SIP, and SIPd, the X method delegates
+to a module-specific generic such as <code>steady_state_X_SEIR</code>,
+which dispatches on <code>xds_obj$xds</code> to select <code>xde</code>
+or <code>dts</code>. Both stages forward the host species index. The
+former <code>_dts</code> module-class suffixes are no longer used. The X
+generic takes <code>foi</code> and fixed host density <code>H</code>;
+the XH generic takes <code>foi</code> and requires a module-specific
+method. These calculations return values without storing them on the
+model object. Flag implementation discrepancies separately.</p>
 </div>
 <div class="section level3">
 <h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
@@ -494,6 +558,416 @@ module can define its own method for plotting:</p>
 <code>xds_plot_X.XHname</code> is a module specific plotting
 function for the epidemiology</li>
 </ul>
+</div>
+</div>
+<div class="section level2">
+<h2 id="documentation-conventions">Documentation conventions<a class="anchor" aria-label="anchor" href="#documentation-conventions"></a>
+</h2>
+<div class="section level3">
+<h3 id="function-order">Function order<a class="anchor" aria-label="anchor" href="#function-order"></a>
+</h3>
+<p>Use the following order in XH, MY, and L module files and in the
+implementation sections of their guides. Omit families that do not
+apply. Shared component files follow the same relative order without
+moving functions between files.</p>
+<p>Keep the module overview/NULL documentation anchor at the very top,
+after the file-level TODO lists. Order functions below it as
+follows:</p>
+<ol style="list-style-type: decimal">
+<li>Dynamics: <code>dJJdt</code>, then <code>Update_JJt</code>.</li>
+<li>State-variable getter: <code>get_JJ_vars</code>.</li>
+<li>Dynamical/interface terms and their parameter accessors, including
+bionomics followed by effect sizes (MY and L).</li>
+<li>Parameters: module-object constructor and setup, then parameter
+getter and changer.</li>
+<li>Initial values: constructor, setup, getter, and changer, followed by
+initial-density accessors.</li>
+<li>Variable-index setup and index getter, then output parser and
+parsed-output getter.</li>
+<li>Observational processes and analysis functions, including
+prevalence, diagnostics, HTC, and X/Y analyses where implemented.</li>
+<li>Checks.</li>
+<li>Skill set.</li>
+<li>Steady states: module router, equation-system generic,
+<code>xde</code>, then <code>dts</code>.</li>
+<li>Plotting functions, line-plotting functions, and remaining
+helpers.</li>
+</ol>
+<p>Move each function with its Roxygen documentation and related
+comments. Keep file-level review/TODO notes at the top. Do not change
+definitions, formulas, signatures, or registrations as part of
+reordering.</p>
+<p>This section is the shared documentation style reference for
+<strong>XH</strong>, <strong>MY</strong>, and <strong>L</strong> modules
+in <code>ramp.xds</code> and <code>ramp.library</code>. The component
+vignettes describe their interfaces; the <code>ramp.library</code>
+development vignettes provide templates. Keep the guidance and examples
+aligned when a convention changes.</p>
+</div>
+<div class="section level3">
+<h3 id="titles">Titles<a class="anchor" aria-label="anchor" href="#titles"></a>
+</h3>
+<p>In the patterns below, replace <code>JJ</code> with <code>XH</code>,
+<code>MY</code>, or <code>L</code>, and <code>module</code> with the
+module class. Use backticks for module names and bold for the component
+tag. <code>method_name</code> means the module class, not the full S3
+function name.</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Function family</th>
+<th align="left">Generic title</th>
+<th align="left">Method title</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Skill set</td>
+<td align="left">Get the skill set (<strong>JJ</strong>)</td>
+<td align="left">Get the skill set for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left">Parameter getters</td>
+<td align="left">Get parameters (<strong>JJ</strong>)</td>
+<td align="left">Get parameters for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="odd">
+<td align="left">Parameter changers</td>
+<td align="left">Change parameters (<strong>JJ</strong>)</td>
+<td align="left">Change parameters for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left">Checks</td>
+<td align="left">Check model (<strong>JJ</strong>)</td>
+<td align="left">Check <code>method_name</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="odd">
+<td align="left">Derivatives</td>
+<td align="left">Compute the derivatives (<strong>JJ</strong>)</td>
+<td align="left">Compute the derivatives for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left">Discrete-time updates</td>
+<td align="left">Update states (<strong>JJ</strong>)</td>
+<td align="left">Update states for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="odd">
+<td align="left">Component-object setup</td>
+<td align="left">Set up the module object (<strong>JJ</strong>)</td>
+<td align="left">Set up the module object for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left">Initial-value setup</td>
+<td align="left">Set up initial values (<strong>JJ</strong>)</td>
+<td align="left">Set up initial values for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="odd">
+<td align="left">Initial-value changers</td>
+<td align="left">Change initial values (<strong>JJ</strong>)</td>
+<td align="left">Change initial values for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left">Variable-index setup</td>
+<td align="left">Set up variable indices (<strong>JJ</strong>)</td>
+<td align="left">Set up variable indices for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="odd">
+<td align="left">Bionomics (MY and L)</td>
+<td align="left">Mosquito bionomics (<strong>JJ</strong>)</td>
+<td align="left">Mosquito bionomics for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left">Effect sizes (MY and L)</td>
+<td align="left">Apply effect sizes (<strong>JJ</strong>)</td>
+<td align="left">Apply effect sizes for <code>module</code>
+(<strong>JJ</strong>)</td>
+</tr>
+</tbody>
+</table>
+<p>Module-object constructors are ordinary functions, not S3 methods.
+Their title is “Make a module object for <code>module</code>
+(<strong>JJ</strong>)”.</p>
+</div>
+<div class="section level3">
+<h3 id="state-variable-getters">State-variable getters<a class="anchor" aria-label="anchor" href="#state-variable-getters"></a>
+</h3>
+<p>Use “Get the state variables (<strong>JJ</strong>)” for generic
+titles and “Get the state variables for <code>module</code>
+(<strong>JJ</strong>)” for method titles. Describe methods as “Extract
+the state variables for the <code>module</code> module from
+<code>y</code> and return them by name in a list for use during model
+solving.” These functions primarily support solver evaluations; users
+rarely call them directly. They extract the current state, not initial
+values or solver-output matrices.</p>
+<p>Use “a named [list] of state variables and module-specific derived
+quantities” for return descriptions. Document any derived quantities,
+values obtained from the module object, or matrix/cohort shapes
+explicitly. Put index storage in method notes; put dispatch and the
+solver-facing usage explanation in generic notes. Preserve existing
+references and flag return-shape discrepancies without silently changing
+implementations. Trivial methods retain their accurate empty-list
+descriptions.</p>
+</div>
+<div class="section level3">
+<h3 id="output-parsers">Output parsers<a class="anchor" aria-label="anchor" href="#output-parsers"></a>
+</h3>
+<p>Orbit getters use “Get orbits (<strong>JJ</strong>)” for titles, with
+<code>JJ</code> replaced by XH, MY, or L. Describe retrieval of saved,
+parsed orbits (trajectories) after solving for <strong>JJ</strong> for
+the selected species, replacing <code>JJ</code> with XH, MY, or L.
+Return “a [list] of module-specific orbits (trajectories) with a
+<code>time</code> vector”. Put the storage path and addition of
+<code>time</code> from <code>xds_obj$outputs$time</code> in
+<code>@note</code>, and link to the corresponding output parser and
+<code>xds_solve</code>. These are shared getters, not module-specific
+methods; they neither parse outputs nor modify the model.</p>
+<p>Use “Parse outputs (<strong>JJ</strong>)” for generic titles and
+“Parse outputs for <code>module</code> (<strong>JJ</strong>)” for method
+titles. Describe methods as “Extract the model state outputs for the
+<code>module</code> module from <code>outputs</code> and return them by
+name in a list.” Use “a [list]” for return descriptions. Document
+derived quantities and any omitted auxiliary states explicitly.</p>
+<p>These methods process trajectories after solving, unlike
+state-variable getters used during solving. Put module-level index
+storage in method notes and dispatch in generic notes. Parsers return
+results without modifying the model object; the output-processing
+pipeline stores them at <code>xds_obj$outputs$orbits$XH[[i]]</code>,
+<code>xds_obj$outputs$orbits$MY[[s]]</code>, or
+<code>xds_obj$outputs$orbits$L[[s]]</code> for the selected component
+and species. Preserve references and flag implementation discrepancies
+separately. Trivial methods retain their empty-list descriptions.</p>
+</div>
+<div class="section level3">
+<h3 id="variable-index-setup">Variable-index setup<a class="anchor" aria-label="anchor" href="#variable-index-setup"></a>
+</h3>
+<p>Index getters are ordinary functions, not S3 generics. Title them
+“Get variable indices (<strong>JJ</strong>)” and describe them as
+“Return the stored variable indices for the selected <strong>JJ</strong>
+module and host/vector species.” The return description is “a named
+[list] of variable indices, or <code>NULL</code> if the field is
+absent”. Put actual module-level storage in <code>@note</code> and link
+to <code>setup_JJ_ix</code>. Empty lists are returned unchanged. Use
+<code>get_XH_ix(xds_obj, i)</code> to retrieve host indices. All three
+index getters default to species 1.</p>
+<p>Use “Assign consecutive variable indices for the <code>module</code>
+module, starting after <code>xds_obj$max_ix</code>, and update the
+maximum index.” as the method description. Specify allocation order
+using the actual index names and give each block’s length. Include
+auxiliary, history, matrix, and cohort blocks rather than assuming all
+blocks represent ordinary states.</p>
+<p>Put actual storage paths and the updated <code>xds_obj$max_ix</code>
+in <code>@note</code>. The return description is “an
+<strong><code>xds</code></strong> model object”, not a list of indices.
+Generics describe the selected component module and species, with
+dispatch details in <code>@note</code>. Preserve existing references and
+flag implementation exceptions separately; do not silently change
+runtime code during alignment. Trivial methods describe their actual
+no-op behavior.</p>
+</div>
+<div class="section level3">
+<h3 id="initial-value-constructors">Initial-value constructors<a class="anchor" aria-label="anchor" href="#initial-value-constructors"></a>
+</h3>
+<p>Initial-value getters are ordinary functions titled “Get initial
+values (<strong>JJ</strong>)”. Describe them as “Return the stored
+initial values for the selected <strong>JJ</strong> module and
+host/vector species.” Use “a named [list] of initial values, or
+<code>NULL</code> if the field is absent” for the return description,
+put the storage location in <code>@note</code>, and link to setup/change
+functions. Do not add module-specific getter methods. These functions
+return the stored field directly: absent fields return
+<code>NULL</code>, and empty lists remain empty. The trivial XH and MY
+modules normally have no <code>inits</code> field; trivial L setup
+stores an empty list.</p>
+<p>Initial-value constructors are ordinary functions titled “Make
+initial values for <code>module</code> (<strong>JJ</strong>)”. Use the
+description “Create a named list of initial values for the
+<code>module</code> module. Values in <code>options</code> override the
+defaults.” Preserve any module-specific explanation and document the
+return as “a named [list] of initial values”.</p>
+<p>Document numeric scalar expansion and the required input length:
+<code>nStrata</code> for <strong>XH</strong>, <code>nPatches</code> for
+<strong>MY</strong>, and <code>nHabitats</code> for <strong>L</strong>,
+with module-specific exceptions such as <code>RMdts</code> cohort
+values. State any additional input restrictions and explain internally
+constructed accessory values that cannot be set independently through
+<code>options</code>.</p>
+<p>The initial-value constructor, setup method, and change method must
+each link to the other two in <code>@seealso</code>. Retain other useful
+links. These constructors create values; the setup method stores them on
+the model.</p>
+<p>For initial-value setup methods, use “Set up initial values for the
+<code>module</code> module using [make_JJ_inits_module]. Values in
+<code>options</code> override the defaults.” Document storage in
+<code>@note</code>, using the actual location (normally
+<code>xds_obj$JJ_obj[[i or s]]$inits</code>), and return “an
+<strong><code>xds</code></strong> model object”. Preserve special-case
+operations and flag legacy storage exceptions rather than implying they
+follow the standard. Generics describe the selected component module and
+species, with dispatch details in <code>@note</code>. Trivial methods
+describe their actual no-op or empty-list behavior instead of claiming
+to call a constructor.</p>
+<p>For initial-value changers, use “Change initial values named in
+<code>options</code> for the <code>module</code> module, leaving other
+values unchanged.” Document supported values and special behavior
+explicitly, such as derived states that cannot be set or population
+density managed outside <code>inits</code>. Use “an
+<strong><code>xds</code></strong> model object” for the return
+description and put storage explanations in <code>@note</code>. Generics
+identify the selected module and species, with dispatch details in
+<code>@note</code>. Preserve reciprocal constructor/setup links. Report
+implementation discrepancies separately during documentation alignment;
+the wording describes the interface contract, not proof that every
+implementation satisfies it.</p>
+<p>Changers must read fallback values from the stored <code>inits</code>
+list and write to that list for the selected species, without adding
+another species index inside it. Use the constructor’s stored states
+(for example, <code>H</code> rather than a derived <code>S</code>).
+Preserve auxiliary fields that the changer does not support:
+<code>SEISd</code> leaves <code>cases</code> unchanged, and
+<code>SIPd</code> changes <code>H</code>, <code>I</code>, and
+<code>P</code> while leaving <code>cfoi</code> unchanged.</p>
+</div>
+<div class="section level3">
+<h3 id="constructors-and-parameter-access">Constructors and parameter access<a class="anchor" aria-label="anchor" href="#constructors-and-parameter-access"></a>
+</h3>
+<p>Describe each constructor as creating the module object and
+initializing its parameters. State that values in <code>options</code>
+override parameter arguments, and identify
+<code>get_JJ_pars.module</code> for inspecting parameters and
+<code>change_JJ_pars.module</code> for changing supported values.
+Preserve any module-specific explanation.</p>
+<p>The constructor, parameter getter, and parameter changer must each
+link to the other two in <code>@seealso</code>. Retain other useful
+links. Describe exceptions explicitly: shared interfaces may manage some
+parameters, and a getter may expose quantities that the parameter
+changer does not update. Do not imply identical parameter coverage
+without checking the code.</p>
+<p>Use “Return the parameters for the <code>module</code> module as a
+named list.” as the parameter-getter method description, and “a named
+<code>[list]</code> of parameter values” for its roxygen return
+description. The generic describes returning parameters for the selected
+component module and species as a named list. Keep storage explanations
+in <code>@note</code>; describe dispatch on the generic, not repeatedly
+on the methods.</p>
+<p>Use “Change parameter values named in <code>options</code> for the
+<code>module</code> module, leaving other values unchanged.” as the
+parameter-changer method opening. The generic identifies the selected
+component module and species. The return description is “an
+<strong><code>xds</code></strong> model object”.</p>
+<p>Retain module-specific restrictions, supported parameter names, and
+additional actions such as refreshing bionomics or recomputing matrices.
+Explain when changed values take effect. Distinguish static parameter
+changes from advanced setup of dynamic ports, and identify separate
+helpers for parameters managed by other interfaces. Keep dispatch and
+storage mechanics in <code>@note</code> and preserve reciprocal
+constructor/getter links. Do not silently change implementations to
+resolve parameter-coverage discrepancies during a documentation
+alignment.</p>
+<p>All <code>change_MY_pars</code> and <code>change_L_pars</code>
+methods call <code>MBionomics</code> or <code>LBionomics</code>,
+respectively, at time zero after changing parameters or ports, using the
+flattened initial state from <code>get_inits</code>. They do not call
+<code>MEffectSizes</code> or <code>LEffectSizes</code>. This includes
+methods whose bionomics implementation is a no-op. Baseline refresh and
+effect-size application are separate stages; effective values managed by
+effect-size methods are not recomputed by the parameter changer
+itself.</p>
+</div>
+<div class="section level3">
+<h3 id="descriptions-equations-and-notes">Descriptions, equations, and notes<a class="anchor" aria-label="anchor" href="#descriptions-equations-and-notes"></a>
+</h3>
+<ul>
+<li>Describe what the function does in <code>@description</code>, rather
+than merely saying that it implements a generic.</li>
+<li>For a skill-set method, use: “Return the capabilities and
+compatibilities of the <code>module</code> module as a list.”</li>
+<li>Derivative descriptions show the equations actually computed and
+returned, including accessory derivatives and conditional or delayed
+branches when present. Keep the equations in the same order as the
+returned vector. Preserve the biological explanation, and flag
+discrepancies between code and intended mathematics rather than silently
+correcting either.</li>
+<li>Update descriptions introduce the discrete-time system and show its
+updating equations. Describe updated states, not derivatives; do not
+assume an update is an Euler step.</li>
+<li>Put storage locations, object classes, S3 dispatch mechanics, and
+other component internals in <code>@note</code>. Keep mathematical
+definitions and biological explanations in the description or an
+appropriate section.</li>
+<li>Explain dispatch on the generic, not repeatedly on each method.
+Setup generics dispatch on the supplied module name, not an existing
+component object. Skill-set generics also accept a module name in place
+of a model.</li>
+<li>Describe the actual return value: setup and check methods return “an
+<strong><code>xds</code></strong> model object”; dynamics methods
+describe their numeric vector and ordering. Do not describe a returned
+model as a list vector.</li>
+<li>Each S3 method uses <code>@inheritParams</code> from its immediate
+generic, even when that generic inherits its argument documentation.
+Document method-specific arguments or restrictions locally with
+<code>@param</code>.</li>
+<li>Use links to the relevant helpers; qualify links to
+<code>ramp.xds</code> helpers in <code>ramp.library</code> with
+<code>ramp.xds::</code>. Keep punctuation outside backticks and end each
+complete bullet with a period.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="setup-descriptions">Setup descriptions<a class="anchor" aria-label="anchor" href="#setup-descriptions"></a>
+</h3>
+<p>Start a nontrivial method description with “Set up a/an
+<code>module</code> module object for the <strong>JJ</strong> component
+and the relevant host or vector species.” Then list the method’s actions
+in implementation order:</p>
+<ol style="list-style-type: decimal">
+<li>Identify any module-name assignment and the constructor, including
+its dimension and the forwarded <code>options</code>.</li>
+<li>Describe skill-set and initial-value setup where they occur.</li>
+<li>Identify each shared interface initialized by that method. Do not
+imply that all modules initialize the same interfaces.</li>
+<li>End with “Return the updated <strong><code>xds</code></strong> model
+object.”</li>
+</ol>
+<p>For <strong>XH</strong>, constructor dimensions use
+<code>nStrata[i]</code>; interface steps may include blood search
+weights, time spent, treatment, demography, time away, and travel EIR.
+Document only the calls made by the method. Keep storage and class
+assignments in notes. Use the pattern
+<code>Initialize description using [setup_*.setup].</code> for interface
+bullets, linking to the method actually called (for example,
+<code>setup_travel_eir.no_travel</code>) or to the setup function when
+it is not generic.</p>
+<p>A setup generic delegates construction to the selected method;
+describe that delegation rather than claiming that the generic
+initializes every interface itself. See the <a href="MY-interface.html#setup-documentation">MY</a> and <a href="L-interface.html#setup-documentation">L</a> vignettes for
+component-specific setup wording.</p>
+</div>
+<div class="section level3">
+<h3 id="capabilities-and-checks">Capabilities and checks<a class="anchor" aria-label="anchor" href="#capabilities-and-checks"></a>
+</h3>
+<p>Record capabilities explicitly in the skill set. A module without a
+discrete-time update method must include <code>dts = FALSE</code>; the
+existence of an update method alone does not establish full
+discrete-time support. Document a check method’s actual checks. If it
+only returns the model unchanged, say so instead of promising
+validation.</p>
+<p>These conventions do not prescribe revisions to trivial-module setup,
+multi-species setup behavior, or the computation of Omega and Upsilon;
+those topics require separate review.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

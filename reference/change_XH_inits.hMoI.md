@@ -1,7 +1,7 @@
 # Change initial values for `hMoI` (**XH**)
 
-For the `hMoI` module (**XH**) for the \\i^{th}\\ species, change
-initial values named in `options` leaving other values unchanged.
+Change initial values named in `options` for the `hMoI` module, leaving
+other values unchanged.
 
 It must be true that \\m_1 \> m_2\\, so this condition is checked before
 changing the initial conditions, but some pairs of values would not
@@ -32,6 +32,12 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 
 an **`xds`** model object
 
+## Note
+
+Stored initial values for this module are at
+`xds_obj$XH_obj[[i]]$inits`. If `H` is supplied in `options`, the
+module's population density is also updated.
+
 ## State Variables
 
 - `m1` or \\m_1\\:
@@ -45,3 +51,6 @@ an **`xds`** model object
 ## See also
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)
+
+[make_XH_inits_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_hMoI.md),
+[setup_XH_inits.hMoI](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.hMoI.md)

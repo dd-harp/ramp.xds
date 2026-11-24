@@ -1,7 +1,6 @@
-# Static model egg batch rate
+# Static model oviposition rate (**MY**)
 
-Implements [F_nu](https://dd-harp.github.io/ramp.xds/reference/F_nu.md)
-for a static model
+Return the baseline oviposition rate for a static model.
 
 ## Usage
 
@@ -26,4 +25,4 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-\\nu\\, the egg batch rate
+\\nu\\, the baseline oviposition rate

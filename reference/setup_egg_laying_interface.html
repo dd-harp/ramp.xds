@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,19 +112,16 @@
     <p>This implements a model for egg laying described by Wu SL, <em>et al.</em>, (2023).</p>
 <p>Modular computation in <strong><code>ramp.xds</code></strong> requires a rigid interface
 to guarantee mathematical consistency for egg laying and emergence.
-The interface is defined by an object called <code>egg_laying</code> that is
-attached to the <code>xds</code> object <code>xds_obj</code> as <code>xds_obj$egg_laying</code>.
-The interface includes</p><ul><li><p>a habitat membership matrix, \(N\) made by <a href="make_habitat_matrix.html">make_habitat_matrix</a></p></li>
-<li><p>the habitat search weights</p></li>
-<li><p>a quantity that is motivated by mosquito searching for resources, called
-habitat availability \(Q\), computed by <a href="F_available_habitat.html">F_available_habitat</a>;</p></li>
-<li><p>the availability of ovitraps</p></li>
-<li><p>the availability of unsuitable habitats</p></li>
-<li><p>the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats</p></li>
-<li><p>the egg distribution matrix \(O\), made by <a href="make_U_matrix.html">make_U_matrix</a></p></li>
-<li><p>a vector that stores eggs laid</p></li>
-</ul><p>This function is called by <code>compute_xds_object_template</code> to set up <code>egg_laying</code> and the variables and parameters with all
-the variables it might depend on.</p>
+This function initializes lists in <code>xds_obj$terms</code> for the first vector species:</p><ul><li><p><code>G</code>: eggs laid in each patch</p></li>
+<li><p><code>eta</code>: eggs laid in each habitat</p></li>
+<li><p><code>alpha</code>: emergence from each habitat</p></li>
+<li><p><code>Lambda</code>: emergence in each patch</p></li>
+<li><p><code>Q</code> and <code>Qall</code>: habitat availability in each patch, initialized to one</p></li>
+</ul><p>The egg-laying and emergence terms are initialized to zero.
+In <code>xds_obj$patches</code>, it initializes <code>bad_habitats</code> and <code>ovitraps</code>
+to zero in each patch, with static port objects.</p>
+<p>This function is called by <a href="make_xds_object_template.html">make_xds_object_template</a>.
+Habitat membership is configured separately by <a href="setup_habitats.html">setup_habitats</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

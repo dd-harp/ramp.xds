@@ -126,8 +126,9 @@ To build models,
   lay eggs but that would never support development of adults. During
   setup, the variable is set to zero.
 - [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html)
-  – by default, egg laying rates (\\\nu\\) are not computed as a
-  functional response to available, but it is an advanced setup option.
+  – by default, oviposition rates (\\\nu\\) are not computed as a
+  functional response to resource availability, but it is an advanced
+  setup option.
 
 ## Adult Mosquitoes
 
@@ -146,7 +147,7 @@ options:
 - [setup_q](https://dd-harp.github.io/ramp.xds/reference/setup_q.html) –
   set up or modify the human fractions or the way they are computed
 - [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html)
-  – set up or modify egg laying rates or the way they are computed
+  – set up or modify oviposition rates or the way they are computed
 - [setup_g](https://dd-harp.github.io/ramp.xds/reference/setup_g.html) –
   set up or modify mosquito mortality rates or the way they are computed
 - [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.html)

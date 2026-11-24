@@ -1,8 +1,6 @@
-# Dynamically update a K Matrix
+# Return the static mosquito dispersal matrix (**MY**)
 
-Implements
-[F_K_matrix](https://dd-harp.github.io/ramp.xds/reference/F_K_matrix.md)
-for a static model
+Return the mosquito dispersal matrix.
 
 ## Usage
 
@@ -27,4 +25,9 @@ F_K_matrix(t, xds_obj, s)
 
 ## Value
 
-a mosquito dispersal matrix
+a mosquito dispersal [matrix](https://rdrr.io/r/base/matrix.html) of
+dimensions `nPatches` by `nPatches`
+
+## Note
+
+The mosquito dispersal matrix is stored in the port object `K_obj`.

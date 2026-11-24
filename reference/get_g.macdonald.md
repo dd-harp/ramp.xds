@@ -1,6 +1,6 @@
-# Get the mortality rates
+# Get the adult mosquito mortality rate for `macdonald` (**MY**)
 
-Get the mortality rates
+Return the stored realized adult mosquito mortality rate per patch.
 
 ## Usage
 
@@ -21,7 +21,12 @@ get_g(xds_obj, s = 1)
 
 ## Value
 
-the mortality rate, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `g` without evaluating ports or applying effect sizes.
 
 ## Parameters
 
@@ -53,7 +58,7 @@ the mortality rate, as a vector
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -69,7 +74,8 @@ the mortality rate, as a vector
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

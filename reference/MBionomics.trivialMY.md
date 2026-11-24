@@ -2,7 +2,7 @@
 
 Implements
 [MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
-for the `trivialMY` module
+for the `trivialMY` module.
 
 ## Usage
 

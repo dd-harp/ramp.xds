@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,14 +140,21 @@ Forcing is an <em>advanced setup</em> option (in
 sizes.</em> These are stored and the final value is the product of the
 baseline and the effect size.</p></li>
 </ul>
+<p>For both <strong>MY</strong> and <strong>L</strong>, a parameter
+<code>x</code> configured as a port is evaluated into <code>x_t</code>
+during bionomics, which also resets <code>es_x</code> to 1. Effect-size
+application then sets <code>x = x_t * es_x</code>. Parameters without
+ports are stored directly as <code>x</code> and are not modified by
+effect sizes. This rule includes EIP and the standard dispersal-matrix
+port; matrix effects use elementwise multiplication and must preserve
+the dispersal constraints.</p>
 <p>Each module in <strong><code>ramp.xds</code></strong> or in the
 satellite package <strong><code>ramp.library</code></strong> must be
 capable of handling time-varying parameters, or it should report that
-does not. For example, the module <code>macdonald</code> is not capable
-of handling either forcing or vector control. We would say that it is a
-strictly autonomous model: those capabilities are not in its <em>skill
-set.</em> To handle forcing and vector control, we developed
-<code>GeM.</code></p>
+does not. For example, the scalar parameters in <code>macdonald</code>
+have no ports and remain autonomous. Its standard dispersal-matrix port
+follows the rule above. To handle forcing and vector control through
+scalar parameter ports, we developed <code>GeM</code>.</p>
 <div class="section level2">
 <h2 id="mosquito-dispersal">Mosquito Dispersal<a class="anchor" aria-label="anchor" href="#mosquito-dispersal"></a>
 </h2>

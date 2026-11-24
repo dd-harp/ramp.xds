@@ -1,4 +1,4 @@
-# Update other blood hosts
+# Update bad habitat availability
 
 Port function for the bad_habitats, \\\Theta\\. Dispatches on
 `class(xds_obj$patches$bad_habitats_obj[[s]])`.

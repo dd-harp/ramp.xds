@@ -1,6 +1,7 @@
-# Make random patch emigration rates
+# Make random patch emigration rates (**MY**)
 
-Set up a random vector
+Draw patch emigration rates once during setup. Subsequent evaluations
+reuse these values.
 
 ## Usage
 
@@ -26,7 +27,8 @@ make_F_sigma_random(
 
 - f_rand:
 
-  a random number generator
+  a random number generator called as `f_rand(nPatches, p1, p2)` that
+  returns a numeric vector of length `nPatches`
 
 - p1:
 
@@ -38,5 +40,9 @@ make_F_sigma_random(
 
 ## Value
 
-a configuration object for
-[F_sigma.random](https://dd-harp.github.io/ramp.xds/reference/F_sigma.random.md)
+a static port object for
+[F_sigma.static](https://dd-harp.github.io/ramp.xds/reference/F_sigma.static.md)
+
+## Note
+
+The values are stored in a static port object.

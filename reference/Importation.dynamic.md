@@ -1,9 +1,9 @@
 # Importation
 
-No-op method for the `Importation` junction when no dynamic importation
-has been configured. The static default parameters set by
-[setup_importation](https://dd-harp.github.io/ramp.xds/reference/setup_importation.md)
-are used as-is.
+Call
+[importation_dynamics](https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.md)
+to update visitor availability, visitor infectiousness, time away, and
+travel EIR for each host species.
 
 ## Usage
 

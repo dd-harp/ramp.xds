@@ -1,6 +1,6 @@
-# WVB human feeding fraction
+# WVB human fraction (**MY**)
 
-Computes the human feeding fraction from the availability of resident
+Compute the baseline human fraction from the availability of resident
 hosts (\\W\\), visitors (\\V\\), and all available blood hosts (\\B\\).
 
 \$\$q = \frac{W+V}{B}\$\$
@@ -28,4 +28,4 @@ F_q(t, xds_obj, s)
 
 ## Value
 
-\\q\\, the human feeding fraction
+\\q\\, the baseline human fraction

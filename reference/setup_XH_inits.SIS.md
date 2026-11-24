@@ -1,16 +1,8 @@
 # Set up initial values for `SIS` (**XH**)
 
-Set initial values for all the variables in the `SIS` module (**XH**)
-for the \\i^{th}\\ host species.
-
-- [make_XH_inits_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_SIS.md)
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)
-  or see the inline module documentation.
+Set up initial values for the `SIS` module using
+[make_XH_inits_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_SIS.md).
+Values in `options` override the defaults.
 
 ## Usage
 
@@ -37,6 +29,10 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 
 an **`xds`** model object
 
+## Note
+
+Initial values are stored at `xds_obj$XH_obj[[i]]$inits`.
+
 ## State Variables
 
 - `H`:
@@ -54,3 +50,7 @@ an **`xds`** model object
 ## See also
 
 [SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)
+
+[change_XH_inits.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.SIS.md)
+
+[get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)

@@ -1,4 +1,4 @@
-# `trivialMY` — **MY** module
+# The trivial module for the MY component
 
 The trivial **MY** module configures one of two forcing functions,
 either:
@@ -13,8 +13,8 @@ where
 
 - \\G\\ or `eggs` is the mean egg laying rate
 
-- \\fqZ\\ or `fqZ` is the mean number of infectious bites on humans, per
-  patch
+- \\fqZ\\ is the product of `f`, `q`, and `Z`, the mean number of
+  infectious bites on humans, per patch, per day
 
 - \\F_S(t,V_s)\\ or `F_season` is a seasonal pattern function
 
@@ -22,24 +22,54 @@ where
 
 - \\F_K(t,V_k)\\ or `F_shock` is a perturbation function
 
-The variables \\V_s\\, \\V_t\\, and \\V_t\\ are called by
+The implementation assumes that only one of these functions will be
+used, so it is not possible to configure different pattern functions for
+egg laying and infective biting.
+
+## Note
+
+The variables \\V_s\\, \\V_t\\, and \\V_k\\ are called by
 [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
 which dispatches on the class of `season_par` or `trend_par` or
 `shock_par`.
 
-The implementation assumes that only one of these functions will be
-used, so it is not possible to configure different pattern functions for
-egg laying and infective biting.
+- `season_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_s\\
+
+- `trend_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_t\\
+
+- `shock_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_k\\
+
+1.  The module has no state variables.
+
+2.  The size of an object saved by `saveRDS` balloons if it saves a
+    function, so the `saveXDS` function strips the functions and
+    `readXDS` remakes the function from the stored parameters.
+
+`F_season`, `F_trend`, and `F_shock` can be set up manually by passing
+any user-defined function. If so, the user should use `saveRDS` and
+`readRDS` rather than `saveXDS` and `readXDS`.
 
 ## Parameters
 
 - `eggs`:
 
-  the mean number of eggs laid, per day
+  the mean number of eggs laid, per patch, per day
 
 - `Z`:
 
-  the mean density of infectious mosquitoes
+  the mean density of infectious mosquitoes, per patch
 
 - `f`:
 
@@ -61,41 +91,10 @@ egg laying and infective biting.
 
   a shock function, \\F_K(t,V_k)\\
 
-- `season_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_s\\
-
-- `trend_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_t\\
-
-- `shock_par`:
-
-  dispatches
-  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_k\\
-
-The default values are `F_season=F_trend=F_shock=F_one` and the classes
-of the objects `season_par` and `trend_par` and `shock_par` are all
-'list'
+By default, `season_par`, `trend_par`, and `shock_par` configure
+constant-one forcing functions.
 
 For the bionomic parameters, `f=q=Z=eggs=1`.
-
-## Notes
-
-1.  The module has no state variables.
-
-2.  The size of an object saved by `saveRDS` balloons if it saves a
-    function, so `saveXDS` function strips the functions and `readRDS`
-    remakes the function from the stored parameters.
-
-`F_season`, `F_trend`, and `F_shock` can be set up manually by passing
-any user defined function. If so, the user should use `saveRDS` and
-`readRDS` rather than `saveXDS` and `readXDS`
 
 ## See also
 

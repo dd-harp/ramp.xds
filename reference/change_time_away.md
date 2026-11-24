@@ -1,7 +1,7 @@
-# Change the time spent
+# Change time away
 
-Update the time spent for the \\i^{th}\\ host species, and trigger
-updates for the `XY` interface.
+Update time away for the \\i^{th}\\ host species, and trigger updates
+for the `XY` interface.
 
 ## Usage
 
@@ -13,7 +13,7 @@ change_time_away(time_away, xds_obj, i = 1)
 
 - time_away:
 
-  a time spent vector
+  a time away vector
 
 - xds_obj:
 

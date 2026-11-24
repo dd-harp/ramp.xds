@@ -1,4 +1,4 @@
-# Set up patch emigration rate
+# Set up patch emigration rate (**MY**)
 
 Configure and validate the patch emigration rate.
 
@@ -7,7 +7,7 @@ Configure and validate the patch emigration rate.
 ``` r
 setup_sigma(name, xds_obj, options = list(), s = 1)
 
-setup_emigration_rates(name, xds_obj, options = list(), s = 1)
+setup_mosy_emigration(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments

@@ -1,7 +1,7 @@
 # Change the habitat_search_weights
 
-Update the habitat_search_weights for the \\i^{th}\\ host species, and
-trigger updates for the `XY` interface.
+Update the habitat_search_weights for the \\s^{th}\\ vector species, and
+trigger updates for the `ML` interface.
 
 ## Usage
 

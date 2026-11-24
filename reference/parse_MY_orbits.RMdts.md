@@ -1,8 +1,9 @@
 # Parse outputs for `RMdts` (**MY**)
 
-Implements
-[parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
-for the RMdts model
+Extract the model state outputs for the `RMdts` module from `outputs`
+and return them by name in a list. Sum the `Y` cohorts within each patch
+for each output time, and compute `y = Y/M`, `z = Z/M`, and
+`parous = P/M`.
 
 ## Usage
 
@@ -15,7 +16,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) of outputs from deSolve
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -28,3 +29,9 @@ parse_MY_orbits(outputs, xds_obj, s)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`. The
+output-processing pipeline stores the returned orbits at
+`xds_obj$outputs$orbits$MY[[s]]`.

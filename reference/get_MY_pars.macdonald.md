@@ -1,6 +1,6 @@
 # Get parameters for `macdonald` (**MY**)
 
-Get the stored parameter values for the `macdonald` model.
+Return the parameters for the `macdonald` module as a named list.
 
 ## Usage
 
@@ -21,7 +21,7 @@ get_MY_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Parameters
 
@@ -53,7 +53,7 @@ a [list](https://rdrr.io/r/base/list.html)
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -69,7 +69,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -84,6 +85,9 @@ can be used to change static parameter values. This module does not
 support dynamic bionomic ports.
 
 ## See also
+
+[make_MY_obj_macdonald](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_macdonald.md),
+[change_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md)
 
 [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
 [change_MY_pars.macdonald](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md)

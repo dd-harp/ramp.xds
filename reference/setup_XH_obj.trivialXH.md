@@ -1,4 +1,4 @@
-# Set up `trivialXH` (**XH**)
+# Set up the module object for `trivialXH` (**XH**)
 
 This sets up a `trivialXH` model object for the **XH** module for the
 \\i^{th}\\ host species

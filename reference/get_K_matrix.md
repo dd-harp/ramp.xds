@@ -24,10 +24,11 @@ get_K_matrix(xds_obj, which_K = "K", s = 1)
 
 ## Value
 
-an **`xds`** model object
+a mosquito dispersal [matrix](https://rdrr.io/r/base/matrix.html) of
+dimensions `nPatches` by `nPatches`
 
 ## Note
 
-The argument `K` is used to retrieve state-dependent mosquito dispersal
-arguments for behavioral state models. The default "K" returns
+The argument `which_K` is used to retrieve state-dependent mosquito
+dispersal matrices for behavioral state models. The default "K" returns
 `K_matrix`

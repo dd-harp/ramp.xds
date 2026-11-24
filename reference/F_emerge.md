@@ -1,7 +1,7 @@
-# Compute emergent adults
+# Compute adult mosquito emergence (**L**)
 
-This function computes the rate or number of emerging adults: a rate for
-differential equations, or a number for difference equations.
+Return adult female mosquito emergence per habitat. This is a rate for
+differential equations or a number for discrete-time systems.
 
 ## Usage
 
@@ -34,4 +34,8 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Note
 
-This method dispatches on the class of `xds_obj$L_obj[[s]]`
+Dispatch on the module object at `xds_obj$L_obj[[s]]`.
+
+## See also
+
+[Emergence](https://dd-harp.github.io/ramp.xds/reference/Emergence.md)

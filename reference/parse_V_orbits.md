@@ -2,12 +2,9 @@
 
 After solving, this function extracts the values of the dependent
 variables for the **V** module from the matrix of solutions, often
-called the "orbits." The orbits are parsed and attached by name to the
-**`xds`** model object.
-
-For differential equations the solution matrix is returned by
-[deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html). Discrete-time
-systems return a matrix that has the same shape.
+called the "orbits." For differential equations the solution matrix is
+returned by [deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html).
+Discrete-time systems return a matrix that has the same shape.
 
 ## Usage
 
@@ -29,3 +26,8 @@ parse_V_orbits(outputs, xds_obj, i)
 - i:
 
   the auxiliary-variable module index
+
+## Note
+
+The orbits are parsed and attached by name to the **`xds`** model
+object.

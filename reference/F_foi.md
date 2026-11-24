@@ -34,11 +34,11 @@ This function computes the daily force of infection (FoI) as a function
 of the daily EIR under a probabilistic model for environmentally
 heterogeneous exposure – the distribution of bites per person.
 
-The model for human / host infection (\\\cal X\\) provide a term \\b\\,
+The model for human / host infection (\\\cal X\\) provides a term \\b\\,
 from
-[F_infectivity](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.md)
-that describe the probability of infection per infectious bite, possibly
-affected by pre-erythrocytic immunity.
+[F_infectivity](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.md),
+that describes the probability of infection per infectious bite,
+possibly affected by pre-erythrocytic immunity.
 
 ## See also
 

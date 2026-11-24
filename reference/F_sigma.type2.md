@@ -1,8 +1,8 @@
-# Patch emigration rate
+# Compute the baseline patch emigration rate (type 2) (**MY**)
 
-Implements a type 2 functional response to the availability of three
-resources: blood hosts (\\B\\), aquatic habitats (\\Q\\), and sugar
-(\\S\\).
+Compute the baseline patch emigration rate using a type 2 functional
+response to the availability of three resources: blood hosts (\\B\\),
+aquatic habitats (\\Q\\), and sugar (\\S\\).
 
 \$\$\sigma = \sigma_X \left( \frac{\sigma_Q Q}{1+\sigma_Q Q} +
 \frac{\sigma_B B}{1+\sigma_B B} + \frac{\sigma_S S}{1+\sigma_S S}
@@ -31,4 +31,4 @@ F_sigma(t, xds_obj, s)
 
 ## Value
 
-\\\sigma\\, the patch emigration rate
+\\\sigma\\, the baseline patch emigration rate

@@ -1,6 +1,9 @@
-# Set up a patch emigration bionomic object
+# Set up bionomic port for patch emigration rate (**MY**)
 
-Set up an object to compute the patch emigration rate, \\\sigma\\
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline patch emigration rate, \\\sigma\\, for a static
+model.
 
 ## Usage
 
@@ -16,8 +19,8 @@ setup_sigma_obj(sigma, MY_obj)
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

@@ -1,15 +1,7 @@
-# Setup initial values (**L**)
+# Set up initial values (**L**)
 
-Set initial values for all the variables.
-
-- Each module (*Lname*) defines a function `make_L_inits_`*Lname* that
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)
-  or see the inline module documentation.
+Set up initial values for the selected **L** module and vector species.
+Values in `options` override the defaults.
 
 ## Usage
 
@@ -35,7 +27,13 @@ setup_L_inits(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Dispatch uses the class of `xds_obj$L_obj[[s]]`.
+
 ## See also
 
 [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md),
-[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
+[xds_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
+
+[change_L_inits](https://dd-harp.github.io/ramp.xds/reference/change_L_inits.md)

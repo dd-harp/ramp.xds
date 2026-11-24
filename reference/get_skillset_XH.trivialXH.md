@@ -1,6 +1,7 @@
-# The **XH** module skill set
+# Get the skill set for `trivialXH` (**XH**)
 
-The **XH** skill set is a list of a module's capabilities
+Return the capabilities and compatibilities of the `trivialXH` module as
+a list.
 
 ## Usage
 

@@ -1,31 +1,28 @@
-# time spent
+# Time Away
 
-Compute and store a time spent
+- \\\delta\\:
 
-## Usage
+  time away
 
-``` r
-time_away(t, y, xds_obj, i)
-```
+Time away is defined by travel, or time spent outside the patches. Time
+away is used to model travel malaria in
+[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md),
+and it is used to compute host availability.
 
-## Arguments
+**Travel Malaria**
 
-- t:
+The risk of malaria while traveling is computed in
+[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md) as
+the product of time away and the travel EIR \\(E\_\delta)\\. Daily
+travel risk is \$\$\delta E\_\delta\$\$
 
-  the time
+**Host Availability**
 
-- y:
+If human population density is \\H\\, but since a fraction \\\delta\\ is
+traveling, the expected density of humans at any point in time is
+\$\$(1-\delta)H.\$\$
 
-  the state variables
+## See also
 
-- xds_obj:
-
-  an **`xds`** model object
-
-- i:
-
-  the species index
-
-## Value
-
-an **`xds`** object
+[setup_time_away](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.md),
+[human_availability](https://dd-harp.github.io/ramp.xds/reference/human_availability.md)

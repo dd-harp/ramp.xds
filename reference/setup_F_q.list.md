@@ -1,10 +1,6 @@
-# Set up F_q
+# Set up F_q (**MY**)
 
-If an options list is passed as the first argument, then set
-
-- `Fq_name = name$name`
-
-- `options = name` and call `setup_F_q(Fq_name, xds_obj, options, s)`
+Set up human fractions using an options list.
 
 ## Usage
 
@@ -17,7 +13,7 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a human fraction or setup method name
 
 - xds_obj:
 
@@ -34,3 +30,10 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, use its `name` field
+to select the setup method. If `name` is NULL, use the `no_setup`
+method. Pass the list as `options` to
+[setup_F_q](https://dd-harp.github.io/ramp.xds/reference/setup_F_q.md).

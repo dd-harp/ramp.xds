@@ -1,17 +1,26 @@
 # Mosquito Bionomics
 
-The value of a mosquito bionomic parameters gets computed in two stages:
+The values of some mosquito bionomic parameters (generically, \\x\\) are
+computed in two stages, with vector control effect sizes computed
+between them:
 
 - [MosquitoBionomics](https://dd-harp.github.io/ramp.xds/reference/MosquitoBionomics.md)
-  computes the bionomic parameter values;
+  computes a *baseline* value, \\x_b\\
+
+- Vector control functions compute and store the *net effect size,*
+  \\e_x\\
 
 - [VectorControlEffectSizes](https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.md)
-  applies the effect sizes of vector control
+  computes the realized value \$\$x = x_b \times e_x\$\$
 
-## Baseline
+The parameter values can be modified by vector control through one of
+two distinct approaches, called *integrated effects* or *independent
+effect sizes*.
 
-The concept of a *baseline* here is not exactly corre
+In models with integrated effects, \\x_b\\ could include some effects of
+vector control, so it may not be correct to call it a baseline, strictly
+speaking.
 
-## Modified by Control
+## See also
 
-The concept of a *baseline* is The value of a parameter
+[xds_info_port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md)

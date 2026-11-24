@@ -1,7 +1,6 @@
-# Compute the human feeding fraction, q
+# Compute the baseline human fraction (**MY**)
 
-This method dispatches on the type of `q_obj` and computes the human
-feeding fraction, \\q\\.
+Compute the baseline human fraction, \\q\\.
 
 ## Usage
 

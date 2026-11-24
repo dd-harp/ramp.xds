@@ -1,7 +1,6 @@
-# Static model mosquito mortality rate
+# Static model mosquito mortality rate (**MY**)
 
-Implements [F_g](https://dd-harp.github.io/ramp.xds/reference/F_g.md)
-for a static model
+Return the baseline mosquito mortality rate for a static model.
 
 ## Usage
 

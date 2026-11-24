@@ -1,8 +1,7 @@
-# Infective mosquito biting rate for `macdonald`
+# Compute infective mosquito biting density for `macdonald` (**MY**)
 
-Implements
-[F_fqZ](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) for the
-`macdonald` model.
+Return the daily infective mosquito biting density on humans, `fqZ`, for
+each patch in the `macdonald` module. Compute `fqZ = f*q*Z`.
 
 ## Usage
 
@@ -57,10 +56,10 @@ compute these patch-level quantities.
 combines `fqZ` with the biting distribution matrix and resident-bite
 fraction to compute stratum-level EIR;
 [F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md) computes
-HBR from `fqM` in the same way. The resulting `EIR` and `HBR` orbits are
-attached to the XH output during parsing.
+HBR from `fqM` in the same way.
 
 ## See also
 
 [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
-[dMYdt.macdonald](https://dd-harp.github.io/ramp.xds/reference/dMYdt.macdonald.md)
+[dMYdt.macdonald](https://dd-harp.github.io/ramp.xds/reference/dMYdt.macdonald.md),
+[F_fqM.macdonald](https://dd-harp.github.io/ramp.xds/reference/F_fqM.macdonald.md)

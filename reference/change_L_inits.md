@@ -1,7 +1,7 @@
 # Change initial values (**L**)
 
-Change the stored initial values for any variables named in `options`,
-leaving other values unchanged.
+Change initial values named in `options` for the selected **L** module
+and vector species, leaving other values unchanged.
 
 ## Usage
 
@@ -27,6 +27,12 @@ change_L_inits(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Dispatch uses the class of `xds_obj$L_obj[[s]]`.
+
 ## See also
 
-[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)
+[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md),
+[setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md),
+[xds_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)

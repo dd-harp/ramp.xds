@@ -1,6 +1,7 @@
-# Make random egg batch rates
+# Make random oviposition rates (**MY**)
 
-Set up a random vector
+Draw oviposition rates once during setup. Subsequent evaluations reuse
+these values.
 
 ## Usage
 
@@ -26,16 +27,22 @@ make_F_nu_random(
 
 - f_rand:
 
-  a random number generator
+  a random number generator called as `f_rand(nPatches, p1, p2)` that
+  returns a numeric vector of length `nPatches`
 
 - p1:
 
-  argument 1 for f_rand
+  argument 1 for `f_rand`
 
 - p2:
 
-  argument 2 for f_rand
+  argument 2 for `f_rand`
 
 ## Value
 
-an object to set up egg batch rates
+a static port object for
+[F_nu.static](https://dd-harp.github.io/ramp.xds/reference/F_nu.static.md)
+
+## Note
+
+The values are stored in a static port object.

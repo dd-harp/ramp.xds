@@ -4,6 +4,10 @@ Implements a basic model of adult mosquito ecology without explicit
 infection dynamics. It can be used when mosquito population dynamics are
 needed without modeling mosquito infection.
 
+## Note
+
+Parity, \\P/M\\, is computed during parsing and stored as `parous`.
+
 ## State Variables
 
 - `M`:
@@ -47,7 +51,7 @@ needed without modeling mosquito infection.
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -63,7 +67,8 @@ needed without modeling mosquito infection.
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -74,8 +79,9 @@ needed without modeling mosquito infection.
 
 After basic setup,
 [change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
-can be used to change static parameter values. The `basicM` module does
-not implement dynamic bionomic ports.
+can be used to change static parameter values. The `basicM` module
+evaluates bionomic parameter functions through
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md).
 
 ## Survival and Dispersal
 
@@ -83,8 +89,8 @@ Mosquito survival and dispersal are described by the demographic matrix
 \\\Omega\\. The parameter \\g\\ is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at
 per-capita rates \\\sigma\\, and a fraction \\\mu\\ of emigrating
-mosquitoes is lost. The total rate of loss from a patch is
-\$\$g+\mu\sigma.\$\$
+mosquitoes is lost. The combined rate of mortality and loss during
+emigration is \$\$g+\mu\sigma.\$\$
 
 The columns of the mosquito dispersal matrix \\K\\ sum to zero. For
 non-trivial dispersal matrices, \\\mbox{diag}(K)=-1\\; the off-diagonal
@@ -101,17 +107,23 @@ humans are available, and \\q=1\\ if humans are the only available
 hosts. The module does not model infection, but `fqM` is used to compute
 the human biting rate.
 
-## Dynamics
+## ODE
 
 Adult mosquitoes emerge from aquatic habitats at rate \\\Lambda\\ and
 disperse and die according to \\\Omega\\. The ODE model is \$\$
 \begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\\\ dP/dt &=
 f(M-P)-\Omega\cdot P \end{array}\$\$ Here, \\P\\ is the density of
-mosquitoes that have blood-fed at least once. Parity, \\P/M\\, is
-computed during parsing and stored as `parous`. For discrete-time
-models,
+mosquitoes that have blood-fed at least once.
+
+## DTS
+
+Adult mosquitoes emerge from aquatic habitats at rate \\\Lambda\\ and
+disperse and die according to \\\Omega\\. The one-day update in
 [Update_MYt.basicM](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.basicM.md)
-uses the one-day update equations.
+is \$\$ \begin{array}{rl} M_t &= \Lambda+e^{-\Omega}\cdot M\_{t-1} \\\\
+P_t &= f(M\_{t-1}-P\_{t-1})+e^{-\Omega}\cdot P\_{t-1} \end{array}\$\$
+Here, \\P\\ is the density of mosquitoes that have blood-fed at least
+once.
 
 ## Infective Biting
 
@@ -127,7 +139,7 @@ for this module because there are no infective bites.
 
 ## Egg Laying
 
-The egg batch rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
+The oviposition rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
 determine the egg production rate per patch: \$\$G=\nu\Gamma M.\$\$
 [F_eggs.basicM](https://dd-harp.github.io/ramp.xds/reference/F_eggs.basicM.md)
 computes \\G\\, which is passed to

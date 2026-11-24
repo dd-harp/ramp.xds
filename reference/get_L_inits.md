@@ -1,6 +1,7 @@
 # Get initial values (**L**)
 
-Inspect the initial values for the **L** module
+Return the stored initial values for the selected **L** module and
+vector species.
 
 ## Usage
 
@@ -16,16 +17,18 @@ get_L_inits(xds_obj, s = 1)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values, or
+`NULL` if the field is absent
 
 ## Note
 
-The initial values are stored as a named list called
-`xds_obj$L_obj[[s]]$inits`
+Initial values are stored at `xds_obj$L_obj[[s]]$inits`. An empty list,
+as in the `trivialL` module, is returned unchanged. If the field is
+absent, return `NULL`.
 
 ## See also
 

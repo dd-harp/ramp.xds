@@ -17,7 +17,7 @@ needed without modeling mosquito infection."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,6 +98,10 @@ needed without modeling mosquito infection.</p>
 
 
     <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Parity, \(P/M\), is computed during parsing and stored as <code>parous</code>.</p>
+    </div>
+    <div class="section level2">
     <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
 
 
@@ -132,7 +136,7 @@ needed without modeling mosquito infection.</p>
 <dd><p>mosquito mortality rate — use <a href="setup_g.html">setup_g</a> or <a href="setup_g.html">setup_mosquito_mortality</a></p></dd>
 
 <dt><code>sigma</code> or \(\sigma\)</dt>
-<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_emigration_rates</a></p></dd>
+<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_mosy_emigration</a></p></dd>
 
 <dt><code>mu</code> or \(\mu\)</dt>
 <dd><p>emigration loss fraction — use <a href="setup_mu.html">setup_mu</a> or <a href="setup_mu.html">setup_emigration_loss</a></p></dd>
@@ -141,15 +145,15 @@ needed without modeling mosquito infection.</p>
 <dd><p>mosquito dispersal matrix — use <a href="setup_K_matrix.html">setup_K_matrix</a></p></dd>
 
 <dt><code>nu</code> or \(\nu\)</dt>
-<dd><p>egg batch rate — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
+<dd><p>oviposition rate: the number of egg batches laid in each patch, per mosquito, per day — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
 
 <dt><code>eggsPerBatch</code> or \(\Gamma\)</dt>
 <dd><p>number of eggs per batch</p></dd>
 
 
 </dl><p>After basic setup, <a href="change_MY_pars.basicM.html">change_MY_pars.basicM</a> can be used to change static
-parameter values. The <code>basicM</code> module does not implement dynamic bionomic
-ports.</p>
+parameter values. The <code>basicM</code> module evaluates bionomic parameter functions
+through <a href="MBionomics.html">MBionomics</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="survival-and-dispersal">Survival and Dispersal<a class="anchor" aria-label="anchor" href="#survival-and-dispersal"></a></h2>
@@ -159,7 +163,7 @@ ports.</p>
 \(\Omega\). The parameter \(g\) is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
 rates \(\sigma\), and a fraction \(\mu\) of emigrating mosquitoes is
-lost. The total rate of loss from a patch is $$g+\mu\sigma.$$</p>
+lost. The combined rate of mortality and loss during emigration is $$g+\mu\sigma.$$</p>
 <p>The columns of the mosquito dispersal matrix \(K\) sum to zero. For
 non-trivial dispersal matrices, \(\mbox{diag}(K)=-1\); the off-diagonal
 elements describe the fractions of surviving emigrants that arrive in
@@ -178,7 +182,7 @@ The module does not model infection, but <code>fqM</code> is used to compute the
 human biting rate.</p>
     </div>
     <div class="section level2">
-    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+    <h2 id="ode">ODE<a class="anchor" aria-label="anchor" href="#ode"></a></h2>
 
 
 <p>Adult mosquitoes emerge from aquatic habitats at rate \(\Lambda\) and
@@ -189,9 +193,22 @@ dM/dt &amp;= \Lambda-\Omega\cdot M \\\\
 dP/dt &amp;= f(M-P)-\Omega\cdot P
 \end{array}$$
 Here, \(P\) is the density of mosquitoes that have blood-fed at least
-once. Parity, \(P/M\), is computed during parsing and stored as <code>parous</code>.
-For discrete-time models, <a href="Update_MYt.basicM.html">Update_MYt.basicM</a> uses the one-day update
-equations.</p>
+once.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="dts">DTS<a class="anchor" aria-label="anchor" href="#dts"></a></h2>
+
+
+<p>Adult mosquitoes emerge from aquatic habitats at rate \(\Lambda\) and
+disperse and die according to \(\Omega\). The one-day update in
+<a href="Update_MYt.basicM.html">Update_MYt.basicM</a> is
+$$
+\begin{array}{rl}
+M_t &amp;= \Lambda+e^{-\Omega}\cdot M_{t-1} \\\\
+P_t &amp;= f(M_{t-1}-P_{t-1})+e^{-\Omega}\cdot P_{t-1}
+\end{array}$$
+Here, \(P\) is the density of mosquitoes that have blood-fed at least
+once.</p>
     </div>
     <div class="section level2">
     <h2 id="infective-biting">Infective Biting<a class="anchor" aria-label="anchor" href="#infective-biting"></a></h2>
@@ -209,7 +226,7 @@ module because there are no infective bites.</p>
     <h2 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a></h2>
 
 
-<p>The egg batch rate \(\nu\) and the number of eggs per batch
+<p>The oviposition rate \(\nu\) and the number of eggs per batch
 \(\Gamma\) determine the egg production rate per patch:
 $$G=\nu\Gamma M.$$
 <a href="F_eggs.basicM.html">F_eggs.basicM</a> computes \(G\), which is passed to <a href="EggLaying.html">EggLaying</a> for

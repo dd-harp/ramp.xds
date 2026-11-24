@@ -1,6 +1,6 @@
-# Set up F_nu
+# Configure the oviposition rate function (**MY**)
 
-Set up F_nu
+Configure the function used to compute the baseline oviposition rate.
 
 ## Usage
 
@@ -12,7 +12,7 @@ setup_F_nu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an oviposition rate or setup method name
 
 - xds_obj:
 

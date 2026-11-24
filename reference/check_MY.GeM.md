@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check `GeM` (**MY**)
 
-Run a check before solving
+Check `GeM` (**MY**)
 
 ## Usage
 

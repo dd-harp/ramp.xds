@@ -1,6 +1,7 @@
-# The skill set
+# Get the skill set for `trivialMY` (**MY**)
 
-The skill set
+Return the capabilities and compatibilities of the `trivialMY` module as
+a list.
 
 ## Usage
 

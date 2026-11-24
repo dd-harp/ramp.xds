@@ -1,6 +1,7 @@
-# Make inits for RMdts adult mosquito model
+# Make initial values for `RMdts` (**MY**)
 
-Make inits for RMdts adult mosquito model
+Create a named list of initial values for the `RMdts` module. Values in
+`options` override the defaults.
 
 ## Usage
 
@@ -47,7 +48,8 @@ make_MY_inits_RMdts(
 
 - Y:
 
-  infected mosquito density at each patch
+  initial infected mosquito densities across EIP cohorts, a numeric
+  scalar or input of length `nPatches * max_eip`
 
 - Z:
 
@@ -55,4 +57,15 @@ make_MY_inits_RMdts(
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values
+
+## Details
+
+Initial values must be numeric scalars or have the required length:
+`nPatches` for `M`, `P`, `U`, and `Z`, and `nPatches * max_eip` for `Y`.
+Scalars are expanded to the required length.
+
+## See also
+
+[setup_MY_inits.RMdts](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.RMdts.md),
+[change_MY_inits.RMdts](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.RMdts.md)

@@ -5,21 +5,11 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up initial values for hMoI (XH) — setup_XH_inits.hMoI"><meta name="description" content="Set initial values for all the variables in the hMoI module
-(XH) for the \(i^{th}\) species.
-make_XH_inits_hMoI supplies default values
-The values in options override the defaults
-To inspect variable names, use get_XH_inits or
-see the inline module documentation.
-
-"><meta property="og:description" content="Set initial values for all the variables in the hMoI module
-(XH) for the \(i^{th}\) species.
-make_XH_inits_hMoI supplies default values
-The values in options override the defaults
-To inspect variable names, use get_XH_inits or
-see the inline module documentation.
-
-"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up initial values for hMoI (XH) — setup_XH_inits.hMoI"><meta name="description" content="Set up initial values for the hMoI module using
+make_XH_inits_hMoI. Values in options override the defaults.
+If H is supplied in options, also update the module's population density."><meta property="og:description" content="Set up initial values for the hMoI module using
+make_XH_inits_hMoI. Values in options override the defaults.
+If H is supplied in options, also update the module's population density."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -27,7 +17,7 @@ see the inline module documentation.
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,12 +91,10 @@ see the inline module documentation.
     </div>
 
     <div class="ref-description section level2">
-    <p>Set initial values for all the variables in the <code>hMoI</code> module
-(<strong>XH</strong>) for the \(i^{th}\) species.</p><ul><li><p><a href="make_XH_inits_hMoI.html">make_XH_inits_hMoI</a> supplies default values</p></li>
-<li><p>The values in <code>options</code> override the defaults</p></li>
-<li><p>To inspect variable names, use <a href="get_XH_inits.html">get_XH_inits</a> or
-see the inline module documentation.</p></li>
-</ul></div>
+    <p>Set up initial values for the <code>hMoI</code> module using
+<a href="make_XH_inits_hMoI.html">make_XH_inits_hMoI</a>. Values in <code>options</code> override the defaults.
+If <code>H</code> is supplied in <code>options</code>, also update the module's population density.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
@@ -135,8 +123,14 @@ see the inline module documentation.</p></li>
     <p>an <strong><code>xds</code></strong> model object</p>
     </div>
     <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Initial values are stored at <code>xds_obj$XH_obj[[i]]$inits</code>.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="hMoI.html">hMoI</a></p></div>
+    <div class="dont-index"><p><a href="hMoI.html">hMoI</a></p>
+<p><a href="change_XH_inits.hMoI.html">change_XH_inits.hMoI</a></p>
+<p><a href="get_XH_inits.html">get_XH_inits</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

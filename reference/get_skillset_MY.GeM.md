@@ -1,6 +1,7 @@
-# The skill set
+# Get the skill set for `GeM` (**MY**)
 
-The skill set
+Return the capabilities and compatibilities of the `GeM` module as a
+list.
 
 ## Usage
 

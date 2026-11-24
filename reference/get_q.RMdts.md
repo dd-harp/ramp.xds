@@ -1,6 +1,6 @@
-# Get the human fractions
+# Get the human blood fraction for `RMdts` (**MY**)
 
-Get the human fractions
+Return the stored realized human blood fraction per patch.
 
 ## Usage
 
@@ -21,7 +21,50 @@ get_q(xds_obj, s = 1)
 
 ## Value
 
-the human fraction, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `q` without evaluating ports or applying effect sizes.
+
+## Parameters
+
+- `f`:
+
+  blood feeding rate
+
+- `q`:
+
+  human blood fraction
+
+- `eip`:
+
+  extrinsic incubation period (time steps)
+
+- `g`:
+
+  mosquito mortality rate
+
+- `sigma`:
+
+  emigration rate
+
+- `mu`:
+
+  emigration loss rate
+
+- `K`:
+
+  mosquito dispersal matrix
+
+- `Omega`:
+
+  adult mosquito demographic matrix (mortality + migration)
+
+- `Upsilon`:
+
+  survival and dispersal through the eip
 
 ## See also
 

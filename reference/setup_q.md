@@ -1,6 +1,6 @@
-# Set up human feeding fraction
+# Set up human fraction (**MY**)
 
-Configure and validate the human feeding fraction.
+Configure and validate the human fraction.
 
 ## Usage
 
@@ -8,13 +8,15 @@ Configure and validate the human feeding fraction.
 setup_q(name, xds_obj, options = list(), s = 1)
 
 setup_human_fractions(name, xds_obj, options = list(), s = 1)
+
+setup_human_fraction(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
 
 - name:
 
-  a human feeding fraction or setup method name
+  a human fraction or setup method name
 
 - xds_obj:
 

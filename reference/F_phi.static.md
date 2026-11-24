@@ -1,8 +1,7 @@
-# Compute phi, density independent mortality rate
+# Static model for the density-independent mortality rate (**L**)
 
-Implements
-[F_phi](https://dd-harp.github.io/ramp.xds/reference/F_phi.md) for a
-static model
+Return the baseline density-independent mortality rate for a static
+model.
 
 ## Usage
 
@@ -27,4 +26,4 @@ F_phi(t, xds_obj, s)
 
 ## Value
 
-\\phi\\, the baseline human fraction
+\\phi\\, the baseline density-independent mortality rate

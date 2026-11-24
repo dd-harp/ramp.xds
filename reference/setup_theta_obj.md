@@ -1,7 +1,9 @@
-# Set up theta object (density dependent larval mortality)
+# Set up bionomic port for slope of density-dependent mortality (**L**)
 
-Set up an object to compute excess mortality as a function of to mean
-crowding, \\theta\\
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline slope of density-dependent mortality, \\theta\\,
+for a static model.
 
 ## Usage
 
@@ -13,12 +15,12 @@ setup_theta_obj(theta, L_obj)
 
 - theta:
 
-  the human fraction
+  the slope of density-dependent mortality
 
 - L_obj:
 
-  an **`L`** model object
+  an **`L`** module object
 
 ## Value
 
-a **`L`** model object
+an **`L`** module object

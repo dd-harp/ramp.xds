@@ -1,16 +1,9 @@
-# Setup initial values for `GeM` (**MY**)
+# Set up initial values for `GeM` (**MY**)
 
-Set initial values for all the variables in the `GeM` module (**MY**)
-for the \\s^{th}\\ species.
-
-- [make_MY_inits_GeM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_GeM.md)
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
-  or see the inline module documentation.
+Set up initial values for the `GeM` module using
+[make_MY_inits_GeM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_GeM.md).
+Values in `options` override the defaults. The EIP survival and
+dispersal matrix is computed and passed to the constructor.
 
 ## Usage
 
@@ -35,7 +28,11 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object
+
+## Note
+
+Initial values are stored at `xds_obj$MY_obj[[s]]$inits`.
 
 ## State Variables
 
@@ -64,3 +61,9 @@ and EIP, it is computed as an accessory variable:
 \$\$\frac{d\Upsilon}{dt}=\left(\Omega(t\_\tau)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right)\cdot\Upsilon(t).\$\$
 The initial matrix is set to \\\exp(-\Omega eip)\\. This variable is
 internal to the model and is not an output orbit.
+
+## See also
+
+[change_MY_inits.GeM](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.GeM.md)
+
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)

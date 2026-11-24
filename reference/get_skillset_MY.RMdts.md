@@ -1,6 +1,7 @@
-# The skill set
+# Get the skill set for `RMdts` (**MY**)
 
-The skill set
+Return the capabilities and compatibilities of the `RMdts` module as a
+list.
 
 ## Usage
 

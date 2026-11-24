@@ -1,6 +1,8 @@
-# Set up the extrinsic incubation period object
+# Set up bionomic port for extrinsic incubation period (**MY**)
 
-Set up an object to compute the EIP
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the extrinsic incubation period for a static model.
 
 ## Usage
 
@@ -16,8 +18,8 @@ setup_eip_obj(eip, MY_obj)
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

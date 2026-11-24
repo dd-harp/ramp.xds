@@ -1,7 +1,7 @@
 # Apply effect sizes for `macdonald` (**MY**)
 
-This method leaves the `macdonald` parameters unchanged; the module does
-not implement effect-size modifications.
+Set `K_matrix = K_matrix_t * es_K_matrix` and recompute demographic and
+survival matrices. Scalar parameters remain unchanged.
 
 ## Usage
 
@@ -62,7 +62,7 @@ an **`xds`** model object
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -78,7 +78,8 @@ an **`xds`** model object
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

@@ -1,6 +1,8 @@
-# Show Circadian
+# Set the default circadian activity function
 
-Update the circadian for the \\s^{th}\\ host species
+Set the activity function to
+[F_one](https://dd-harp.github.io/ramp.xds/reference/F_one.md) for
+vector species \\s\\.
 
 ## Usage
 

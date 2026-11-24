@@ -1,6 +1,7 @@
 # Change the blood search weights
 
-Change the *static* blood search weights
+Change the static blood search weights for host species `i` and
+recompute derived blood-feeding and transmission terms.
 
 ## Usage
 
@@ -12,7 +13,7 @@ change_blood_search_weights(blood_search_weights, xds_obj, i = 1)
 
 - blood_search_weights:
 
-  a blood_search_weights
+  a numeric vector with one weight per population stratum
 
 - xds_obj:
 

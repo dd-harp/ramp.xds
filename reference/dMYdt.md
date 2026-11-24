@@ -1,7 +1,8 @@
-# Compute derivatives (**MY**)
+# Compute the derivatives (**MY**)
 
-In the description, each method should include the equations and a
-reference to relevant papers in the literature.
+Compute the derivatives of the adult mosquito state variables using the
+selected **MY** module. See the module-specific documentation for
+equations and references.
 
 ## Usage
 
@@ -29,9 +30,9 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-Derivatives for an adult mosquito model, a
-[vector](https://rdrr.io/r/base/vector.html)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order
 
 ## Note
 
-This is the `S3` generic. Methods dispatch on `MY_obj[[s]]`
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.

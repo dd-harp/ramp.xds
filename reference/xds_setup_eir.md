@@ -99,13 +99,6 @@ an **`xds`** model object
 
 ## Details
 
-This sets
-
-`class(xds_obj$frame) = 'eir'`
-
-to dispatch functions that compute derivatives (`xde`), update variables
-(`dts`), and parse outputs.
-
 **Dynamics**
 
 Configure the **XH** component:
@@ -141,6 +134,15 @@ a function can be configured to compute relative biting rates by age:
 
 - `F_age` or `age_par` — set up relative biting rates by age
 
+## Note
+
+This sets
+
+`class(xds_obj$frame) = 'eir'`
+
+to dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs.
+
 ## See also
 
 - Basic Setup:
@@ -155,7 +157,7 @@ a function can be configured to compute relative biting rates by age:
     [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
 
 - Advanced Setup:
-  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
+  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
 
 - Solving:
   [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md),

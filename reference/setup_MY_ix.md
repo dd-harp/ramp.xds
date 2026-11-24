@@ -1,6 +1,7 @@
-# Add indices for adult mosquitoes to parameter list
+# Set up variable indices (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj`.
+Set up variable indices for the selected **MY** module and vector
+species.
 
 ## Usage
 
@@ -20,4 +21,8 @@ setup_MY_ix(xds_obj, s)
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object
+
+## Note
+
+Dispatch uses the class of `xds_obj$MY_obj[[s]]`.

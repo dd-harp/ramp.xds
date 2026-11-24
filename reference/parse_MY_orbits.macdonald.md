@@ -1,8 +1,8 @@
 # Parse outputs for `macdonald` (**MY**)
 
-Implements
-[parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
-for the macdonald model
+Extract the model state outputs for the `macdonald` module from
+`outputs` and return them by name in a list. Also compute `y = Y/M`,
+`z = Z/M`, and `parous = P/M`.
 
 ## Usage
 
@@ -15,7 +15,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) of outputs from deSolve
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -28,6 +28,10 @@ parse_MY_orbits(outputs, xds_obj, s)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
 
 ## State Variables
 
@@ -71,8 +75,7 @@ compute these patch-level quantities.
 combines `fqZ` with the biting distribution matrix and resident-bite
 fraction to compute stratum-level EIR;
 [F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md) computes
-HBR from `fqM` in the same way. The resulting `EIR` and `HBR` orbits are
-attached to the XH output during parsing.
+HBR from `fqM` in the same way.
 
 ## See also
 

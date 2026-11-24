@@ -1,4 +1,4 @@
-# Change mosquito mortality rate
+# Change mosquito mortality rate (**MY**)
 
 Update the mosquito mortality rate for the \\s^{th}\\ vector species and
 refresh the demographic matrix.

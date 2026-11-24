@@ -1,6 +1,6 @@
-# Get the feeding rates
+# Get the feeding rate for `RMdts` (**MY**)
 
-Get the feeding rates
+Return the stored realized feeding rate per patch.
 
 ## Usage
 
@@ -21,7 +21,50 @@ get_f(xds_obj, s = 1)
 
 ## Value
 
-the feeding rate, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `f` without evaluating ports or applying effect sizes.
+
+## Parameters
+
+- `f`:
+
+  blood feeding rate
+
+- `q`:
+
+  human blood fraction
+
+- `eip`:
+
+  extrinsic incubation period (time steps)
+
+- `g`:
+
+  mosquito mortality rate
+
+- `sigma`:
+
+  emigration rate
+
+- `mu`:
+
+  emigration loss rate
+
+- `K`:
+
+  mosquito dispersal matrix
+
+- `Omega`:
+
+  adult mosquito demographic matrix (mortality + migration)
+
+- `Upsilon`:
+
+  survival and dispersal through the eip
 
 ## See also
 

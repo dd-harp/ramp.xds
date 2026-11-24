@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -258,14 +258,8 @@ can be viewed with the function <code>get_XH_pars</code>:</p>
 <span><span class="co">## $sigma</span></span>
 <span><span class="co">## [1] 0</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## $q_lm</span></span>
-<span><span class="co">## [1] 0.8</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $q_rdt</span></span>
-<span><span class="co">## [1] 0.8</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $q_pcr</span></span>
-<span><span class="co">## [1] 0.9</span></span></code></pre>
+<span><span class="co">## $q</span></span>
+<span><span class="co">## [1] 0.8</span></span></code></pre>
 <p>Functions like <code>get_XH_pars</code> are designed to help users
 work with <strong>xds model object</strong>. In this case, the
 parameters are stored as <code>model$XH_obj[[i]],</code> for the <span class="math inline">\(i^{th}\)</span> species. Knowing the names, the
@@ -317,14 +311,8 @@ component, options are passed in <code>XHoptions</code>:</p>
 <span><span class="co">## $sigma</span></span>
 <span><span class="co">## [1] 0</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## $q_lm</span></span>
-<span><span class="co">## [1] 0.8</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $q_rdt</span></span>
-<span><span class="co">## [1] 0.8</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $q_pcr</span></span>
-<span><span class="co">## [1] 0.9</span></span></code></pre>
+<span><span class="co">## $q</span></span>
+<span><span class="co">## [1] 0.8</span></span></code></pre>
 <p>In the <code>SIS</code> model, we set <span class="math inline">\(H_0,\)</span> and <span class="math inline">\(I_0.\)</span> The software computes <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt\)</span> and sets <span class="math inline">\(S=H-I.\)</span> Total population size, <span class="math inline">\(H,\)</span> an important role in setting up the
 <em>Blood Feeding</em> interface. Since <span class="math inline">\(S =
 H-I\)</span>, we don’t compute <span class="math inline">\(S,\)</span>

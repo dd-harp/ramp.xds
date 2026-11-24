@@ -1,16 +1,9 @@
 # Set up initial values for `hMoI` (**XH**)
 
-Set initial values for all the variables in the `hMoI` module (**XH**)
-for the \\i^{th}\\ species.
-
-- [make_XH_inits_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_hMoI.md)
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)
-  or see the inline module documentation.
+Set up initial values for the `hMoI` module using
+[make_XH_inits_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_hMoI.md).
+Values in `options` override the defaults. If `H` is supplied in
+`options`, also update the module's population density.
 
 ## Usage
 
@@ -37,6 +30,14 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 
 an **`xds`** model object
 
+## Note
+
+Initial values are stored at `xds_obj$XH_obj[[i]]$inits`.
+
 ## See also
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)
+
+[change_XH_inits.hMoI](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.hMoI.md)
+
+[get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)

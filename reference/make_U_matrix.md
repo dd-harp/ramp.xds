@@ -68,11 +68,11 @@ by relative availability.
 
 The algorithm is motivated by *searching* for aquatic habitat. Each
 habitat is assigned a *search weight* \\(w).\\ Habitat availability
-\\(Q)\\ sums the search weights by patch. The fraction of all eggs laid
-in the \\j^{th}\\ patch that end up in the \\i^{th}\\ habitat is \\w_i /
-Q_j.\\
+\\(Q)\\ sums the search weights by patch. Of the eggs laid in productive
+habitats in the \\j^{th}\\ patch, the fraction laid in the \\i^{th}\\
+habitat is \\w_i / Q_j.\\
 
-This is computed by constructing the laying matrix, \\\mathbf U\\, a
+This is computed by constructing the laying matrix, \\\mathbf U\\, an
 `nHabitats` \\\times\\ `nPatches` matrix. To avoid division-by-zero
 errors for patches with no available habitats, a quantity \\\epsilon =
 1e-14\\ is added to availability: \$\$ \mathbf{U}= \mbox{diag}\left( w

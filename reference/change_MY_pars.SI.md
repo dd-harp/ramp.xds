@@ -1,7 +1,13 @@
 # Change parameters for `SI` (**MY**)
 
-For the `SI` module (**MY**) for the \\s^{th}\\ species, change *static*
-parameter values named in `options` leaving other values unchanged.
+Change parameter values named in `options` for the `SI` module, leaving
+other values unchanged. Refresh baseline bionomics at time zero using
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md),
+without calling
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md).
+This method changes static parameter values. To change `K_matrix`, use
+[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md);
+this method does not change the dispersal matrix.
 
 ## Usage
 
@@ -65,11 +71,11 @@ Use advanced setup to modify dynamic bionomic ports.
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
-  emigration loss rate — use
+  emigration loss fraction — use
   [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
   or
   [setup_emigration_loss](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
@@ -81,7 +87,8 @@ Use advanced setup to modify dynamic bionomic ports.
 
 - `nu` or \\\nu\\:
 
-  the egg batch rate, in batches per mosquito per day — use
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -92,11 +99,13 @@ Use advanced setup to modify dynamic bionomic ports.
 
 After basic setup,
 [change_MY_pars](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.md)
-can be used for static parameters, or for for parameters that are set up
-as static ports (the default). Use advanced setup to modify dynamic
-ports.
+can be used for static parameters, or for parameters that are set up as
+static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## See also
+
+[make_MY_obj_SI](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md),
+[get_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md)
 
 [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
 [get_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md)

@@ -1,6 +1,7 @@
-# Setup egg laying
+# Set up static oviposition rates (**MY**)
 
-Change the static values.
+Set up supplied static oviposition rates from `options$nu` or a numeric
+`name`. Values in `options$nu` take precedence.
 
 ## Usage
 
@@ -13,7 +14,7 @@ setup_F_nu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an oviposition rate or setup method name
 
 - xds_obj:
 

@@ -1,6 +1,6 @@
 # Set habitat search weights
 
-The default version called by setup
+The default version called by setup.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

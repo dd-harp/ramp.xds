@@ -1,6 +1,6 @@
 # Add indices for auxiliary variables to the parameter list
 
-This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+Add indices for auxiliary variables to the parameter list
 
 ## Usage
 
@@ -21,3 +21,7 @@ setup_V_ix(xds_obj, i)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+This method dispatches on the type of `xds_obj$V_obj[[i]]`.

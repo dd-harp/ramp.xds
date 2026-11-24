@@ -1,6 +1,6 @@
-# Set up no F_sigma
+# Set up F_sigma (no setup) (**MY**)
 
-Don't change anything
+Leave the existing patch emigration rate configuration unchanged.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a patch emigration rate or setup method name
 
 - xds_obj:
 

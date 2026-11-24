@@ -1,4 +1,4 @@
-# Check `macdonald` (**MY**) before solving
+# Check `macdonald` (**MY**)
 
 This method currently performs no additional checks.
 

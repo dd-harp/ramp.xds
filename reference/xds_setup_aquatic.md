@@ -55,12 +55,7 @@ an **`xds`** model object
 This is a modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that streamlines setup for the **L** module and egg laying for a
-`trivialMY` **MY** module. It sets
-
-`class(xds_obj$frame) = 'aquatic'`
-
-to dispatch functions that compute derivatives (`xde`), update variables
-(`dts`), and parse outputs.
+`trivialMY` **MY** module.
 
 **Dynamics**
 
@@ -90,6 +85,13 @@ Set up the model structure:
 
 ## Note
 
+It sets
+
+`class(xds_obj$frame) = 'aquatic'`
+
+to dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs.
+
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 calls
 [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
@@ -113,7 +115,7 @@ for blood feeding and egg laying (see
     [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
 
 - Advanced Setup:
-  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
+  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
 
 - Solving:
   [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)

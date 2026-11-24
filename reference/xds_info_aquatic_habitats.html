@@ -7,24 +7,24 @@
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Aquatic Habitats — xds_info_aquatic_habitats"><meta name="description" content="Aquatic habitats are distributed among patches on a landscape.
 membership
-a vector: the patch index of each aquatic habitat
+the habitat vector
 
 nHabitats
 the number of habitats (length(membership))
 
-searchQ
+search_weights or \(w\)
 a vector: a search weight for each aquatic habitat
 
 
 
 "><meta property="og:description" content="Aquatic habitats are distributed among patches on a landscape.
 membership
-a vector: the patch index of each aquatic habitat
+the habitat vector
 
 nHabitats
 the number of habitats (length(membership))
 
-searchQ
+search_weights or \(w\)
 a vector: a search weight for each aquatic habitat
 
 
@@ -37,7 +37,7 @@ a vector: a search weight for each aquatic habitat
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,12 +112,12 @@ a vector: a search weight for each aquatic habitat
 
     <div class="ref-description section level2">
     <p>Aquatic habitats are distributed among patches on a landscape.</p><dl><dt><code>membership</code></dt>
-<dd><p>a vector: the patch index of each aquatic habitat</p></dd>
+<dd><p>the <a href="habitat_vector.html">habitat vector</a></p></dd>
 
 <dt><code>nHabitats</code></dt>
 <dd><p>the number of habitats (<code>length(membership)</code>)</p></dd>
 
-<dt><code>searchQ</code></dt>
+<dt><code>search_weights</code> or \(w\)</dt>
 <dd><p>a vector: a search weight for each aquatic habitat</p></dd>
 
 
@@ -125,38 +125,64 @@ a vector: a search weight for each aquatic habitat
 
 
     <div class="section level2">
-    <h2 id="the-habitat-matrix">The Habitat Matrix<a class="anchor" aria-label="anchor" href="#the-habitat-matrix"></a></h2>
+    <h2 id="habitat-vector">Habitat Vector<a class="anchor" aria-label="anchor" href="#habitat-vector"></a></h2>
 
 
 
-<p>The <em>habitat matrix</em> is an <code>nPatches</code> \(\times\) <code>nHabitats</code> matrix called \(N\).
-It is constructed from the <code>membership</code> vector.
-In the matrix, \(N_{i,j}\) is 1 if the \(i^{th}\) patch contains the \(j^{th}\) habitat.
-For example, a membership vector \((1,1,2)\) has a corresponding habitat matrix:
-$$
-N = \left[
-\begin{array}{ccc}
-1&amp;1&amp;0\\
-0&amp;0&amp;1\\
-\end{array}
-\right]
-$$
-If \(\alpha\) denotes the emergence rate of adult mosquitoes
-from each habitat, then the emergence rate at the patch, \(\Lambda\) is:
-$$\Lambda = N \cdot \alpha$$</p>
+<p>A habitat vector \((V)\) indexes
+the patches where each aquatic habitat can be found.</p>
+<p>If the \(i^{th}\)
+habitat is located in the \(j^{th}\) patch, then \(V_i = j.\)</p>
     </div>
     <div class="section level2">
-    <h2 id="the-egg-distribution-matrix">The Egg Distribution Matrix<a class="anchor" aria-label="anchor" href="#the-egg-distribution-matrix"></a></h2>
+    <h2 id="habitat-matrix">Habitat Matrix<a class="anchor" aria-label="anchor" href="#habitat-matrix"></a></h2>
 
 
 
-<p>Let \(\omega\) denote the habitat search weights. Habitat availability (\(Q\)) is computed as:
-$$Q = N \cdot \omega.$$
-Mosquitoes could also lay some eggs in available bad habitats (\(B\)) or in available ovitraps (\(O\)).
-The egg distribution matrix (\(U\)) is computed as
-$$U = \left( \mbox{diag} \left(\omega \right) \cdot N^T \right) \cdot \mbox{diag}\left( (Q+B+O)^{-1} \right).$$
-In models where there are patches with no available habitat, \((Q+B+O)^{-1}\) is computed using the function <a href="diag_inverse.html">diag_inverse</a>, which
-fixes the divide-by-zero problem.</p>
+<p>The habitat matrix \((\mathbf N)\) is an <code>nPatches</code>\(\times\)<code>nHabitats</code> matrix
+that is constructed from the <a href="habitat_vector.html">habitat_vector</a>.</p>
+<p>If the \(i^{th}\) habitat is in the \(j^{th}\) patch, then
+\({N}_{j,i}=1.\) Otherwise, \({N}_{j,i}=0.\)</p>
+<p>If \(x\) is any vector describing a quantity in
+habitats (<em>i.e.</em>, \(\left|x\right|=\)<code>nHabitats</code>), then
+$$X=\mathbf{N}\cdot x$$ is a vector that has summed \(x\)
+by patch, and \(\left|X\right|=\)<code>nPatches</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="unproductive-aquatic-habitats">Unproductive Aquatic Habitats<a class="anchor" aria-label="anchor" href="#unproductive-aquatic-habitats"></a></h2>
+
+
+<p>To model egg laying, a port
+was developed to model the availability
+of unproductive aquatic habitats: water
+where mosquitoes
+lay eggs, but no mature adults ever emerge.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="ovitraps">Ovitraps<a class="anchor" aria-label="anchor" href="#ovitraps"></a></h2>
+
+
+<p>To simulate ovitraps, a port
+was developed to model the availability
+of the ovitraps.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a></h2>
+
+
+
+<p><strong>Egg Laying in Patches</strong> — The number of eggs laid by adult mosquitoes in each patch \((G)\)
+is computed by an <strong>MY</strong> component function <a href="F_eggs.html">F_eggs</a>, typically:
+$$G = F_G(M).$$</p>
+<p><strong>Habitats and Traps</strong> — Aquatic habitats compete with "bad habitats" (<em>i.e.</em>, water bodies where eggs
+are laid that are not productive) and ovitraps for eggs laid. The availability
+of each one in the patch is given by:</p><ul><li><p>\(Q\) — habitat availability (see <a href="habitat_availability.html">habitat_availability</a>)</p></li>
+<li><p>\(W\) — availability of unsuitable habitats</p></li>
+<li><p>\(O\) — availability of ovitraps</p></li>
+</ul><p>$$\zeta = \frac{\textstyle{Q}}{\textstyle{Q+W+O}}$$</p>
+<p><strong>Laying in Habitats</strong> — eggs laid in habitats are distributed by the
+laying matrix \((\mathbf{U})\).</p>
+<p>$$\eta = \mathbf{U} \cdot \zeta G $$</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

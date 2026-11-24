@@ -1,6 +1,6 @@
 # Get residence
 
-Get the residence vector
+Get the residence vector for host species `i`.
 
 ## Usage
 
@@ -20,4 +20,4 @@ get_residence(xds_obj, i = 1)
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html)
+a numeric vector of patch indices, one per population stratum

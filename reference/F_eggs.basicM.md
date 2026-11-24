@@ -1,8 +1,7 @@
-# Egg production rate for `basicM`
+# Compute egg production for `basicM` (**MY**)
 
-Implements
-[F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-basic ecology model
+Return the number of eggs laid by the adult mosquito population, per
+patch.
 
 ## Usage
 
@@ -36,7 +35,7 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Egg Laying
 
-The egg batch rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
+The oviposition rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
 determine the egg production rate per patch: \$\$G=\nu\Gamma M.\$\$
 F_eggs.basicM computes \\G\\, which is passed to
 [EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)

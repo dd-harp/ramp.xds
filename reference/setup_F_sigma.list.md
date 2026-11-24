@@ -1,11 +1,6 @@
-# Set up F_sigma
+# Set up F_sigma (**MY**)
 
-If an options list is passed as the first argument, then set
-
-- `Fsigma_name = name$name`
-
-- `options = name` and call
-  `setup_F_sigma(Fsigma_name, xds_obj, options, s)`
+Set up patch emigration rates using an options list.
 
 ## Usage
 
@@ -18,7 +13,7 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a patch emigration rate or setup method name
 
 - xds_obj:
 
@@ -35,3 +30,10 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, use its `name` field
+to select the setup method. If `name` is NULL, use the `no_setup`
+method. Pass the list as `options` to
+[setup_F_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_F_sigma.md).

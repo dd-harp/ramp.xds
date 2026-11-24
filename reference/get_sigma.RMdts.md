@@ -1,6 +1,6 @@
-# Get the patch emigration rates
+# Get the patch emigration rate for `RMdts` (**MY**)
 
-Get the patch emigration rates
+Return the stored realized patch emigration rate per patch.
 
 ## Usage
 
@@ -21,7 +21,50 @@ get_sigma(xds_obj, s = 1)
 
 ## Value
 
-the patch emigration rates, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `sigma` without evaluating ports or applying effect sizes.
+
+## Parameters
+
+- `f`:
+
+  blood feeding rate
+
+- `q`:
+
+  human blood fraction
+
+- `eip`:
+
+  extrinsic incubation period (time steps)
+
+- `g`:
+
+  mosquito mortality rate
+
+- `sigma`:
+
+  emigration rate
+
+- `mu`:
+
+  emigration loss rate
+
+- `K`:
+
+  mosquito dispersal matrix
+
+- `Omega`:
+
+  adult mosquito demographic matrix (mortality + migration)
+
+- `Upsilon`:
+
+  survival and dispersal through the eip
 
 ## See also
 

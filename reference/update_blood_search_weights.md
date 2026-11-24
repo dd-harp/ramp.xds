@@ -1,6 +1,6 @@
 # Update the blood search weights
 
-This is called to update dy
+Dispatch the update for blood search weights of host species `i`.
 
 ## Usage
 

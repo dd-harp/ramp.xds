@@ -2,7 +2,7 @@
 
 This function, called by
 [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
-sets up the blood feeding interface, `xds_obj$blood_feeding`
+initializes storage for blood-feeding terms and patch-level resources.
 
 ## Usage
 
@@ -16,6 +16,10 @@ setup_blood_feeding_interface(xds_obj, residence)
 
   an **`xds`** model object
 
+- residence:
+
+  a residence vector for the first host species
+
 ## Value
 
 an **`xds`** model object
@@ -25,69 +29,12 @@ an **`xds`** model object
 This implements a framework to model blood feeding described by Wu SL,
 *et al.*, (2023).
 
-Modular computation in **`ramp.xds`** requires a rigid interface to
-guarantee mathematical consistency in computing quantites related to
-blood feeding and transmission.
-
-The interface for blood feeding is defined by an object called
-`blood_feeding`, attached to the **`xds`** model object as
-`xds_obj$blood_feeding.`
-
-The blood feeding interface sets up several objects:
-
-- a time spent (TiSp) matrix \\\Theta\\ (see
-  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
-
-- a circadian function `F_circadian` for each vector species
-
-- a time at risk (TaR) matrix \\\Psi,\\ the product of the TiSp matrix
-  and the circadian function
-
-- blood feeding search weights \\\omega\\
-
-- a vector describing the available of humans (or hosts), \\W\\ (see
-  [F_W_available](https://dd-harp.github.io/ramp.xds/reference/F_W_available.md))
-
-- a vector describing the available of visitors, \\V\\
-
-- a vector describing the available of other blood hosts, \\O\\
-
-- a vector describing the total available of blood hosts, \\B\\ (see
-  [F_B_available](https://dd-harp.github.io/ramp.xds/reference/F_B_available.md))
-
-These quantities are used to compute the transmission matrix, \\\beta\\,
-to models transmission (see
-[`setup_transmission()`](https://dd-harp.github.io/ramp.xds/reference/setup_TRANSMISSION.md)).
-
-Mosquito bionomic parameters *ought* to be constrained. If bionomic
-parameters are assigned, there's no guarantee they are internally
-mathematically consistent or sensible. To guarantee internal
-consistency, the the concept of resource available should be used to
-compute the blood feeding rates (\\f\\) using *functional responses.*
-The human fraction ought to be \\q=W/B\\. available can also be used to
-model mosquito movement.
-
-**Mulit-Host Models**
-
-In models with multiple host species, let \\W_i\\ denote the available
-of the \\i^{th}\\ host species. Total availablity of blood hosts is
-\$\$B = \sum_i W_i + O + V,\$\$ so the the fraction of bites on each
-host species is \\W_i/B\\.
-
-In models with multiple vector species and one host species, each vector
-species could have different search habits and preferences. so blood
-feeding available is computed for each species, denoted \\B_s\\ and
-\\W\_{s}\\.
-
-In models with multiple vector and multiple host species, \\W\_{i,s}\\
-is the available of the \\i^{th}\\ host species to the \\s^{th}\\ vector
-species.
-
-For hosts, available is based on *time spent* in each patch, and *time
-at risk,* or time spent by time of day weighted by mosquito
-species-specific *search weights* reflecting different preferences and a
-circadian function describing relative mosquito blood feeding rates by
-time of day.
+The initializer creates `xds_obj$blood_feeding_obj`, initializes the
+first time-at-risk and host-availability term slots, and creates
+zero-valued visitor, other-host, and blood-trap vectors with static port
+objects. Time-spent matrices, circadian functions, and blood search
+weights are configured separately. These terms are used by
+[setup_transmission](https://dd-harp.github.io/ramp.xds/reference/setup_TRANSMISSION.md).
 
 ## References
 
@@ -100,4 +47,7 @@ transmission.” *PLoS Computational Biology*, **19**(6), e1010684.
 
 ## See also
 
-[setup_transmission](https://dd-harp.github.io/ramp.xds/reference/setup_TRANSMISSION.md)
+[setup_transmission](https://dd-harp.github.io/ramp.xds/reference/setup_TRANSMISSION.md),
+[blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md),
+[time_at_risk](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md),
+[available_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/available_blood_hosts.md)

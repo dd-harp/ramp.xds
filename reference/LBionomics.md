@@ -1,7 +1,8 @@
 # Mosquito bionomics (**L**)
 
-Compute the values of bionomic parameter values for an **L** Component
-module
+Compute baseline bionomic parameter values for an **L** component
+module. Store each port-backed parameter `x` as `x_t` and reset `es_x`
+to 1. Parameters without ports are stored directly as `x`.
 
 ## Usage
 
@@ -30,3 +31,12 @@ LBionomics(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`.
+
+## See also
+
+[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md),
+[MosquitoBionomics](https://dd-harp.github.io/ramp.xds/reference/MosquitoBionomics.md)

@@ -1,6 +1,11 @@
-# Make parameters for basicM adult mosquito model
+# Make a module object for `basicM` (**MY**)
 
-Make parameters for basicM adult mosquito model
+Create a `basicM` module object and initialize its parameters. Inspect
+parameters with
+[get_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.basicM.md)
+and change supported values with
+[change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -50,17 +55,21 @@ make_M_obj_basicM(
 
 - nu:
 
-  oviposition rate, per mosquito
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - eggsPerBatch:
 
-  eggs laid per oviposition
+  number of eggs per batch
 
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
 
 ## See also
+
+[get_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.basicM.md),
+[change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
 
 [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md),
 [setup_MY_obj.basicM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.basicM.md)

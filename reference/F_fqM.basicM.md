@@ -1,7 +1,7 @@
-# Mosquito biting rate for `basicM`
+# Compute mosquito biting density for `basicM` (**MY**)
 
-Returns `fqM`, the daily mosquito biting density on humans for each
-patch in the basicM model.
+Return the daily mosquito biting density on humans, `fqM`, for each
+patch in the `basicM` module. Compute `fqM = f*q*M`.
 
 ## Usage
 
@@ -47,4 +47,5 @@ for this module because there are no infective bites.
 ## See also
 
 [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md),
-[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md),
+[F_fqZ.basicM](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.basicM.md)

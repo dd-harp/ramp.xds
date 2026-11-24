@@ -53,11 +53,11 @@ The function was designed to work using arguments passed to
 - `options` is a named list that sets method-specific parameters
 
 Pre-dispatch cases were developed to make the function call more
-flexible: any matrix can be passed as the first argument: or the user
-could set up an options list ansd pass it (*e.g.* `Koptions` is passed
-to `setup_K_matrix` in `xds_setup`). The pre-dispatch parsing:
+flexible: any matrix can be passed as the first argument, or the user
+could set up an options list and pass it (*e.g.* `Koptions` is passed to
+`setup_K_matrix` in `xds_setup`). The pre-dispatch parsing:
 
-- if `name` is a method name, set `class(options) = "name"`
+- if `name` is a method name, set `class(options) = name`
 
 - if `name` is a matrix, set `class(options) = "as_matrix"`
 

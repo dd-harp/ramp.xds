@@ -1,4 +1,4 @@
-# Make parameters for trivial human model
+# Make the module object for `trivialXH` (**XH**)
 
 This builds a forcing function as a *composed time series function*
 using either functions or parameters:
@@ -30,7 +30,8 @@ make_XH_obj_trivial(
   H_shock = list(),
   H_season_par = list(name = "F_one"),
   H_trend_par = list(name = "F_one"),
-  H_shock_par = list(name = "F_one")
+  H_shock_par = list(name = "F_one"),
+  q = 0.8
 )
 ```
 
@@ -99,6 +100,10 @@ make_XH_obj_trivial(
 - H_shock_par:
 
   a list of options for H_shock
+
+- q:
+
+  test positivity; a numeric scalar or input of length `nPatches`
 
 ## Value
 

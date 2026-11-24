@@ -1,4 +1,4 @@
-# Update state variables for `trivialL` (**L**)
+# Update states for `trivialL` (**L**)
 
 Returns a numeric vector of length 0
 

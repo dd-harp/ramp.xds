@@ -1,6 +1,11 @@
-# Make a `SIS` **XH** model object
+# Make a module object for `SIS` (**XH**)
 
-Make a `SIS` **XH** model object
+Create an `SIS` module object and initialize its parameters. Inspect
+parameters with
+[get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
+and change supported values with
+[change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -13,9 +18,7 @@ make_XH_obj_SIS(
   c = 0.15,
   rho = 0,
   sigma = 0,
-  q_lm = 0.8,
-  q_rdt = 0.8,
-  q_pcr = 0.9
+  q = 0.8
 )
 ```
 
@@ -49,17 +52,9 @@ make_XH_obj_SIS(
 
   the rate prevalent infections are treated and cured
 
-- q_lm:
+- q:
 
-  test positivity by light microscopy
-
-- q_rdt:
-
-  test positivity by RDT
-
-- q_pcr:
-
-  test positivity by PCR
+  test positivity
 
 ## Value
 
@@ -71,7 +66,7 @@ The parameters that are returned by
 [get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
 and also modifiable by
 [change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md)
-describe the dynamics, or detection by diagnostic methods.
+describe the dynamics or test positivity.
 
 - `b`:
 
@@ -93,18 +88,13 @@ describe the dynamics, or detection by diagnostic methods.
 
   the rate that prevalent infections are treated and cured
 
-- `q_lm`:
+- `q`:
 
-  test positivity by light microscopy
-
-- `q_rdt`:
-
-  test positivity by RDT
-
-- `q_pcr`:
-
-  test positivity by PCR
+  test positivity
 
 ## See also
+
+[get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md),
+[change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md)
 
 [SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

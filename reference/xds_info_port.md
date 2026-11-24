@@ -17,25 +17,23 @@ component becomes extensible with negligible computational costs:
 default values assigned during
 [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
 have no effect; but features can be configured after basic setup (see
-[xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)).
+[xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)).
 
 In developing ports, the mathematical consequences *ought to be* fully
 considered. If some implementations of a port could be mathematically
 inconsistent, the port documentation should include warnings.
 
-## Port Value
+## Note
 
-Each port is a flexible method for assigning a value to a parameter or
-variable (`par`). The current value of the parameter or variable has a
-location on a base object (`base_obj`), and it is always retrieved from
-that location:
+**Port Value:** Each port is a flexible method for assigning a value to
+a parameter or variable (`par`). The current value of the parameter or
+variable has a location on a base object (`base_obj`), and it is always
+retrieved from that location:
 
 `xds_obj$base_obj$par`
 
-## Port Object
-
-A port is set up and implemented through an object (`par_obj`) that is
-located on the same base object:
+**Port Object:** A port is set up and implemented through an object
+(`par_obj`) that is located on the same base object:
 
 `xds_obj$base_obj$par_obj`
 
@@ -50,7 +48,7 @@ where `this_case = class(par_obj)`
 In some cases, `par_obj` is a named list that holds other parameter
 values.
 
-## Port Function
+**Port Function:**
 
 The value of the parameter is set by a function call with a standard
 form:
@@ -77,23 +75,13 @@ where `F_this_port` is not constrained. Since `xds_obj` is passed to
 `this_port`, functions can use any variables that have been defined
 anywhere on the `xds_obj`.
 
-## Default Case
-
-The default case is:
+**Default Case:** The default case is:
 
 `class(xds_obj$base_obj$par_obj) = "static"`
 
 and `this_port.static` returns `xds_obj` unmodified.
 
-## Forcing Function Case
-
-Most ports can alternatively be configured with a forcing function using
-the composable time series functions from `ramp.func` and
-`ramp.forcing`.
-
-## Setup
-
-All methods should have well-defined setup functions:
+**Setup:** All methods should have well-defined setup functions:
 
 `xds_obj <- setup_this_port(case_name, xds_obj, options, ...)`
 
@@ -109,6 +97,12 @@ The "setup" method
 - calls those other functions
 
 - sets `class(par_obj) = "static"`
+
+## Forcing Function Case
+
+Most ports can alternatively be configured with a forcing function using
+the composable time series functions from `ramp.func` and
+`ramp.forcing`.
 
 ## Extensibility
 
@@ -139,6 +133,6 @@ time-varying EIP (see
 
 ## See also
 
-[xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
+[xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
 \|
 [xds_info_junction](https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.md)

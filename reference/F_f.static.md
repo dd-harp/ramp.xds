@@ -1,7 +1,6 @@
-# Constant baseline blood feeding rate
+# Constant baseline blood feeding rate (**MY**)
 
-Set or reset the baseline value of the feeding rate, \\f\\, to a static
-value
+Return the baseline blood feeding rate for a static model.
 
 ## Usage
 

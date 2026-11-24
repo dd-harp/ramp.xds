@@ -11,44 +11,69 @@ mortality and delayed maturation, based on Smith DL, *et al.* (2013).
 
 ## Parameters
 
-- `psi`:
+- `psi` or \\\psi\\:
 
-  maturation rate (\\\psi\\)
+  maturation rate
 
-- `xi`:
+- `xi` or \\\xi\\:
 
-  delayed maturation parameter in response to mean crowding (\\\xi\\)
+  delayed maturation parameter in response to mean crowding
 
-- `phi`:
+- `phi` or \\\phi\\:
 
-  density-independent death rate (\\\phi\\)
+  density-independent mortality rate
 
-- `theta`:
+- `theta` or \\\theta\\:
 
-  slope of density-dependent mortality (\\\theta\\)
+  slope of density-dependent mortality
 
-## Egg Laying
+## Dynamical Term
 
-- `eta`:
+- `eta` or \\\eta\\:
 
-  the egg laying rate, (\\\eta\\)
+  the number of eggs laid in each habitat, per day
 
-## Dynamics
+## ODE
 
-\$\$dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L\$\$
+The derivatives in
+[dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
+are: \$\$dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L\$\$
+
+## DTS
+
+The one-day update in
+[Update_Lt.basicL](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.md)
+is: \$\$L_t = \eta + e^{-(\psi e^{-\xi L\_{t-1}} + \phi + \theta
+L\_{t-1})} L\_{t-1}\$\$
 
 ## Emergence
 
-The emergence rate of adult, female mosquitoes from each patch is:
+The emergence rate of adult female mosquitoes from each habitat is
+computed by
+[F_emerge.basicL](https://dd-harp.github.io/ramp.xds/reference/F_emerge.basicL.md):
 \$\$\alpha = \psi e^{-\xi L} L\$\$
 
-## Notes
+## Regulation
 
-Setting \\\xi = 0\\ recovers the model of Smith DL, *et al.* (2013).
+In this model, population is regulated in two ways. First, per-capita
+mortality increases with mean crowding; per-capita mortality is \\\phi +
+\theta L.\\ Second, maturation is delayed in response to mean crowding
+\\\psi\\e^{-\xi L}\\. Depending on the values of \\\xi,\\ productivity
+in some habitats might not be a monotonically increasing function of egg
+laying.
+
+The model by Smith DL, *et al.* (2013) did not include delayed
+maturation; that model is recovered by setting \\\xi=0.\\
 
 ## References
 
-Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013) Mosquito
-Population Regulation and Larval Source Management in Heterogeneous
-Environments. PLOS ONE 8(8): e71247.
-[https://doi.org/10.1371/journal.pone.0071247](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071247).
+Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013). “Mosquito
+population regulation and larval source management in heterogeneous
+environments.” *PLoS ONE*, **8**(8), e71247.
+[doi:10.1371/journal.pone.0071247](https://doi.org/10.1371/journal.pone.0071247)
+.
+
+## See also
+
+[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md),
+[setup_L_obj.basicL](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.basicL.md)

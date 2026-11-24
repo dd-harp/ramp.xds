@@ -1,6 +1,6 @@
-# Get availability of other blood hosts
+# Get other blood host availability
 
-Get availability of other blood hosts
+Get other blood host availability
 
 ## Usage
 
@@ -20,4 +20,4 @@ get_other_blood_hosts(xds_obj, s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+a numeric vector of patch-level availability

@@ -1,7 +1,8 @@
-# List variables (**L**)
+# Get the state variables (**L**)
 
-Extract the variables describing **L** Component states for the
-\\s^{th}\\ species and return them as a named list
+Extract the state variables for the selected **L** module and vector
+species from `y` and return them by name in a list for use during model
+solving.
 
 ## Usage
 
@@ -25,9 +26,11 @@ get_L_vars(y, xds_obj, s)
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html): the variables of
-\\\cal L\\ by name
+a named [list](https://rdrr.io/r/base/list.html) of state variables and
+module-specific derived quantities
 
 ## Note
 
-This method dispatches on the class of `xds_obj$L_obj[[s]]`.
+Dispatch uses the class of `xds_obj$L_obj[[s]]`. These functions support
+solver evaluations that need variables by name; users rarely need to
+call them directly.

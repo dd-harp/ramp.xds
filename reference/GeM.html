@@ -19,7 +19,7 @@ a potentially time-varying extrinsic incubation period (EIP)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,7 +147,7 @@ a potentially time-varying extrinsic incubation period (EIP).</p>
 <dd><p>extrinsic incubation period — use <a href="setup_eip.html">setup_eip</a></p></dd>
 
 <dt><code>sigma</code> or \(\sigma\)</dt>
-<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_emigration_rates</a></p></dd>
+<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_mosy_emigration</a></p></dd>
 
 <dt><code>mu</code> or \(\mu\)</dt>
 <dd><p>emigration loss fraction — use <a href="setup_mu.html">setup_mu</a> or <a href="setup_mu.html">setup_emigration_loss</a></p></dd>
@@ -156,7 +156,7 @@ a potentially time-varying extrinsic incubation period (EIP).</p>
 <dd><p>mosquito dispersal matrix — use <a href="setup_K_matrix.html">setup_K_matrix</a></p></dd>
 
 <dt><code>nu</code> or \(\nu\)</dt>
-<dd><p>egg batch rate in batches per mosquito per day — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
+<dd><p>oviposition rate: the number of egg batches laid in each patch, per mosquito, per day — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
 
 <dt><code>eggs_per_batch</code></dt>
 <dd><p>number of eggs per batch</p></dd>
@@ -236,7 +236,7 @@ used to evaluate the delayed values of \(fq\kappa\), \(g\), and
     <h2 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a></h2>
 
 
-<p>The egg batch rate \(\nu\) and the number of eggs per batch,
+<p>The oviposition rate \(\nu\) and the number of eggs per batch,
 <code>eggs_per_batch</code>, determine the egg production rate per patch:
 $$G=\nu M\cdot\texttt{eggs\_per\_batch}.$$
 <a href="F_eggs.GeM.html">F_eggs.GeM</a> computes \(G\), which is passed to <a href="EggLaying.html">EggLaying</a> for

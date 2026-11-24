@@ -55,7 +55,7 @@ documentation should include warnings."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@ other component becomes extensible with negligible computational costs:
 default
 values assigned during <a href="xds_basic_setup.html">xds_info_basic_setup</a> have no effect;
 but features can be
-configured after basic setup (see <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a>).</p>
+configured after basic setup (see <a href="xds_advanced_setup.html">xds_info_advanced_setup</a>).</p>
 <p>In developing ports, the mathematical consequences
 <em>ought to be</em> fully considered. If some implementations
 of a port could be mathematically inconsistent, the port
@@ -152,20 +152,15 @@ documentation should include warnings.</p>
 
 
     <div class="section level2">
-    <h2 id="port-value">Port Value<a class="anchor" aria-label="anchor" href="#port-value"></a></h2>
-
-
-<p>Each port is a flexible method for assigning a value to a parameter or variable (<code>par</code>).
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p><strong>Port Value:</strong>
+Each port is a flexible method for assigning a value to a parameter or variable (<code>par</code>).
 The current value of the parameter
 or variable has a location on a base object (<code>base_obj</code>), and it is
 always retrieved from that location:</p>
 <p><code>xds_obj$base_obj$par</code></p>
-    </div>
-    <div class="section level2">
-    <h2 id="port-object">Port Object<a class="anchor" aria-label="anchor" href="#port-object"></a></h2>
-
-
-<p>A port is set up and implemented through an object (<code>par_obj</code>) that
+<p><strong>Port Object:</strong>
+A port is set up and implemented through an object (<code>par_obj</code>) that
 is located on the same base object:</p>
 <p><code>xds_obj$base_obj$par_obj</code></p>
 <p>The main purpose of <code>class(par_obj)</code> is
@@ -177,12 +172,7 @@ for it to be informative. For example:</p>
 <p>where <code>this_case = class(par_obj)</code></p>
 <p>In some cases, <code>par_obj</code> is a named list
 that holds other parameter values.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="port-function">Port Function<a class="anchor" aria-label="anchor" href="#port-function"></a></h2>
-
-
-
+<p><strong>Port Function:</strong></p>
 <p>The value of the parameter is set by a function call with
 a standard form:</p>
 <p><code>xds_obj &lt;- this_port(t, xds_obj, ...)</code></p>
@@ -198,29 +188,13 @@ Since <code>xds_obj</code> is passed to <code>this_port</code>,
 functions can use
 any variables that have been defined anywhere
 on the <code>xds_obj</code>.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="default-case">Default Case<a class="anchor" aria-label="anchor" href="#default-case"></a></h2>
-
-
-<p>The default case is:</p>
+<p><strong>Default Case:</strong>
+The default case is:</p>
 <p><code>class(xds_obj$base_obj$par_obj) =  "static"</code></p>
 <p>and <code>this_port.static</code> returns <code>xds_obj</code>
 unmodified.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="forcing-function-case">Forcing Function Case<a class="anchor" aria-label="anchor" href="#forcing-function-case"></a></h2>
-
-
-<p>Most ports can alternatively be configured with a forcing function
-using the composable time series functions from <code>ramp.func</code> and
-<code>ramp.forcing</code>.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
-
-
-<p>All methods should have well-defined setup functions:</p>
+<p><strong>Setup:</strong>
+All methods should have well-defined setup functions:</p>
 <p><code>xds_obj &lt;- setup_this_port(case_name, xds_obj, options, ...)</code></p>
 <p>where <code>case_name</code> is used to dispatch <code>setup_this_port</code></p>
 <p>In cases where changing <code>par</code> should trigger function
@@ -231,6 +205,14 @@ change other parameters that depend on it,
 <p>The "setup" method</p><ul><li><p>calls those other functions</p></li>
 <li><p>sets <code>class(par_obj) = "static"</code></p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="forcing-function-case">Forcing Function Case<a class="anchor" aria-label="anchor" href="#forcing-function-case"></a></h2>
+
+
+<p>Most ports can alternatively be configured with a forcing function
+using the composable time series functions from <code>ramp.func</code> and
+<code>ramp.forcing</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="extensibility">Extensibility<a class="anchor" aria-label="anchor" href="#extensibility"></a></h2>
 
@@ -262,7 +244,7 @@ been set up to handle time-varying survival through a time-varying EIP
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a> | <a href="xds_info_junction.html">xds_info_junction</a></p></div>
+    <div class="dont-index"><p><a href="xds_advanced_setup.html">xds_info_advanced_setup</a> | <a href="xds_info_junction.html">xds_info_junction</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

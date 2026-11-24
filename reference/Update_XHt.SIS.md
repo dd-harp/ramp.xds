@@ -1,7 +1,6 @@
 # Update states for `SIS` (**XH**)
 
-For the `SIS` discrete time system, the state variables are derived from
-the differential equations:
+For the `SIS` discrete time system, the updating function is:
 
 \$\$\begin{array}{rl} H_t &= H\_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H)
 \\ I_s &= I\_{t-1} - \mathbf{D}(I\_{t-1}) \\ I_t &= \alpha

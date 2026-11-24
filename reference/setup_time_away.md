@@ -1,6 +1,6 @@
-# Set up time spent
+# Set up time away
 
-Set up time spent
+Set up time away
 
 ## Usage
 
@@ -12,7 +12,7 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 
@@ -29,3 +29,7 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md)

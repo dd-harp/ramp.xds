@@ -1,6 +1,7 @@
-# Make a nbson Exposure Model Object
+# Make a Negative Binomial Exposure Model Object
 
-Set up the nbson model for exposure for continuous time models
+Set up the negative binomial model for exposure for continuous time
+models
 
 ## Usage
 

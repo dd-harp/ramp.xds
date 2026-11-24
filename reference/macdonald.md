@@ -7,6 +7,11 @@ published by Aron and May (1982). Unlike the `SI` module, it includes
 infectious mosquitoes as an explicit state variable and uses delayed
 values to represent the extrinsic incubation period.
 
+## Note
+
+The resulting `EIR` and `HBR` orbits are attached to the XH output
+during parsing.
+
 ## State Variables
 
 - `M`:
@@ -67,7 +72,7 @@ values to represent the extrinsic incubation period.
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -83,7 +88,8 @@ values to represent the extrinsic incubation period.
 
 - `nu` or \\\nu\\:
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -103,8 +109,8 @@ Mosquito survival and dispersal are described by the demographic matrix
 \\\Omega\\. The parameter \\g\\ is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at
 per-capita rates \\\sigma\\, and a fraction \\\mu\\ of emigrating
-mosquitoes is lost. The total rate of loss from a patch is
-\$\$g+\mu\sigma.\$\$
+mosquitoes is lost. The combined rate of mortality and loss during
+emigration is \$\$g+\mu\sigma.\$\$
 
 The columns of the mosquito dispersal matrix \\K\\ sum to zero. For
 non-trivial dispersal matrices, \\\mbox{diag}(K)=-1\\; the off-diagonal
@@ -163,12 +169,11 @@ compute these patch-level quantities.
 combines `fqZ` with the biting distribution matrix and resident-bite
 fraction to compute stratum-level EIR;
 [F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md) computes
-HBR from `fqM` in the same way. The resulting `EIR` and `HBR` orbits are
-attached to the XH output during parsing.
+HBR from `fqM` in the same way.
 
 ## Egg Laying
 
-The egg batch rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
+The oviposition rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
 determine the egg production rate per patch: \$\$G=\nu\Gamma M.\$\$
 [F_eggs.macdonald](https://dd-harp.github.io/ramp.xds/reference/F_eggs.macdonald.md)
 computes \\G\\, which is passed to
@@ -177,8 +182,10 @@ for distribution among aquatic habitats.
 
 ## Note
 
-This model is not capable of handling exogenous forcing by weather or
-vector control. Use the `GeM` module instead.
+Scalar parameters have no ports for exogenous forcing or vector control.
+Use the `GeM` module for those capabilities. The standard
+dispersal-matrix port follows the shared bionomics and effect-size
+convention.
 
 ## References
 

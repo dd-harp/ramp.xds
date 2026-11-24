@@ -25,7 +25,7 @@ Available methods are:
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,10 +140,10 @@ Available methods are:
 <li><p>if <code>name</code> is a matrix, then <code>as_matrix</code> is dispatched</p></li>
 <li><p><code>options</code> is a named list that sets method-specific parameters</p></li>
 </ul><p>Pre-dispatch cases were developed to make the function call more flexible: any
-matrix can be passed as the first argument: or the user could set up an options list
-ansd pass it
+matrix can be passed as the first argument, or the user could set up an options list
+and pass it
 (<em>e.g.</em> <code>Koptions</code> is passed to <code>setup_K_matrix</code> in <code>xds_setup</code>). The pre-dispatch
-parsing:</p><ul><li><p>if <code>name</code> is a method name, set <code>class(options) = "name"</code></p></li>
+parsing:</p><ul><li><p>if <code>name</code> is a method name, set <code>class(options) = name</code></p></li>
 <li><p>if <code>name</code> is a matrix, set <code>class(options) = "as_matrix"</code></p></li>
 <li><p>if <code>name</code> is a list of options, then <code>list</code> is dispatched</p></li>
 </ul><p>Several methods are used during basic setup:</p><ul><li><p>"list" — for options lists</p></li>

@@ -1,4 +1,4 @@
-# Compute the prevalence of infection by RDT
+# Compute observed prevalence by RDT
 
 Implements
 [F_pfpr_by_rdt](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_rdt.md)

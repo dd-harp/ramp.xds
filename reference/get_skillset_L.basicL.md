@@ -1,6 +1,7 @@
-# The **L** module skill set
+# Get the skill set for `basicL` (**L**)
 
-The **L** skill set is a list of a module's capabilities
+Return the capabilities and compatibilities of the `basicL` module as a
+list.
 
 ## Usage
 

@@ -1,8 +1,6 @@
-# Set up random emigration-loss fraction
+# Set up random emigration-loss fraction (**MY**)
 
-Implements the "random" case for
-[setup_F_mu](https://dd-harp.github.io/ramp.xds/reference/setup_F_mu.md).
-See
+Configure random emigration-loss fractions using
 [make_F_mu_random](https://dd-harp.github.io/ramp.xds/reference/make_F_mu_random.md).
 
 ## Usage
@@ -16,7 +14,7 @@ setup_F_mu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an emigration-loss fraction or setup method name
 
 - xds_obj:
 

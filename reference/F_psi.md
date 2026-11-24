@@ -1,6 +1,6 @@
-# Set up for
+# Compute the baseline maturation rate (**L**)
 
-Set up an object to compute
+Compute the baseline maturation rate.
 
 ## Usage
 

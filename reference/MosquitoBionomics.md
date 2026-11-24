@@ -1,6 +1,10 @@
 # Compute mosquito bionomic parameters
 
-This calls MBionomics and LBionomics for each species.
+This calls
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
+and
+[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
+for each species.
 
 This function computes the bionomic parameters for each vector species,
 before any vector control effect sizes are applied. In some models,
@@ -28,4 +32,4 @@ MosquitoBionomics(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object

@@ -1,7 +1,8 @@
 # Make initial values for `hMoI` (**XH**)
 
-MoI stands for Multiplicity of Infection, and refers to malarial
-superinfection.
+Create a named list of initial values for the `hMoI` module. Values in
+`options` override the defaults. MoI stands for Multiplicity of
+Infection, and refers to malarial superinfection.
 
 ## Usage
 
@@ -30,7 +31,12 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values
+
+## Details
+
+Initial values must be numeric scalars or have length `nStrata`. Scalars
+are expanded to that length.
 
 ## State Variables
 
@@ -45,3 +51,6 @@ a [list](https://rdrr.io/r/base/list.html)
 ## See also
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)
+
+[setup_XH_inits.hMoI](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.hMoI.md),
+[change_XH_inits.hMoI](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.hMoI.md)

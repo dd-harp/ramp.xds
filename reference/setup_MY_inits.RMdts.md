@@ -1,16 +1,8 @@
-# Setup initial values for `RMdts` (**MY**)
+# Set up initial values for `RMdts` (**MY**)
 
-Set initial values for all the variables in the `RMdts` module (**MY**)
-for the \\s^{th}\\ species.
-
-- [make_MY_inits_RMdts](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_RMdts.md)
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
-  or see the inline module documentation.
+Set up initial values for the `RMdts` module using
+[make_MY_inits_RMdts](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_RMdts.md).
+Values in `options` override the defaults.
 
 ## Usage
 
@@ -35,4 +27,14 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object
+
+## Note
+
+Initial values are stored at `xds_obj$MY_obj[[s]]$inits`.
+
+## See also
+
+[change_MY_inits.RMdts](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.RMdts.md)
+
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)

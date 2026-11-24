@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,17 +127,91 @@ Feeding</h3>
 <p>The transmission interface was developed to compute two terms:</p>
 <ul>
 <li><p>the daily local entomological inoculation rate (EIR), the number
-of infective bites, per person in each stratum, per day while <em>not
-traveling.</em> Note that the daily force of infection (FoI) is computed
-using the <a href="Exposure.html">exposure interface</a>, which can also
-use information about travel malaria, environmental heterogeneity, and
-pre-erythrocytic immunity.</p></li>
+of infective bites, per person in each stratum, per day from exposure
+within the modeled patches. Note that the daily force of infection (FoI)
+is computed using the <a href="Exposure.html">exposure interface</a>,
+which can also use information about travel malaria, environmental
+heterogeneity, and pre-erythrocytic immunity.</p></li>
 <li><p>the net infectiousness (<span class="math inline">\(\kappa\)</span>), the probability a mosquito would
 become infected after blood feeding on a human.</p></li>
 </ul>
-<p>By design, it uses the same quantities that were defined in the <a href="BloodFeeding.html">blood feeding interface.</a></p>
+<p>To compute these terms, the <em>bite distribution matrix</em> (<span class="math inline">\(\beta\)</span>) is constructed. It allocates bites
+in each patch per member of each population stratum, accounting for the
+fraction of time spent not traveling. In a model with one patch and one
+stratum and positive host availability, <span class="math inline">\(\beta = 1/H.\)</span> The matrix uses <em>human
+availability</em> and time at risk to allocate bites in patches to
+humans in strata.</p>
+<p>By design, it uses the same quantities that were defined in the <a href="BloodFeeding.html">blood feeding interface</a>.</p>
 <hr>
 <p><img src="xds_transmission.png" style="width:100.0%"></p>
+<hr>
+<p><strong>Computation</strong></p>
+<ul>
+<li>
+<p><span class="math inline">\(\beta\)</span> — The bite
+distribution matrix, <span class="math inline">\(\beta\)</span>,
+allocates bites per member of each population stratum, accounting for
+absence while traveling. The infective biting density per unit of local
+host availability in each patch is <span class="math inline">\(fqZ/W.\)</span> In the formula, angle brackets
+denote a diagonal matrix. Bites are allocated using search weights, time
+at risk, and the fraction of time not traveling.</p>
+<ul>
+<li><p>The vector of local host availability, <span class="math inline">\(W,\)</span> has length <code>nPatches</code> and
+is computed as part of <a href="BloodFeeding.html">Blood
+Feeding</a>.</p></li>
+<li><p>The density of residents who are not traveling is <span class="math inline">\((1-\zeta) H\)</span>.</p></li>
+<li><p>The function that computes <span class="math inline">\(\beta\)</span> replaces zero entries of <span class="math inline">\(W\)</span> with one before dividing, to avoid
+division-by-zero errors.</p></li>
+</ul>
+</li>
+<li><p><span class="math inline">\(\vartheta\)</span> — Bites are
+allocated by availability. The availability of visitors in each patch
+<span class="math inline">\(V\)</span> is a variable that can be set by
+<a href="https://dd-harp.github.io/ramp.xds/reference/setup_visitors.html">setup_visitors</a>.
+If <span class="math inline">\(W+V=0\)</span>, the implementation sets
+the local fraction to one by convention.</p></li>
+</ul>
+<p>The bite distribution matrix is:</p>
+<p><span class="math display">\[\beta = \left&lt;w (1-\zeta)\right&gt;
+\cdot \Psi^T \cdot \left&lt; \frac{1}W \right&gt; \]</span></p>
+<p><strong>The EIR</strong></p>
+<ul>
+<li><p><span class="math inline">\(fqZ\)</span> — The net infective
+human biting rate, <span class="math inline">\(fqZ,\)</span> is the
+number of infective bites on humans by adult mosquitoes in each patch,
+per day. A fraction of these, <span class="math inline">\(\vartheta\)</span>, are on available humans <span class="math inline">\((W)\)</span> as opposed to visitors <span class="math inline">\((V).\)</span> This is one of the dynamical terms
+computed from the state space describing infected mosquitoes
+(<strong>Y</strong>) by a function (denoted <span class="math inline">\(F_Z\)</span> and called <code>F_fqZ</code>)
+supplied by each <strong>MY</strong> module.</p></li>
+<li><p><span class="math inline">\(E\)</span> — The EIR is computed by
+taking the product of the local fraction and net infective human biting
+rate and the mixing matrix.</p></li>
+</ul>
+<p>The EIR is <span class="math display">\[ \beta \cdot \vartheta
+(fqZ)\]</span></p>
+<p>The product <span class="math inline">\(\vartheta(fqZ)\)</span> is
+element-wise; multiplication by <span class="math inline">\(\beta\)</span> is a matrix-vector product.</p>
+<p><strong>Net Infectiousness</strong></p>
+<p>The fraction of mosquitoes that get infected after blood feeding on a
+human in each patch is called <em>net infectiousness.</em> It uses the
+bite distribution to average infectiousness by availability for all
+humans present.</p>
+<ul>
+<li><p><span class="math inline">\(I\)</span> — A function <span class="math inline">\(F_I\)</span> supplied by each <strong>XH</strong>
+component computes the infectious density of each stratum: the
+probability a mosquito would be infected after biting a member of each
+stratum is <span class="math inline">\(I/H\)</span>.</p></li>
+<li><p><span class="math inline">\(\kappa_H\)</span> — Using the
+transpose of <span class="math inline">\(\beta,\)</span> biting on
+humans is averaged by availability at the patch level. This gives the
+net infectiousness of the resident population, the probability a
+mosquito would become infected after blood feeding on a resident human
+in the patch.</p></li>
+<li><p><span class="math inline">\(\kappa_V\)</span> — The
+infectiousness of visitors is a variable that can be set up by <a href="https://dd-harp.github.io/ramp.xds/reference/setup_vis_kappa.html">setup_vis_kappa</a>.</p></li>
+</ul>
+<p>Net infectiousness is <span class="math display">\[ \vartheta
+\kappa_H + (1-\vartheta) \kappa_V\]</span></p>
   </main>
 </div>
 

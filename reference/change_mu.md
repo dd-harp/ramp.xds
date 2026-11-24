@@ -1,4 +1,4 @@
-# Change emigration-loss fraction
+# Change emigration-loss fraction (**MY**)
 
 Update the emigration-loss fraction for the \\s^{th}\\ vector species
 and refresh the demographic matrix.

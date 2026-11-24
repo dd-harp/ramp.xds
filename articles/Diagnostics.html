@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,13 +124,15 @@ Process for Human Infection</h3>
 
     
     
-<p>All malaria modules developed for the <strong>XH</strong> component
-must define four functions to compute malaria prevalence (traditionally
-called the parasite rate). Several species of malaria parasites infect
-humans, so we must be more specific and define <em>Plasmodium
-falciparum</em> Parasite Rate or <em>Pf</em>PR.</p>
+<p>Malaria modules developed for the <strong>XH</strong> component
+compute true prevalence (traditionally called the parasite rate) and may
+support observed prevalence or diagnostic-specific outputs. Several
+species of malaria parasites infect humans, so <em>Plasmodium
+falciparum</em> Parasite Rate is called <em>Pf</em>PR.</p>
 <ul>
 <li><p><em>true</em> - the true <em>Pf</em>PR</p></li>
+<li><p><em>obs</em> - observed prevalence using the module’s observation
+model</p></li>
 <li><p><em>lm</em> - the <em>Pf</em>PR by light microscopy</p></li>
 <li><p><em>rdt</em> - the PR by rapid diagnostic test</p></li>
 <li><p><em>pcr</em> - the PR by PCR</p></li>
@@ -139,6 +141,26 @@ falciparum</em> Parasite Rate or <em>Pf</em>PR.</p>
 <h2 id="get_pr">
 <code>get_PR</code><a class="anchor" aria-label="anchor" href="#get_pr"></a>
 </h2>
+<p>Use <code>get_PR(xds_obj, method = "obs")</code> to retrieve observed
+prevalence through <code>F_pr_obs</code>, which all XH modules
+implement. All XH modules except <code>hMoI</code> use a test-positivity
+parameter <code>q</code> (default <code>0.8</code>), returning
+<code>q</code> times their true prevalence. The trivial module returns
+an empty numeric vector. The library modules retain their existing
+diagnostic-specific parameters and methods. For SIS, observed prevalence
+is <code>q * I / H</code>, with one test-positivity parameter
+<code>q</code> (default <code>0.8</code>). SIS does not distinguish
+microscopy, RDT, and PCR: its three diagnostic methods are compatibility
+aliases for <code>F_pr_obs.SIS</code>. Its skill set reports
+<code>pr_obs = TRUE</code> and all three <code>pf_*</code> flags as
+<code>FALSE</code>.</p>
+<p>For hMoI, <code>F_pr_obs</code> returns apparent prevalence
+<code>1 - exp(-m2)</code>, without a test-positivity parameter
+<code>q</code>. Its three diagnostic methods are aliases for this
+calculation. In particular, RDT and PCR now use <code>m2</code>, rather
+than the true-prevalence state <code>m1</code>. Its skill set reports
+<code>pr_obs = TRUE</code> and all three <code>pf_*</code> flags as
+<code>FALSE</code>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

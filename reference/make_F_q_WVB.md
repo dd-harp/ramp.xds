@@ -1,6 +1,6 @@
-# Make a WVB human feeding fraction configuration
+# Make a WVB human fraction configuration (**MY**)
 
-Create a configuration object for the WVB human feeding fraction method.
+Create a configuration object for the WVB human fraction method.
 
 ## Usage
 

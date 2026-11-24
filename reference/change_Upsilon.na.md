@@ -1,7 +1,7 @@
-# Change Upsilon
+# Leave Upsilon unchanged (**MY**)
 
-Update \\\Upsilon\\, the matrix describing mosquito survival and
-dispersal through an EIP in delay equations
+Return the model object without changing \\\Upsilon\\ when the
+survival-and-dispersal matrix is not required.
 
 ## Usage
 

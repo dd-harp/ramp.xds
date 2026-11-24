@@ -1,6 +1,7 @@
-# Get phi, density independent mortality
+# Get the density-independent mortality rate (**L**)
 
-Get phi, density independent mortality
+Return the stored realized density-independent mortality rate per
+habitat.
 
 ## Usage
 
@@ -20,5 +21,14 @@ get_phi(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nHabitats`
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. This function
+does not evaluate ports or apply effect sizes.
+
+## See also
+
+[change_phi](https://dd-harp.github.io/ramp.xds/reference/change_phi.md)

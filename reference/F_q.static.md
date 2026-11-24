@@ -1,7 +1,6 @@
-# Static model human feeding fraction
+# Static model human fraction (**MY**)
 
-Implements [F_q](https://dd-harp.github.io/ramp.xds/reference/F_q.md)
-for a static model
+Return the baseline human fraction for a static model.
 
 ## Usage
 
@@ -26,4 +25,4 @@ F_q(t, xds_obj, s)
 
 ## Value
 
-\\q\\, the baseline human feeding fraction
+\\q\\, the baseline human fraction

@@ -10,7 +10,8 @@ ports:
 - the travel EIR: see
   [xds_port_travel_eir](https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.md)
 
-Travel malaria is implemented in the **Exposure**
+Travel malaria is implemented in
+[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md).
 
 ## See also
 

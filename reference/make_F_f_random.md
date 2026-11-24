@@ -1,6 +1,7 @@
-# Make random blood feeding rate object
+# Make random blood feeding rate object (**MY**)
 
-Build a configuration object for random blood feeding rates.
+Draw blood feeding rates once during setup. Subsequent evaluations reuse
+these values.
 
 ## Usage
 
@@ -26,7 +27,8 @@ make_F_f_random(
 
 - f_rand:
 
-  a random number generator
+  a random number generator called as `f_rand(nPatches, p1, p2)` that
+  returns a numeric vector of length `nPatches`
 
 - p1:
 
@@ -38,5 +40,9 @@ make_F_f_random(
 
 ## Value
 
-a configuration object for
-[F_f.random](https://dd-harp.github.io/ramp.xds/reference/F_f.random.md)
+a static port object for
+[F_f.static](https://dd-harp.github.io/ramp.xds/reference/F_f.static.md)
+
+## Note
+
+The values are stored in a static port object.

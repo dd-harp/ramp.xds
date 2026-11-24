@@ -1,6 +1,6 @@
-# Get the initial infective mosquito density
+# Get the initial infective mosquito density for `macdonald` (**MY**)
 
-Get the initial infective mosquito density
+Return the initial infective mosquito density per patch.
 
 ## Usage
 
@@ -21,7 +21,8 @@ get_Z(xds_obj, s = 1)
 
 ## Value
 
-the initial infective mosquito population density
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
 
 ## State Variables
 
@@ -65,8 +66,7 @@ compute these patch-level quantities.
 combines `fqZ` with the biting distribution matrix and resident-bite
 fraction to compute stratum-level EIR;
 [F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md) computes
-HBR from `fqM` in the same way. The resulting `EIR` and `HBR` orbits are
-attached to the XH output during parsing.
+HBR from `fqM` in the same way.
 
 ## See also
 

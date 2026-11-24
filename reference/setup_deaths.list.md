@@ -1,11 +1,6 @@
 # Set up deaths
 
-If an options list is passed as the first argument, then set
-
-- `deaths_name = name$name`
-
-- `options = name` and call
-  `setup_deaths(deaths_name, xds_obj, options, i)`.
+Set up deaths using an options list.
 
 ## Usage
 
@@ -35,3 +30,12 @@ setup_deaths(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, then set
+
+- `deaths_name = name$name`
+
+- `options = name` and call
+  `setup_deaths(deaths_name, xds_obj, options, i)`.

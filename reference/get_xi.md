@@ -1,6 +1,6 @@
-# Get xi, delayed maturation
+# Get the delayed maturation parameter (**L**)
 
-Get xi, delayed maturation
+Return the stored realized delayed maturation parameter per habitat.
 
 ## Usage
 
@@ -20,5 +20,14 @@ get_xi(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nHabitats`
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. This function
+does not evaluate ports or apply effect sizes.
+
+## See also
+
+[change_xi](https://dd-harp.github.io/ramp.xds/reference/change_xi.md)

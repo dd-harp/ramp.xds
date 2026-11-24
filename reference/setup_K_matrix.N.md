@@ -2,9 +2,7 @@
 
 Call
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-\\N\\ times. The options for the \\i^{th}\\ call are `options[[i]]`
-
-of options
+\\N\\ times. The options for the \\i^{th}\\ call are `options$opts[[i]]`
 
 ## Usage
 
@@ -33,4 +31,4 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

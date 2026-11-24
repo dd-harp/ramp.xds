@@ -1,6 +1,8 @@
-# Compute the steady states as a function of the daily EIR
+# Compute steady states for `GeM` (**MY**)
 
-This method dispatches on the type of `MY_obj`.
+Compute steady-state mosquito densities for the `GeM` module given adult
+mosquito emergence `Lambda` and net infectiousness `kappa` for the
+differential-equation system.
 
 ## Usage
 
@@ -29,7 +31,7 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html)
 
 ## State Variables
 
@@ -79,7 +81,7 @@ a [list](https://rdrr.io/r/base/list.html)
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\\mu\\:
 
@@ -95,7 +97,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 - `nu` or \\\nu\\:
 
-  egg batch rate in batches per mosquito per day — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

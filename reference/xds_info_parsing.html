@@ -6,14 +6,10 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Parsing — xds_info_parsing"><meta name="description" content="After solving a system of equations using xds_solve, the outputs
-are parsed and attached to xds_obj$outputs.
-Use get_*_orbits to inspect the orbits.
-Note: xds_obj$outputs are overwritten each time
-xds_solve is called."><meta property="og:description" content="After solving a system of equations using xds_solve, the outputs
-are parsed and attached to xds_obj$outputs.
-Use get_*_orbits to inspect the orbits.
-Note: xds_obj$outputs are overwritten each time
-xds_solve is called."></head><body>
+are parsed.
+Use get_*_orbits to inspect the orbits."><meta property="og:description" content="After solving a system of equations using xds_solve, the outputs
+are parsed.
+Use get_*_orbits to inspect the orbits."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -21,7 +17,7 @@ xds_solve is called."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,18 +92,17 @@ xds_solve is called."></head><body>
 
     <div class="ref-description section level2">
     <p>After solving a system of equations using <a href="xds_solve.html">xds_solve</a>, the outputs
-are parsed and attached to <code>xds_obj$outputs</code>.</p>
+are parsed.</p>
 <p>Use <code>get_*_orbits</code> to inspect the orbits.</p>
-<p><strong>Note:</strong> <code>xds_obj$outputs</code> are overwritten each time
-<a href="xds_solve.html">xds_solve</a> is called.</p>
     </div>
 
 
     <div class="section level2">
-    <h2 id="internals">Internals<a class="anchor" aria-label="anchor" href="#internals"></a></h2>
-
-
-<ol><li><p>Each module defines a method <code>parse_*_orbits</code>.</p></li>
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>The parsed outputs are attached to <code>xds_obj$outputs</code>.
+<code>xds_obj$outputs</code> are overwritten each time
+<a href="xds_solve.html">xds_solve</a> is called.</p>
+<p><strong>Internals:</strong></p><ol><li><p>Each module defines a method <code>parse_*_orbits</code>.</p></li>
 <li><p><a href="xds_solve.html">xds_solve</a> calls <a href="parse_outputs.html">parse_outputs</a> which calls <code>parse_*_orbits</code> for each component and for each species.</p></li>
 <li><p>Outputs are parsed and stored on the xds object as <code>xds_obj$outputs</code></p><ul><li><p><code>time</code> is stored as <code>xds_obj$outputs$time</code></p></li>
 <li><p>the full output matrix is stored as <code>xds_obj$outputs$deout</code></p></li>

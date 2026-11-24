@@ -1,6 +1,6 @@
-# Check / update before solving
+# Check `hMoI` (**XH**)
 
-Check / update before solving
+Check `hMoI` (**XH**)
 
 ## Usage
 
