@@ -1,6 +1,6 @@
 # Set new V parameter values
 
-This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+Set new V parameter values
 
 ## Usage
 
@@ -25,3 +25,7 @@ change_V_pars(xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+This method dispatches on the type of `xds_obj$V_obj[[i]]`.

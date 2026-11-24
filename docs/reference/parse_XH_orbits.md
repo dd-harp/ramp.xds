@@ -1,13 +1,7 @@
 # Parse outputs (**XH**)
 
-After solving, this function extracts the values of the dependent
-variables for the **XH** module from the matrix of solutions, often
-called the "orbits." The orbits are parsed and attached by name to the
-**`xds`** model object.
-
-For differential equations the solution matrix is returned by
-[deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html). Discrete time
-systems return a matrix that has the same shape.
+Extract the model state outputs for the selected **XH** module and
+return them by name in a list.
 
 ## Usage
 
@@ -32,3 +26,11 @@ parse_XH_orbits(outputs, xds_obj, i)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Dispatch on the module object at `xds_obj$XH_obj[[i]]`. These methods
+process output trajectories after solving, rather than a single state
+vector during solving. They return results without modifying the model
+object; the output-processing pipeline stores the parsed results at
+`xds_obj$outputs$orbits$XH[[i]]`.

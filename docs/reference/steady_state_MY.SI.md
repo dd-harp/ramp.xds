@@ -1,6 +1,7 @@
-# Steady states: MY-SI
+# Compute steady states for `SI` (**MY**)
 
-Select the equation-system-specific steady-state method for `SI`.
+Compute steady-state mosquito densities for the `SI` module given adult
+mosquito emergence `Lambda` and net infectiousness `kappa`.
 
 ## Usage
 
@@ -29,7 +30,14 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) with elements `M`, `P`,
+and `Y`, each containing one value per patch
+
+## Note
+
+Delegate to
+[steady_state_MY_SI](https://dd-harp.github.io/ramp.xds/reference/steady_state_MY_SI.md),
+which dispatches on `xds_obj$xds`.
 
 ## See also
 

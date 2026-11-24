@@ -1,10 +1,10 @@
 # Set up a travel eir
 
-Pass a pre-configured travel eir . If it passes the checks, it replaces
-the current travel_eir .
+Pass a pre-configured travel eir vector. If it passes the checks, it
+replaces the current travel_eir.
 
 If called with `name = "as_is"`, the travel eir must be at
-`options$travel_eir`
+`options$travel_eir`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_travel_eir(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

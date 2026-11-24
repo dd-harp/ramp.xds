@@ -2,7 +2,7 @@
 
 Set up a mosquito dispersal matrix from a set of \\(x,y\\) coordinates
 and a *kernel,* a function that assigns weights by distance. The
-fraction leaving from each patch that arrive at other patch is the
+fractions leaving from each patch that arrive at other patches form the
 vector of normalized weights.
 
 ## Usage

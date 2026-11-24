@@ -1,8 +1,8 @@
 # Compute the derivatives for `basicM` (**MY**)
 
-Implements
-[dMYdt](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md) for the
-basicM xde ODE model.
+Compute the derivatives for the `basicM` module: \$\$\begin{array}{rl}
+dM/dt &= \Lambda - \Omega \cdot M \\\\ dP/dt &= f(M-P) - \Omega \cdot P
+\end{array}\$\$
 
 ## Usage
 
@@ -31,12 +31,13 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order
 
-## Details
+## Note
 
-\$\$\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\\\ dP/dt &=
-f(M-P) - \Omega\cdot P\end{array}\$\$
+Derivatives are returned in blocks for `M`, then `P`, each in patch
+order.
 
 ## State Variables
 
@@ -119,8 +120,7 @@ Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
 disperse and die according to \\(\Omega\\). The ODE model is \$\$
 \begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\\\\\\\ dP/dt &=
 f(M-P)-\Omega\cdot P \end{array}\$\$ Here, \\(P\\) is the density of
-mosquitoes that have blood-fed at least once. Parity, \\(P/M\\), is
-computed during parsing and stored as `parous`.
+mosquitoes that have blood-fed at least once.
 
 ## See also
 

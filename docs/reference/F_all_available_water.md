@@ -37,6 +37,8 @@ If some ovitraps (\\(Q_t\\)) and bad_habitats (\\(Q_b\\)) are also
 available, then total availability of laying sites is \$\$Q\_{all} = Q +
 Q_t + Q_b.\$\$
 
+## Note
+
 Habitat availability is computed elsewhere and stored in
 `xds_obj$terms$Q`, ovitrap availability in `xds_obj$patches$ovitraps`,
 and bad-habitat availability in `xds_obj$patches$bad_habitats`.

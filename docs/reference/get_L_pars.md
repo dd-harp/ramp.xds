@@ -1,7 +1,7 @@
 # Get parameters (**L**)
 
-Inspect the parameter values for the **L** module for the \\(s^{th}\\)
-species
+Return the parameters for the selected **L** module for the \\(s^{th}\\)
+vector species as a named list.
 
 ## Usage
 
@@ -21,7 +21,12 @@ get_L_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
+
+## Note
+
+Parameter values are stored on `xds_obj$L_obj[[s]]`. Dispatch is on the
+class of `xds_obj$L_obj[[s]]`.
 
 ## See also
 

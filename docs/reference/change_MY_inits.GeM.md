@@ -1,7 +1,7 @@
 # Change initial values for `GeM` (**MY**)
 
-For the `GeM` module (**MY**) for the \\(s^{th}\\) species, change
-initial values named in `options` leaving other values unchanged.
+Change initial values named in `options` for the `GeM` module, leaving
+other values unchanged.
 
 ## Usage
 
@@ -28,6 +28,11 @@ change_MY_inits(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Stored initial values for this module are at
+`xds_obj$MY_obj[[s]]$inits`.
+
 ## State Variables
 
 - `M`:
@@ -45,3 +50,8 @@ an **`xds`** model object
 - `Z`:
 
   density of infectious adult mosquitoes
+
+## See also
+
+[make_MY_inits_GeM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_GeM.md),
+[setup_MY_inits.GeM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.GeM.md)

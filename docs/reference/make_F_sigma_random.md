@@ -1,7 +1,7 @@
 # Make random patch emigration rates (**MY**)
 
-Draw patch emigration rates once during setup and store them in a static
-port object. Subsequent evaluations reuse these values.
+Draw patch emigration rates once during setup. Subsequent evaluations
+reuse these values.
 
 ## Usage
 
@@ -42,3 +42,7 @@ make_F_sigma_random(
 
 a static port object for
 [F_sigma.static](https://dd-harp.github.io/ramp.xds/reference/F_sigma.static.md)
+
+## Note
+
+The values are stored in a static port object.

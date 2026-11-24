@@ -1,6 +1,6 @@
 # Setup a circadian pattern function
 
-Update the circadian for the \\(s^{th}\\) host species
+Set the circadian activity function for vector species \\(s\\).
 
 ## Usage
 
@@ -25,3 +25,14 @@ setup_F_circadian(F_circadian, xds_obj, s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Circadian Pattern Function
+
+A circadian pattern function is a model for relative mosquito activity
+by time of day, \\(F_c(t)\\). On average, it should be true that
+\$\$\int\_{t}^{t+1} F_c(s) ds \approx 1.\$\$ A circadian function is
+used to weight time spent by time of day to compute time at risk.
+
+## See also
+
+[F_TaR](https://dd-harp.github.io/ramp.xds/reference/F_TaR.md)

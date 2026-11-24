@@ -1,6 +1,6 @@
 # Update the habitat_search_weights
 
-The `static` method returns `xds_obj` unmodified
+The `static` method returns `xds_obj` unmodified.
 
 ## Usage
 

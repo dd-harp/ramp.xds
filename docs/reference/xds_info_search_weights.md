@@ -1,13 +1,14 @@
 # Search Weights
 
-- `searchB`:
+- `XH_obj[[i]]$search_weights`:
 
-  a vector of search weights for blood feeding:
-  `length(searchB)=nStrata`
+  blood-feeding search weights for host species `i`, with length
+  `nStrata[i]`
 
-- `searchQ`:
+- `L_obj[[s]]$search_weights`:
 
-  a vector of search weights for egg laying: `length(searchQ)=nHabitats`
+  egg-laying search weights for vector species `s`, with length
+  `nHabitats`
 
 By default, the values are all set to 1.
 
@@ -21,5 +22,5 @@ among habitats are implemented through *search weights.*
 
 A search weight is a scalar value assigned to each human population
 stratum or habitat that is used to compute *availability* to mosquitoes
-and relative biting rates or relative laying rates. The value of these
+and relative biting rates or relative laying rates. The values of these
 search weights are configurable during basic setup.

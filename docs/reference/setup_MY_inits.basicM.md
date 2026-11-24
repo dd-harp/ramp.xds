@@ -1,16 +1,8 @@
 # Set up initial values for `basicM` (**MY**)
 
-Set initial values for all the variables in the `basicM` module (**MY**)
-for the \\(s^{th}\\) species.
-
-- [make_MY_inits_basicM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_basicM.md)
-  supplies default values
-
-- The values in `options` override the defaults
-
-- To inspect variable names, use
-  [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
-  or see the inline module documentation.
+Set up initial values for the `basicM` module using
+[make_MY_inits_basicM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_basicM.md).
+Values in `options` override the defaults.
 
 ## Usage
 
@@ -37,6 +29,10 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 an **`xds`** model object
 
+## Note
+
+Initial values are stored at `xds_obj$MY_obj[[s]]$inits`.
+
 ## State Variables
 
 - `M`:
@@ -47,3 +43,9 @@ an **`xds`** model object
 
   density of parous adult mosquitoes: those that have blood-fed at least
   once
+
+## See also
+
+[change_MY_inits.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.basicM.md)
+
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)

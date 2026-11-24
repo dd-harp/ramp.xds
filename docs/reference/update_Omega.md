@@ -1,6 +1,6 @@
-# Change Omega
+# Update the mosquito demographic matrix (**MY**)
 
-Update a static demographic matrix
+Retain or recompute the demographic matrix.
 
 ## Usage
 
@@ -21,3 +21,8 @@ update_Omega(xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch on the class of the port object `Omega_obj` to retain or
+recompute the demographic matrix.

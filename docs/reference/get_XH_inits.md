@@ -1,6 +1,7 @@
 # Get initial values (**XH**)
 
-Inspect the initial values for the **XH** module
+Return the stored initial values for the selected **XH** module and host
+species.
 
 ## Usage
 
@@ -20,12 +21,14 @@ get_XH_inits(xds_obj, i = 1)
 
 ## Value
 
-the initial values, as a named list
+a named [list](https://rdrr.io/r/base/list.html) of initial values, or
+`NULL` if the field is absent
 
 ## Note
 
-The initial values are stored as a named list called
-`xds_obj$XH_obj[[i]]$inits`
+Initial values are stored at `xds_obj$XH_obj[[i]]$inits`. If the field
+is absent, as in the `trivialXH` module, return `NULL`. An empty list is
+returned unchanged.
 
 ## See also
 

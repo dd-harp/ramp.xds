@@ -1,8 +1,10 @@
 # Parse outputs for `GeM` (**MY**)
 
-Implements
-[parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
-for the GeM model
+Extract the model state outputs for the `GeM` module from `outputs` and
+return them by name in a list. Return `M`, `P`, `Y`, and `Z`, and
+compute `y = Y/M`, `z = Z/M`, `parous = P/M`, `fqZ = f*q*Z`, and
+`fqM = f*q*M`. The `U` and rate-history states are not included in the
+parsed outputs.
 
 ## Usage
 
@@ -28,6 +30,10 @@ parse_MY_orbits(outputs, xds_obj, s)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
 
 ## State Variables
 

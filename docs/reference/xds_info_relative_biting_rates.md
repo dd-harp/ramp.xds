@@ -8,7 +8,7 @@ average daily EIR is \\(E\\), then the daily EIR for the stratum is
 
 Relative biting rates are handled in two ways, depending on the frame:
 
-- In model that define multiple human population strata, the RBRs are
+- In models that define multiple human population strata, the RBRs are
   computed from the stratum specific EIR: \$\$\omega_i = E_i / E\$\$
 
 - In models that are forced by the EIR, the user configures a function

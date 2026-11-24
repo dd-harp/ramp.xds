@@ -1,15 +1,30 @@
 # Set up the module object for `SI` (**MY**)
 
-This sets up an `SI` model object for the **MY** module for the
-\\(s^{th}\\) vector species
+Set up an `SI` module object for the **MY** component and the
+\\(s^{th}\\) vector species.
 
-- the object is created by
-  [make_MY_obj_SI](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md)
+- Create the module object with
+  [make_MY_obj_SI](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md),
+  passing `nPatches` and `options`.
 
-- the initial conditions are set by
-  [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
+- Set the skill set using
+  [get_skillset_MY](https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.md).
 
-- `options` is passed to both to override the defaults
+- Set initial values using
+  [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md),
+  passing `options` to override defaults.
+
+- Initialize the circadian function using
+  [setup_F_circadian.setup](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.setup.md).
+
+- Initialize the mosquito demographic matrix port.
+
+- Initialize the EIP survival and dispersal matrix port.
+
+- Initialize the mosquito dispersal matrix using
+  [setup_K_matrix.zero](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.zero.md).
+
+- Return the updated **`xds`** model object.
 
 ## Usage
 

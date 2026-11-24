@@ -1,6 +1,6 @@
-# Compute emergent adults for `basicL` (**L**)
+# Compute adult mosquito emergence for `basicL` (**L**)
 
-Compute the emergence rate of adult female mosquitoes from each habitat.
+Return adult female mosquito emergence per habitat.
 
 ## Usage
 
@@ -39,4 +39,6 @@ computed by F_emerge.basicL: \$\$\alpha = \psi e^{-\xi L} L\$\$
 
 ## See also
 
-[dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
+[basicL](https://dd-harp.github.io/ramp.xds/reference/basicL.md),
+[dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md),
+[Emergence](https://dd-harp.github.io/ramp.xds/reference/Emergence.md)

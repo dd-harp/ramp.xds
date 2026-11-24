@@ -23,6 +23,9 @@ The functions that define **XH**:
 - [`F_prevalence`](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.md)
   – compute true prevalence
 
+- [`F_pr_obs`](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.md)
+  – compute observed prevalence
+
 - [`F_pfpr_by_lm`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md)
   – compute prevalence by light microscopy
 

@@ -1,8 +1,7 @@
-# Egg production rate for `macdonald`
+# Compute egg production for `macdonald` (**MY**)
 
-Implements
-[F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-`macdonald` model.
+Return the number of eggs laid by the adult mosquito population, per
+patch
 
 ## Usage
 

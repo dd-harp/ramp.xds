@@ -1,4 +1,4 @@
-# Set the values variables for health-based malaria control
+# Set the values of variables for health-based malaria control
 
 Set the values of variables for health interventions.
 

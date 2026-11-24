@@ -1,6 +1,6 @@
-# Set up a nbson model for Exposure and Infection
+# Set up a negative binomial model for Exposure and Infection
 
-Set up a nbson model for Exposure and Infection
+Set up a negative binomial model for Exposure and Infection
 
 ## Usage
 

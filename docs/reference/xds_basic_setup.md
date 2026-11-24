@@ -16,6 +16,11 @@ or modified through advanced setup. The functions do three things:
 **Advanced Setup** —
 [xds_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
 
+## Note
+
+Each function sets `class(xds_obj$frame)` to dispatch functions that are
+used to solve dynamical systems.
+
 ## Basic Setup Functions
 
 Depending on the purpose of the study, **Basic Setup** is done by one of
@@ -38,9 +43,6 @@ five functions:
 - [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
   sets up an **XH** module to study disease dynamics forced by the daily
   EIR.
-
-Each function sets `class(xds_obj$frame)` to dispatch functions that are
-used to solve dynamical systems.
 
 ## [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 

@@ -1,13 +1,7 @@
 # Compute the derivatives for `basicL` (**L**)
 
-This implements a differential equation model for aquatic mosquito
-ecology. The equations have been modified slightly from a version
-published by Smith DL, *et al.* (2013).
-
-**Input Term:**
-
-- \\(\eta\\) or `eta`: egg deposition rate (from
-  [EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md))
+Compute the derivatives for the `basicL` module: \$\$dL/dt =
+\eta-\left(\psi e^{-\xi L}+\phi+\theta L\right)L.\$\$
 
 ## Usage
 
@@ -36,13 +30,25 @@ dLdt(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order, with length `nHabitats`
+
+## Note
+
+Derivatives for `L` are returned in habitat order. The egg input is read
+from `xds_obj$terms$eta[[s]]`.
 
 ## State Variables
 
 - `L`:
 
   density of mosquito larvae in each habitat
+
+## Dynamical Term
+
+- `eta` or \\(\eta\\):
+
+  the number of eggs laid in each habitat, per day
 
 ## Parameters
 
@@ -96,4 +102,7 @@ environments.” *PLoS ONE*, **8**(8), e71247.
 
 ## See also
 
-[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)
+[basicL](https://dd-harp.github.io/ramp.xds/reference/basicL.md),
+[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md),
+[Update_Lt.basicL](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.md),
+[EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)

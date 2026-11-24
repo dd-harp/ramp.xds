@@ -1,6 +1,6 @@
-# Set up no blood_search_weights
+# Leave blood search weights unchanged
 
-Don't change anything
+Return `xds_obj` without changing the configured search weights.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of weights
 
 - xds_obj:
 

@@ -1,6 +1,6 @@
 # Set up habitat search weights
 
-The advanced set up function for habitat search weights
+The advanced setup function for habitat search weights.
 
 Available methods are:
 
@@ -19,7 +19,7 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

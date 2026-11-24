@@ -1,6 +1,6 @@
-# Get the patch emigration rates
+# Get the patch emigration rate for `macdonald` (**MY**)
 
-Get the patch emigration rates
+Return the stored realized patch emigration rate per patch.
 
 ## Usage
 
@@ -21,7 +21,12 @@ get_sigma(xds_obj, s = 1)
 
 ## Value
 
-the patch emigration rates, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `sigma` without evaluating ports or applying effect sizes.
 
 ## Parameters
 

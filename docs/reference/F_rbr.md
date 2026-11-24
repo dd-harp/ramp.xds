@@ -1,7 +1,7 @@
 # Compute relative biting rates
 
-Relative biting rates translate biting weights into a frailty parameter
-– a multiplicative term.
+Relative biting rates scale the blood search weights so their
+population-weighted mean is one.
 
 ## Usage
 
@@ -21,4 +21,4 @@ F_rbr(search_weights, H)
 
 ## Value
 
-host available, a [vector](https://rdrr.io/r/base/vector.html)
+a numeric vector of relative biting rates

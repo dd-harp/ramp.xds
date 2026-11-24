@@ -1,24 +1,14 @@
 # Set up the module object (**MY**)
 
-This setup creates an **MY** object for the \\(s^{th}\\) species and
-sets up the interface ports:
+Set up the selected module and its interface ports for the \\(s^{th}\\)
+vector species in the **MY** component.
 
-- calls the module-specific constructor to set up the dynamics,
-  including parameters
+- Pass `xds_obj`, `options`, and `s` to the selected setup method.
 
-- calls
-  [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
-  to set initial values
+- Let that method construct the module object and configure its initial
+  values and interface ports as appropriate for the module.
 
-- calls
-  [setup_F_circadian](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.md)
-  to set up a flat circadian function (no effect)
-
-- for capable modules, calls
-  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-  to set up a zero matrix
-
-It also sets up computation for module-specific objects.
+- Return the updated **`xds`** model object.
 
 The function is part of basic setup, but it can also be used to add
 vector species.
@@ -53,7 +43,9 @@ an **`xds`** model object
 
 ## Note
 
-The object is stored as `xds_obj$MY_obj[[s]]`
+The object is stored as `xds_obj$MY_obj[[s]]` Dispatch is on `MYname`,
+whose class is set to the supplied module name, not on an existing
+module object.
 
 ## See also
 

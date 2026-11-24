@@ -2,15 +2,18 @@
 
 After solving a system of equations using
 [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md),
-the outputs are parsed and attached to `xds_obj$outputs`.
+the outputs are parsed.
 
 Use `get_*_orbits` to inspect the orbits.
 
-**Note:** `xds_obj$outputs` are overwritten each time
+## Note
+
+The parsed outputs are attached to `xds_obj$outputs`. `xds_obj$outputs`
+are overwritten each time
 [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
 is called.
 
-## Internals
+**Internals:**
 
 1.  Each module defines a method `parse_*_orbits`.
 

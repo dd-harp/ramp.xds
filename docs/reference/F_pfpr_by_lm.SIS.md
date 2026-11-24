@@ -1,8 +1,9 @@
-# Compute *Pf*PR by light microscopy
+# Compute observed prevalence by light microscopy
 
-Implements
-[F_pfpr_by_lm](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md)
-for the `SIS` model.
+Compatibility alias for
+[F_pr_obs.SIS](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.SIS.md).
+The `SIS` module does not distinguish diagnostic methods; all aliases
+use test positivity `q`.
 
 ## Usage
 

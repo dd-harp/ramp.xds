@@ -1,10 +1,10 @@
-# Set up a habitat_search_weights
+# Set up habitat_search_weights
 
-Pass a pre-configured habitat_search_weights. If it passes the checks,
-it replaces the current habitat_search_weights.
+Pass pre-configured habitat_search_weights. If it passes the checks, it
+replaces the current habitat_search_weights.
 
 If called with `name = "as_is"`, the habitat_search_weights must be at
-`options$habitat_search_weights`
+`options$weights`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

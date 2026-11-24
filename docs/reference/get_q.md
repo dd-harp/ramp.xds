@@ -1,6 +1,6 @@
-# Get the human fraction(s)
+# Get the human blood fraction (**MY**)
 
-Get the human fraction(s)
+Return the stored realized human blood fraction per patch.
 
 ## Usage
 
@@ -20,4 +20,15 @@ get_q(xds_obj, s = 1)
 
 ## Value
 
-the human fraction, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read the realized parameter without evaluating its port or applying
+effect sizes. Run bionomics and effect-size application to refresh
+port-backed values.
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.

@@ -1,7 +1,6 @@
 # Compute Derivatives
 
-The function to compute the derivatives dispatches on
-`class(xds_obj$frame)`.
+Compute the derivatives.
 
 ## Usage
 
@@ -27,6 +26,11 @@ xde_derivatives(t, y, xds_obj)
 
 a [list](https://rdrr.io/r/base/list.html) containing the vector of all
 state derivatives
+
+## Note
+
+The function to compute the derivatives dispatches on
+`class(xds_obj$frame)`.
 
 ## See also
 

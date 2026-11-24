@@ -2,7 +2,9 @@
 
 Given the number of eggs laid in each habitat, per day, `eta`, return
 steady-state values for the discrete-time system in
-[Update_Lt.basicL](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.md)
+[Update_Lt.basicL](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.md).
+Minimize the sum of squared fixed-point residuals using
+[stats::nlm](https://rdrr.io/r/stats/nlm.html).
 
 ## Usage
 

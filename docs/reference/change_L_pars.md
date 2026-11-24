@@ -1,7 +1,7 @@
 # Change parameters (**L**)
 
-For the **L** module for the \\(s^{th}\\) species, change parameter
-values named in `options`, leaving other values unchanged.
+Change parameter values named in `options` for the selected **L** module
+for the \\(s^{th}\\) vector species, leaving other values unchanged.
 
 ## Usage
 
@@ -26,6 +26,10 @@ change_L_pars(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch is on the class of `xds_obj$L_obj[[s]]`.
 
 ## See also
 

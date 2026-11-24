@@ -1,8 +1,11 @@
 # Change parameters for `SI` (**MY**)
 
-For the `SI` module (**MY**) for the \\(s^{th}\\) species, change
-*static* parameter values named in `options` leaving other values
-unchanged. To change `K_matrix`, use
+Change parameter values named in `options` for the `SI` module, leaving
+other values unchanged. Refresh baseline bionomics at time zero using
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md),
+without calling
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md).
+This method changes static parameter values. To change `K_matrix`, use
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md);
 this method does not change the dispersal matrix.
 
@@ -100,6 +103,9 @@ can be used for static parameters, or for parameters that are set up as
 static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## See also
+
+[make_MY_obj_SI](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md),
+[get_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md)
 
 [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
 [get_MY_pars.SI](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md)

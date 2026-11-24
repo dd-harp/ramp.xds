@@ -1,6 +1,7 @@
 # Get the slope of density-dependent mortality (**L**)
 
-Get the slope of density-dependent mortality (**L**)
+Return the stored realized slope of density-dependent mortality per
+habitat.
 
 ## Usage
 
@@ -20,7 +21,13 @@ get_theta(xds_obj, s = 1)
 
 ## Value
 
-the slope(s) of density-dependent mortality
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nHabitats`
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. This function
+does not evaluate ports or apply effect sizes.
 
 ## See also
 

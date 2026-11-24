@@ -1,4 +1,4 @@
-# Set up a blood_search_weights
+# Set up blood search weights
 
 If an options list is passed as the first argument, then set
 
@@ -18,7 +18,7 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of weights
 
 - xds_obj:
 
@@ -34,4 +34,4 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
 ## Value
 
-a numeric vector
+an **`xds`** model object

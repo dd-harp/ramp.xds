@@ -17,7 +17,5 @@
 setup_mass_treatment = function(xds_obj, mda=F_zero, msat=F_zero, options=list(), i=1){with(options,{
    xds_obj$XH_obj[[i]]$mda <- mda
    xds_obj$XH_obj[[i]]$msat <- msat
-   xds_obj$XH_obj[[i]]$skill_set$mda <- TRUE
-   xds_obj$XH_obj[[i]]$skill_set$msat <- TRUE
    return(xds_obj)
 })}

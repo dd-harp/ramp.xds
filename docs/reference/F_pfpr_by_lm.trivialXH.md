@@ -1,4 +1,4 @@
-# Compute the prevalence of infection by light microscopy
+# Compute observed prevalence by light microscopy
 
 Implements
 [F_pfpr_by_lm](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md)

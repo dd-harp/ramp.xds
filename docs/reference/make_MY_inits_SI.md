@@ -1,6 +1,7 @@
 # Make initial values for `SI` (**MY**)
 
-Make initial values for `SI` (**MY**)
+Create a named list of initial values for the `SI` module. Values in
+`options` override the defaults.
 
 ## Usage
 
@@ -33,7 +34,12 @@ make_MY_inits_SI(nPatches, options = list(), M = 10, P = 8, Y = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values
+
+## Details
+
+Initial values must be numeric scalars or have length `nPatches`.
+Scalars are expanded to that length. Require `Y < P < M` in every patch.
 
 ## State Variables
 
@@ -53,3 +59,5 @@ a [list](https://rdrr.io/r/base/list.html)
 
 [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
 [setup_MY_inits.SI](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.SI.md)
+
+[change_MY_inits.SI](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.SI.md)

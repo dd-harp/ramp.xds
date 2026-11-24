@@ -1,6 +1,6 @@
 # Return the parameters as a list
 
-This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+Return the parameters as a list
 
 ## Usage
 
@@ -21,3 +21,7 @@ get_V_pars(xds_obj, i = 1)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## Note
+
+This method dispatches on the type of `xds_obj$V_obj[[i]]`.

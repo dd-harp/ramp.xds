@@ -1,7 +1,7 @@
 # Apply effect sizes for `macdonald` (**MY**)
 
-This method leaves the `macdonald` parameters unchanged; the module does
-not implement effect-size modifications.
+Set `K_matrix = K_matrix_t * es_K_matrix` and recompute demographic and
+survival matrices. Scalar parameters remain unchanged.
 
 ## Usage
 

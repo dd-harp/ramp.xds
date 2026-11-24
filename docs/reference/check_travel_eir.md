@@ -2,9 +2,11 @@
 
 Check that
 
-- the travel eir has length `nStrata`
+- the input is numeric
 
-- they are all positive
+- the travel eir has length `Nh`
+
+- all elements are non-negative
 
 ## Usage
 
@@ -24,4 +26,4 @@ check_travel_eir(teir, Nh)
 
 ## See also
 
-[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
+[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md)

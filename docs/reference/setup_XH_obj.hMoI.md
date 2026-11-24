@@ -1,15 +1,31 @@
 # Set up the module object for `hMoI` (**XH**)
 
-This sets up an `hMoI` model object for the **XH** module for the
-\\(i^{th}\\) host species
+Set up an `hMoI` module object for the **XH** component and the
+\\(i^{th}\\) host species.
 
-- the object is created by
-  [make_XH_obj_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_hMoI.md)
+- Set the module name to `hMoI`.
 
-- the initial conditions are set by
-  [setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)
+- Create the module object with
+  [make_XH_obj_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_hMoI.md),
+  passing `nStrata[i]` and `options`.
 
-- `options` is passed to both to override the defaults
+- Set initial values using
+  [setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md),
+  passing `options` to override defaults.
+
+- Initialize blood search weights using
+  [setup_blood_search_weights.setup](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.setup.md).
+
+- Initialize the time-spent matrix using
+  [setup_timespent.setup](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.setup.md).
+
+- Initialize time away using
+  [setup_time_away.setup](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.setup.md).
+
+- Initialize travel EIR using
+  [setup_travel_eir.no_travel](https://dd-harp.github.io/ramp.xds/reference/setup_travel_eir.no_travel.md).
+
+- Return the updated **`xds`** model object.
 
 ## Usage
 

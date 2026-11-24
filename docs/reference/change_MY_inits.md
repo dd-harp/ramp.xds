@@ -1,7 +1,7 @@
 # Change initial values (**MY**)
 
-Change initial values for the selected **MY** module using the values
-supplied in `options`.
+Change initial values named in `options` for the selected **MY** module
+and vector species, leaving other values unchanged.
 
 ## Usage
 
@@ -26,3 +26,7 @@ change_MY_inits(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch uses the class of `xds_obj$MY_obj[[s]]`.

@@ -1,4 +1,4 @@
-# Compute infection prevalence by PCR
+# Compute observed prevalence by PCR
 
 A function that translates the state variables into the predicted *Pf*PR
 by PCR

@@ -1,11 +1,6 @@
 # Set up visitors
 
-If an options list is passed as the first argument, then set
-
-- `Vname = name$name`
-
-- `options = name` and call
-  `setup_visitors(Vname, xds_obj, options, s)`.
+Set up visitors using an options list.
 
 ## Usage
 
@@ -35,3 +30,12 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+If an options list is passed as the first argument, then set
+
+- `Vname = name$name`
+
+- `options = name` and call
+  `setup_visitors(Vname, xds_obj, options, s)`.

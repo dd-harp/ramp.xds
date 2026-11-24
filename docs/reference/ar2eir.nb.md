@@ -1,4 +1,4 @@
-# A negative binomial model for the daily EIR. as a function of the daily attack rate
+# A negative binomial model for the daily EIR as a function of the daily attack rate
 
 Implements
 [ar2eir](https://dd-harp.github.io/ramp.xds/reference/ar2eir.md) for a

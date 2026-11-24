@@ -1,6 +1,6 @@
-# Set up time away
+# Set up random travel EIR
 
-Set up random values for time away
+Set up random values for travel EIR.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_travel_eir(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

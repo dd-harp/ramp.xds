@@ -21,8 +21,9 @@ an **`xds`** model object
 
 ## Details
 
-This implements a model for egg laying described by Wu SL, *et al.*,
-(2023).
+Initialize storage for biting distribution matrices, EIR, HBR,
+infectiousness, and local fractions, and initialize a static
+transmission object.
 
 ## References
 

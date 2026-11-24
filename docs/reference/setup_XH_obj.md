@@ -1,38 +1,16 @@
 # Set up the module object (**XH**)
 
-This setup creates an **XH** object for the \\(i^{th}\\) species and
-sets up the interface ports:
+Set up the selected module and its interface ports for the \\(i^{th}\\)
+host species in the **XH** component.
 
-- calls `make_XH_obj_`*XHname* to set up the dynamics, including
-  parameters
+- Pass `residence`, `xds_obj`, `options`, and `i` to the selected setup
+  method.
 
-- calls
-  [setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)
-  to set initial values
+- Let that method construct the module object and configure its initial
+  values, exposure, travel, demography, and treatment interfaces as
+  appropriate for the module.
 
-- initializes
-  [setup_blood_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.md):
-  all weights are set to \\(1\\)
-
-- initializes
-  [setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md)
-  to the residence matrix: all time spent at home
-
-- every capable module calls
-  [setup_mass_treatment](https://dd-harp.github.io/ramp.xds/reference/setup_mass_treatment.md)
-  with no events
-
-- every capable module calls
-  [setup_demog_obj](https://dd-harp.github.io/ramp.xds/reference/setup_demog_obj.md)
-  setting birth and death rates to zero
-
-- calls
-  [setup_time_away](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.md)
-  with no time spent away
-
-- calls
-  [setup_travel_eir](https://dd-harp.github.io/ramp.xds/reference/setup_travel_eir.md)
-  with the travel EIR set to zero
+- Return the updated **`xds`** model object.
 
 The function is part of basic setup, but it is also used to add a host
 species.
@@ -71,7 +49,9 @@ an **`xds`** model object
 
 ## Note
 
-The model object is stored as `xds_obj$XH_obj[[i]]`
+The module object is stored as `xds_obj$XH_obj[[i]]`. Dispatch is on
+`XHname`, whose class is set to the supplied module name, not on an
+existing module object.
 
 ## See also
 

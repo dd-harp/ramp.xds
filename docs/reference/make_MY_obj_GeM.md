@@ -1,6 +1,11 @@
-# Make the module object for `GeM` (**MY**)
+# Make a module object for `GeM` (**MY**)
 
-Make the module object for `GeM` (**MY**)
+Create a `GeM` module object and initialize its parameters. Inspect
+parameters with
+[get_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.GeM.md)
+and change supported values with
+[change_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeM.md).
+Values in `options` override parameter arguments.
 
 ## Usage
 
@@ -68,6 +73,9 @@ make_MY_obj_GeM(
 a [list](https://rdrr.io/r/base/list.html)
 
 ## See also
+
+[get_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.GeM.md),
+[change_MY_pars.GeM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeM.md)
 
 [GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
 [setup_MY_obj.GeM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.GeM.md)

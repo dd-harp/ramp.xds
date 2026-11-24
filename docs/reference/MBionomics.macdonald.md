@@ -1,7 +1,8 @@
 # Mosquito bionomics for `macdonald` (**MY**)
 
-This method leaves the `macdonald` bionomics parameters unchanged; the
-module does not implement dynamic bionomic ports.
+Evaluate the dispersal-matrix port into `K_matrix_t` and reset
+`es_K_matrix` to 1. Scalar parameters have no ports and remain
+unchanged.
 
 ## Usage
 

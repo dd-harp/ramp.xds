@@ -30,5 +30,9 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-Derivatives for an adult mosquito model, a
-[vector](https://rdrr.io/r/base/vector.html)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives
+in the module's state-variable order
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.

@@ -1,7 +1,7 @@
 # Compute the derivatives for `trivialXH` (**XH**)
 
-The trivial model has no state variables so it returns a numeric vector
-of length 0
+Return an empty numeric vector because the `trivialXH` module has no
+state variables.
 
 ## Usage
 

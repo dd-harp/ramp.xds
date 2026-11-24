@@ -1,6 +1,6 @@
 # Get parameters for `SIS` (**XH**)
 
-Returns the stored parameter values as a list.
+Return the parameters for the `SIS` module as a named list.
 
 ## Usage
 
@@ -21,7 +21,7 @@ get_XH_pars(xds_obj, i = 1)
 
 ## Value
 
-`SIS` model parameters
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Note
 
@@ -33,7 +33,7 @@ Parameter values for the \\(i^{th}\\) host are stored as
 The parameters that are returned by get_XH_pars.SIS and also modifiable
 by
 [change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md)
-describe the dynamics, or detection by diagnostic methods.
+describe the dynamics or test positivity.
 
 - `b`:
 
@@ -55,18 +55,13 @@ describe the dynamics, or detection by diagnostic methods.
 
   the rate that prevalent infections are treated and cured
 
-- `q_lm`:
+- `q`:
 
-  test positivity by light microscopy
-
-- `q_rdt`:
-
-  test positivity by RDT
-
-- `q_pcr`:
-
-  test positivity by PCR
+  test positivity
 
 ## See also
+
+[make_XH_obj_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_SIS.md),
+[change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md)
 
 [SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

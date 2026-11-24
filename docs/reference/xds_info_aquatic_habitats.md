@@ -4,37 +4,72 @@ Aquatic habitats are distributed among patches on a landscape.
 
 - `membership`:
 
-  a vector: the patch index of each aquatic habitat
+  the [habitat
+  vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md)
 
 - `nHabitats`:
 
   the number of habitats (`length(membership)`)
 
-- `searchQ`:
+- `search_weights` or \\(w\\):
 
   a vector: a search weight for each aquatic habitat
 
-## The Habitat Matrix
+## Habitat Vector
 
-The *habitat matrix* is an `nPatches` \\(\times\\) `nHabitats` matrix
-called \\(N\\). It is constructed from the `membership` vector. In the
-matrix, \\(N\_{i,j}\\) is 1 if the \\(i^{th}\\) patch contains the
-\\(j^{th}\\) habitat. For example, a membership vector \\((1,1,2)\\) has
-a corresponding habitat matrix: \$\$ N = \left\[ \begin{array}{ccc}
-1&1&0\\\\ 0&0&1\\\\ \end{array} \right\] \$\$ If \\(\alpha\\) denotes
-the emergence rate of adult mosquitoes from each habitat, then the
-emergence rate at the patch, \\(\Lambda\\) is: \$\$\Lambda = N \cdot
-\alpha\$\$
+A habitat vector \\((V)\\) indexes the patches where each aquatic
+habitat can be found.
 
-## The Egg Distribution Matrix
+If the \\(i^{th}\\) habitat is located in the \\(j^{th}\\) patch, then
+\\(V_i = j.\\)
 
-Let \\(\omega\\) denote the habitat search weights. Habitat availability
-(\\(Q\\)) is computed as: \$\$Q = N \cdot \omega.\$\$ Mosquitoes could
-also lay some eggs in available bad habitats (\\(B\\)) or in available
-ovitraps (\\(O\\)). The egg distribution matrix (\\(U\\)) is computed as
-\$\$U = \left( \mbox{diag} \left(\omega \right) \cdot N^T \right) \cdot
-\mbox{diag}\left( (Q+B+O)^{-1} \right).\$\$ In models where there are
-patches with no available habitat, \\((Q+B+O)^{-1}\\) is computed using
-the function
-[diag_inverse](https://dd-harp.github.io/ramp.xds/reference/diag_inverse.md),
-which fixes the divide-by-zero problem.
+## Habitat Matrix
+
+The habitat matrix \\((\mathbf N)\\) is an
+`nPatches`\\(\times\\)`nHabitats` matrix that is constructed from the
+[habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md).
+
+If the \\(i^{th}\\) habitat is in the \\(j^{th}\\) patch, then
+\\({N}\_{j,i}=1.\\) Otherwise, \\({N}\_{j,i}=0.\\)
+
+If \\(x\\) is any vector describing a quantity in habitats (*i.e.*,
+\\(\left\|x\right\|=\\)`nHabitats`), then \$\$X=\mathbf{N}\cdot x\$\$ is
+a vector that has summed \\(x\\) by patch, and
+\\(\left\|X\right\|=\\)`nPatches`.
+
+## Unproductive Aquatic Habitats
+
+To model egg laying, a port was developed to model the availability of
+unproductive aquatic habitats: water where mosquitoes lay eggs, but no
+mature adults ever emerge.
+
+## Ovitraps
+
+To simulate ovitraps, a port was developed to model the availability of
+the ovitraps.
+
+## Egg Laying
+
+**Egg Laying in Patches** — The number of eggs laid by adult mosquitoes
+in each patch \\((G)\\) is computed by an **MY** component function
+[F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md),
+typically: \$\$G = F_G(M).\$\$
+
+**Habitats and Traps** — Aquatic habitats compete with "bad habitats"
+(*i.e.*, water bodies where eggs are laid that are not productive) and
+ovitraps for eggs laid. The availability of each one in the patch is
+given by:
+
+- \\(Q\\) — habitat availability (see
+  [habitat_availability](https://dd-harp.github.io/ramp.xds/reference/habitat_availability.md))
+
+- \\(W\\) — availability of unsuitable habitats
+
+- \\(O\\) — availability of ovitraps
+
+\$\$\zeta = \frac{\textstyle{Q}}{\textstyle{Q+W+O}}\$\$
+
+**Laying in Habitats** — eggs laid in habitats are distributed by the
+laying matrix \\((\mathbf{U})\\).
+
+\$\$\eta = \mathbf{U} \cdot \zeta G \$\$

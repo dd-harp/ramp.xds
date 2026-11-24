@@ -1,7 +1,6 @@
 # Change the blood_traps
 
-Update the blood_traps for the \\(s^{th}\\) vector species, and trigger
-updates for the `XY` interface.
+Set blood trap availability for vector species `s`.
 
 ## Usage
 
@@ -13,7 +12,7 @@ change_blood_traps(blood_traps, xds_obj, s = 1)
 
 - blood_traps:
 
-  a blood_traps
+  a numeric vector of patch-level availability
 
 - xds_obj:
 

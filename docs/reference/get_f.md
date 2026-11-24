@@ -1,6 +1,6 @@
-# Get the feeding rate(s)
+# Get the feeding rate (**MY**)
 
-Get the feeding rate(s)
+Return the stored realized feeding rate per patch.
 
 ## Usage
 
@@ -20,4 +20,15 @@ get_f(xds_obj, s = 1)
 
 ## Value
 
-the feeding rate, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read the realized parameter without evaluating its port or applying
+effect sizes. Run bionomics and effect-size application to refresh
+port-backed values.
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.

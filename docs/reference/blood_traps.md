@@ -1,4 +1,4 @@
-# blood_traps
+# Blood trap update method
 
 The `S3` definition for the function that computes blood_traps
 

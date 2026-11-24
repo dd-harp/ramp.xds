@@ -1,9 +1,7 @@
-# Set up a blood_search_weights
+# Set up random blood search weights
 
-Implements the "method1" case for
-[setup_blood_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.md).
-See
-[make_blood_search_weights_random](https://dd-harp.github.io/ramp.xds/reference/make_blood_search_weights_random.md)
+Generate random blood search weights using
+[make_blood_search_weights_random](https://dd-harp.github.io/ramp.xds/reference/make_blood_search_weights_random.md).
 
 ## Usage
 
@@ -16,7 +14,7 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of weights
 
 - xds_obj:
 

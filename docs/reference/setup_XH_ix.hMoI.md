@@ -1,8 +1,8 @@
-# Add indices for human population to parameter list
+# Set up variable indices for `hMoI` (**XH**)
 
-Implements
-[setup_XH_ix](https://dd-harp.github.io/ramp.xds/reference/setup_XH_ix.md)
-for the hybrid MoI model.
+Assign consecutive variable indices for the `hMoI` module, starting
+after `xds_obj$max_ix`, and update the maximum index. Allocate blocks in
+the order `m1_ix`, `m2_ix`. Each block has length `nStrata[i]`.
 
 ## Usage
 
@@ -24,6 +24,11 @@ setup_XH_ix(xds_obj, i)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Indices are stored at `xds_obj$XH_obj[[i]]$ix`. The maximum index is
+stored at `xds_obj$max_ix`.
 
 ## See also
 

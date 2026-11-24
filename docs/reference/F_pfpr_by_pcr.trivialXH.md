@@ -1,4 +1,4 @@
-# Compute the prevalence of infection by PCR
+# Compute observed prevalence by PCR
 
 Implements
 [F_pfpr_by_pcr](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)

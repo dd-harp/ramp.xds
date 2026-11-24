@@ -1,7 +1,8 @@
 # Make initial values for `basicL` (**L**)
 
-Initial values of the variable \\(L\\) can be set by passing `L` in
-`options`
+Create a named list of initial values for the `basicL` module. Values in
+`options` override the defaults. Initial values of the variable \\(L\\)
+can be set by passing `L` in `options`.
 
 ## Usage
 
@@ -26,4 +27,14 @@ make_L_inits_basicL(nHabitats, options = list(), L = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of initial values
+
+## Details
+
+Initial values must be numeric scalars or have length `nHabitats`.
+Scalars are expanded to that length.
+
+## See also
+
+[setup_L_inits.basicL](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.basicL.md),
+[change_L_inits.basicL](https://dd-harp.github.io/ramp.xds/reference/change_L_inits.basicL.md)

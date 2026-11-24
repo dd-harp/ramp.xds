@@ -1,6 +1,6 @@
-# Check / update before solving
+# Check `SIS` (**XH**)
 
-Check / update before solving
+Check `SIS` (**XH**)
 
 ## Usage
 

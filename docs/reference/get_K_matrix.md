@@ -29,6 +29,6 @@ dimensions `nPatches` by `nPatches`
 
 ## Note
 
-The argument `K` is used to retrieve state-dependent mosquito dispersal
-arguments for behavioral state models. The default "K" returns
+The argument `which_K` is used to retrieve state-dependent mosquito
+dispersal matrices for behavioral state models. The default "K" returns
 `K_matrix`

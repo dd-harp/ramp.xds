@@ -21,7 +21,7 @@ get_MY_pars(xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of parameter values
 
 ## Parameters
 
@@ -81,6 +81,9 @@ evaluates bionomic parameter functions through
 [MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md).
 
 ## See also
+
+[make_M_obj_basicM](https://dd-harp.github.io/ramp.xds/reference/make_M_obj_basicM.md),
+[change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
 
 [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md),
 [change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)

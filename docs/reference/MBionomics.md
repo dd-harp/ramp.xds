@@ -1,6 +1,8 @@
 # Mosquito bionomics (**MY**)
 
-Compute the adult mosquito bionomic parameter values.
+Compute the adult mosquito bionomic parameter values. Store each
+port-backed parameter `x` as `x_t` and reset `es_x` to 1. Parameters
+without ports are stored directly as `x`.
 
 ## Usage
 

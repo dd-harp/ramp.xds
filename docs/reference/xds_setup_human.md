@@ -47,7 +47,8 @@ xds_setup_human(
 
 - residence:
 
-  a vector that describes the patch where each human stratum lives
+  a vector that describes the patch where each human stratum lives (see
+  [residence_vector](https://dd-harp.github.io/ramp.xds/reference/residence_vector.md))
 
 - searchB:
 
@@ -83,11 +84,6 @@ that sets up a model to study exposure and infection. The **MY** module
 is set to `trivialMY` and a forcing function computes infective biting
 in the patches.
 
-`class(xds_obj$frame) = 'human'`
-
-to dispatch functions that compute derivatives (`xde`), update variables
-(`dts`), and parse outputs.
-
 To set up a model that is forced by the EIR, use
 [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md).
 
@@ -120,7 +116,9 @@ Set up the model structure:
   [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md))
 
 - `residence` - the human residence vector (see
-  [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
+  [residence_vector](https://dd-harp.github.io/ramp.xds/reference/residence_vector.md)
+  and
+  [residence_matrix](https://dd-harp.github.io/ramp.xds/reference/residence_matrix.md))
 
 During setup:
 
@@ -132,10 +130,28 @@ If `nPatches`\\(\>1\\), set up some basic aspects of blood feeding and
 exposure:
 
 - `searchB` the blood feeding search weights (see
-  [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md))
+  [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md)
+  and
+  [human_availability](https://dd-harp.github.io/ramp.xds/reference/human_availability.md))
 
 - `TSoptions` sets up a time spent matrix (see
-  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
+  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md))
+
+The
+[mixing_matrix](https://dd-harp.github.io/ramp.xds/reference/mixing_matrix.md)
+maps infective biting density in patches to the daily EIR in population
+strata. See
+[blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
+for the blood-feeding framework.
+
+## Note
+
+This sets
+
+`class(xds_obj$frame) = 'human'`
+
+to dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs.
 
 ## See also
 

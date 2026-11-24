@@ -1,6 +1,7 @@
 # Set up variable indices (**L**)
 
-Set up variable indices for the selected **L** module.
+Set up variable indices for the selected **L** module and vector
+species.
 
 ## Usage
 
@@ -21,6 +22,10 @@ setup_L_ix(xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch uses the class of `xds_obj$L_obj[[s]]`.
 
 ## See also
 

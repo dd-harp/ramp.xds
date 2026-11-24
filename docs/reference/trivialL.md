@@ -13,29 +13,12 @@ V_s) \times F_T(t, V_t) \times F_K(t, V_k)\$\$ where
 
 - \\(F_K(t,V_k)\\) or `F_shock` is a perturbation function
 
+## Note
+
 The variables \\(V_s\\), \\(V_t\\), and \\(V_k\\) are called by
 [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
 which dispatches on the class of `season_par` or `trend_par` or
 `shock_par`.
-
-## Parameters
-
-- `Lambda`:
-
-  the mean daily emergence rate of adult mosquitoes from each aquatic
-  habitat
-
-- `F_season`:
-
-  a seasonal pattern function, \\({F_S(t,V_s)}\\)
-
-- `F_trend`:
-
-  a trend function, \\(F_T(t,V_t)\\)
-
-- `F_shock`:
-
-  a shock function, \\(F_K(t,V_k)\\)
 
 - `season_par`:
 
@@ -58,8 +41,6 @@ which dispatches on the class of `season_par` or `trend_par` or
 By default, `season_par`, `trend_par`, and `shock_par` configure
 constant-one forcing functions.
 
-## Notes
-
 1.  The module has no state variables.
 
 2.  The size of an object saved by `saveRDS` balloons if it saves a
@@ -71,6 +52,25 @@ constant-one forcing functions.
 
 3.  Setup expects that `membership= c(1:nPatches)`, but any membership
     vector works.
+
+## Parameters
+
+- `Lambda`:
+
+  the mean daily emergence rate of adult mosquitoes from each aquatic
+  habitat
+
+- `F_season`:
+
+  a seasonal pattern function, \\({F_S(t,V_s)}\\)
+
+- `F_trend`:
+
+  a trend function, \\(F_T(t,V_t)\\)
+
+- `F_shock`:
+
+  a shock function, \\(F_K(t,V_k)\\)
 
 ## See also
 

@@ -1,10 +1,7 @@
-# The **XH** module skill set
+# Get the skill set for `hMoI` (**XH**)
 
-The `hMoI` module is an example of a model that is not extensible. There
-is no way to add either dynamic human population density or mass
-treatment without violating the model assumptions.
-
-The model does output observed population density and here it is
+Return the capabilities and compatibilities of the `hMoI` module as a
+list.
 
 ## Usage
 
@@ -27,9 +24,11 @@ get_skillset_XH(xds_obj, i)
 
 the **XH** module skill set, as a list
 
-## Note
+## Details
 
-This method dispatches on `class(xds_obj$XH_obj[[i]])`.
+The `hMoI` module is an example of a model that is not extensible. There
+is no way to add either dynamic human population density or mass
+treatment without violating the model assumptions.
 
 ## See also
 

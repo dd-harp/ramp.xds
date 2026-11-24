@@ -30,4 +30,9 @@ Update_Lt(t, y, xds_obj, s)
 ## Value
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of updated
-states; empty for modules without state variables
+states in the module's state-variable order; empty for modules without
+state variables
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`.

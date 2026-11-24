@@ -1,6 +1,6 @@
-# Update the blood_traps
+# Update blood trap availability
 
-Port function for the blood_traps, \\(\Theta\\). Dispatches on
+Dispatch updates for blood trap availability. Dispatches on
 `class(xds_obj$patches$blood_traps_obj[[s]])`.
 
 ## Usage

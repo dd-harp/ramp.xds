@@ -1,8 +1,8 @@
-# Infective mosquito biting rate for `basicM`
+# Compute infective mosquito biting density for `basicM` (**MY**)
 
-Implements
-[F_fqZ](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) for the
-basicM xde model.
+Return the daily infective mosquito biting density on humans, `fqZ`, for
+each patch in the `basicM` module. Return zero because this module does
+not track mosquito infection.
 
 ## Usage
 

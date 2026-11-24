@@ -1,6 +1,6 @@
-# Compute the prevalence of infection by light microscopy
+# Compute observed prevalence by light microscopy
 
-This method dispatches on the type of `XH_obj`.
+Compute observed prevalence by light microscopy
 
 ## Usage
 
@@ -22,3 +22,7 @@ F_pfpr_by_lm(vars, XH_obj)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## Note
+
+This method dispatches on the type of `XH_obj`.

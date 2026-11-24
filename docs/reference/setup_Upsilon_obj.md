@@ -1,6 +1,6 @@
-# Set up the Upsilon object
+# Set up EIP survival-and-dispersal matrix port (**MY**)
 
-Set to `dde` if **MY** is a delay differential equation
+Set up the EIP survival-and-dispersal matrix port.
 
 ## Usage
 
@@ -25,3 +25,10 @@ setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Set up the port object `Upsilon_obj` with class `dde` when `dede` is
+TRUE, or `na` otherwise. The class of `Upsilon_obj` controls dispatch
+for
+[change_Upsilon](https://dd-harp.github.io/ramp.xds/reference/change_Upsilon.md).

@@ -1,4 +1,4 @@
-# Compute the *true* prevalence of infection / parasite rate
+# Compute true prevalance
 
 A function that translates the state variables into the "true" *Pf*PR
 

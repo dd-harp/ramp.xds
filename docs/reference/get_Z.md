@@ -1,6 +1,6 @@
-# Get the initial infective mosquito density
+# Get the initial infective mosquito density (**MY**)
 
-Get the initial infective mosquito density
+Return the initial infective mosquito density per patch.
 
 ## Usage
 
@@ -20,5 +20,20 @@ get_Z(xds_obj, s = 1)
 
 ## Value
 
-the initial density as a [numeric](https://rdrr.io/r/base/numeric.html)
-vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Return initial density, not current solver states or output
+trajectories.
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`.
+
+## See also
+
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md),
+[get_MY_vars](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.md),
+[get_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/get_MY_orbits.md)

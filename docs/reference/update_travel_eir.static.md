@@ -1,7 +1,6 @@
 # Update travel_eir
 
-A utility to ensure that the travel_eir is updated properly after a
-change
+Return `xds_obj` unchanged for a static travel EIR port.
 
 ## Usage
 

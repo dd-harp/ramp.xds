@@ -1,6 +1,7 @@
 # Compute steady states for `basicM` (**MY**)
 
-Compute steady-state mosquito densities for the `basicM` module.
+Compute steady-state mosquito densities for the `basicM` module given
+adult mosquito emergence `Lambda` for the differential-equation system.
 
 ## Usage
 
@@ -25,8 +26,8 @@ steady_state_M_basicM(Lambda, xds_obj, s = 1)
 
 ## Value
 
-the steady states as a named
-[numeric](https://rdrr.io/r/base/numeric.html) vector
+a named [numeric](https://rdrr.io/r/base/numeric.html) vector containing
+`M` followed by `P`, each with one value per patch
 
 ## State Variables
 
@@ -45,8 +46,7 @@ Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
 disperse and die according to \\(\Omega\\). The ODE model is \$\$
 \begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\\\\\\\ dP/dt &=
 f(M-P)-\Omega\cdot P \end{array}\$\$ Here, \\(P\\) is the density of
-mosquitoes that have blood-fed at least once. Parity, \\(P/M\\), is
-computed during parsing and stored as `parous`.
+mosquitoes that have blood-fed at least once.
 
 ## See also
 

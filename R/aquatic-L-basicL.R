@@ -304,7 +304,6 @@ setup_L_obj.basicL = function(Lname, membership, xds_obj, options=list(), s=1){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
   xds_obj$L_obj[[s]] = L_obj
-  xds_obj$L_obj[[s]]$skill_set <- get_skillset_L(xds_obj, s)
   xds_obj <- setup_L_inits(xds_obj, options=options, s=s)
   xds_obj <- setup_habitat_search_weights("setup", xds_obj, list(membership=membership), s=s)
   return(xds_obj)

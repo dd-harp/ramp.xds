@@ -1,6 +1,7 @@
 # Set up variable indices (**MY**)
 
-Set up the variable indices for the selected **MY** module.
+Set up variable indices for the selected **MY** module and vector
+species.
 
 ## Usage
 
@@ -21,3 +22,7 @@ setup_MY_ix(xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Dispatch uses the class of `xds_obj$MY_obj[[s]]`.

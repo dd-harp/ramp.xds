@@ -1,6 +1,7 @@
-# Check the XY Interface
+# Check the blood-feeding interface
 
-Run a set of consistency checks for the `blood_feeding`
+Currently returns `xds_obj` unchanged; no consistency checks are
+performed.
 
 ## Usage
 

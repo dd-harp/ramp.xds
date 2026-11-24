@@ -1,7 +1,6 @@
 # Compute the mosquito dispersal matrix (**MY**)
 
-Compute the mosquito dispersal matrix by dispatching on the class of the
-port object `K_obj`.
+Compute the mosquito dispersal matrix.
 
 ## Usage
 
@@ -30,4 +29,4 @@ dimensions `nPatches` by `nPatches`
 
 ## Note
 
-The port object is called `K_obj`
+The port object is called `K_obj` and dispatch is on its class.

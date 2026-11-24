@@ -1,7 +1,6 @@
-# Setup the Omega obj
+# Set up mosquito demographic matrix port (**MY**)
 
-The Omega object handles dispatching for `change_Omega` and
-`update_Omega`
+Set up the mosquito demographic matrix port.
 
 Options for `change_Omega` are:
 
@@ -44,3 +43,12 @@ setup_Omega_obj(ch, up, xds_obj, s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+The Omega object stores the change and update options. The Omega object
+controls dispatch for
+[update_Omega](https://dd-harp.github.io/ramp.xds/reference/update_Omega.md).
+The
+[change_Omega](https://dd-harp.github.io/ramp.xds/reference/change_Omega.md)
+generic dispatches on `xds_obj$xds`.

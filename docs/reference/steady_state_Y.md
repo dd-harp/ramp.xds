@@ -1,8 +1,8 @@
 # Compute steady states (**Y**)
 
-Given adult mosquito population density (\\(M\\) or `M`) and the net
-infectiousness of humans (\\(\kappa\\) or `kappa`), compute the steady
-states for the other states
+Compute steady-state infection densities for the selected **Y**
+component given adult mosquito density `M` and net infectiousness
+`kappa`.
 
 ## Usage
 
@@ -30,4 +30,11 @@ steady_state_Y(M, kappa, xds_obj, s = 1)
 
 ## Value
 
-none
+module-specific steady-state values; see the selected method for the
+return type and state names
+
+## Note
+
+Dispatch on the module object at `xds_obj$MY_obj[[s]]`. A
+module-specific method must be supplied to use this generic. Return
+values are not stored on the model object.

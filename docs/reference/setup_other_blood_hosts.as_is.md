@@ -1,10 +1,10 @@
-# Set up a other_blood_hosts
+# Set up other blood hosts
 
 Pass a pre-configured other_blood_hosts. If it passes the checks, it
 replaces the current other_blood_hosts.
 
-If called with `name = "as_is"`, the other_blood_hosts must be at
-`options$other_blood_hosts`
+If called with `name = "as_is"`, provide the vector in
+`options$other_blood_hosts_asis`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_other_blood_hosts(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 

@@ -2,9 +2,14 @@
 
 The derivatives for the `SIS` module are:
 
-\$\$\begin{array}{rl} dH/dt &= \mathbf{B}(t,H) - \mathbf{D}(H) \\\\
-dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I -
-\mathbf{D}(I) \end{array}\$\$
+\$\$\begin{array}{rl} dH/dt &= \mathbf{B}(t,y) - \mathbf{D}(t,H) \\\\
+dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma + \Xi(t)) I -
+\mathbf{D}(t,I) \end{array}\$\$ Here \\(h\\) is `foi`,
+\\(\Xi(t)=mda(t)+msat(t)\\), \\(\mathbf{B}(t,y)\\) is returned by
+[Births](https://dd-harp.github.io/ramp.xds/reference/Births.md), and
+\\(\mathbf{D}(t,X)\\) is returned by
+[Deaths](https://dd-harp.github.io/ramp.xds/reference/Deaths.md) for
+population \\(X\\).
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Update state variables for `trivialMY` (**MY**)
+# Update states for `trivialMY` (**MY**)
 
 Return an empty update vector because the `trivialMY` module has no
 state variables.

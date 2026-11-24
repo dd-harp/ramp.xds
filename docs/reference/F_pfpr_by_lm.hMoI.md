@@ -1,8 +1,8 @@
-# Compute the prevalence of infection by light microscopy
+# Compute observed prevalence by light microscopy
 
-Implements
-[F_pfpr_by_lm](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md)
-for the `hMoI` model.
+Compatibility alias for
+[F_pr_obs.hMoI](https://dd-harp.github.io/ramp.xds/reference/F_pr_obs.hMoI.md).
+All diagnostic aliases return apparent prevalence based on `m2`.
 
 ## Usage
 

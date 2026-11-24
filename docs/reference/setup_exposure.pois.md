@@ -1,6 +1,8 @@
 # Set up a Poisson model for Exposure and Infection
 
-Set up a Poisson model for Exposure and Infection
+Set the exposure object's class to `pois` for host species `i`,
+retaining its fields and existing FoI and AR terms. Create an empty
+exposure object if the species does not yet have one.
 
 ## Usage
 
@@ -33,7 +35,6 @@ an **`xds`** model object
 
 ## See also
 
-Also, see
 [F_foi.pois](https://dd-harp.github.io/ramp.xds/reference/F_foi.pois.md)
 and
 [F_ar.pois](https://dd-harp.github.io/ramp.xds/reference/F_ar.pois.md)

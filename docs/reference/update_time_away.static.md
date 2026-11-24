@@ -1,7 +1,6 @@
 # Update time_away
 
-A utility to ensure that the time_away is updated properly after a
-change
+Return `xds_obj` unchanged for a static time away port.
 
 ## Usage
 

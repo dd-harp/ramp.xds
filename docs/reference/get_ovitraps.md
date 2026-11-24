@@ -20,4 +20,5 @@ get_ovitraps(xds_obj, s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`

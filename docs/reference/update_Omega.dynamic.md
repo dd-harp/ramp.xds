@@ -1,6 +1,7 @@
-# Change Omega
+# Update the dynamic demographic matrix (**MY**)
 
-Update a static demographic matrix
+Recompute the demographic matrix using
+[change_Omega](https://dd-harp.github.io/ramp.xds/reference/change_Omega.md).
 
 ## Usage
 

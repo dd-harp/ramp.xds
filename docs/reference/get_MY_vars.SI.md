@@ -1,7 +1,7 @@
 # Get the state variables for `SI` (**MY**)
 
-Extract the `SI` variables from the state variables vector \\(y\\),
-parse, and return the variables by name in a list.
+Extract the state variables for the `SI` module from `y` and return them
+by name in a list for use during model solving.
 
 ## Usage
 
@@ -26,7 +26,12 @@ get_MY_vars(y, xds_obj, s)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html) of state variables and
+module-specific derived quantities
+
+## Note
+
+Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
 
 ## State Variables
 

@@ -1,7 +1,7 @@
 # Change parameters for `SIS` (**XH**)
 
-For the `SIS` module (**XH**) for the \\(i^{th}\\) host species, change
-parameter values named in `options` leaving other values unchanged.
+Change parameter values named in `options` for the `SIS` module, leaving
+other values unchanged.
 
 ## Usage
 
@@ -32,8 +32,8 @@ an **`xds`** model object
 
 The parameters that are returned by
 [get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
-and also modifiable by change_XH_pars.SIS describe the dynamics, or
-detection by diagnostic methods.
+and also modifiable by change_XH_pars.SIS describe the dynamics or test
+positivity.
 
 - `b`:
 
@@ -55,19 +55,14 @@ detection by diagnostic methods.
 
   the rate that prevalent infections are treated and cured
 
-- `q_lm`:
+- `q`:
 
-  test positivity by light microscopy
-
-- `q_rdt`:
-
-  test positivity by RDT
-
-- `q_pcr`:
-
-  test positivity by PCR
+  test positivity
 
 ## See also
+
+[make_XH_obj_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_SIS.md),
+[get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
 
 [SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md),
 [`get_XH_pars.SIS()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)

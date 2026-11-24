@@ -120,4 +120,4 @@ Advanced setup options for progressive elaboration after basic setup
 
 - [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)
 
-- [xds_port_ovitraps](https://dd-harp.github.io/ramp.xds/reference/xds_port_ovitraps.md)
+- [xds_port_ovitraps](https://dd-harp.github.io/ramp.xds/reference/ovitraps.md)

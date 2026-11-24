@@ -1,6 +1,8 @@
 # Compute steady states for `GeM` (**MY**)
 
-Compute steady-state mosquito densities for the `GeM` module.
+Compute steady-state mosquito densities for the `GeM` module given adult
+mosquito emergence `Lambda` and net infectiousness `kappa` for the
+differential-equation system.
 
 ## Usage
 
@@ -29,7 +31,7 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html)
 
 ## State Variables
 

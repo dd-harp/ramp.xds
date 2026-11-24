@@ -1,7 +1,7 @@
 # Make random mosquito mortality rates (**MY**)
 
-Draw mosquito mortality rates once during setup and store them in a
-static port object. Subsequent evaluations reuse these values.
+Draw mosquito mortality rates once during setup. Subsequent evaluations
+reuse these values.
 
 ## Usage
 
@@ -42,3 +42,7 @@ make_F_g_random(
 
 a static port object for
 [F_g.static](https://dd-harp.github.io/ramp.xds/reference/F_g.static.md)
+
+## Note
+
+The values are stored in a static port object.

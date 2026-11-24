@@ -1,6 +1,9 @@
-# Set up no time spent matrix
+# Set up the default time spent matrix
 
-Don't change anything
+Store residence on the selected host module, initialize its time spent
+matrix from the residence matrix, and initialize a static port. Read the
+residence vector from `options$residence` and remove the temporary
+top-level `xds_obj$residence`.
 
 ## Usage
 

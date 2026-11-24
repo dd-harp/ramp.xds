@@ -1,10 +1,10 @@
-# Check other blood hosts
+# Check other blood host availability
 
 Check that
 
 - all elements are non-negative
 
-- length(other_blood_hosts) == nPatc
+- length(other_blood_hosts) == nP
 
 ## Usage
 
@@ -16,7 +16,7 @@ check_other_blood_hosts(other_blood_hosts, nP)
 
 - other_blood_hosts:
 
-  availbility of other blood hosts
+  availability of other blood hosts
 
 - nP:
 
@@ -24,4 +24,4 @@ check_other_blood_hosts(other_blood_hosts, nP)
 
 ## See also
 
-[xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+[xds_info_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)

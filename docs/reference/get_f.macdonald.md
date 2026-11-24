@@ -1,6 +1,6 @@
-# Get the feeding rates
+# Get the feeding rate for `macdonald` (**MY**)
 
-Get the feeding rates
+Return the stored realized feeding rate per patch.
 
 ## Usage
 
@@ -21,7 +21,12 @@ get_f(xds_obj, s = 1)
 
 ## Value
 
-the feeding rate, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nPatches`
+
+## Details
+
+Read `f` without evaluating ports or applying effect sizes.
 
 ## Parameters
 

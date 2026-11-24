@@ -1,6 +1,6 @@
 # Set up no ovitraps
 
-Don't change anything
+Don't change anything.
 
 ## Usage
 

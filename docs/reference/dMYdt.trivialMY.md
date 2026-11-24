@@ -1,6 +1,6 @@
 # Compute the derivatives for `trivialMY` (**MY**)
 
-Return an empty derivative vector because the `trivialMY` module has no
+Return an empty numeric vector because the `trivialMY` module has no
 state variables.
 
 ## Usage

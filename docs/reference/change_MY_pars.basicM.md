@@ -1,8 +1,12 @@
 # Change parameters for `basicM` (**MY**)
 
-For the `basicM` module (**MY**) for the \\(s^{th}\\) species, change
-parameter values named in `options` leaving other values unchanged. To
-change `K_matrix`, use
+Change parameter values named in `options` for the `basicM` module,
+leaving other values unchanged. Refresh baseline bionomics at time zero
+using
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md),
+without calling
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md).
+To change `K_matrix`, use
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md);
 this method does not change the dispersal matrix.
 
@@ -86,3 +90,8 @@ After basic setup, change_MY_pars.basicM can be used to change static
 parameter values. The `basicM` module evaluates bionomic parameter
 functions through
 [MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md).
+
+## See also
+
+[make_M_obj_basicM](https://dd-harp.github.io/ramp.xds/reference/make_M_obj_basicM.md),
+[get_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.basicM.md)

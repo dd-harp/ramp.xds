@@ -1,7 +1,6 @@
 # Setup the Vector Control Junction
 
-This creates `xds_obj$vector_control` and sets
-`class(vector_control) = 'none'.`
+This creates `xds_obj$vector_control_obj` and sets its class to `none`.
 
 Vector control is implemented in two stages.
 

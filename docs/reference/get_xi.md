@@ -1,6 +1,6 @@
 # Get the delayed maturation parameter (**L**)
 
-Get the delayed maturation parameter (**L**)
+Return the stored realized delayed maturation parameter per habitat.
 
 ## Usage
 
@@ -20,7 +20,13 @@ get_xi(xds_obj, s = 1)
 
 ## Value
 
-the delayed maturation parameter(s)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nHabitats`
+
+## Note
+
+Dispatch on the module object at `xds_obj$L_obj[[s]]`. This function
+does not evaluate ports or apply effect sizes.
 
 ## See also
 

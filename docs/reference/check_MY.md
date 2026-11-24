@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check model (**MY**)
 
-Run a check before solving
+Check model (**MY**)
 
 ## Usage
 

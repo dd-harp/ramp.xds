@@ -1,10 +1,10 @@
 # Set up bad habitats
 
-Pass a pre-configured bad_habitats. If it passes the checks, it replaces
+Pass pre-configured bad_habitats. If it passes the checks, it replaces
 the current bad_habitats.
 
 If called with `name = "as_is"`, the bad_habitats must be at
-`options$bad_habitats`
+`options$bad_habitats`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_bad_habitats(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

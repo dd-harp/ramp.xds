@@ -1,7 +1,11 @@
 # Change parameters for `basicL` (**L**)
 
-For the `basicL` module (**L**) for the \\(s^{th}\\) species, change
-parameter values named in `options` leaving other values unchanged.
+Change parameter values named in `options` for the `basicL` module,
+leaving other values unchanged. Refresh baseline bionomics at time zero
+using
+[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md),
+without calling
+[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md).
 
 ## Usage
 
@@ -47,6 +51,9 @@ an **`xds`** model object
   slope of density-dependent mortality
 
 ## See also
+
+[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md),
+[get_L_pars.basicL](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.basicL.md)
 
 [dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
 or

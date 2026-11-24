@@ -1,4 +1,4 @@
-# Change Omega
+# Recompute the mosquito demographic matrix for xde (**MY**)
 
 Update the demographic matrix for differential equations
 

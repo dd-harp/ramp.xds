@@ -2,9 +2,11 @@
 
 Check that
 
-- there ar \\(N_p\\) columns and \\(N_h\\) rows
+- there are `Np` rows and `Nh` columns
 
-- the column sums are at most 1\`
+- all elements are non-negative
+
+- the column sums are at most 1
 
 ## Usage
 
@@ -28,4 +30,4 @@ check_timespent_matrix(TS, Np, Nh)
 
 ## See also
 
-[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
+[xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent_matrix.md)

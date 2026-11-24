@@ -1,10 +1,8 @@
-# Set up a travel eir
+# Set up no travel EIR
 
-Pass a pre-configured travel eir . If it passes the checks, it replaces
-the current travel_eir .
-
-If called with `name = "as_is"`, the travel eir must be at
-`options$travel_eir`
+Set travel EIR to zero for each stratum of the selected host species
+using
+[change_travel_eir](https://dd-harp.github.io/ramp.xds/reference/change_travel_eir.md).
 
 ## Usage
 
@@ -17,7 +15,7 @@ setup_travel_eir(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a setup function name
 
 - xds_obj:
 

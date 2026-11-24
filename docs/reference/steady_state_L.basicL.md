@@ -1,6 +1,7 @@
 # Compute steady states for `basicL` (**L**)
 
-Select the equation-system-specific steady-state method for `basicL`.
+Compute steady-state aquatic mosquito densities for the `basicL` module
+given the daily egg input `eta` in each habitat.
 
 ## Usage
 
@@ -27,6 +28,12 @@ steady_state_L(eta, xds_obj, s = 1)
 
 a named [list](https://rdrr.io/r/base/list.html) containing the values
 of \\(L\\) at the steady state
+
+## Note
+
+Delegate to
+[steady_state_L_basicL](https://dd-harp.github.io/ramp.xds/reference/steady_state_L_basicL.md),
+which dispatches on `xds_obj$xds`.
 
 ## See also
 

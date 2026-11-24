@@ -1,7 +1,6 @@
-# Compute Vertebrate Host available for Blood Feeding
+# Compute total blood host availability
 
-Compute the available all vertebrate hosts for blood feeding by
-mosquitoes
+Compute total availability to blood-seeking mosquitoes.
 
 ## Usage
 
@@ -13,30 +12,28 @@ F_B_available(W, visitors, other_blood, traps)
 
 - W:
 
-  available of the parasite's / pathogen' local hosts
+  local human/host availability
 
 - visitors:
 
-  available of *visitors,* or non-resident host populations
+  visitor availability
 
 - other_blood:
 
-  available of other vertebrate hosts
+  availability of other vertebrate hosts
 
 - traps:
 
-  blood feeding trap availability
+  blood trap availability
 
 ## Value
 
-host available, a [vector](https://rdrr.io/r/base/vector.html)
+a numeric vector of total availability, one value per patch
 
 ## Details
 
-The available of other vertebrate hosts is a sum of available local
-hosts \\(W\\), and visitors \\(W\_\delta\\), and other available
-vertebrate hosts, \\(O\\). Total available is a simple sum: \$\$B = W +
-W\_\delta + O\$\$
+Total availability sums local human/host availability, visitors, other
+blood hosts, and blood traps: \$\$B = W + V + O + T.\$\$
 
 ## References
 

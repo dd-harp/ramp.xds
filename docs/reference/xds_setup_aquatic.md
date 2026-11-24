@@ -55,12 +55,7 @@ an **`xds`** model object
 This is a modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that streamlines setup for the **L** module and egg laying for a
-`trivialMY` **MY** module. It sets
-
-`class(xds_obj$frame) = 'aquatic'`
-
-to dispatch functions that compute derivatives (`xde`), update variables
-(`dts`), and parse outputs.
+`trivialMY` **MY** module.
 
 **Dynamics**
 
@@ -89,6 +84,13 @@ Set up the model structure:
 - `nVectorSpecies`\\(=1\\)
 
 ## Note
+
+It sets
+
+`class(xds_obj$frame) = 'aquatic'`
+
+to dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs.
 
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 calls

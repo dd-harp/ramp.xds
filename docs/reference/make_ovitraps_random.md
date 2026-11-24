@@ -1,6 +1,6 @@
 # Random ovitrap availability
 
-Set up a random vector describing ovitrap availability
+Set up a random vector describing ovitrap availability.
 
 ## Usage
 

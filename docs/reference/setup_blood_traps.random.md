@@ -1,9 +1,7 @@
-# Set up a blood_traps
+# Set up blood traps
 
-Implements the "random" case for
-[setup_blood_traps](https://dd-harp.github.io/ramp.xds/reference/setup_blood_traps.md).
-See
-[make_blood_traps_random](https://dd-harp.github.io/ramp.xds/reference/make_blood_traps_random.md)
+Generate random blood trap availability using
+[make_blood_traps_random](https://dd-harp.github.io/ramp.xds/reference/make_blood_traps_random.md).
 
 ## Usage
 
@@ -16,7 +14,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a setup method name or a numeric vector of availability values
 
 - xds_obj:
 
@@ -28,7 +26,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

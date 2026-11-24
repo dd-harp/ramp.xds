@@ -1,6 +1,6 @@
 # Compute Vector Control Effect Sizes
 
-Do no vector control: the **`xds`** object is returned unmodified
+Do no vector control: the **`xds`** object is returned unmodified.
 
 ## Usage
 

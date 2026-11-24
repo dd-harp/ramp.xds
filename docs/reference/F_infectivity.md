@@ -1,6 +1,6 @@
 # Infection blocking pre-erythrocytic immunity
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+Infection blocking pre-erythrocytic immunity
 
 ## Usage
 
@@ -26,3 +26,7 @@ F_infectivity(y, xds_obj, i)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## Note
+
+This method dispatches on the type of `xds_obj$XH_obj[[i]]`.

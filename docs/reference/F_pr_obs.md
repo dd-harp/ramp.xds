@@ -1,0 +1,28 @@
+# Compute observed prevalence
+
+Translate the state variables into predicted observed prevalence.
+
+## Usage
+
+``` r
+F_pr_obs(vars, XH_obj)
+```
+
+## Arguments
+
+- vars:
+
+  a list with the variables attached by name
+
+- XH_obj:
+
+  a list defining a model for humans
+
+## Value
+
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+`nStrata`
+
+## Note
+
+Dispatch on the class of `XH_obj`.
