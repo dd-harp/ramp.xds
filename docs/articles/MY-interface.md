@@ -108,9 +108,11 @@ checks. A module can also implement optional methods such as
 steady-state calculations when those are supported.
 
 Each module is identified by a class name, generically called `MYname`
-(for example, `SI`). Methods dispatch on the class of
-`xds_obj$MY_obj[[s]]`, where `s` is the vector-species index. MY method
-signatures use `s` consistently.
+(for example, `SI`). Most methods dispatch on the class of
+`xds_obj$MY_obj[[s]]`, where `s` is the vector-species index. The setup
+generic instead dispatches on the supplied module name; the skill-set
+generic accepts either a model or a module name. MY method signatures
+use `s` consistently.
 
 ### Dynamics
 
@@ -129,6 +131,19 @@ system:
   model. It receives `t`, `y`, `xds_obj`, and `s`, and returns the
   updated state variables in the model’s state-variable order.
 
+### State-variable extraction
+
+`get_MY_vars.MYname` retrieves named state values from the
+dependent-variable vector \\(y\\).
+
+State-variable getters primarily serve solver evaluations that need
+variables by name; users rarely call them directly. Follow the shared
+[getter
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#state-variable-getters):
+describe extraction from `y`, put index storage in `@note`, and return a
+named list of state variables and module-specific derived quantities.
+Document GeM’s `U` matrix and RMdts’s `Y` cohort matrix explicitly.
+
 ### Bionomics
 
 Two methods update bionomic parameter values before the dynamics are
@@ -137,13 +152,111 @@ computed.
 - `MBionomics.MYname` – evaluates the baseline bionomic parameter
   functions for the current time and resets the effect sizes to 1.
 
+For every parameter `x` configured as a port, `MBionomics` stores the
+baseline in `x_t` and resets `es_x` to 1. `MEffectSizes` then sets
+`x = x_t * es_x`. Parameters without ports are stored directly as `x`
+and are not modified by effect sizes. This includes EIP and the standard
+dispersal-matrix port: use `eip_t`/`es_eip` and
+`K_matrix_t`/`es_K_matrix`. Matrix multiplication by an effect size here
+is elementwise (`*`), not `%*%`; effects must preserve the
+dispersal-matrix constraints. Recompute demographic and survival
+matrices from the realized parameters after applying effect sizes.
+Dynamical parameter accessors such as `get_f` read the realized values
+rather than applying effects again; `get_MY_pars` retains each module’s
+documented parameter-reporting convention.
+
 - `MEffectSizes.MYname` – applies vector control effect sizes to the
   bionomic parameters set by `MBionomics`.
 
 Both methods receive `t`, `y`, `xds_obj`, and `s`, and return the
 updated `xds_obj`.
 
-## MY Model Object
+### Dynamical Terms
+
+These methods compute quantities used by other component interfaces.
+Each returns a vector with one value per patch.
+
+- `F_fqZ.MYname` - returns the daily density of infectious mosquito
+  bites on humans in each patch. The transmission interface uses it to
+  compute EIR by human stratum.
+
+- `F_fqM.MYname` - returns the daily density of mosquito bites on humans
+  in each patch. The transmission interface uses it to compute HBR by
+  human stratum.
+
+For biting-output documentation, use “Compute infective mosquito biting
+density for `module` (**MY**)” for `F_fqZ` and “Compute mosquito biting
+density for `module` (**MY**)” for `F_fqM`; generic titles omit “for
+`module`”. Describe daily biting density on humans for each patch, not a
+per-host biting rate. Return documentation is “a \[numeric\] vector of
+length `nPatches`”. Link each method to its counterpart and document
+dispatch on `xds_obj$MY_obj[[s]]` in the generic notes.
+
+Preserve model-specific formulas: basicM returns zero infective biting;
+SI obtains infective density using `Upsilon %*% Y`; BQ, BQm, and BRQS
+use the blood-feeding states only. Flag implementation discrepancies
+rather than silently changing them: the three behavioral-state modules
+currently obtain `q` using `get_f`. `F_fqZ.SI` converts its
+matrix-product result to a numeric vector, preserving one value per
+patch.
+
+- `F_eggs.MYname` - returns daily egg production by adult mosquitoes in
+  each patch. The egg-laying interface distributes the eggs among
+  habitats.
+
+Use “Compute egg production for `module` (**MY**)” for method titles and
+“Compute egg production (**MY**)” for the generic. Use the description
+“Return the number of eggs laid by the adult mosquito population, per
+patch” and return “a \[numeric\] vector of length `nPatches`”. Methods
+inherit the module NULL anchor’s `Egg Laying` section using
+`@inheritSection module Egg Laying`. In that section, explain the
+egg-laying population and formula: total adult density `M` for basicM,
+GeM, macdonald, RMdts, SI, and SEI; gravid density `Qu+Qy+Qz` for BQ,
+BQm, and BRQS. Multiply that density by `nu` and eggs per batch
+(`eggs_per_batch` in GeM, `eggsPerBatch` in the other modules). Link
+methods to their module and `EggLaying`; document dispatch on
+`xds_obj$MY_obj[[s]]` in the generic note.
+
+### Dynamical parameter accessors
+
+`get_f`, `get_q`, `get_g`, and `get_sigma` return the stored realized
+feeding rate, human blood fraction, adult mosquito mortality rate, and
+patch emigration rate, respectively. They do not evaluate ports or apply
+effect sizes. Refresh port-backed values through bionomics and
+effect-size application first. These accessors differ from
+`get_MY_pars`, whose parameter-reporting convention is documented by
+each module.
+
+Use “Get the parameter for `module` (**MY**)” with the parameter’s full
+name in method titles; generic titles omit “for `module`”. Use a short
+description identifying the stored realized parameter per patch, inherit
+the module NULL anchor’s `Parameters` section, and return “a \[numeric\]
+vector of length `nPatches`”. Put dispatch on `xds_obj$MY_obj[[s]]` in
+the generic note. For BQ, BQm, and BRQS, `get_sigma` returns `sigma_b`,
+the blood-feeding emigration rate, not `sigma_q`. Their `get_g` methods
+read the generic `g`; BRQS’s mismatch with its state-specific mortality
+parameters remains deferred. The trivialMY mortality and emigration
+accessors return empty numeric vectors.
+
+### Mosquito-matrix accessors
+
+`get_Omega(xds_obj, s = 1)` returns the stored mosquito demographic
+matrix, \\(\Omega\\), and `get_Upsilon(xds_obj, s = 1)` returns the
+stored EIP survival-and-dispersal matrix, \\(\Upsilon\\), for the
+selected species. These shared functions read
+`xds_obj$MY_obj[[s]]$Omega` and `xds_obj$MY_obj[[s]]$Upsilon`,
+respectively; they do not recompute matrices or modify the model object.
+Each returns a matrix of dimensions `nPatches` by `nPatches`, or `NULL`
+if the corresponding matrix is not stored.
+
+Use the titles “Get the mosquito demographic matrix (**MY**)” and “Get
+the EIP survival-and-dispersal matrix (**MY**)”. Keep storage paths and
+the distinction between retrieval and recomputation in `@note`. Link the
+getters to each other, their corresponding `change_Omega` or
+`change_Upsilon` function, and `xds_info_mosquito_demography`. Do not
+implement module-specific getter methods.
+
+### MY Model Object
 
 Each module defines a constructor and setup method for its **MY** model
 object. The constructor returns a list with the module’s class; the
@@ -171,23 +284,10 @@ values and shared interfaces.
 
 ### Parameters
 
+- `get_MY_pars.MYname` returns the module’s parameters as a named list.
+
 - `change_MY_pars.MYname` changes supported parameter values after
   setup. New values are passed by name in `options`.
-
-- `get_MY_pars.MYname` returns the stored parameter values for
-  inspection.
-
-### Variables
-
-`setup_MY_ix.MYname` sets up indices for the model’s state variables.
-`get_MY_ix` retrieves the stored indices.
-
-Two other methods use those indices: `get_MY_vars.MYname` retrieves
-state values from the dependent-variable vector \\(y\\), and
-`parse_MY_orbits.MYname` retrieves state values from solver output.
-
-- Both methods return named lists. The parsed output can also include
-  derived quantities specific to the model.
 
 ### Initial Values
 
@@ -204,26 +304,111 @@ variables.
 - `get_MY_inits` and `change_MY_inits.MYname` - inspect and change the
   stored initial values.
 
-- `change_MY_inits.MYname` - a utility to change the initial values.
+`get_MY_inits` is an ordinary function, not an S3 generic. It returns
+the selected species’ stored `inits` field directly: a named list of
+initial values, an empty list if stored, or `NULL` if absent (as in
+`trivialMY`). Keep storage in a documentation note and link to
+setup/change functions; follow the shared getter wording in the
+[documentation
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#initial-value-constructors).
 
-### Dynamical Terms
+Title the constructor “Make initial values for `module` (**MY**)” and
+describe it as “Create a named list of initial values for the `module`
+module. Values in `options` override the defaults.” Its return
+description is “a named \[list\] of initial values”. Preserve
+model-specific explanations. Document numeric scalar expansion to
+`nPatches`, except that `RMdts` uses `nPatches * max_eip` for `Y`. State
+the `SI` restriction `Y < P < M`. Describe accessory initialization:
+`GeM` initializes `U` from `Upsilon` and `d1`, `d2`, and `d3` to zero;
+`macdonald` initializes `dk_ix` to zero. These accessory values are not
+independently set through `options`. The constructor, setup method, and
+change method each link to the other two in `@seealso`, following the
+shared [documentation
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#initial-value-constructors).
 
-These methods compute quantities used by other component interfaces.
-Each returns a vector with one value per patch.
+Use “Set up initial values for `module` (**MY**)” as the setup-method
+title. Describe calling the initial-value constructor and `options`
+overrides. Put the actual storage location in `@note`, and return “an
+**`xds`** model object”. Preserve special cases: GeM computes an EIP
+matrix for its constructor.
 
-- `F_fqZ.MYname` - returns the daily density of infectious mosquito
-  bites on humans in each patch. The transmission interface uses it to
-  compute EIR by human stratum.
+Title initial-value changers “Change initial values for `module`
+(**MY**)”. Use “Change initial values named in `options` for the
+`module` module, leaving other values unchanged.” Describe supported
+values and special behavior, put storage explanations in `@note`, and
+return “an **`xds`** model object”. Keep reciprocal constructor/setup
+links. Flag implementation discrepancies separately rather than treating
+this contract as validation.
 
-- `F_fqM.MYname` - returns the daily density of mosquito bites on humans
-  in each patch. The transmission interface uses it to compute HBR by
-  human stratum.
+Read unspecified values from the selected module’s `inits` list. RMdts
+rebuilds that list with its initial-value constructor and the selected
+species’ `max_eip`, so its `Y` values have length `nPatches * max_eip`;
+scalar overrides are expanded by the constructor.
 
-- `F_eggs.MYname` - returns daily egg production by adult mosquitoes in
-  each patch. The egg-laying interface distributes the eggs among
-  habitats.
+### Initial-density accessors
+
+`get_M` and `get_Z` return initial adult and infective mosquito
+densities, respectively, not current solver states or output
+trajectories. Use “Get the initial adult mosquito density for `module`
+(**MY**)” and “Get the initial infective mosquito density for `module`
+(**MY**)” for method titles; generic titles omit “for `module`”.
+Descriptions are “Return the initial adult mosquito density per patch.”
+and “Return the initial infective mosquito density per patch.”
+
+Methods inherit the module NULL anchor’s `State Variables` section and
+link to the module and `get_MY_inits`. Keep SI’s infective-density
+explanation in its inherited anchor section rather than repeating the
+derivation. Return “a \[numeric\] vector of length `nPatches`”; generic
+notes describe dispatch on `xds_obj$MY_obj[[s]]`. The implemented
+methods are `get_M` for basicM, GeM, macdonald, RMdts, and SI, and
+`get_Z` for GeM, macdonald, RMdts, and SI.
+
+### Variable indices
+
+`setup_MY_ix.MYname` sets up indices for the model’s state variables.
+`get_MY_ix` retrieves the stored indices.
+
+`get_MY_ix(xds_obj, s = 1)` is an ordinary function defaulting to vector
+species 1, not an S3 generic. It returns the module’s stored `ix` field
+directly: a named list of variable indices, an empty list if stored, or
+`NULL` if absent. Document storage in `@note`, link to `setup_MY_ix`,
+and follow the shared [index-getter
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#variable-index-setup).
+
+Use the title “Set up variable indices for `module` (**MY**)”. Describe
+consecutive allocation after `xds_obj$max_ix`, list the actual block
+order and lengths, and return “an **`xds`** model object”. Put index
+storage and the updated maximum in `@note`, following the shared
+[indexing
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#variable-index-setup).
+Most blocks have length `nPatches`; GeM’s `U_ix` has length
+`nPatches^2`, and RMdts’s `Y_ix` has length `nPatches * max_eip`.
+
+Store indices at `xds_obj$MY_obj[[s]]$ix`, including for RMdts and BRQS.
+State extraction, output parsing, and dynamical terms must use this same
+module-level location. Index setup returns the updated model object.
 
 ### Standard Outputs
+
+`get_MY_orbits(xds_obj, s = 1)` retrieves saved, parsed orbits
+(trajectories) after solving for **MY** for the selected species. It
+returns a list of module-specific outputs with `time` added from
+`xds_obj$outputs$time`. It reads `xds_obj$outputs$orbits$MY[[s]]`; it
+does not parse outputs or modify the model. Use the title “Get orbits
+(**MY**)” and the shared [orbit-getter
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#output-parsers).
+
+Follow the shared [output-parser
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#output-parsers):
+use “Parse outputs for `module` (**MY**)”, describe extraction from
+`outputs` into a named list, and use “a \[list\]” for returns. Document
+index storage at `xds_obj$MY_obj[[s]]$ix` and any derived quantities,
+including differences between `parous` and `parity`, cohort aggregation,
+and omitted auxiliary states. Parsers return results; the
+output-processing pipeline stores them at
+`xds_obj$outputs$orbits$MY[[s]]`. They do not update the model object
+themselves. The RMdts parser sums cohorts within each patch at each
+output time.
 
 `parse_MY_orbits.MYname` parses the model’s state variables and any
 model-specific derived quantities from the solver output. During output
@@ -234,19 +419,29 @@ compute EIR and HBR, respectively.
 
 ### Consistency Checks
 
-The skill set describes a module’s capabilities and limitations. The
-consistency check can verify model-specific requirements before solving.
+The skill set describes a module’s capabilities and compatibilities. The
+consistency-check interface provides a place to implement model-specific
+checks before solving.
 
-- `get_skillset_MY.MYname` :: returns a list describing the module’s
-  capabilities and limitations.
-- 
-- `check_MY.MYname` :: checks model-specific setup before solving.
+Non-trivial modules report `<parameter>_is_port` for `f`, `q`, `g`,
+`sigma`, `sigma_b`, `sigma_q`, `mu`, `nu`, `eip`, and `K_matrix`. Each
+flag is `TRUE` for a parameter implemented as a port and `FALSE` for a
+direct or absent parameter. These flags describe the current module
+implementation, not whether a port’s current value varies with time.
+
+- `check_MY.MYname` :: provides a hook for model-specific checks before
+  solving. Existing methods currently return the model unchanged and
+  perform no checks.
+
+- `get_skillset_MY.MYname` :: returns the module’s capabilities and
+  compatibilities as a list. A module without `Update_MYt.MYname` must
+  include `dts = FALSE`.
 
 ## Optional Functions
 
 Optional methods should be implemented only when they are meaningful for
-the model. Record supported capabilities and limitations in the skill
-set.
+the model. Record supported capabilities and compatibilities in the
+skill set.
 
 ### Steady States
 
@@ -264,8 +459,136 @@ parameter values.
   net infectiousness, and compute the steady states for the **Y**
   component.
 
+Follow the shared steady-state documentation conventions in the XH
+interface: identify inputs, supported equation systems, actual return
+types, and state names. Method titles use “Compute steady states for
+`module` (**MY**)”. The three generics dispatch on
+`xds_obj$MY_obj[[s]]`. The Y generic requires a module-specific method;
+it does not provide a default calculation.
+
+`steady_state_M.basicM` delegates to `steady_state_M_basicM`, which
+dispatches on `xds_obj$xds` to select `xde` or `dts`. Both return a
+numeric vector with the `M` block followed by the `P` block.
+`steady_state_MY.SI` similarly delegates to `steady_state_MY_SI`, but
+only its `xde` method is implemented; it returns a list with `M`, `P`,
+and `Y`. GeM and macdonald return lists with `M`, `P`, `Y`, and `Z`.
+These functions return values without storing them on the model object.
+The SEI calculation currently references undefined `M_eq` and requires
+repair before use.
+
 ### Visualization
 
 The MY interface does not define MY-specific plotting generics. A module
 may provide model-specific visualization functions that use its parsed
 outputs.
+
+The shared helpers `xds_plot_M`, `xds_plot_Y`, and `xds_plot_Z` plot
+saved adult, infected, and infective mosquito densities, respectively.
+`xds_plot_Y_fracs` and `xds_plot_Z_fracs` plot the saved fractions
+`y = Y/M` and `z = Z/M`; they do not calculate those fractions. All read
+the required fields and `time` through `get_MY_orbits` for the selected
+species and draw one line per patch. The parsed outputs must contain the
+requested quantity.
+
+Plot helpers create a new plot unless `add = TRUE`. Their corresponding
+`xds_lines_*` helpers require an existing plot. A single `clrs` or
+`llty` value applies to all patches; vectors supply one value per patch.
+All helpers return `invisible(NULL)`. Use titles such as “Plot infected
+mosquito density (**MY**)” and “Add lines for the infected mosquito
+fraction (**MY**)”, distinguishing infected `Y` from infective `Z`. Put
+required fields and plot/overlay behavior in `@note`, document colors
+and line types by patch, and link each plot helper to its corresponding
+line helper.
+
+## Documentation conventions
+
+Follow the shared [function
+order](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#function-order)
+in module and component files and in guide implementation sections. Keep
+functions with their documentation and preserve file-level review/TODO
+notes at the top.
+
+Follow the shared [documentation
+conventions](https://dd-harp.github.io/ramp.xds/articles/XH-interface.html#documentation-conventions)
+for titles, equations, descriptions, notes, return values, and
+punctuation. Use **MY** as the component tag. For example, a derivative
+method title is “Compute the derivatives for `module` (**MY**)”, while
+an update method title is “Update states for `module` (**MY**)”.
+
+The method description must show the equations it actually computes,
+including accessory states and delay-dependent branches when present.
+For derivative methods, begin “Compute the derivatives for the `module`
+module:” and retain the equations immediately below. Inherit the
+module’s state, parameter, dynamical-term, and ODE or Dynamics sections
+as appropriate. Use “a \[numeric\] vector of derivatives in the module’s
+state-variable order” for returns. Document returned block order in
+`@note`, including matrix flattening and accessory derivatives where
+applicable. The generic documents dispatch on `xds_obj$MY_obj[[s]]`. The
+trivialMY method retains its empty-vector description and return value.
+
+Update method titles use “Update states for `module` (**MY**)”. Begin
+descriptions “Update the state variables for the `module` module:” and
+show the updating equations in `\deqn{}` immediately below. Inherit the
+same NULL-anchor sections as the derivative method, using `DTS` instead
+of `ODE`. For the current update methods, these are `State Variables`,
+`Dynamical Terms`, `Parameters`, and `DTS`; SEI’s update inherits `DTS`
+rather than its continuous-time `Dynamics` section. RMdts has no
+derivative method and follows the same four-section pattern. Document
+actual returns: basicM and SI return numeric vectors, while RMdts
+returns a list of `M`, `P`, `U`, `Y`, and `Z` and SEI returns a list of
+`M` and `Z`. Their interface discrepancies remain TODOs, not runtime
+changes.
+
+Keep storage and dispatch mechanics in `@note`, rather than using them
+as the functional description.
+
+Constructors use “Make a module object for `module` (**MY**)” as their
+title. Describe parameter initialization and `options` overrides, and
+identify the parameter getter and changer. The constructor,
+`get_MY_pars.MYname`, and `change_MY_pars.MYname` each link to the other
+two in `@seealso`. Document separately managed parameters, such as
+dispersal matrices, without implying that the changer updates every
+getter output.
+
+Parameter-changer titles use “Change parameters for `module` (**MY**)”.
+Start the description with “Change parameter values named in `options`
+for the `module` module, leaving other values unchanged.” Retain
+static-port restrictions, separate dispersal-setup instructions, and any
+bionomics or matrix refresh performed by that method. After parameter or
+port changes, call `MBionomics(0, y, xds_obj, s)` using the flattened
+initial state `y`; do not call `MEffectSizes` from the changer. Return
+an **`xds`** model object.
+
+### Setup documentation
+
+Use the title “Set up the module object for `module` (**MY**)” and start
+the description with “Set up a/an `module` module object for the **MY**
+component and the \\(s^{th}\\) vector species.” In roxygen, write the
+species index as `\eqn{s^{th}}`.
+
+List the actual setup actions in code order: module-name assignment when
+present, construction using `nPatches` and `options`, skill-set setup,
+initial values, and the shared interfaces used by that module. Initial
+values may occur before or after interface setup; follow the
+implementation. End with “Return the updated **`xds`** model object.”
+
+Use these phrases for the corresponding interface steps:
+
+- “Initialize the circadian function using `[setup_F_circadian.setup]`.”
+- “Initialize the mosquito demographic matrix port.”
+- “Initialize the EIP survival and dispersal matrix port.” Include this
+  step for methods that configure the active EIP port; omit it from the
+  `basicM` and `SEI` setup descriptions.
+- “Initialize the mosquito dispersal matrix using
+  `[setup_K_matrix.zero]`.” For behavioral-state models, use “matrices”
+  and retain the `which_K` choices (`Kb`, `Kq`, and, for `BRQS`, `Ks`).
+
+In roxygen, the bracketed helper names above are links; in
+`ramp.library`, qualify them with `ramp.xds::`. These phrases describe
+initialization, not a promise that setup computes every matrix. The
+computation of Omega and Upsilon is outside this documentation
+convention.
+
+See [Developing MY
+Modules](https://dd-harp.github.io/ramp.library/articles/MY-How_To_Add_Model.html)
+for an adaptable template.

@@ -17,9 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Compute host available, \eqn{W},
-total blood host available, \eqn{B},
-the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
-for static models.
+Update time-at-risk matrices and compute local and total
+blood host availability.
 }
 \keyword{internal}

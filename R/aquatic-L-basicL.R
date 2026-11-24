@@ -339,17 +339,17 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
 #' @export
 change_L_pars.basicL <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
-  with(xds_obj$L_obj[[s]], with(options,{
-    xds_obj$L_obj[[s]]$psi_obj$psi     = checkIt(psi, nHabitats)
-    xds_obj$L_obj[[s]]$xi_obj$xi       = checkIt(xi, nHabitats)
-    xds_obj$L_obj[[s]]$phi_obj$phi     = checkIt(phi, nHabitats)
-    xds_obj$L_obj[[s]]$theta_obj$theta = checkIt(theta, nHabitats)
+  for (parameter in c("psi", "xi", "phi", "theta")) {
+    if (parameter %in% names(options)) {
+      port <- paste0(parameter, "_obj")
+      xds_obj$L_obj[[s]][[port]][[parameter]] <-
+        checkIt(options[[parameter]], nHabitats)
+    }
+  }
 
-    y <- get_inits(xds_obj, flatten=TRUE)
-    xds_obj <- LBionomics(0, y, xds_obj, s)
-
-    return(xds_obj)
-  }))}
+  y <- get_inits(xds_obj, flatten=TRUE)
+  LBionomics(0, y, xds_obj, s)
+}
 
 #' @title Make initial values for `basicL` (**L**)
 #' @description Create a named list of initial values for the `basicL` module.

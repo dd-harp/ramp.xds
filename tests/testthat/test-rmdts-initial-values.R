@@ -1,13 +1,7 @@
 test_that("RMdts initial-value changes use stored values and species-specific cohort sizes", {
-  expressions <- parse(test_path("..", "..", "R", "adult-MY-RMdts.R"))
-  env <- new.env(parent = baseenv())
+  env <- new.env(parent = asNamespace("ramp.xds"))
   for (name in c("make_MY_inits_RMdts", "change_MY_inits.RMdts")) {
-    definition <- Filter(function(expr) {
-      is.call(expr) && as.character(expr[[1]])[1] %in% c("<-", "=") &&
-        identical(expr[[2]], as.name(name))
-    }, expressions)
-    expect_length(definition, 1L)
-    eval(definition[[1]], env)
+    copy_package_function(name, env)
   }
   env$checkIt <- ramp.xds::checkIt
   for (nPatches in c(2L, 5L)) {

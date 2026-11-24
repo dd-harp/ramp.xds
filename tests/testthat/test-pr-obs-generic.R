@@ -1,47 +1,24 @@
 test_that("F_pr_obs dispatches on the XH module object", {
-  env <- new.env(parent = baseenv())
-  definitions <- parse(test_path("..", "..", "R", "human-XH-interface.R"))
-  for (definition in definitions) {
-    if (is.call(definition) && length(definition) >= 3L &&
-        identical(definition[[2]], as.name("F_pr_obs"))) {
-      eval(definition, env)
-    }
-  }
-  expect_identical(names(formals(env$F_pr_obs)), c("vars", "XH_obj"))
-  F_pr_obs.test_module <- function(vars, XH_obj) {
-    vars$I / vars$H * XH_obj$detection
-  }
-  vars <- list(I = c(1, 4), H = c(10, 20))
-  module <- structure(list(detection = 0.5), class = "test_module")
-  expect_equal(env$F_pr_obs(vars, module), c(0.05, 0.1))
-  expect_error(env$F_pr_obs(vars, structure(list(), class = "unsupported")),
+  expect_identical(names(formals(F_pr_obs)), c("vars", "XH_obj"))
+  vars <- list(m2 = c(0.2, 0.7))
+  module <- make_XH_obj_hMoI(2)
+  expect_equal(F_pr_obs(vars, module), 1 - exp(-vars$m2))
+  expect_error(F_pr_obs(vars, structure(list(), class = "unsupported")),
                "no applicable method")
 })
 
 test_that("get_PR.obs uses saved orbits and the selected species", {
-  env <- new.env(parent = environment())
-  for (file in c("human-XH-interface.R", "human-get.R")) {
-    for (definition in parse(test_path("..", "..", "R", file))) {
-      if (is.call(definition) && length(definition) >= 3L &&
-          is.symbol(definition[[2]]) &&
-          as.character(definition[[2]]) %in%
-            c("F_pr_obs", "get_PR.obs", "get_XH_orbits")) {
-        eval(definition, env)
-      }
-    }
-  }
-  F_pr_obs.test_module <- function(vars, XH_obj) {
-    vars$I / vars$H * XH_obj$detection
-  }
+  module <- make_XH_obj_hMoI(2)
   model <- list(
-    XH_obj = list(NULL, structure(list(detection = 0.5), class = "test_module")),
+    XH_obj = list(NULL, module),
     outputs = list(
       time = c(0, 1),
-      orbits = list(XH = list(NULL, list(I = c(1, 4), H = c(10, 20)))))
+      orbits = list(XH = list(NULL, list(m2 = rbind(c(0.2, 0.7), c(0.4, 0.9))))))
   )
   original <- model
-  expect_equal(env$get_PR.obs(model, i = 2),
-               list(time = c(0, 1), pr = c(0.05, 0.1), method = "obs"))
+  expect_equal(get_PR(model, "obs", i = 2),
+               list(time = c(0, 1), pr = 1 - exp(-rbind(c(0.2, 0.7), c(0.4, 0.9))),
+                    method = "obs"))
   expect_identical(model, original)
 })
 

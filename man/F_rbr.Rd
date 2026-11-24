@@ -12,10 +12,10 @@ F_rbr(search_weights, H)
 \item{H}{host density}
 }
 \value{
-host available, a \link{vector}
+a numeric vector of relative biting rates
 }
 \description{
-Relative biting rates translate biting weights into a
-frailty parameter -- a multiplicative term.
+Relative biting rates scale the blood search weights so their
+population-weighted mean is one.
 }
 \keyword{internal}

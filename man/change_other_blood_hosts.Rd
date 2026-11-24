@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{change_other_blood_hosts}
 \alias{change_other_blood_hosts}
-\title{Change the other_blood_hosts}
+\title{Change other blood host availability}
 \usage{
 change_other_blood_hosts(other_blood_hosts, xds_obj, s = 1)
 }
 \arguments{
-\item{other_blood_hosts}{a other_blood_hosts}
+\item{other_blood_hosts}{a numeric vector of patch-level availability}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,5 @@ change_other_blood_hosts(other_blood_hosts, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the other_blood_hosts for the \eqn{i^{th}} host species, and
-trigger updates for the \code{XY} interface.
+Set other blood host availability for vector species \code{s}.
 }

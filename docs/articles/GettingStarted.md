@@ -154,14 +154,8 @@ default parameter values that can be viewed with the function
     ## $sigma
     ## [1] 0
     ## 
-    ## $q_lm
+    ## $q
     ## [1] 0.8
-    ## 
-    ## $q_rdt
-    ## [1] 0.8
-    ## 
-    ## $q_pcr
-    ## [1] 0.9
 
 Functions like `get_XH_pars` are designed to help users work with **xds
 model object**. In this case, the parameters are stored as
@@ -222,14 +216,8 @@ several model objects, each component has its own options name. For the
     ## $sigma
     ## [1] 0
     ## 
-    ## $q_lm
+    ## $q
     ## [1] 0.8
-    ## 
-    ## $q_rdt
-    ## [1] 0.8
-    ## 
-    ## $q_pcr
-    ## [1] 0.9
 
 In the `SIS` model, we set \\(H_0,\\) and \\(I_0.\\) The software
 computes \\(dH/dt\\) and \\(dI/dt\\) and sets \\(S=H-I.\\) Total

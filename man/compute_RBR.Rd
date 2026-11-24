@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_RBR}
 \alias{compute_RBR}
-\title{Compute and attach the relative biting rates}
+\title{Compute and attach relative biting rates}
 \usage{
 compute_RBR(t, xds_obj, y)
 }
@@ -17,6 +17,6 @@ compute_RBR(t, xds_obj, y)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute the available for the pathogen's hosts for blood feeding
+Compute and store relative biting rates for each host species.
 }
 \keyword{internal}

@@ -28,8 +28,8 @@ a probabilistic model for environmentally
 heterogeneous exposure --
 the distribution of bites per person.
 
-The model for human / host infection (\eqn{\cal X}) provide
-a term \eqn{b}, from \link{F_infectivity} that describe the probability of infection
+The model for human / host infection (\eqn{\cal X}) provides
+a term \eqn{b}, from \link{F_infectivity}, that describes the probability of infection
 per infectious bite, possibly affected by
 pre-erythrocytic immunity.
 }

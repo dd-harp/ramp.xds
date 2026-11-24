@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{blood_feeding_dynamics}
 \alias{blood_feeding_dynamics}
-\title{Compute blood feeding objects dynamically}
+\title{Compute blood-feeding terms dynamically}
 \usage{
 blood_feeding_dynamics(t, y, xds_obj)
 }
@@ -17,9 +17,7 @@ blood_feeding_dynamics(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute host available, \eqn{W},
-total blood host available, \eqn{B},
-the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
-for static models.
+Update time-at-risk matrices and compute local and total
+blood host availability.
 }
 \keyword{internal}

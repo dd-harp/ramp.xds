@@ -259,29 +259,10 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$Z <- checkIt(Z, nPatches)
     MY_obj$eggs <- checkIt(eggs, nPatches)
 
-    if(is.function(F_season)){
-      MY_obj$season_par = list()
-      MY_obj$F_season = F_season  
-    } else {
-      MY_obj$season_par = season_par
-      MY_obj$F_season = make_function(season_par)  
-    }
-    
-    if(is.function(F_trend)){
-      MY_obj$trend_par = list()
-      MY_obj$F_trend = F_trend  
-    } else {
-      MY_obj$trend_par = trend_par
-      MY_obj$F_trend = make_function(trend_par)  
-    }
-    
-    if(is.function(F_shock)){
-      MY_obj$shock_par = list() 
-      MY_obj$F_shock = F_shock  
-    } else {
-      MY_obj$shock_par = shock_par
-      MY_obj$F_shock = make_function(shock_par)  
-    }
+    MY_obj <- make_ts_obj(MY_obj, list(
+      F_season=F_season, F_trend=F_trend, F_shock=F_shock,
+      season_par=season_par, trend_par=trend_par, shock_par=shock_par
+    ))
     
     return(MY_obj)
 })}

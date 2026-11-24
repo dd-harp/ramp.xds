@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_WB}
 \alias{compute_WB}
-\title{Compute available blood hosts of the i^th species}
+\title{Compute blood host availability}
 \usage{
 compute_WB(t, y, xds_obj)
 }
@@ -17,6 +17,7 @@ compute_WB(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute the available for the pathogen's hosts for blood feeding
+Compute local and total blood host availability for each
+vector species.
 }
 \keyword{internal}

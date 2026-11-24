@@ -7,7 +7,7 @@
 \method{setup_travel_eir}{as_is}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured travel eir . If it passes
-the checks, it replaces the current travel_eir .
+Pass a pre-configured travel eir vector. If it passes
+the checks, it replaces the current travel_eir.
 
 If called with \code{name = "as_is"}, the travel eir
-must be at \code{options$travel_eir}
+must be at \code{options$travel_eir}.
 }
 \keyword{internal}

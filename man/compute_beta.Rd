@@ -18,5 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 This function computes the mixing matrix, beta
+using search weights adjusted for the fraction of time not traveling.
 }
 \keyword{internal}

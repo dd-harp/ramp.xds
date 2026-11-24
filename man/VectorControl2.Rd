@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 A junction to implement
-stage two vector control functions
+stage two vector control functions.
 }
 \keyword{internal}

@@ -1,10 +1,5 @@
 test_that("SI infective biting returns a vector with survival-adjusted patch values", {
-  env <- new.env(parent = baseenv())
-  for (definition in parse(test_path("..", "..", "R", "adult-MY-SI.R"))) {
-    if (is.call(definition) && as.character(definition[[1]])[1] %in% c("<-", "=")) {
-      eval(definition, env)
-    }
-  }
+  fn <- getFromNamespace("F_fqZ.SI", "ramp.xds")
   for (npatches in c(1L, 3L)) {
     for (s in 1:2) {
       ix <- 3L + seq_len(npatches)
@@ -20,7 +15,7 @@ test_that("SI infective biting returns a vector with survival-adjusted patch val
         object$f[patch] * object$q[patch] *
           sum(survival[patch, ] * y[ix])
       }, numeric(1))
-      result <- env$F_fqZ.SI(0, y, model, s)
+      result <- fn(0, y, model, s)
       expect_type(result, "double")
       expect_null(dim(result))
       expect_length(result, npatches)

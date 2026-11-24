@@ -1,3 +1,5 @@
+# X
+
 #' @title Environmental Heterogeneity 
 #' 
 #' @description
@@ -6,7 +8,7 @@
 #' where and when humans encounter mosquitoes.  
 #' Environmental heterogeneity models 
 #' exposure for homogeneous population strata under a model for the distribution
-#' of the expectation. In simple terrms, it models super-spreading without super-spreaders. 
+#' of the expectation. In simple terms, it models super-spreading without super-spreaders.
 #' 
 #' + Poisson
 #' + Negative binomial 
@@ -19,15 +21,16 @@ NULL
 #' @description 
 #' **`ramp.xds`** was designed to explore heterogeneous exposure & transmission:  
 #' 
-#' + *heterogeneous biting rates* - differences in the expected number of expected
-#' bites, per person, among heterogeneous biting rates: 
+#' + *heterogeneous biting rates* - differences in the expected number of
+#' bites, per person, among population strata:
 #' see [xds_info_heterogeneous_biting_rates].
 #' 
 #' + *environmental heterogeneity* - describes variability in the distribution 
-#' of the number of bites, per person in a homogenous population stratum: 
-#' see [xds_info_environmental_heterogeneity] 
+#' of the number of bites, per person in a homogeneous population stratum:
+#' see [xds_info_environmental_heterogeneity].
 #'   
-#' + heterogeneous mixing describes 
+#' + *heterogeneous mixing* describes differences in how population strata
+#' spend time in patches and encounter mosquitoes.
 #'  
 #' 
 #' @name xds_info_heterogeneity
@@ -47,7 +50,7 @@ NULL
 #' by passing *blood search weights* for human population 
 #' strata, \eqn{w}. If the time spent in a patch 
 #' is \eqn{\theta}, then 
-#' the availability of humans in that patch is is: 
+#' the availability of humans in that patch is:
 #' \deqn{W_j = \sum_i w_i \theta_{i,j} H_i.} 
 #' The fraction of bites received by the \eqn{i^{th}} 
 #' stratum in patch \eqn{j} is: 
@@ -73,7 +76,7 @@ NULL
 #' daily EIR for the stratum is \eqn{\omega E}. 
 #' 
 #' Relative biting rates are handled in two ways, depending on the frame:
-#' + In model that define multiple human population strata, the RBRs are computed from the 
+#' + In models that define multiple human population strata, the RBRs are computed from the
 #' stratum specific EIR: \deqn{\omega_i = E_i / E} 
 #' + In models that are forced by the EIR, the user configures a function
 #' to compute the population average EIR over time, and another function to 

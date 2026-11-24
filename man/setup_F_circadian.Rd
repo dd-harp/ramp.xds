@@ -17,5 +17,18 @@ setup_F_circadian(F_circadian, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the circadian for the \eqn{s^{th}} host species
+Set the circadian activity function for vector species \eqn{s}.
+}
+\section{Circadian Pattern Function}{
+
+
+A circadian pattern function is a model for relative mosquito
+activity by time of day, \eqn{F_c(t)}. On average, it should
+be true that \deqn{\int_{t}^{t+1} F_c(s) ds \approx 1.}
+A circadian function is used to weight time spent by time of day
+to compute time at risk.
+}
+
+\seealso{
+\link{F_TaR}
 }

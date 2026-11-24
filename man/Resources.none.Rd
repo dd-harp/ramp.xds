@@ -18,7 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 The default no-op for Resources. All resource parameters
-retain their static defaults (zero-initialized by \link{setup_blood_feeding_interface}
-and \link{setup_egg_laying_interface}).
+retain their configured values without modification.
 }
 \keyword{internal}

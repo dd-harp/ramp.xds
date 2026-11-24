@@ -1,15 +1,11 @@
 test_that("MY and L changers refresh bionomics without applying effect sizes", {
-  files <- list.files(test_path("..", "..", "R"), "\\.R$", full.names = TRUE)
-  count <- 0L
-  for (file in files) {
-    for (definition in parse(file)) {
-      if (!is.call(definition) ||
-          !as.character(definition[[1]])[1] %in% c("<-", "=") ||
-          !grepl("^change_(MY|L)_pars\\.", as.character(definition[[2]])[1])) next
-      name <- as.character(definition[[2]])
+  namespace <- asNamespace("ramp.xds")
+  methods <- ls(namespace, pattern = "^change_(MY|L)_pars\\.")
+  count <- length(methods)
+  for (name in methods) {
       component <- if (startsWith(name, "change_MY")) "MY" else "L"
-      env <- new.env(parent = baseenv())
-      eval(definition, env)
+      env <- new.env(parent = namespace)
+      copy_package_function(name, env)
       parameters <- c(
         "f", "q", "g", "sigma", "mu", "nu", "eip", "eggsPerBatch", "eggs_per_batch",
         "psi", "phi", "xi", "theta", "Lambda", "Z", "eggs"
@@ -60,8 +56,6 @@ test_that("MY and L changers refresh bionomics without applying effect sizes", {
       expect_true(result$refreshed, info = name)
       expect_identical(calls, 1L, info = name)
       expect_identical(result[[paste0(component, "_obj")]][[1]], object)
-      count <- count + 1L
-    }
   }
   expect_identical(count, 8L)
 })

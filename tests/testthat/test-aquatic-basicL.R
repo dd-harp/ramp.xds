@@ -78,18 +78,21 @@ test_that("basicL parameter changes update ports and persist after evaluation", 
       expect_equal(module[[paste0(parameter, "_obj")]][[parameter]], expected)
       expect_identical(class(module[[paste0(parameter, "_obj")]]), "static")
       expect_equal(module[[paste0(parameter, "_t")]], expected)
-      expect_equal(module[[parameter]], expected)
+      expect_identical(module[[parameter]], original$L_obj[[2]][[parameter]])
     }
 
     y <- get_inits(changed, flatten=TRUE)
     evaluated <- LBionomics(1, y, changed, s=2)
     evaluated <- LEffectSizes(1, y, evaluated, s=2)
-    expect_identical(get_L_pars(evaluated, s=2), get_L_pars(changed, s=2))
+    for (parameter in names(options)) {
+      expect_equal(get_L_pars(evaluated, s=2)[[parameter]],
+                   rep(options[[parameter]], nHabitats))
+    }
 
     partial <- change_L_pars(changed, list(psi=0.3), s=2)
-    expect_equal(get_L_pars(partial, s=2)$psi, rep(0.3, nHabitats))
-    expect_identical(get_L_pars(partial, s=2)[c("xi", "phi", "theta")],
-                     get_L_pars(changed, s=2)[c("xi", "phi", "theta")])
+    expect_equal(partial$L_obj[[2]]$psi_t, rep(0.3, nHabitats))
+    expect_equal(partial$L_obj[[2]]$psi_obj$psi, rep(0.3, nHabitats))
+    expect_identical(get_L_pars(partial, s=2), get_L_pars(changed, s=2))
     expect_identical(change_L_pars(changed, s=2), changed)
   }
 })

@@ -20,6 +20,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Port function for the time spent matrix, \eqn{\Theta}.
-Dispatches on \code{class(xds_obj$XY_interface$timespent_obj[[i]])}.
+Dispatches on \code{class(xds_obj$XH_obj[[i]]$timespent_obj)}.
 }
 \keyword{internal}

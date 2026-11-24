@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{setup_blood_search_weights.list}
 \alias{setup_blood_search_weights.list}
-\title{Set up a blood_search_weights}
+\title{Set up blood search weights}
 \usage{
 \method{setup_blood_search_weights}{list}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of weights}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -16,7 +16,7 @@
 \item{i}{the host species index}
 }
 \value{
-a numeric vector
+an \strong{\code{xds}} model object
 }
 \description{
 If an options list is passed

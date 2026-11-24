@@ -19,7 +19,7 @@ update_travel_eir(t, y, xds_obj, i)
 an \strong{\code{xds}} model object
 }
 \description{
-Port function for the travel eir , \eqn{\Theta}.
-Dispatches on \code{class(xds_obj$XY_interface$travel_eir_obj[[i]])}.
+Port function for travel EIR.
+Dispatches on \code{class(xds_obj$XH_obj[[i]]$travel_eir_obj)}.
 }
 \keyword{internal}

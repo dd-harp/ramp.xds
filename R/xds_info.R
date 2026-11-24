@@ -5,6 +5,8 @@
 #' @description
 #' A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 #'
+#' See [xds_info_glossary] for a vocabulary guide.
+#'
 #' **Setup & Structure**
 #' + [xds_info_basic_setup] -- basic setup overview
 #' + [xds_info_advanced_setup] -- advanced setup

@@ -1,13 +1,12 @@
-# TODO: Reconcile setup_timespent.setup's residence input: it checks
-# options$residence but reads and removes xds_obj$residence. Review multi-species
-# residence handling and document the intended behavior before changing it.
+# X
 
 #' @title Check Time Spent Matrix
 #' 
 #' @description
 #' Check that 
-#' + there ar \eqn{N_p} columns and \eqn{N_h} rows
-#' + the column sums are at most 1`
+#' + there are `Np` rows and `Nh` columns
+#' + all elements are non-negative
+#' + the column sums are at most 1
 #' 
 #' @param TS a time spent matrix
 #' @param Np the number of patches
@@ -49,19 +48,6 @@ change_timespent_matrix = function(timespent, xds_obj, i=1){
   return(xds_obj)
 }
 
-#' @title Time at Risk
-#' 
-#' @description
-#' Mosquitoes have a daily activity pattern. 
-#' If people spend time in different locations at different 
-#' times of the day, biting risk in a location is weighted by the 
-#' mosquitoes relative activity patterns while there. 
-#' 
-#'  
-#' @name xds_info_time_at_risk
-NULL
-
-
 
 #' @title Set up a time spent matrix
 #' 
@@ -78,6 +64,7 @@ NULL
 #' @param options configuration options
 #'
 #' @return an **`xds`** model object
+#' @seealso [time_spent_matrix]
 #'
 #' @export
 setup_timespent = function(name, xds_obj, options = list(), i=1){
@@ -94,11 +81,11 @@ setup_timespent = function(name, xds_obj, options = list(), i=1){
 #' as the first argument, then set 
 #' + `TSname = name$name` 
 #' + `options = name`
-#' and call `setup_timespent(TSname, xds_obj, options, s)` 
+#' and call `setup_timespent(TSname, xds_obj, options, i)`
 #'
 #' @inheritParams setup_timespent
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.list = function(name, xds_obj, options=list(), i=1){
@@ -109,15 +96,18 @@ setup_timespent.list = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up no time spent matrix 
-#' @description Don't change anything 
+#' @title Set up the default time spent matrix
+#' @description Store residence on the selected host module, initialize its
+#' time spent matrix from the residence matrix, and initialize a static port.
+#' Read the residence vector from `options$residence` and remove the temporary
+#' top-level `xds_obj$residence`.
 #' @inheritParams setup_timespent
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.setup = function(name, xds_obj, options = list(), i=1){
   stopifnot(with(options, exists("residence")))
-  xds_obj$XH_obj[[i]]$residence = xds_obj$residence
+  xds_obj$XH_obj[[i]]$residence = options$residence
   xds_obj$residence = NULL 
   res_mat <- get_residence_matrix(xds_obj, i)
   xds_obj$XH_obj[[i]]$timespent <- res_mat
@@ -247,7 +237,7 @@ make_timespent_xy = function(xds_obj, xy, residence, stay, kern, kopts=list()) {
 
 #' @title Update the time spent Matrix
 #' @description Port function for the time spent matrix, \eqn{\Theta}.
-#' Dispatches on `class(xds_obj$XY_interface$timespent_obj[[i]])`.
+#' Dispatches on `class(xds_obj$XH_obj[[i]]$timespent_obj)`.
 #' 
 #' @param t time
 #' @param y dependent variables
@@ -263,8 +253,7 @@ update_timespent <- function(t, y, xds_obj, i) {
 
 #' @title Update timespent 
 #' 
-#' @description A utility to ensure that the timespent
-#' is updated properly after a change
+#' @description Return `xds_obj` unchanged for a static time spent port.
 #' 
 #' @inheritParams update_timespent
 #' @return an **`xds`** model object
@@ -277,6 +266,8 @@ update_timespent.static <- function(t, y, xds_obj, i) {return(xds_obj)}
 #'
 #' @description Compute and store a 
 #' time spent matrix 
+#' 
+#' @inherit time_spent description
 #' 
 #' @param t time
 #' @param y dependent variables

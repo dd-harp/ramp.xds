@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{make_other_blood_hosts_random}
 \alias{make_other_blood_hosts_random}
-\title{Make other blood hosts}
+\title{Make random other blood host availability}
 \usage{
 make_other_blood_hosts_random(
   nPatches,
@@ -27,5 +27,5 @@ make_other_blood_hosts_random(
 a numeric vector
 }
 \description{
-Set up a random vector
+Generate a random vector of other blood host availability.
 }

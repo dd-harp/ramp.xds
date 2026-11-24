@@ -1,3 +1,5 @@
+# X
+
 #' @title Resources 
 #' 
 #' @description
@@ -11,7 +13,8 @@ NULL
 #' @title Sugar Availability 
 #' 
 #' @description
-#' Write me.  
+#' Sugar availability describes the accessibility of sugar resources to
+#' mosquitoes. It can be used by models of mosquito bionomics.
 #' 
 #'  
 #' @name xds_info_available_sugar
@@ -19,19 +22,12 @@ NULL
 
 
 
-#' @title Available Blood 
+#' @title Mosquito Traps
 #' 
 #' @description
-#' Write me.  
-#' 
-#'  
-#' @name xds_info_available_blood_hosts
-NULL
-
-#' @title Available Blood 
-#' 
-#' @description
-#' Write me.  
+#' Mosquito traps attract mosquitoes and can affect resource-seeking behavior.
+#' Blood traps and ovitraps are configured through [xds_port_blood_traps]
+#' and [xds_port_ovitraps], respectively.
 #' 
 #'  
 #' @name xds_info_mosquito_traps

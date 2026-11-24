@@ -13,7 +13,7 @@ daily EIR for the stratum is \eqn{\omega E}.
 
 Relative biting rates are handled in two ways, depending on the frame:
 \itemize{
-\item In model that define multiple human population strata, the RBRs are computed from the
+\item In models that define multiple human population strata, the RBRs are computed from the
 stratum specific EIR: \deqn{\omega_i = E_i / E}
 \item In models that are forced by the EIR, the user configures a function
 to compute the population average EIR over time, and another function to

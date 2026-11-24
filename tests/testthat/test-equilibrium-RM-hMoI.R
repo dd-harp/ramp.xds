@@ -65,7 +65,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
 
   # ambient pop
   W <- F_W_available(searchWtsH, H, TaR)
-  beta <- F_beta(H, W, searchWtsH, TaR)
+  beta <- F_beta(W, searchWtsH, TaR)
 
   # biting distribution matrix
   fqZ <- solve(beta) %*% eir 

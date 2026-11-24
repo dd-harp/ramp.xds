@@ -15,7 +15,7 @@ step using the selected L module."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,7 +120,12 @@ step using the selected <strong>L</strong> module.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a <a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector of updated states; empty for modules without state variables</p>
+    <p>a <a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector of updated states in the module's state-variable
+order; empty for modules without state variables</p>
+    </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Dispatch on the module object at <code>xds_obj$L_obj[[s]]</code>.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

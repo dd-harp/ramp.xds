@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-travel_eir.R
 \name{setup_travel_eir.random}
 \alias{setup_travel_eir.random}
-\title{Set up time away}
+\title{Set up random travel EIR}
 \usage{
 \method{setup_travel_eir}{random}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up random values for time away
+Set up random values for travel EIR.
 }
 \keyword{internal}

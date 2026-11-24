@@ -2,7 +2,9 @@
 % Please edit documentation in R/resources-concepts.R
 \name{xds_info_mosquito_traps}
 \alias{xds_info_mosquito_traps}
-\title{Available Blood}
+\title{Mosquito Traps}
 \description{
-Write me.
+Mosquito traps attract mosquitoes and can affect resource-seeking behavior.
+Blood traps and ovitraps are configured through \link{xds_port_blood_traps}
+and \link{xds_port_ovitraps}, respectively.
 }

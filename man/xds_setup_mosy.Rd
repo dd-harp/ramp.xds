@@ -114,6 +114,10 @@ If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feedi
 \item \code{searchQ} the habitat search weights (see \link{xds_info_search_weights_habitat})
 \item \code{Koptions} sets up a mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal})
 }
+
+Human/host populations are represented by a trivial \strong{XH} module.
+See \link{human_availability} and \link{blood_feeding} for their role in mosquito
+blood feeding.
 }
 
 \seealso{

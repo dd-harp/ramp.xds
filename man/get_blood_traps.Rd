@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-traps.R
 \name{get_blood_traps}
 \alias{get_blood_traps}
-\title{Get availability of other blood hosts}
+\title{Get blood trap availability}
 \usage{
 get_blood_traps(xds_obj, s = 1)
 }
@@ -15,5 +15,5 @@ get_blood_traps(xds_obj, s = 1)
 a numeric vector
 }
 \description{
-Get availability of other blood hosts
+Get blood trap availability
 }

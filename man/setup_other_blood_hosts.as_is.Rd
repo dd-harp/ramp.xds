@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{setup_other_blood_hosts.as_is}
 \alias{setup_other_blood_hosts.as_is}
-\title{Set up a other_blood_hosts}
+\title{Set up other blood hosts}
 \usage{
 \method{setup_other_blood_hosts}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -22,7 +22,7 @@ an \strong{\code{xds}} model object
 Pass a pre-configured other_blood_hosts. If it passes
 the checks, it replaces the current other_blood_hosts.
 
-If called with \code{name = "as_is"}, the other_blood_hosts
-must be at \code{options$other_blood_hosts}
+If called with \code{name = "as_is"}, provide the vector in
+\code{options$other_blood_hosts_asis}.
 }
 \keyword{internal}

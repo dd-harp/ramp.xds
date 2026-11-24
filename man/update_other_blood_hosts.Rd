@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{update_other_blood_hosts}
 \alias{update_other_blood_hosts}
-\title{Update other blood hosts}
+\title{Update other blood host availability}
 \usage{
 update_other_blood_hosts(t, y, xds_obj, s)
 }
@@ -19,7 +19,8 @@ update_other_blood_hosts(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Port function for the other_blood_hosts, \eqn{\Theta}.
-Dispatches on \code{class(xds_obj$XY_interface$other_blood_hosts_obj[[s]])}.
+Dispatch the update for other blood host availability of
+vector species \code{s}.
+Dispatches on \code{class(xds_obj$patches$other_blood_hosts_obj[[s]])}.
 }
 \keyword{internal}

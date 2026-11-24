@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{setup_other_blood_hosts.no_setup}
 \alias{setup_other_blood_hosts.no_setup}
-\title{Set up no other_blood_hosts}
+\title{Leave other blood host availability unchanged}
 \usage{
 \method{setup_other_blood_hosts}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Return \code{xds_obj} without changing the configured availability.
 }
 \keyword{internal}

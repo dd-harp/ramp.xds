@@ -12,8 +12,8 @@ get_residence(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a named \link{list}
+a numeric vector of patch indices, one per population stratum
 }
 \description{
-Get the residence vector
+Get the residence vector for host species \code{i}.
 }

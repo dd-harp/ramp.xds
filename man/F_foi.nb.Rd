@@ -21,13 +21,14 @@ Compute the daily FoI from the daily EIR
 under a negative binomial model for exposure
 }
 \details{
-This function computes the local daily FoI, \eqn{h} as a function of
+This function computes the local daily FoI, \eqn{h}, as a function of
 the local daily EIR, \eqn{E},
 under a negative binomial model for the distribution
 of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
-\deqn{h = \phi \log{\frac{1 + b E}\phi}}
-The expression is derived by solving the expression in \link{F_ar.nb} for \eqn{E}
+\deqn{h = \phi \log(1 + b E/\phi)}
+The daily attack rate satisfies \eqn{\alpha = 1-\exp(-h)}.
+Combining this relation with \link{F_ar.nb} gives the expression above.
 This negative binomial model uses the \strong{mu} \eqn{= bE} and \strong{size} \eqn{=\phi}
 parameterization (see \link{pnbinom}).
 }

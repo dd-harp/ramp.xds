@@ -16,7 +16,8 @@ an \strong{\code{xds}} model object
 Sets up the object that defines the transmission interface for an \code{xds} model object.
 }
 \details{
-This implements a model for egg laying described by Wu SL, \emph{et al.}, (2023).
+Initialize storage for biting distribution matrices, EIR, HBR,
+infectiousness, and local fractions, and initialize a static transmission object.
 }
 \references{
 {\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}

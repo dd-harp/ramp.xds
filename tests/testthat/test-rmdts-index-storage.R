@@ -1,10 +1,9 @@
 test_that("RMdts index setup and consumers use module-level storage", {
-  env <- new.env(parent = baseenv())
+  env <- new.env(parent = asNamespace("ramp.xds"))
   env$tail <- utils::tail
-  for (definition in parse(test_path("..", "..", "R", "adult-MY-RMdts.R"))) {
-    if (is.call(definition) && as.character(definition[[1]])[1] %in% c("<-", "=")) {
-      eval(definition, env)
-    }
+  for (name in c("setup_MY_ix.RMdts", "get_MY_vars.RMdts", "F_fqZ.RMdts",
+                 "F_fqM.RMdts", "F_eggs.RMdts", "parse_MY_orbits.RMdts")) {
+    copy_package_function(name, env)
   }
   for (s in 1:2) {
     object <- list(max_eip = 4L, f = 2, q = 0.5, nu = 3, eggsPerBatch = 10)
@@ -34,12 +33,10 @@ test_that("RMdts index setup and consumers use module-level storage", {
 })
 
 test_that("RMdts output parsing sums cohorts separately within each patch", {
-  env <- new.env(parent = baseenv())
+  env <- new.env(parent = asNamespace("ramp.xds"))
   env$tail <- utils::tail
-  for (definition in parse(test_path("..", "..", "R", "adult-MY-RMdts.R"))) {
-    if (is.call(definition) && as.character(definition[[1]])[1] %in% c("<-", "=")) {
-      eval(definition, env)
-    }
+  for (name in c("setup_MY_ix.RMdts", "parse_MY_orbits.RMdts")) {
+    copy_package_function(name, env)
   }
   for (npatches in c(1L, 3L)) {
     for (ncohorts in c(1L, 4L)) {

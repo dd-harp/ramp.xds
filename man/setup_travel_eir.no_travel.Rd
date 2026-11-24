@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel-travel_eir.R
 \name{setup_travel_eir.no_travel}
 \alias{setup_travel_eir.no_travel}
-\title{Set up a travel eir}
+\title{Set up no travel EIR}
 \usage{
 \method{setup_travel_eir}{no_travel}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured travel eir . If it passes
-the checks, it replaces the current travel_eir .
-
-If called with \code{name = "as_is"}, the travel eir
-must be at \code{options$travel_eir}
+Set travel EIR to zero for each stratum of the selected host
+species using \link{change_travel_eir}.
 }
 \keyword{internal}

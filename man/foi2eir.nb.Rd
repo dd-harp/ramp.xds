@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-nb.R
 \name{foi2eir.nb}
 \alias{foi2eir.nb}
-\title{A negative binomial model for the daily FoI as a function of the daily EIR.}
+\title{A negative binomial model for the daily EIR as a function of the daily FoI}
 \usage{
 \method{foi2eir}{nb}(foi, b, env_het_obj)
 }
@@ -20,12 +20,12 @@ a \link{numeric} vector of length \code{nStrata}
 Implements \link{foi2eir} for a negative binomial model
 }
 \details{
-Compute the daily AR, \eqn{h},
-given the daily EIR, \eqn{E},
+Compute the daily EIR, \eqn{E},
+given the daily FoI, \eqn{h},
 under a negative binomial model for the distribution
 of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
-\deqn{\alpha = \left(e^{h/\phi} -1\right) \frac \phi b }
+\deqn{E = \left(e^{h/\phi} -1\right) \frac \phi b }
 }
 \seealso{
 \link{F_foi.nb}

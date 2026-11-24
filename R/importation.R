@@ -1,3 +1,5 @@
+# X
+
 #' @title Malaria Importation 
 #' 
 #' @description
@@ -12,20 +14,15 @@ NULL
 #'
 #' @description
 #' This function, called by [make_xds_object_template], sets up
-#' terms and objects associated with malaria importation
+#' terms and objects associated with malaria importation.
 #'
 #' @details
-#' This implements a framework to model blood feeding
-#' described by Wu SL, *et al.*, (2023).
+#' Initialize the importation junction with a static object.
+#' Visitor availability and visitor infectiousness are initialized to zero
+#' in each patch for the first host species, with static port objects.
+#' Time away and travel EIR are configured separately on the **XH** object.
 #'
-#' Modular computation in **`ramp.xds`** requires a rigid interface to
-#' guarantee mathematical consistency in computing quantites related to blood feeding and transmission.
-#'
-#' Several terms were developed to model importation by traveling humans and visitors. The terms
-#' associated with time away and the travel EIR are human activities, so they are set up on the **XH** object.
-#' This sets up visitors and infectiousness. 
-#'
-#' **Mulit-Host Models**
+#' **Multi-Host Models**
 #'
 #' In models with multiple host species, the availability of visitors might vary by host.
 #'
@@ -93,9 +90,8 @@ Importation.static = function(t, y, xds_obj){
 
 #' @title Importation
 #'
-#' @description No-op method for the `Importation` junction when no
-#' dynamic importation has been configured. The static default
-#' parameters set by [setup_importation] are used as-is.
+#' @description Call [importation_dynamics] to update visitor availability,
+#' visitor infectiousness, time away, and travel EIR for each host species.
 #'
 #' @inheritParams Importation
 #' @return an **`xds`** model object
@@ -124,4 +120,3 @@ importation_dynamics = function(t, y, xds_obj){
   }
   return(xds_obj)
 }
-

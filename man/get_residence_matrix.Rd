@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{get_residence_matrix}
 \alias{get_residence_matrix}
-\title{Create the residence Matrix}
+\title{Get the residence matrix}
 \usage{
 get_residence_matrix(xds_obj, i = 1)
 }
@@ -15,42 +15,27 @@ get_residence_matrix(xds_obj, i = 1)
 a \code{nPatches} \eqn{\times} \code{nStrata} matrix
 }
 \description{
-This function creates the residence matrix that is used to sum
-quantities describing human (or host) populations at the level of a patch.
-
-It is created
-from the residence vector (\code{residence}), an ordered list
-of the patch index for each stratum.
-
-The structural
-parameter \code{nPatches} to handle cases where some patches
-have no residents.
+Get the residence matrix for host species \code{i}.
 }
-\details{
-The residence matrix, herein denoted \eqn{J},  holds
-information about residence for each human (or host) population stratum.
+\section{Residence Matrix}{
 
-Information about residence in a patch location for each stratum
-is passed as the residence vector, an ordered list of patch locations. If
-the \eqn{i^{th}} stratum lives in the \eqn{j^{th}} patch, then
-\eqn{{J}_{j,i}=1.} Otherwise, \eqn{{J}_{j,i}=0.}
+The residence matrix \eqn{(\mathbf J)} is an \code{nPatches} \eqn{\times}
+\code{nStrata} matrix constructed from the \link{residence_vector} for a host species.
 
-Let:
-\itemize{
-\item \eqn{N_h = } \code{nStrata}, the number of population strata;
-\item \eqn{N_p = } \code{nPatches}, the number of patches.
+If the \eqn{i^{th}} stratum resides in the \eqn{j^{th}} patch, then
+\eqn{J_{j,i}=1}. Otherwise, \eqn{J_{j,i}=0}.
+
+If \eqn{x} is any vector describing a quantity in population strata
+(\emph{i.e.}, \eqn{\left|x\right|=}\code{nStrata}), then
+\deqn{X = \mathbf J \cdot x}
+sums \eqn{x} by patch of residence, and \eqn{\left|X\right|=}\code{nPatches}.
+In particular, \eqn{\mathbf J \cdot H} gives the resident population
+in each patch from the stratum population densities \eqn{H}.
+
+The residence matrix initializes the time spent matrix during basic setup.
+Time spent and time at risk can subsequently differ from residence.
 }
 
-\eqn{J} is an \eqn{N_p \times N_h} matrix that is used to map information about
-human (or host) populations onto patches.
-
-If \eqn{w} is any vector describing a quantity in strata (\emph{i.e.}, \eqn{\left|w\right|=N_h}), then
-\deqn{W={J}\cdot w} computes a vector that sums \eqn{w} by residence for the strata, and \eqn{\left|W\right|= N_p}.
-
-It is a template for the time spent and time at risk matrices, making it possible
-to compute mosquito parameters describing blood feeding, the mixing matrix,
-and terms describing transmission.
-}
 \seealso{
-see \link{setup_blood_feeding_interface}
+\link{residence_matrix}, \link{get_residence}, \link{setup_blood_feeding_interface}
 }

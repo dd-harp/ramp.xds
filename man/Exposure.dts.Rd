@@ -18,8 +18,8 @@ an \strong{\code{xds}} model object
 }
 \description{
 For \code{dts} models, compute
-the attack rates, the expected probability of infection
-over one time step, is a weighted sum of local and travel exposure.
+the attack rates, the expected probabilities of infection
+over one time step, from the time-weighted local and travel FoI.
 }
 \details{
 Local attack rates (AR or \eqn{\alpha}) are
@@ -28,9 +28,9 @@ rates (dEIR or \eqn{E}), and
 a model for the probability of infection
 per infectious bite, \eqn{b} (from \eqn{F_infectivity},
 as defined by an \eqn{\cal X} model).
-The total attack rates also consider
-exposure to malaria while traveling, (\eqn{T_\delta}):
-\deqn{\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))}
+The total attack rates are computed from the time-weighted local and travel
+FoI, using the travel EIR, \eqn{E_T}:
+\deqn{\alpha = 1-\exp(-((1-\delta) F_h(E,b) + \delta F_h(E_T,b)))}
 }
 \seealso{
 Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{xds_info_travel_malaria}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-nb.R
 \name{ar2eir.nb}
 \alias{ar2eir.nb}
-\title{A negative binomial model for the daily EIR. as a function of the daily attack rate}
+\title{A negative binomial model for the daily EIR as a function of the daily attack rate}
 \usage{
 \method{ar2eir}{nb}(ar, b, env_het_obj)
 }

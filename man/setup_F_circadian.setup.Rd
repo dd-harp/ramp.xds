@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-circadian.R
 \name{setup_F_circadian.setup}
 \alias{setup_F_circadian.setup}
-\title{Show Circadian}
+\title{Set the default circadian activity function}
 \usage{
 \method{setup_F_circadian}{setup}(F_circadian, xds_obj, s = 1)
 }
@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Update the circadian for the \eqn{s^{th}} host species
+Set the activity function to \link{F_one} for vector species \eqn{s}.
 }
 \keyword{internal}

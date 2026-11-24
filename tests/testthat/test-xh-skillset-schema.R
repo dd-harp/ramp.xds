@@ -1,14 +1,7 @@
 test_that("XH skill sets share the SIS logical schema", {
-  env <- new.env(parent = baseenv())
-  for (file in c("human-XH-interface.R", "human-XH-SIS.R",
-                 "human-X-hMoI.R", "human-XH-trivial.R")) {
-    for (definition in parse(test_path("..", "..", "R", file))) {
-      if (is.call(definition) && length(definition) >= 3L &&
-          is.symbol(definition[[2]]) &&
-          grepl("^get_skillset_XH($|[.])", as.character(definition[[2]]))) {
-        eval(definition, env)
-      }
-    }
+  env <- new.env(parent = asNamespace("ramp.xds"))
+  for (module in c("SIS", "hMoI", "trivialXH", "trivial")) {
+    copy_package_function(paste0("get_skillset_XH.", module), env)
   }
   fields <- c("dts", "xde", "delay", "demography", "malaria",
               "pf_lm", "pf_rdt", "pf_pcr", "mda", "msat")

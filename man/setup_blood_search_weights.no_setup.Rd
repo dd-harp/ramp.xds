@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{setup_blood_search_weights.no_setup}
 \alias{setup_blood_search_weights.no_setup}
-\title{Set up no blood_search_weights}
+\title{Leave blood search weights unchanged}
 \usage{
 \method{setup_blood_search_weights}{no_setup}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of weights}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Return \code{xds_obj} without changing the configured search weights.
 }
 \keyword{internal}

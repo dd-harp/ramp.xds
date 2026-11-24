@@ -2,20 +2,22 @@
 % Please edit documentation in R/travel-time_away.R
 \name{check_time_away}
 \alias{check_time_away}
-\title{Check Time Spent}
+\title{Check time away}
 \usage{
 check_time_away(TA, Nh)
 }
 \arguments{
-\item{TA}{a time spent vector}
+\item{TA}{a time away vector}
 
 \item{Nh}{the number of population strata}
 }
 \description{
 Check that
 \itemize{
-\item there ar \eqn{N_p} columns and \eqn{N_h} rows
-\item the column sums are at most 1`
+\item the input is numeric
+\item all elements are non-negative
+\item all elements are at most 1
+\item the length is \code{Nh}
 }
 }
 \seealso{

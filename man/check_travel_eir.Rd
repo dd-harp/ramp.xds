@@ -14,8 +14,9 @@ check_travel_eir(teir, Nh)
 \description{
 Check that
 \itemize{
-\item the travel eir has length \code{nStrata}
-\item they are all positive
+\item the input is numeric
+\item the travel eir has length \code{Nh}
+\item all elements are non-negative
 }
 }
 \seealso{

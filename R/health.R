@@ -1,3 +1,5 @@
+# X
+
 #' @title Health  
 #' 
 #' @description
@@ -8,7 +10,7 @@ NULL
 
 # Functions to setup malaria control are found in ramp.control
 
-#' @title Set the values variables for health-based malaria control
+#' @title Set the values of variables for health-based malaria control
 #' @description Set the values of
 #' variables for health interventions.
 #' @param t time
@@ -24,7 +26,7 @@ Health = function(t, y, xds_obj){
 #' @title Set no exogenous health variables
 #' @description After none setup, no exogenous
 #' variables are configured so `Health` returns
-#' the **`ramp.xds`** model object without modification
+#' the **`ramp.xds`** model object without modification.
 #' @inheritParams Health
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -45,10 +47,7 @@ setup_health_object = function(xds_obj){
   class(health) <- 'none'
   health$name <- "Junction: Health Interventions"
   health$ports <- "Ports: Mass Treatment, Mass Vaccination, Surveillance"
-  health$domore <- "see `ramp.control"
+  health$domore <- "see `ramp.control`"
   xds_obj$health_obj <- health
   return(xds_obj)
 }
-
-
-

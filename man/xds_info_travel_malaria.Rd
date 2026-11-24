@@ -12,7 +12,7 @@ by the patches. The user can configure two ports:
 \item the travel EIR: see \link{xds_port_travel_eir}
 }
 
-Travel malaria is implemented in the \strong{Exposure}
+Travel malaria is implemented in \link{Exposure}.
 }
 \seealso{
 \link{xds_port_travel_eir} | \link{xds_port_time_away} | \link{xds_info_exposure} | \link{xds_info_malaria_importation}

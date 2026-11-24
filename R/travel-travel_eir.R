@@ -1,10 +1,12 @@
+# X
 
 #' @title Check the travel eir 
 #' 
 #' @description
 #' Check that 
-#' + the travel eir has length `nStrata`
-#' + they are all positive
+#' + the input is numeric
+#' + the travel eir has length `Nh`
+#' + all elements are non-negative
 #' 
 #' @param teir a travel eir vector 
 #' @param Nh the number of population strata
@@ -19,7 +21,7 @@ check_travel_eir = function(teir, Nh){
 
 #' @title Change the travel eir 
 #' @description
-#' Update the travel eir  for the \eqn{i^{th}} host species
+#' Update the travel eir for the \eqn{i^{th}} host species
 #' 
 #' @param travel_eir a travel eir vector 
 #' @param xds_obj an **`xds`** model object
@@ -37,7 +39,7 @@ change_travel_eir = function(travel_eir, xds_obj, i=1){
 
 #' @title Set up travel eir 
 #'
-#' @param name a  or setup function name
+#' @param name a setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
@@ -57,7 +59,7 @@ setup_travel_eir = function(name, xds_obj, options = list(), i=1){
 #' as the first argument, then set 
 #' + `Teirname = name$name` 
 #' + `options = name`
-#' and call `setup_travel_eir(Teirname, xds_obj, options, s)` 
+#' and call `setup_travel_eir(Teirname, xds_obj, options, i)`
 #'
 #' @inheritParams setup_travel_eir
 #'
@@ -82,13 +84,9 @@ setup_travel_eir.no_setup = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up a travel eir 
-#' @description 
-#' Pass a pre-configured travel eir . If it passes 
-#' the checks, it replaces the current travel_eir .
-#' 
-#' If called with `name = "as_is"`, the travel eir
-#'  must be at `options$travel_eir` 
+#' @title Set up no travel EIR
+#' @description Set travel EIR to zero for each stratum of the selected host
+#' species using [change_travel_eir].
 #' 
 #' @inheritParams setup_travel_eir
 #' @return an **`xds`** model object
@@ -103,11 +101,11 @@ setup_travel_eir.no_travel = function(name, xds_obj, options=list(), i=1){
 
 #' @title Set up a travel eir 
 #' @description 
-#' Pass a pre-configured travel eir . If it passes 
-#' the checks, it replaces the current travel_eir .
+#' Pass a pre-configured travel eir vector. If it passes
+#' the checks, it replaces the current travel_eir.
 #' 
 #' If called with `name = "as_is"`, the travel eir
-#'  must be at `options$travel_eir` 
+#' must be at `options$travel_eir`.
 #' 
 #' @inheritParams setup_travel_eir
 #' @return an **`xds`** model object
@@ -125,9 +123,9 @@ setup_travel_eir.as_is = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up time away
+#' @title Set up random travel EIR
 #' 
-#' @description Set up random values for time away
+#' @description Set up random values for travel EIR.
 #' 
 #' @inheritParams setup_travel_eir
 #' @return an **`xds`** model object
@@ -139,7 +137,7 @@ setup_travel_eir.random = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
-#' @title Make other blood hosts 
+#' @title Make random travel EIR
 #' 
 #' @description Set up a random vector 
 #' 
@@ -156,8 +154,8 @@ make_travel_eir_random = function(nStrata, options=list(), f_rand = stats::rlnor
 })}
 
 #' @title Update the travel eir 
-#' @description Port function for the travel eir , \eqn{\Theta}.
-#' Dispatches on `class(xds_obj$XY_interface$travel_eir_obj[[i]])`.
+#' @description Port function for travel EIR.
+#' Dispatches on `class(xds_obj$XH_obj[[i]]$travel_eir_obj)`.
 #' 
 #' @param t time
 #' @param y dependent variables
@@ -173,8 +171,7 @@ update_travel_eir <- function(t, y, xds_obj, i) {
 
 #' @title Update travel_eir 
 #' 
-#' @description A utility to ensure that the travel_eir
-#' is updated properly after a change
+#' @description Return `xds_obj` unchanged for a static travel EIR port.
 #' 
 #' @inheritParams update_travel_eir
 #' @return an **`xds`** model object

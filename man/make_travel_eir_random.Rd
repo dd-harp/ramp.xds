@@ -2,7 +2,7 @@
 % Please edit documentation in R/travel-travel_eir.R
 \name{make_travel_eir_random}
 \alias{make_travel_eir_random}
-\title{Make other blood hosts}
+\title{Make random travel EIR}
 \usage{
 make_travel_eir_random(
   nStrata,

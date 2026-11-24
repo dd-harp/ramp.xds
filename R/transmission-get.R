@@ -1,5 +1,6 @@
+# X
 
-#' @title Get xi, delayed maturation 
+#' @title Get beta, the biting distribution matrix
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param i the host species index

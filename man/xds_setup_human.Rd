@@ -26,7 +26,7 @@ xds_setup_human(
 
 \item{nPatches}{the number of patches}
 
-\item{residence}{a vector that describes the patch where each human stratum lives}
+\item{residence}{a vector that describes the patch where each human stratum lives (see \link{residence_vector})}
 
 \item{searchB}{a vector of search weights for blood feeding}
 
@@ -80,7 +80,7 @@ Set parameter values and initial conditions using setup options (named lists):
 Set up the model structure:
 \itemize{
 \item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
-\item \code{residence} - the human residence vector (see \link{xds_info_human_populations})
+\item \code{residence} - the human residence vector (see \link{residence_vector} and \link{residence_matrix})
 }
 
 During setup:
@@ -91,9 +91,12 @@ During setup:
 
 If \code{nPatches}\eqn{>1}, set up some basic aspects of blood feeding and exposure:
 \itemize{
-\item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
+\item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood} and \link{human_availability})
 \item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
+
+The \link{mixing_matrix} maps infective biting density in patches to the daily
+EIR in population strata. See \link{blood_feeding} for the blood-feeding framework.
 }
 \note{
 This sets

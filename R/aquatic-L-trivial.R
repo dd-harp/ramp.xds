@@ -166,29 +166,10 @@ make_L_obj_trivial = function(nHabitats, options=list(),
     class(L_obj) <- "trivialL"
     L_obj$Lambda = checkIt(Lambda, nHabitats)
 
-    if(is.function(F_season)){
-      L_obj$season_par = list()
-      L_obj$F_season = F_season  
-    } else {
-      L_obj$season_par = season_par
-      L_obj$F_season = make_function(season_par)  
-    }
-    
-    if(is.function(F_trend)){
-      L_obj$trend_par = list()
-      L_obj$F_trend = F_trend  
-    } else {
-      L_obj$trend_par = trend_par
-      L_obj$F_trend = make_function(trend_par)  
-    }
-    
-    if(is.function(F_shock)){
-      L_obj$shock_par = list() 
-      L_obj$F_shock = F_shock  
-    } else {
-      L_obj$shock_par = shock_par
-      L_obj$F_shock = make_function(shock_par)  
-    }
+    L_obj <- make_ts_obj(L_obj, list(
+      F_season=F_season, F_trend=F_trend, F_shock=F_shock,
+      season_par=season_par, trend_par=trend_par, shock_par=shock_par
+    ))
     
     return(L_obj)
 })}

@@ -1,13 +1,44 @@
+# X
 
+#' @title Time Away
+#' 
+#' @description
+#' 
+#' \describe{
+#'   \item{\eqn{\delta}}{time away}
+#' } 
+#'  
+#' Time away is defined by travel, or time spent 
+#' outside the patches. Time away
+#' is used to model travel malaria in [Exposure], and it is used 
+#' to compute host availability. 
+#' 
+#' **Travel Malaria** 
+#' 
+#' The risk of malaria while traveling is computed in [Exposure] as 
+#' the product of time away and the travel EIR \eqn{(E_\delta)}. Daily travel
+#' risk is \deqn{\delta E_\delta}
+#' 
+#' **Host Availability**
+#'  
+#' If human population density is \eqn{H}, but since a fraction \eqn{\delta} is traveling,
+#'  the expected density of humans at any point in time is \deqn{(1-\delta)H.}
+#'
+#' @seealso [setup_time_away], [human_availability]
+#' @name time_away
+#' @aliases xds_info_time_away
+NULL
 
-#' @title Check Time Spent 
+#' @title Check time away
 #' 
 #' @description
 #' Check that 
-#' + there ar \eqn{N_p} columns and \eqn{N_h} rows
-#' + the column sums are at most 1`
+#' + the input is numeric
+#' + all elements are non-negative
+#' + all elements are at most 1
+#' + the length is `Nh`
 #' 
-#' @param TA a time spent vector 
+#' @param TA a time away vector
 #' @param Nh the number of population strata
 #' 
 #' @seealso [xds_info_time_spent]
@@ -15,15 +46,16 @@
 check_time_away = function(TA, Nh){
   stopifnot(is.numeric(TA))
   stopifnot(TA>=0)
+  stopifnot(TA<=1)
   stopifnot(length(TA)==Nh) 
 }
 
-#' @title Change the time spent 
+#' @title Change time away
 #' @description
-#' Update the time spent  for the \eqn{i^{th}} host species, and 
+#' Update time away for the \eqn{i^{th}} host species, and
 #' trigger updates for the `XY` interface. 
 #' 
-#' @param time_away a time spent vector 
+#' @param time_away a time away vector
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
@@ -38,14 +70,15 @@ change_time_away = function(time_away, xds_obj, i=1){
   return(xds_obj)
 }
 
-#' @title Set up time spent 
+#' @title Set up time away
 #'
-#' @param name a  or setup function name
+#' @param name a setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
 #'
 #' @return an **`xds`** model object
+#' @seealso [time_away]
 #'
 #' @export
 setup_time_away = function(name, xds_obj, options = list(), i=1){
@@ -54,13 +87,13 @@ setup_time_away = function(name, xds_obj, options = list(), i=1){
   UseMethod("setup_time_away", options)
 }
 
-#' @title Set up a time spent 
+#' @title Set up time away
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
 #' + `TAname = name$name` 
 #' + `options = name`
-#' and call `setup_time_away(TAname, xds_obj, options, s)` 
+#' and call `setup_time_away(TAname, xds_obj, options, i)`
 #'
 #' @inheritParams setup_time_away
 #'
@@ -75,7 +108,7 @@ setup_time_away.list = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up no time spent  
+#' @title Leave time away unchanged
 #' @description Don't change anything 
 #' @inheritParams setup_time_away
 #' @return an **`xds`** model object
@@ -85,13 +118,9 @@ setup_time_away.no_setup = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up a time spent 
-#' @description 
-#' Pass a pre-configured time spent . If it passes 
-#' the checks, it replaces the current time_away .
-#' 
-#' If called with `name = "as_is"`, the time spent
-#'  must be at `options$time_away` 
+#' @title Set up default time away
+#' @description Initialize time away to zero for each stratum of the selected
+#' host species and initialize a static port.
 #' 
 #' @inheritParams setup_time_away
 #' @return an **`xds`** model object
@@ -104,13 +133,9 @@ setup_time_away.setup = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up a time spent 
-#' @description 
-#' Pass a pre-configured time spent . If it passes 
-#' the checks, it replaces the current time_away .
-#' 
-#' If called with `name = "as_is"`, the time spent
-#'  must be at `options$time_away` 
+#' @title Set up no travel
+#' @description Set time away to zero for each stratum of the selected host
+#' species using [change_time_away].
 #' 
 #' @inheritParams setup_time_away
 #' @return an **`xds`** model object
@@ -122,13 +147,13 @@ setup_time_away.no_travel = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up a time spent 
+#' @title Set up time away
 #' @description 
-#' Pass a pre-configured time spent . If it passes 
-#' the checks, it replaces the current time_away .
+#' Pass a pre-configured time away vector. If it passes
+#' the checks, it replaces the current time_away.
 #' 
-#' If called with `name = "as_is"`, the time spent
-#'  must be at `options$time_away` 
+#' If called with `name = "as_is"`, the time away vector
+#' must be at `options$time_away`.
 #' 
 #' @inheritParams setup_time_away
 #' @return an **`xds`** model object
@@ -160,7 +185,7 @@ setup_time_away.random = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
-#' @title Make other blood hosts 
+#' @title Make random time away
 #' 
 #' @description Set up a random vector 
 #' 
@@ -176,9 +201,9 @@ make_time_away_random = function(nStrata, options=list(), f_rand = stats::rbeta,
   return(time_away)
 })}
 
-#' @title Update the time spent 
-#' @description Port function for the time spent , \eqn{\Theta}.
-#' Dispatches on `class(xds_obj$XY_interface$time_away_obj[[i]])`.
+#' @title Update time away
+#' @description Port function for time away.
+#' Dispatches on `class(xds_obj$XH_obj[[i]]$time_away_obj)`.
 #' 
 #' @param t time
 #' @param y dependent variables
@@ -194,8 +219,7 @@ update_time_away <- function(t, y, xds_obj, i) {
 
 #' @title Update time_away 
 #' 
-#' @description A utility to ensure that the time_away
-#' is updated properly after a change
+#' @description Return `xds_obj` unchanged for a static time away port.
 #' 
 #' @inheritParams update_time_away
 #' @return an **`xds`** model object
@@ -204,14 +228,13 @@ update_time_away <- function(t, y, xds_obj, i) {
 update_time_away.static <- function(t, y, xds_obj, i) {return(xds_obj)}
 
 
-#' @title Get the Time Spent 
+#' @title Get time away
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return a []
+#' @return a [numeric] vector of length `nStrata[i]`
 #' @export
 get_time_away = function(xds_obj, i=1){
   return(xds_obj$XH_obj[[i]]$time_away)
 }
-

@@ -2,12 +2,12 @@
 % Please edit documentation in R/blood_feeding-other_hosts.R
 \name{setup_other_blood_hosts.list}
 \alias{setup_other_blood_hosts.list}
-\title{Set up a other_blood_hosts}
+\title{Set up other blood hosts}
 \usage{
 \method{setup_other_blood_hosts}{list}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup method name or a numeric vector of availability values}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

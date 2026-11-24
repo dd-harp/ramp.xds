@@ -4,7 +4,9 @@
 \alias{xds_info_search_weights_habitat}
 \title{Habitat Search Weights}
 \description{
-where
+Each aquatic habitat is assigned a search weight that contributes to its
+availability to mosquitoes and the allocation of eggs among habitats.
+See \link{setup_habitat_search_weights} for configuration.
 }
 \seealso{
 \link{xds_info_blood_feeding}, \link{xds_info_transmission}, and \link{xds_info_egg_laying}

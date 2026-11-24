@@ -4,5 +4,6 @@
 \alias{xds_info_available_sugar}
 \title{Sugar Availability}
 \description{
-Write me.
+Sugar availability describes the accessibility of sugar resources to
+mosquitoes. It can be used by models of mosquito bionomics.
 }

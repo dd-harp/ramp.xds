@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,6 +108,22 @@
         </dt>
         <dd><strong><code>ramp.xds</code></strong>: Information Pages</dd>
       </dl></div><div class="section level2">
+      <h2 id="glossary">Glossary<a class="anchor" aria-label="anchor" href="#glossary"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_glossary.html">xds_glossary</a></code> <code><a href="xds_glossary.html">xds_info_glossary</a></code>
+
+        </dt>
+        <dd>Glossary for <strong><code>ramp.xds</code></strong></dd>
+      </dl></div><div class="section level2">
       <h2 id="model-building">Model Building<a class="anchor" aria-label="anchor" href="#model-building"></a></h2>
 
 
@@ -198,13 +214,6 @@
 
         </dt>
         <dd>The <strong><code>xds</code></strong> Model Object</dd>
-
-        <dt>
-
-          <code><a href="xds_info_setup_options.html">xds_info_setup_options</a></code>
-
-        </dt>
-        <dd><strong><code>ramp.xds</code></strong>: All Setup Options</dd>
       </dl></div><div class="section level2">
 
       <h3 id="dynamical-modules">Dynamical Modules<a class="anchor" aria-label="anchor" href="#dynamical-modules"></a></h3>
@@ -319,7 +328,7 @@
 
         <dt>
 
-          <code><a href="xds_info_time_spent.html">xds_info_time_spent</a></code>
+          <code><a href="time_spent_matrix.html">time_spent_matrix</a></code> <code><a href="time_spent_matrix.html">xds_info_time_spent</a></code>
 
         </dt>
         <dd>Time Spent</dd>
@@ -568,14 +577,14 @@
           <code><a href="steady_state_X.html">steady_state_X()</a></code>
 
         </dt>
-        <dd>Steady states for <strong>X</strong></dd>
+        <dd>Compute steady states (<strong>X</strong>)</dd>
 
         <dt>
 
           <code><a href="steady_state_XH.html">steady_state_XH()</a></code>
 
         </dt>
-        <dd>Steady states for <strong>XH</strong></dd>
+        <dd>Compute steady states (<strong>XH</strong>)</dd>
 
         <dt>
 
@@ -661,70 +670,70 @@
           <code><a href="xds_plot_M.html">xds_plot_M()</a></code>
 
         </dt>
-        <dd>Plot adult mosquito population density</dd>
+        <dd>Plot adult mosquito density (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_lines_M.html">xds_lines_M()</a></code>
 
         </dt>
-        <dd>Add lines for adult mosquito population density</dd>
+        <dd>Add lines for adult mosquito density (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_plot_Y.html">xds_plot_Y()</a></code>
 
         </dt>
-        <dd>Plot the density of infected mosquitoes</dd>
+        <dd>Plot infected mosquito density (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_lines_Y.html">xds_lines_Y()</a></code>
 
         </dt>
-        <dd>Add lines for the density of infected mosquitoes</dd>
+        <dd>Add lines for infected mosquito density (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_plot_Z.html">xds_plot_Z()</a></code>
 
         </dt>
-        <dd>Plot the density of infective mosquitoes</dd>
+        <dd>Plot infective mosquito density (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_lines_Z.html">xds_lines_Z()</a></code>
 
         </dt>
-        <dd>Add lines for the density of infective mosquitoes</dd>
+        <dd>Add lines for infective mosquito density (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_plot_Y_fracs.html">xds_plot_Y_fracs()</a></code>
 
         </dt>
-        <dd>Plot the fraction of infected mosquitoes</dd>
+        <dd>Plot the infected mosquito fraction (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_lines_Y_fracs.html">xds_lines_Y_fracs()</a></code>
 
         </dt>
-        <dd>Add lines for the fraction of infected mosquitoes</dd>
+        <dd>Add lines for the infected mosquito fraction (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_plot_Z_fracs.html">xds_plot_Z_fracs()</a></code>
 
         </dt>
-        <dd>Plot the fraction of infective mosquitoes</dd>
+        <dd>Plot the infective mosquito fraction (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="xds_lines_Z_fracs.html">xds_lines_Z_fracs()</a></code>
 
         </dt>
-        <dd>Add lines for the fraction of infective mosquitoes</dd>
+        <dd>Add lines for the infective mosquito fraction (<strong>MY</strong>)</dd>
       </dl></div><div class="section level2">
 
       <h3 id="aquatic-mosquito">Aquatic Mosquito<a class="anchor" aria-label="anchor" href="#aquatic-mosquito"></a></h3>
@@ -805,7 +814,7 @@
           <code><a href="get_beta.html">get_beta()</a></code>
 
         </dt>
-        <dd>Get xi, delayed maturation</dd>
+        <dd>Get beta, the biting distribution matrix</dd>
       </dl></div><div class="section level2">
 
       <h3 id="get-orbits">Get Orbits<a class="anchor" aria-label="anchor" href="#get-orbits"></a></h3>
@@ -856,7 +865,7 @@
           <code><a href="get_M.html">get_M()</a></code>
 
         </dt>
-        <dd>Get the initial mosquito population density</dd>
+        <dd>Get the initial adult mosquito density (<strong>MY</strong>)</dd>
       </dl></div><div class="section level2">
 
       <h3 id="get-parameters">Get Parameters<a class="anchor" aria-label="anchor" href="#get-parameters"></a></h3>
@@ -900,7 +909,7 @@
           <code><a href="get_residence_matrix.html">get_residence_matrix()</a></code>
 
         </dt>
-        <dd>Create the residence Matrix</dd>
+        <dd>Get the residence matrix</dd>
 
         <dt>
 
@@ -914,21 +923,21 @@
           <code><a href="get_bad_habitats.html">get_bad_habitats()</a></code>
 
         </dt>
-        <dd>Get availability of other blood hosts</dd>
+        <dd>Get bad habitat availability</dd>
 
         <dt>
 
           <code><a href="get_blood_search_weights.html">get_blood_search_weights()</a></code>
 
         </dt>
-        <dd>Get availability of blood search weights</dd>
+        <dd>Get blood search weights</dd>
 
         <dt>
 
           <code><a href="get_blood_traps.html">get_blood_traps()</a></code>
 
         </dt>
-        <dd>Get availability of other blood hosts</dd>
+        <dd>Get blood trap availability</dd>
 
         <dt>
 
@@ -942,7 +951,7 @@
           <code><a href="get_other_blood_hosts.html">get_other_blood_hosts()</a></code>
 
         </dt>
-        <dd>Get availability of other blood hosts</dd>
+        <dd>Get other blood host availability</dd>
 
         <dt>
 
@@ -977,28 +986,28 @@
           <code><a href="get_f.html">get_f()</a></code>
 
         </dt>
-        <dd>Get the feeding rate(s)</dd>
+        <dd>Get the feeding rate (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="get_g.html">get_g()</a></code>
 
         </dt>
-        <dd>Get the adult mosquito mortality rate(s)</dd>
+        <dd>Get the adult mosquito mortality rate (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="get_q.html">get_q()</a></code>
 
         </dt>
-        <dd>Get the human fraction(s)</dd>
+        <dd>Get the human blood fraction (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="get_sigma.html">get_sigma()</a></code>
 
         </dt>
-        <dd>Get the patch emigration rates</dd>
+        <dd>Get the patch emigration rate (<strong>MY</strong>)</dd>
 
         <dt>
 
@@ -1012,14 +1021,14 @@
           <code><a href="get_Omega.html">get_Omega()</a></code>
 
         </dt>
-        <dd>Get Omega</dd>
+        <dd>Get the mosquito demographic matrix (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="get_Upsilon.html">get_Upsilon()</a></code>
 
         </dt>
-        <dd>Get Upsilon</dd>
+        <dd>Get the EIP survival-and-dispersal matrix (<strong>MY</strong>)</dd>
 
         <dt>
 
@@ -1226,7 +1235,7 @@
           <code><a href="change_time_away.html">change_time_away()</a></code>
 
         </dt>
-        <dd>Change the time spent</dd>
+        <dd>Change time away</dd>
 
         <dt>
 
@@ -1582,17 +1591,31 @@
 
       <dl><dt>
 
-          <code><a href="xds_info_time_spent.html">xds_info_time_spent</a></code>
+          <code><a href="time_spent_matrix.html">time_spent_matrix</a></code> <code><a href="time_spent_matrix.html">xds_info_time_spent</a></code>
 
         </dt>
         <dd>Time Spent</dd>
 
         <dt>
 
-          <code><a href="xds_info_time_at_risk.html">xds_info_time_at_risk</a></code>
+          <code><a href="time_at_risk.html">time_at_risk</a></code> <code><a href="time_at_risk.html">xds_info_time_at_risk</a></code>
 
         </dt>
         <dd>Time at Risk</dd>
+
+        <dt>
+
+          <code><a href="residence_vector.html">residence_vector</a></code>
+
+        </dt>
+        <dd>The residence vector</dd>
+
+        <dt>
+
+          <code><a href="residence_matrix.html">residence_matrix</a></code>
+
+        </dt>
+        <dd>The residence matrix</dd>
 
         <dt>
 
@@ -1678,14 +1701,14 @@
           <code><a href="steady_state_X.html">steady_state_X()</a></code>
 
         </dt>
-        <dd>Steady states for <strong>X</strong></dd>
+        <dd>Compute steady states (<strong>X</strong>)</dd>
 
         <dt>
 
           <code><a href="steady_state_XH.html">steady_state_XH()</a></code>
 
         </dt>
-        <dd>Steady states for <strong>XH</strong></dd>
+        <dd>Compute steady states (<strong>XH</strong>)</dd>
       </dl></div><div class="section level2">
 
       <h3 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h3>
@@ -1743,7 +1766,7 @@
           <code><a href="make_exposure_nb.html">make_exposure_nb()</a></code>
 
         </dt>
-        <dd>Make a nbson Exposure Model Object</dd>
+        <dd>Make a Negative Binomial Exposure Model Object</dd>
       </dl></div><div class="section level2">
       <h2 id="malaria-landscapes-xy-">Malaria Landscapes (XY)<a class="anchor" aria-label="anchor" href="#malaria-landscapes-xy-"></a></h2>
 
@@ -1756,10 +1779,10 @@
 
       <dl><dt>
 
-          <code><a href="xds_info_blood_feeding.html">xds_info_blood_feeding</a></code>
+          <code><a href="blood_feeding.html">blood_feeding</a></code> <code><a href="blood_feeding.html">xds_info_blood_feeding</a></code>
 
         </dt>
-        <dd>Blood Feeding</dd>
+        <dd>Blood Feeding in <strong><code>ramp.xds</code></strong></dd>
 
         <dt>
 
@@ -1770,10 +1793,10 @@
 
         <dt>
 
-          <code><a href="xds_info_available_blood_hosts.html">xds_info_available_blood_hosts</a></code>
+          <code><a href="available_blood_hosts.html">available_blood_hosts</a></code> <code><a href="available_blood_hosts.html">xds_info_available_blood_hosts</a></code>
 
         </dt>
-        <dd>Available Blood</dd>
+        <dd>Available Blood Hosts</dd>
 
         <dt>
 
@@ -1795,6 +1818,29 @@
 
         </dt>
         <dd>Transmission</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="host-availability">Host Availability<a class="anchor" aria-label="anchor" href="#host-availability"></a></h3>
+      <div class="section-desc"><p>Human/host availability and mosquito biting allocation</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="human_availability.html">human_availability</a></code> <code><a href="human_availability.html">host_availability</a></code> <code><a href="human_availability.html">xds_info_available_humans</a></code>
+
+        </dt>
+        <dd>Human Availability</dd>
+
+        <dt>
+
+          <code><a href="mixing_matrix.html">mixing_matrix</a></code>
+
+        </dt>
+        <dd>The mixing matrix</dd>
       </dl></div><div class="section level2">
 
       <h3 id="search-weights">Search Weights<a class="anchor" aria-label="anchor" href="#search-weights"></a></h3>
@@ -1851,7 +1897,7 @@
 
       <dl><dt>
 
-          <code><a href="xds_port_other_blood_hosts.html">xds_port_other_blood_hosts</a></code>
+          <code><a href="other_blood_hosts.html">other_blood_hosts</a></code> <code><a href="other_blood_hosts.html">xds_port_other_blood_hosts</a></code>
 
         </dt>
         <dd>Other Blood Hosts</dd>
@@ -1861,28 +1907,28 @@
           <code><a href="setup_other_blood_hosts.html">setup_other_blood_hosts()</a></code>
 
         </dt>
-        <dd>Set up a other_blood_hosts</dd>
+        <dd>Set up other blood hosts</dd>
 
         <dt>
 
           <code><a href="change_other_blood_hosts.html">change_other_blood_hosts()</a></code>
 
         </dt>
-        <dd>Change the other_blood_hosts</dd>
+        <dd>Change other blood host availability</dd>
 
         <dt>
 
           <code><a href="check_other_blood_hosts.html">check_other_blood_hosts()</a></code>
 
         </dt>
-        <dd>Check other blood hosts</dd>
+        <dd>Check other blood host availability</dd>
 
         <dt>
 
           <code><a href="make_other_blood_hosts_random.html">make_other_blood_hosts_random()</a></code>
 
         </dt>
-        <dd>Make other blood hosts</dd>
+        <dd>Make random other blood host availability</dd>
       </dl></div><div class="section level2">
 
       <h3 id="traps">Traps<a class="anchor" aria-label="anchor" href="#traps"></a></h3>
@@ -1905,7 +1951,7 @@
           <code><a href="setup_blood_traps.html">setup_blood_traps()</a></code>
 
         </dt>
-        <dd>Set up a blood_traps</dd>
+        <dd>Set up blood traps</dd>
 
         <dt>
 
@@ -1919,14 +1965,14 @@
           <code><a href="check_blood_traps.html">check_blood_traps()</a></code>
 
         </dt>
-        <dd>Check other blood hosts</dd>
+        <dd>Check blood trap availability</dd>
 
         <dt>
 
           <code><a href="make_blood_traps_random.html">make_blood_traps_random()</a></code>
 
         </dt>
-        <dd>Make other blood hosts</dd>
+        <dd>Make random blood trap availability</dd>
       </dl></div><div class="section level2">
       <h2 id="adult-mosquitoes-my-">Adult Mosquitoes (MY)<a class="anchor" aria-label="anchor" href="#adult-mosquitoes-my-"></a></h2>
 
@@ -2206,10 +2252,10 @@
 
       <dl><dt>
 
-          <code><a href="xds_info_blood_feeding.html">xds_info_blood_feeding</a></code>
+          <code><a href="blood_feeding.html">blood_feeding</a></code> <code><a href="blood_feeding.html">xds_info_blood_feeding</a></code>
 
         </dt>
-        <dd>Blood Feeding</dd>
+        <dd>Blood Feeding in <strong><code>ramp.xds</code></strong></dd>
 
         <dt>
 
@@ -2510,7 +2556,7 @@
 
       <dl><dt>
 
-          <code><a href="xds_port_bad_habitats.html">xds_port_bad_habitats</a></code>
+          <code><a href="bad_habitats.html">bad_habitats</a></code> <code><a href="bad_habitats.html">xds_port_bad_habitats</a></code>
 
         </dt>
         <dd>Unproductive Aquatic Habitats</dd>
@@ -2534,14 +2580,14 @@
           <code><a href="check_bad_habitats.html">check_bad_habitats()</a></code>
 
         </dt>
-        <dd>Check other blood hosts</dd>
+        <dd>Check bad habitat availability</dd>
 
         <dt>
 
           <code><a href="make_bad_habitats_random.html">make_bad_habitats_random()</a></code>
 
         </dt>
-        <dd>Make other blood hosts</dd>
+        <dd>Make random bad habitat availability</dd>
       </dl></div><div class="section level2">
 
       <h3 id="ovitraps">Ovitraps<a class="anchor" aria-label="anchor" href="#ovitraps"></a></h3>
@@ -2554,7 +2600,7 @@
 
       <dl><dt>
 
-          <code><a href="xds_port_ovitraps.html">xds_port_ovitraps</a></code>
+          <code><a href="ovitraps.html">ovitraps</a></code> <code><a href="ovitraps.html">xds_port_ovitraps</a></code>
 
         </dt>
         <dd>Ovitraps</dd>
@@ -2779,10 +2825,10 @@
 
         <dt>
 
-          <code><a href="xds_info_available_blood_hosts.html">xds_info_available_blood_hosts</a></code>
+          <code><a href="available_blood_hosts.html">available_blood_hosts</a></code> <code><a href="available_blood_hosts.html">xds_info_available_blood_hosts</a></code>
 
         </dt>
-        <dd>Available Blood</dd>
+        <dd>Available Blood Hosts</dd>
 
         <dt>
 
@@ -2810,7 +2856,7 @@
           <code><a href="xds_info_mosquito_traps.html">xds_info_mosquito_traps</a></code>
 
         </dt>
-        <dd>Available Blood</dd>
+        <dd>Mosquito Traps</dd>
       </dl></div><div class="section level2">
       <h2 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a></h2>
 
@@ -2897,31 +2943,38 @@
 
         <dt>
 
+          <code><a href="time_away.html">time_away</a></code> <code><a href="time_away.html">xds_info_time_away</a></code>
+
+        </dt>
+        <dd>Time Away</dd>
+
+        <dt>
+
           <code><a href="setup_time_away.html">setup_time_away()</a></code>
 
         </dt>
-        <dd>Set up time spent</dd>
+        <dd>Set up time away</dd>
 
         <dt>
 
           <code><a href="change_time_away.html">change_time_away()</a></code>
 
         </dt>
-        <dd>Change the time spent</dd>
+        <dd>Change time away</dd>
 
         <dt>
 
           <code><a href="check_time_away.html">check_time_away()</a></code>
 
         </dt>
-        <dd>Check Time Spent</dd>
+        <dd>Check time away</dd>
 
         <dt>
 
           <code><a href="make_time_away_random.html">make_time_away_random()</a></code>
 
         </dt>
-        <dd>Make other blood hosts</dd>
+        <dd>Make random time away</dd>
 
         <dt>
 
@@ -2972,7 +3025,7 @@
           <code><a href="make_travel_eir_random.html">make_travel_eir_random()</a></code>
 
         </dt>
-        <dd>Make other blood hosts</dd>
+        <dd>Make random travel EIR</dd>
 
         <dt>
 

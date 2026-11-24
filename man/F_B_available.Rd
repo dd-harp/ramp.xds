@@ -2,29 +2,28 @@
 % Please edit documentation in R/blood_feeding.R
 \name{F_B_available}
 \alias{F_B_available}
-\title{Compute Vertebrate Host available for Blood Feeding}
+\title{Compute total blood host availability}
 \usage{
 F_B_available(W, visitors, other_blood, traps)
 }
 \arguments{
-\item{W}{available of the parasite's / pathogen' local hosts}
+\item{W}{local human/host availability}
 
-\item{visitors}{available of \emph{visitors,} or non-resident host populations}
+\item{visitors}{visitor availability}
 
-\item{other_blood}{available of other vertebrate hosts}
+\item{other_blood}{availability of other vertebrate hosts}
 
-\item{traps}{blood feeding trap availability}
+\item{traps}{blood trap availability}
 }
 \value{
-host available, a \link{vector}
+a numeric vector of total availability, one value per patch
 }
 \description{
-Compute the available all vertebrate hosts for blood feeding by mosquitoes
+Compute total availability to blood-seeking mosquitoes.
 }
 \details{
-The available of other vertebrate hosts is a sum of available local
-hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
-Total available is a simple sum: \deqn{B = W + W_\delta + O}
+Total availability sums local human/host availability, visitors,
+other blood hosts, and blood traps: \deqn{B = W + V + O + T.}
 }
 \references{
 {\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}

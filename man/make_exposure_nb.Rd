@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-nb.R
 \name{make_exposure_nb}
 \alias{make_exposure_nb}
-\title{Make a nbson Exposure Model Object}
+\title{Make a Negative Binomial Exposure Model Object}
 \usage{
 make_exposure_nb(nStrata, options, sz = 1)
 }
@@ -17,7 +17,7 @@ make_exposure_nb(nStrata, options, sz = 1)
 a local exposure model object
 }
 \description{
-Set up the nbson model for
+Set up the negative binomial model for
 exposure for continuous time models
 }
 \seealso{

@@ -1,8 +1,10 @@
+# X
+
 #' @title Setup Resources Object
 #'
 #' @description Resources is a junction. When set to its default class (`none`),
-#' all resource parameters (blood hosts, habitat weights, traps, sugar) retain
-#' their static zero-initialized defaults. Dynamic port machinery is provided
+#' resource parameters retain their configured values without modification.
+#' Dynamic port machinery is provided
 #' by satellite packages (e.g., `ramp.forcing`).
 #'
 #' @param xds_obj an **`xds`** model object
@@ -39,8 +41,7 @@ Resources = function(t, y, xds_obj){
 #' @title Resources (none)
 #'
 #' @description The default no-op for Resources. All resource parameters
-#' retain their static defaults (zero-initialized by [setup_blood_feeding_interface]
-#' and [setup_egg_laying_interface]).
+#' retain their configured values without modification.
 #'
 #' @inheritParams Resources
 #'

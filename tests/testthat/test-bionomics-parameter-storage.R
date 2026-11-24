@@ -1,15 +1,11 @@
 test_that("MY ports separate baselines from realized parameters", {
   for (module in c("basicM", "GeM", "SI", "macdonald")) {
     env <- new.env(parent = asNamespace("ramp.xds"))
-    file <- if (module == "basicM") "adult-M-basicM.R" else paste0("adult-MY-", module, ".R")
-    for (source in c(file, "bionomics-eip.R", "mosquito-dispersal.R")) {
-      for (definition in parse(test_path("..", "..", "R", source))) {
-        if (is.call(definition) && as.character(definition[[1]])[1] %in% c("<-", "=")) {
-          eval(definition, env)
-        }
-      }
-    }
     constructor <- if (module == "basicM") "make_M_obj_basicM" else paste0("make_MY_obj_", module)
+    copy_package_function(constructor, env)
+    copy_package_function(paste0("MBionomics.", module), env)
+    copy_package_function(paste0("MEffectSizes.", module), env)
+    copy_package_function("change_K_matrix.K", env)
     ports <- if (module == "macdonald") character() else c("f", "q", "g", "sigma", "mu", "nu")
     if (module %in% c("GeM", "SI")) ports <- c(ports, "eip")
     ports <- c(ports, "K_matrix")
@@ -79,10 +75,8 @@ test_that("MY ports separate baselines from realized parameters", {
 
 test_that("basicL ports apply effects only in LEffectSizes", {
   env <- new.env(parent = asNamespace("ramp.xds"))
-  for (definition in parse(test_path("..", "..", "R", "aquatic-L-basicL.R"))) {
-    if (is.call(definition) && as.character(definition[[1]])[1] %in% c("<-", "=")) {
-      eval(definition, env)
-    }
+  for (name in c("make_L_obj_basicL", "LBionomics.basicL", "LEffectSizes.basicL")) {
+    copy_package_function(name, env)
   }
   for (nhabitats in c(1L, 3L)) {
     for (s in 1:2) {

@@ -233,53 +233,13 @@ make_XH_obj_trivial <- function(nPatches, options,
     XH_obj$H = checkIt(H, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
-    if(is.function(F_season)){
-      XH_obj$season_par = list()
-      XH_obj$F_season = F_season  
-    } else {
-      XH_obj$season_par = season_par
-      XH_obj$F_season = make_function(season_par)  
-    }
-    
-    if(is.function(F_trend)){
-      XH_obj$trend_par = list()
-      XH_obj$F_trend = F_trend  
-    } else {
-      XH_obj$trend_par = trend_par
-      XH_obj$F_trend = make_function(trend_par)  
-    }
-
-    if(is.function(F_shock)){
-      XH_obj$shock_par = list() 
-      XH_obj$F_shock = F_shock  
-    } else {
-      XH_obj$shock_par = shock_par
-      XH_obj$F_shock = make_function(shock_par)  
-    }
-
-    if(is.function(H_season)){
-      XH_obj$H_season_par = list()
-      XH_obj$H_season = H_season  
-    } else {
-      XH_obj$H_season_par = H_season_par
-      XH_obj$H_season = make_function(H_season_par)  
-    }
-    
-    if(is.function(H_trend)){
-      XH_obj$H_trend_par = list()
-      XH_obj$H_trend = H_trend  
-    } else {
-      XH_obj$H_trend_par = H_trend_par
-      XH_obj$H_trend = make_function(H_trend_par)  
-    }
-    
-    if(is.function(H_shock)){
-      XH_obj$H_shock_par = list() 
-      XH_obj$H_shock = H_shock  
-    } else {
-      XH_obj$H_shock_par = H_shock_par
-      XH_obj$H_shock = make_function(H_shock_par)  
-    }
+    XH_obj <- make_ts_obj(XH_obj, list(
+      F_season=F_season, F_trend=F_trend, F_shock=F_shock,
+      season_par=season_par, trend_par=trend_par, shock_par=shock_par,
+      H_season=H_season, H_trend=H_trend, H_shock=H_shock,
+      H_season_par=H_season_par, H_trend_par=H_trend_par,
+      H_shock_par=H_shock_par
+    ))
     
     XH_obj$q = checkIt(q, nPatches)
 
