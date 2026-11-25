@@ -635,7 +635,7 @@ parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[
 #' @seealso [macdonald]
 #' @keywords internal
 #' @export
-check_MY.macdonald = function(xds_obj, s){
+check_MY.macdonald = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

@@ -584,7 +584,7 @@ parse_MY_orbits.basicM <- function(outputs, xds_obj, s) {
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_MY.basicM = function(xds_obj, s){
+check_MY.basicM = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

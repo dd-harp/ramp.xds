@@ -55,11 +55,12 @@ make_residence_matrix = function(nPatches, residence){
 #' are performed.
 #'
 #' @param xds_obj an **`xds`** model object
+#' @param t a vector of times
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 #'
-check_blood_feeding = function(xds_obj){
+check_blood_feeding = function(xds_obj, t=0){
   return(xds_obj)
 }
 

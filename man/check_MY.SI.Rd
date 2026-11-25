@@ -4,10 +4,12 @@
 \alias{check_MY.SI}
 \title{Check \code{SI} (\strong{MY})}
 \usage{
-\method{check_MY}{SI}(xds_obj, s)
+\method{check_MY}{SI}(xds_obj, t = 0, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{s}{the vector species index}
 }

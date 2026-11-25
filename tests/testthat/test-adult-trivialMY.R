@@ -45,7 +45,7 @@ test_that("trivialMY aliases create equivalent canonical models", {
   expect_identical(Update_MYt(0, y, model, 1), numeric())
   expect_identical(MBionomics(0, y, model, 1), model)
   expect_identical(MEffectSizes(0, y, model, 1), model)
-  expect_identical(check_MY(model, 1), model)
+  expect_identical(check_MY(model, c(0, 2), 1), model)
   expect_identical(setup_MY_inits(model), model)
   expect_identical(change_MY_inits(model), model)
   expect_identical(setup_MY_ix(model, 1), model)

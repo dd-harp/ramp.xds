@@ -79,7 +79,7 @@ test_that("trivialL setup aliases preserve forcing and stateless behavior", {
   expect_identical(Update_Lt(0, y, model, 1), numeric())
   expect_identical(LBionomics(0, y, model, 1), model)
   expect_identical(LEffectSizes(0, y, model, 1), model)
-  expect_identical(check_L(model, 1), model)
+  expect_identical(check_L(model, c(0, 2), 1), model)
   initialized <- setup_L_inits(model)
   expect_identical(initialized$L_obj[[1]]$inits, list())
   expect_identical(setup_L_inits(initialized), initialized)

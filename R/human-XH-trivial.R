@@ -433,7 +433,7 @@ F_pfpr_by_pcr.trivialXH <- function(vars, XH_obj) {
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_XH.trivialXH = function(xds_obj, i){
+check_XH.trivialXH = function(xds_obj, t=0, i){
   return(xds_obj)
 }
 

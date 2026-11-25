@@ -310,7 +310,7 @@ parse_L_orbits.trivialL <- function(outputs, xds_obj, s) {
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_L.trivialL = function(xds_obj, s){
+check_L.trivialL = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

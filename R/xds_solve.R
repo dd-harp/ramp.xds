@@ -40,11 +40,12 @@ xds_solve = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @keywords internal
 #' @export
 xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
-
-  xds_obj <- check_models(xds_obj)
+ 
+  tms <- make_times_xde(Tmax, dt, times)
+  xds_obj <- check_models(xds_obj, tms)
 
   deSolve::ode(y      = get_inits(xds_obj, flatten=TRUE),
-               times  = make_times_xde(Tmax, dt, times),
+               times  = tms,
                func   = xde_derivatives,
                parms  = xds_obj,
                method = "lsoda") -> deout
@@ -71,10 +72,11 @@ xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @export
 xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
-  xds_obj <- check_models(xds_obj)
+  tms <- make_times_xde(Tmax, dt, times)
+  xds_obj <- check_models(xds_obj, tms)
 
   deSolve::dede(y      = get_inits(xds_obj, flatten=TRUE),
-                times  = make_times_xde(Tmax, dt, times),
+                times  = tms,
                 func   = xde_derivatives,
                 parms  = xds_obj,
                 method = "lsoda") -> deout
@@ -103,9 +105,10 @@ xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @export
 xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
-  xds_obj <- check_models(xds_obj)
+  
   tm <- make_times_dts(Tmax, dt, times)
   yt = get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- check_models(xds_obj, tm)
   
   tt <- min(tm):max(tm)
   dts_out = c(tt[1], yt)

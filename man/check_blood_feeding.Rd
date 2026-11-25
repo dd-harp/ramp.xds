@@ -4,10 +4,12 @@
 \alias{check_blood_feeding}
 \title{Check the blood-feeding interface}
 \usage{
-check_blood_feeding(xds_obj)
+check_blood_feeding(xds_obj, t = 0)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 }
 \value{
 an \strong{\code{xds}} model object
