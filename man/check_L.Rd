@@ -4,10 +4,12 @@
 \alias{check_L}
 \title{Check model (\strong{L})}
 \usage{
-check_L(xds_obj, s)
+check_L(xds_obj, t = 0, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{s}{the vector species index}
 }

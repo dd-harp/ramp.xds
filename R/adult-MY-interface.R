@@ -415,12 +415,13 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
 #' @title Check model (**MY**)
 #'
 #' @param xds_obj an **`xds`** model object
+#' @param t a vector of times
 #' @param s the vector species index
 #'
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_MY = function(xds_obj, s){
+check_MY = function(xds_obj, t=0, s){
   UseMethod("check_MY", xds_obj$MY_obj[[s]])
 }
 #' @title Get the skill set (**MY**)

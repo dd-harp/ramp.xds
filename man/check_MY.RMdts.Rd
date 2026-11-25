@@ -4,10 +4,12 @@
 \alias{check_MY.RMdts}
 \title{Check \code{RMdts} (\strong{MY})}
 \usage{
-\method{check_MY}{RMdts}(xds_obj, s)
+\method{check_MY}{RMdts}(xds_obj, t = 0, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{s}{the vector species index}
 }

@@ -220,22 +220,6 @@ xds_flatten <- function(vars){
   return(unname(as.vector(unlist(vars))))
 }
 
-#' @title Check the model components
-#'
-#' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @export
-check_models <- function(xds_obj) {
-  for(i in 1:xds_obj$nHostSpecies)
-    xds_obj <- check_XH(xds_obj, i)
-
-  for(s in 1:xds_obj$nVectorSpecies){
-    xds_obj <- check_MY(xds_obj, s)
-    xds_obj <- check_L(xds_obj, s)
-  }
-  return(xds_obj)
-}
 
 #' Print the **`xds`** model object
 #'

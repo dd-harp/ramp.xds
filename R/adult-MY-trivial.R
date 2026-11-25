@@ -422,7 +422,7 @@ parse_MY_orbits.trivialMY <- function(outputs, xds_obj, s) {
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_MY.trivialMY = function(xds_obj, s){
+check_MY.trivialMY = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

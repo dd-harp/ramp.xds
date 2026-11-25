@@ -25,6 +25,28 @@
 #' @name xds_info_mosquito_bionomics
 NULL
 
+#' @title Check mosquito bionomics (**MY**)
+#' @description Currently returns `xds_obj` unchanged; no consistency checks
+#' are performed.
+#' @inheritParams check_MY
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+check_MY_bionomics = function(xds_obj, t=0, s){
+  return(xds_obj)
+}
+
+#' @title Check mosquito bionomics (**L**)
+#' @description Currently returns `xds_obj` unchanged; no consistency checks
+#' are performed.
+#' @inheritParams check_L
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+check_L_bionomics = function(xds_obj, t=0, s){
+  return(xds_obj)
+}
+
 #' @title Compute mosquito bionomic parameters
 #' @description This calls [MBionomics] and [LBionomics] for each species.
 #'

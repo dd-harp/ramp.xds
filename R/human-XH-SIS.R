@@ -670,7 +670,7 @@ F_pfpr_by_pcr.SIS <- function(vars, XH_obj) {
 #' @return an **`xds`** model object
 #' @seealso [SIS]
 #' @export
-check_XH.SIS = function(xds_obj, i){
+check_XH.SIS = function(xds_obj, t=0, i){
   return(xds_obj)
 }
 

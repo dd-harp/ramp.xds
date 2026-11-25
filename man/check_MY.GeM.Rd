@@ -4,10 +4,12 @@
 \alias{check_MY.GeM}
 \title{Check \code{GeM} (\strong{MY})}
 \usage{
-\method{check_MY}{GeM}(xds_obj, s)
+\method{check_MY}{GeM}(xds_obj, t = 0, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{s}{the vector species index}
 }

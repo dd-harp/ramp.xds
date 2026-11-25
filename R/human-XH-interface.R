@@ -377,12 +377,13 @@ F_pfpr_by_pcr <- function(vars, XH_obj) {
 #' @title Check model (**XH**)
 #'
 #' @param xds_obj an **`xds`** model object
+#' @param t a vector of times
 #' @param i host species index
 #'
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_XH = function(xds_obj,i){
+check_XH = function(xds_obj, t=0, i){
   UseMethod("check_XH", xds_obj$XH_obj[[i]])
 }
 #' @title Get the skill set (**XH**)

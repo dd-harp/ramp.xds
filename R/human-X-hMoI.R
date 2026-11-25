@@ -503,7 +503,7 @@ F_pfpr_by_pcr.hMoI<- function(vars, XH_obj) {
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
-check_XH.hMoI = function(xds_obj, i){
+check_XH.hMoI = function(xds_obj, t=0, i){
   return(xds_obj)
 }
 
