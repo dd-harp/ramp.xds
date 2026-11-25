@@ -19,10 +19,19 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{travel_eir} or \eqn{E_\delta}}{the average daily EIR experienced during travel by each population stratum}
+}
+}
+\details{
 Pass a pre-configured travel eir vector. If it passes
 the checks, it replaces the current travel_eir.
 
 If called with \code{name = "as_is"}, the travel eir
 must be at \code{options$travel_eir}.
+}
+\seealso{
+\link{travel_eir}, \link{get_travel_eir}, \link{change_travel_eir},
+\link{travel_malaria}, \link{malaria_importation}, \link{update_travel_eir}
 }
 \keyword{internal}

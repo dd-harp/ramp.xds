@@ -228,10 +228,10 @@ make_F_q_random = function(nPatches, options=list(), f_rand = stats::rbeta,
 #' @title WVB human fraction (**MY**)
 #'
 #' @description Compute the baseline human fraction from the availability of
-#' resident hosts (\eqn{W}), visitors (\eqn{V}), and all available blood hosts
+#' resident hosts (\eqn{W_H}), visitors (\eqn{W_V}), and all available blood hosts
 #' (\eqn{B}).
 #' 
-#' \deqn{q = \frac{W+V}{B}}
+#' \deqn{q = \frac{W_H+W_V}{B}}
 #'
 #' @inheritParams F_q
 #'

@@ -19,5 +19,26 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up visitors
+\describe{
+\item{\code{visitors} or \eqn{W_V}}{the availability of non-resident humans in each patch}
+}
+
+Visitor availability contributes to total availability for searching mosquitoes,
+alongside resident hosts, other blood hosts, and blood traps. In transmission,
+it is used with resident-host availability to compute the local fraction.
+}
+\note{
+Visitor availability is stored in \code{xds_obj$patches$visitors[[s]]}.
+}
+\section{Setup methods}{
+
+\itemize{
+\item \code{as_is} uses a supplied visitor availability vector.
+\item \code{random} generates a random visitor availability vector for each patch.
+}
+}
+
+\seealso{
+\link{visitor_availability}, \link{get_visitors}, \link{change_visitors},
+\link{malaria_importation}, \link{update_visitors}
 }

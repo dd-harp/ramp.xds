@@ -6,7 +6,7 @@ Run no consistency checks
 
 ``` r
 # S3 method for class 'basicL'
-check_L(xds_obj, s)
+check_L(xds_obj, t = 0, s)
 ```
 
 ## Arguments
@@ -14,6 +14,10 @@ check_L(xds_obj, s)
 - xds_obj:
 
   an **`xds`** model object
+
+- t:
+
+  a vector of times
 
 - s:
 

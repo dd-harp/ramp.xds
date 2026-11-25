@@ -649,7 +649,7 @@ Get model parameters
   : Get the Time Spent Matrix
 
 - [`get_time_away()`](https://dd-harp.github.io/ramp.xds/reference/get_time_away.md)
-  : Get the Time Away Vector
+  : Get time away
 
 - [`get_residence()`](https://dd-harp.github.io/ramp.xds/reference/get_residence.md)
   : Get residence
@@ -1619,21 +1619,25 @@ The ports for resources
 
 Functions to model travel & visitors
 
-- [`xds_info_importation`](https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.md)
+- [`malaria_importation`](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
+  [`xds_info_importation`](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
+  [`xds_info_malaria_importation`](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
   : Malaria Importation
-- [`xds_info_malaria_importation`](https://dd-harp.github.io/ramp.xds/reference/xds_info_malaria_importation.md)
-  : Malaria Importation
-- [`xds_info_travel_malaria`](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
+- [`travel_malaria`](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)
+  [`xds_info_travel_malaria`](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)
   : Travel Malaria
+- [`importation_dynamics()`](https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.md)
+  : Importation terms
+- [`setup_importation_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_importation_obj.md)
+  : Setup importation
 
 ### Time Away
 
 Time spent traveling
 
-- [`xds_port_time_away`](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.md)
-  : Time Away
 - [`time_away`](https://dd-harp.github.io/ramp.xds/reference/time_away.md)
   [`xds_info_time_away`](https://dd-harp.github.io/ramp.xds/reference/time_away.md)
+  [`xds_port_time_away`](https://dd-harp.github.io/ramp.xds/reference/time_away.md)
   : Time Away
 - [`setup_time_away()`](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.md)
   : Set up time away
@@ -1644,13 +1648,14 @@ Time spent traveling
 - [`make_time_away_random()`](https://dd-harp.github.io/ramp.xds/reference/make_time_away_random.md)
   : Make random time away
 - [`get_time_away()`](https://dd-harp.github.io/ramp.xds/reference/get_time_away.md)
-  : Get the Time Away Vector
+  : Get time away
 
 ### Travel EIR
 
 Exposure while traveling
 
-- [`xds_port_travel_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.md)
+- [`travel_eir`](https://dd-harp.github.io/ramp.xds/reference/travel_eir.md)
+  [`xds_port_travel_eir`](https://dd-harp.github.io/ramp.xds/reference/travel_eir.md)
   : Travel EIR
 - [`setup_travel_eir()`](https://dd-harp.github.io/ramp.xds/reference/setup_travel_eir.md)
   : Set up travel eir
@@ -1667,10 +1672,9 @@ Exposure while traveling
 
 Blood Feeding on non-Residents
 
-- [`xds_port_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.md)
-  : Visitors
-- [`xds_info_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md)
-  : Visitors
+- [`visitor_availability`](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md)
+  [`xds_info_visitors`](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md)
+  : Visitor Availability
 - [`setup_visitors()`](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.md)
   : Set up visitors
 - [`change_visitors()`](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md)
@@ -1684,8 +1688,9 @@ Blood Feeding on non-Residents
 
 Infectiousness of Visitors
 
-- [`xds_port_visitor_kappa`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.md)
-  : Visitors' Infectiousness
+- [`visitor_infectiousness`](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md)
+  [`xds_info_vis_kappa`](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md)
+  : Visitor Infectiousness
 - [`setup_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/setup_vis_kappa.md)
   : Set up visitor net infectiousness
 - [`change_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/change_vis_kappa.md)

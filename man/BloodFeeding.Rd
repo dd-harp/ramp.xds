@@ -17,7 +17,7 @@ BloodFeeding(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute and store host available, \eqn{W},
+Compute and store host available, \eqn{W_H},
 total blood host available, \eqn{B},
 the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi},
 }

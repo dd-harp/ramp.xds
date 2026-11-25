@@ -1,10 +1,10 @@
 # WVB human fraction (**MY**)
 
 Compute the baseline human fraction from the availability of resident
-hosts (\\(W\\)), visitors (\\(V\\)), and all available blood hosts
+hosts (\\(W_H\\)), visitors (\\(W_V\\)), and all available blood hosts
 (\\(B\\)).
 
-\$\$q = \frac{W+V}{B}\$\$
+\$\$q = \frac{W_H+W_V}{B}\$\$
 
 ## Usage
 

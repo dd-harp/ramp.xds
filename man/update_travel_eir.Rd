@@ -4,12 +4,10 @@
 \alias{update_travel_eir}
 \title{Update the travel eir}
 \usage{
-update_travel_eir(t, y, xds_obj, i)
+update_travel_eir(t, xds_obj, i)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -21,5 +19,8 @@ an \strong{\code{xds}} model object
 \description{
 Port function for travel EIR.
 Dispatches on \code{class(xds_obj$XH_obj[[i]]$travel_eir_obj)}.
+}
+\seealso{
+\link{travel_eir}, \link{importation_dynamics}
 }
 \keyword{internal}

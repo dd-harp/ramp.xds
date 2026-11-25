@@ -5,6 +5,7 @@
 #' @description
 #' Check that 
 #' + all elements are non-negative
+#' + all elements are less than or equal to one
 #' + `length(vis_kappa) == nP`
 #' 
 #' @param vis_kappa net infectiousness of the visitor population
@@ -15,6 +16,7 @@
 check_vis_kappa = function(vis_kappa, nP){
   stopifnot(is.numeric(vis_kappa))
   stopifnot(vis_kappa >= 0)
+  stopifnot(vis_kappa <= 1)
   stopifnot(length(vis_kappa) == nP) 
 }
 
@@ -27,6 +29,8 @@ check_vis_kappa = function(vis_kappa, nP){
 #' @param vis_kappa the net infectiousness of the visitor population
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#' @seealso [visitor_infectiousness], [setup_vis_kappa], [get_vis_kappa],
+#'   [malaria_importation]
 #'
 #' @return an **`xds`** model object
 #' 
@@ -42,12 +46,20 @@ change_vis_kappa = function(vis_kappa, xds_obj, s=1){
 
 #' @title Set up visitor net infectiousness
 #'
+#' @inherit visitor_infectiousness description
+#' @note Visitor net infectiousness is stored in `xds_obj$patches$vis_kappa[[s]]`.
 #' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
 #'
 #' @return an **`xds`** model object
+#' @seealso [visitor_infectiousness], [get_vis_kappa], [change_vis_kappa],
+#'   [malaria_importation], [update_vis_kappa]
+#'
+#' @section Setup methods:
+#' + `as_is` uses a supplied visitor net infectiousness vector.
+#' + `random` generates a random visitor net infectiousness vector for each patch.
 #'
 #' @export
 setup_vis_kappa = function(name, xds_obj, options = list(), s=1){
@@ -58,7 +70,7 @@ setup_vis_kappa = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up visitor net infectiousness
 #'
-#' @description Set up the net infectiousness of visitors using an options list.
+#' @details Set up the net infectiousness of visitors using an options list.
 #'
 #' @note If an options list is passed
 #' as the first argument, then set 
@@ -66,7 +78,7 @@ setup_vis_kappa = function(name, xds_obj, options = list(), s=1){
 #' + `options = name`
 #' and call `setup_vis_kappa(Vname, xds_obj, options, s)`.
 #'
-#' @inheritParams setup_vis_kappa
+#' @inherit setup_vis_kappa description params seealso
 #'
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -80,8 +92,8 @@ setup_vis_kappa.list = function(name, xds_obj, options=list(), s=1){
 }
 
 #' @title Set up no vis_kappa 
-#' @description Don't change anything.
-#' @inheritParams setup_vis_kappa
+#' @details Don't change anything.
+#' @inherit setup_vis_kappa description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -91,9 +103,9 @@ setup_vis_kappa.no_setup = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up visitor net infectiousness
 #' 
-#' @description Implements the "random" case for [setup_vis_kappa]. See [make_vis_kappa_random].
+#' @details Implements the "random" case for [setup_vis_kappa]. See [make_vis_kappa_random].
 #' 
-#' @inheritParams setup_vis_kappa
+#' @inherit setup_vis_kappa description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -120,14 +132,14 @@ make_vis_kappa_random = function(nPatches, options=list(), f_rand = stats::rbeta
 })}
 
 #' @title Set up visitor net infectiousness
-#' @description 
+#' @details
 #' Pass a pre-configured vis_kappa. If it passes 
 #' the checks, it replaces the current vis_kappa.
 #' 
 #' If called with `name = "as_is"`, the vis_kappa
 #' must be at `options$vis_kappa_asis`.
 #' 
-#' @inheritParams setup_vis_kappa
+#' @inherit setup_vis_kappa description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -146,17 +158,17 @@ setup_vis_kappa.as_is = function(name, xds_obj, options=list(), s=1){
 #' @title Update NI of visitors
 #' 
 #' @description Port function to compute the net infectiousness of visitors.
+#' @seealso [visitor_infectiousness], [importation_dynamics]
 #' @note Dispatches on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
 #' 
 #' @param t time
-#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
-update_vis_kappa <- function(t, y, xds_obj, s){
+update_vis_kappa <- function(t, xds_obj, s){
   UseMethod("update_vis_kappa",  xds_obj$patches$vis_kappa_obj[[s]])
 }
 
@@ -167,9 +179,13 @@ update_vis_kappa <- function(t, y, xds_obj, s){
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
-update_vis_kappa.static <- function(t, y, xds_obj, s) { return(xds_obj) }
+update_vis_kappa.static <- function(t, xds_obj, s) { return(xds_obj) }
 
 #' @title Get net infectiousness of visitors
+#'
+#' @seealso [visitor_infectiousness], [setup_vis_kappa],
+#'   [change_vis_kappa], [malaria_importation]
+#' @note Visitor net infectiousness is stored in `xds_obj$patches$vis_kappa[[s]]`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index

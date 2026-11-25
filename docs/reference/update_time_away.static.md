@@ -6,7 +6,7 @@ Return `xds_obj` unchanged for a static time away port.
 
 ``` r
 # S3 method for class 'static'
-update_time_away(t, y, xds_obj, i)
+update_time_away(t, xds_obj, i)
 ```
 
 ## Arguments
@@ -14,10 +14,6 @@ update_time_away(t, y, xds_obj, i)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 

@@ -167,12 +167,12 @@ F_W_available = function(search_weights, H, TaR){
 #' @title Compute total blood host availability
 #' @description Compute total availability to blood-seeking mosquitoes.
 #' @details Total availability sums local human/host availability, visitors,
-#' other blood hosts, and blood traps: \deqn{B = W + V + O + T.}
+#' other blood hosts, and blood traps: \deqn{B = W_H + W_V + W_O + W_T.}
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
-#' @param W local human/host availability
-#' @param visitors visitor availability
-#' @param other_blood availability of other vertebrate hosts
-#' @param traps blood trap availability
+#' @param W local human/host availability (\eqn{W_H})
+#' @param visitors visitor availability (\eqn{W_V})
+#' @param other_blood availability of other vertebrate hosts (\eqn{W_O})
+#' @param traps blood trap availability (\eqn{W_T})
 #' @return a numeric vector of total availability, one value per patch
 #' @export
 #' @keywords internal
@@ -262,7 +262,7 @@ compute_RBR = function(t, xds_obj, y){
 #' vector-host species pair.
 #' By default, \eqn{F_c(t)=1}, so \eqn{\Psi=\Theta}.
 #'
-#' The time-at-risk matrix is used to compute human availability \eqn{(W)} and the
+#' The time-at-risk matrix is used to compute human availability \eqn{(W_H)} and the
 #' biting distribution matrix \eqn{(\beta)}.
 #'
 #' @seealso [time_spent_matrix], [setup_timespent], [setup_F_circadian], [human_availability]
@@ -298,7 +298,7 @@ compute_TaR <- function(xds_obj, t=0){
 }
 
 #' @title Blood feeding
-#' @description Compute and store host available, \eqn{W},
+#' @description Compute and store host available, \eqn{W_H},
 #' total blood host available, \eqn{B},
 #' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi},
 #' @param t time

@@ -6,7 +6,7 @@ Port function for time away. Dispatches on
 ## Usage
 
 ``` r
-update_time_away(t, y, xds_obj, i)
+update_time_away(t, xds_obj, i)
 ```
 
 ## Arguments
@@ -14,10 +14,6 @@ update_time_away(t, y, xds_obj, i)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 
@@ -30,3 +26,8 @@ update_time_away(t, y, xds_obj, i)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md),
+[importation_dynamics](https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.md)

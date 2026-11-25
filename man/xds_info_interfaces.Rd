@@ -36,7 +36,7 @@ daily entomological inoculation rate (EIR or \eqn{E}) for all the strata
 computes the force of infection (FoI) for all the population strata from:
 \itemize{
 \item the local daily EIR (\eqn{E})
-\item the travel EIR (\eqn{\delta})
+\item the travel EIR (\eqn{E_\delta})
 \item an assumption about the distribution of the expectation
 \item a model of partial immunity (\eqn{b}) from the \strong{X} component
 }

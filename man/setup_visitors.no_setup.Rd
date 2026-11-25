@@ -19,6 +19,19 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{visitors} or \eqn{W_V}}{the availability of non-resident humans in each patch}
+}
+
+Visitor availability contributes to total availability for searching mosquitoes,
+alongside resident hosts, other blood hosts, and blood traps. In transmission,
+it is used with resident-host availability to compute the local fraction.
+}
+\details{
 Don't change anything.
+}
+\seealso{
+\link{visitor_availability}, \link{get_visitors}, \link{change_visitors},
+\link{malaria_importation}, \link{update_visitors}
 }
 \keyword{internal}

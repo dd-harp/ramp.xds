@@ -6,7 +6,7 @@ The `static` method returns `xds_obj` unmodified.
 
 ``` r
 # S3 method for class 'static'
-update_vis_kappa(t, y, xds_obj, s)
+update_vis_kappa(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -14,10 +14,6 @@ update_vis_kappa(t, y, xds_obj, s)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 

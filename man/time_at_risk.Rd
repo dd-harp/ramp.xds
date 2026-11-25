@@ -35,7 +35,7 @@ Both \eqn{\Theta} and \eqn{\Psi} have dimensions \code{nPatches} \eqn{\times}
 vector-host species pair.
 By default, \eqn{F_c(t)=1}, so \eqn{\Psi=\Theta}.
 
-The time-at-risk matrix is used to compute human availability \eqn{(W)} and the
+The time-at-risk matrix is used to compute human availability \eqn{(W_H)} and the
 biting distribution matrix \eqn{(\beta)}.
 }
 

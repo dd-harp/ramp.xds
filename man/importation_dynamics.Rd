@@ -4,12 +4,10 @@
 \alias{importation_dynamics}
 \title{Importation terms}
 \usage{
-importation_dynamics(t, y, xds_obj)
+importation_dynamics(t, xds_obj)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
@@ -18,5 +16,32 @@ an \strong{\code{xds}} model object
 }
 \description{
 Compute terms associated with importation
+}
+\section{Importation}{
+
+
+For each host species, this function calls four ports at time \code{t}:
+\itemize{
+\item \link{update_visitors} updates the availability of non-resident hosts.
+\item \link{update_vis_kappa} updates the net infectiousness of those visitors.
+\item \link{update_time_away} updates the fraction of time resident hosts spend away.
+\item \link{update_travel_eir} updates their EIR while traveling.
+}
+
+Each port returns an updated \code{xds_obj}, which is passed to the next port.
+Static ports leave the model unchanged.
+These inputs are used by the blood-feeding and transmission interfaces
+to account for visitors and by \link{Exposure} to account for infection risk
+while traveling. This function updates the inputs; it does not itself
+compute new infections or change the dependent variables.
+}
+
+\seealso{
+\link{malaria_importation}, \link{time_away}, \link{travel_eir},
+\link{visitor_availability}, \link{visitor_infectiousness},
+\link{setup_visitors}, \link{setup_vis_kappa}, \link{setup_time_away},
+\link{setup_travel_eir}, \link{get_visitors}, \link{change_visitors},
+\link{get_vis_kappa}, \link{change_vis_kappa}, \link{get_time_away},
+\link{change_time_away}, \link{get_travel_eir}, \link{change_travel_eir}
 }
 \keyword{internal}

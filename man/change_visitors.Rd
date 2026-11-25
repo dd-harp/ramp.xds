@@ -19,3 +19,7 @@ an \strong{\code{xds}} model object
 \description{
 Update the visitors for the \eqn{s^{th}} vector species.
 }
+\seealso{
+\link{visitor_availability}, \link{setup_visitors}, \link{get_visitors},
+\link{malaria_importation}
+}

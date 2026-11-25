@@ -26,6 +26,8 @@ check_travel_eir = function(teir, Nh){
 #' @param travel_eir a travel eir vector 
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
+#' @seealso [travel_eir], [setup_travel_eir], [get_travel_eir],
+#'   [malaria_importation]
 #'
 #' @return an **`xds`** model object
 #' @export
@@ -39,12 +41,21 @@ change_travel_eir = function(travel_eir, xds_obj, i=1){
 
 #' @title Set up travel eir 
 #'
+#' @inherit travel_eir description
+#' @note Travel EIR is stored in `xds_obj$XH_obj[[i]]$travel_eir`.
+#'
 #' @param name a setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
 #'
 #' @return an **`xds`** model object
+#' @seealso [travel_eir], [get_travel_eir], [change_travel_eir],
+#'   [travel_malaria], [malaria_importation], [update_travel_eir]
+#'
+#' @section Setup methods:
+#' + `as_is` uses a supplied travel EIR vector.
+#' + `random` generates a random travel EIR value for each population stratum.
 #'
 #' @export
 setup_travel_eir = function(name, xds_obj, options = list(), i=1){
@@ -55,13 +66,13 @@ setup_travel_eir = function(name, xds_obj, options = list(), i=1){
 
 #' @title Set up a travel eir 
 #'
-#' @description If an options list is passed
+#' @details If an options list is passed
 #' as the first argument, then set 
 #' + `Teirname = name$name` 
 #' + `options = name`
 #' and call `setup_travel_eir(Teirname, xds_obj, options, i)`
 #'
-#' @inheritParams setup_travel_eir
+#' @inherit setup_travel_eir description params seealso
 #'
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -75,8 +86,8 @@ setup_travel_eir.list = function(name, xds_obj, options=list(), i=1){
 }
 
 #' @title Set up no travel eir  
-#' @description Don't change anything 
-#' @inheritParams setup_travel_eir
+#' @details Don't change anything
+#' @inherit setup_travel_eir description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -85,10 +96,10 @@ setup_travel_eir.no_setup = function(name, xds_obj, options = list(), i=1){
 }
 
 #' @title Set up no travel EIR
-#' @description Set travel EIR to zero for each stratum of the selected host
+#' @details Set travel EIR to zero for each stratum of the selected host
 #' species using [change_travel_eir].
 #' 
-#' @inheritParams setup_travel_eir
+#' @inherit setup_travel_eir description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -100,14 +111,14 @@ setup_travel_eir.no_travel = function(name, xds_obj, options=list(), i=1){
 
 
 #' @title Set up a travel eir 
-#' @description 
+#' @details
 #' Pass a pre-configured travel eir vector. If it passes
 #' the checks, it replaces the current travel_eir.
 #' 
 #' If called with `name = "as_is"`, the travel eir
 #' must be at `options$travel_eir`.
 #' 
-#' @inheritParams setup_travel_eir
+#' @inherit setup_travel_eir description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -125,9 +136,9 @@ setup_travel_eir.as_is = function(name, xds_obj, options=list(), i=1){
 
 #' @title Set up random travel EIR
 #' 
-#' @description Set up random values for travel EIR.
+#' @details Set up random values for travel EIR.
 #' 
-#' @inheritParams setup_travel_eir
+#' @inherit setup_travel_eir description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -156,16 +167,16 @@ make_travel_eir_random = function(nStrata, options=list(), f_rand = stats::rlnor
 #' @title Update the travel eir 
 #' @description Port function for travel EIR.
 #' Dispatches on `class(xds_obj$XH_obj[[i]]$travel_eir_obj)`.
+#' @seealso [travel_eir], [importation_dynamics]
 #' 
 #' @param t time
-#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #' 
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
-update_travel_eir <- function(t, y, xds_obj, i) {
+update_travel_eir <- function(t, xds_obj, i) {
   UseMethod("update_travel_eir", xds_obj$XH_obj[[i]]$travel_eir_obj)
 }
 
@@ -177,10 +188,15 @@ update_travel_eir <- function(t, y, xds_obj, i) {
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
-update_travel_eir.static <- function(t, y, xds_obj, i) {return(xds_obj)}
+update_travel_eir.static <- function(t, xds_obj, i) {return(xds_obj)}
 
 
 #' @title Get the travel eir 
+#'
+#' @seealso [travel_eir], [setup_travel_eir], [change_travel_eir],
+#'   [travel_malaria], [malaria_importation]
+#'
+#' @note Travel EIR is stored in `xds_obj$XH_obj[[i]]$travel_eir`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index

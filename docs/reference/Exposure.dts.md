@@ -36,8 +36,8 @@ entomological inoculation rates (dEIR or \\(E\\)), and a model for the
 probability of infection per infectious bite, \\(b\\) (from
 \\(F_infectivity\\), as defined by an \\(\cal X\\) model). The total
 attack rates are computed from the time-weighted local and travel FoI,
-using the travel EIR, \\(E_T\\): \$\$\alpha = 1-\exp(-((1-\delta)
-F_h(E,b) + \delta F_h(E_T,b)))\$\$
+using the travel EIR, \\(E\_\delta\\): \$\$\alpha = 1-\exp(-((1-\delta)
+F_h(E,b) + \delta F_h(E\_\delta,b)))\$\$
 
 ## See also
 
@@ -45,4 +45,4 @@ Related:
 [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md) &
 [F_ar.pois](https://dd-harp.github.io/ramp.xds/reference/F_ar.pois.md) &
 [F_ar.nb](https://dd-harp.github.io/ramp.xds/reference/F_ar.nb.md) &
-[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
+[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)

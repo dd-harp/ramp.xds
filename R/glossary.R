@@ -54,13 +54,19 @@
 #'     in each patch when not traveling. See [xds_info_time_spent].}
 #'   \item{Time at risk}{Time spent when not traveling, weighted by mosquito
 #'     activity. See [time_at_risk].}
-#'   \item{Time away}{The fraction of time spent outside the spatial domain
-#'     represented by the patches. See [xds_port_time_away].}
+#'   \item{Time away (\eqn{\delta})}{The fraction of time spent outside the
+#'     modeled spatial domain. See [time_away].}
+#'   \item{Travel EIR (\eqn{E_\delta})}{The average daily EIR experienced
+#'     while traveling. See [travel_eir].}
 #'   \item{Travel malaria}{Exposure to malaria outside the modeled spatial
-#'     domain. See [xds_info_travel_malaria].}
-#'   \item{Visitor}{A non-resident host whose availability and infectiousness
-#'     contribute to blood feeding and transmission in patches.
-#'     See [xds_info_visitors].}
+#'     domain. See [travel_malaria].}
+#'   \item{Malaria importation}{Importation through resident travel or
+#'     infectious visitors. See [malaria_importation].}
+#'   \item{Visitor availability (\eqn{W_V})}{The availability of non-resident
+#'     humans to searching mosquitoes. See [visitor_availability].}
+#'   \item{Visitor infectiousness (\eqn{\kappa_V})}{The probability a mosquito
+#'     becomes infected after blood feeding on a visitor.
+#'     See [visitor_infectiousness].}
 #'   \item{Local fraction}{The fraction of blood feeding on local hosts
 #'     among blood meals on local hosts and visitors.
 #'     See [xds_info_local_fraction].}

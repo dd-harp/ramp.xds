@@ -19,7 +19,19 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{time_away} or \eqn{\delta}}{the fraction of time spent outside the modeled area}
+}
+
+Time away weights travel exposure in \link{travel_malaria} and is used to
+calculate the availability of resident hosts.
+}
+\details{
 Set time away to zero for each stratum of the selected host
 species using \link{change_time_away}.
+}
+\seealso{
+\link{time_away}, \link{get_time_away}, \link{change_time_away},
+\link{travel_malaria}, \link{malaria_importation}, \link{update_time_away}
 }
 \keyword{internal}

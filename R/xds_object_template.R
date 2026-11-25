@@ -109,7 +109,7 @@ make_xds_object_template = function(xds='xde', frame='full',
   
   # Blood Feeding Interface 
   xds_obj <- setup_blood_feeding_interface(xds_obj, residence)
-  xds_obj <- setup_importation(xds_obj)
+  xds_obj <- setup_importation_obj(xds_obj)
   xds_obj <- setup_transmission(xds_obj)
   xds_obj <- setup_exposure_obj(xds_obj)
 

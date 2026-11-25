@@ -6,7 +6,7 @@ Port function for travel EIR. Dispatches on
 ## Usage
 
 ``` r
-update_travel_eir(t, y, xds_obj, i)
+update_travel_eir(t, xds_obj, i)
 ```
 
 ## Arguments
@@ -14,10 +14,6 @@ update_travel_eir(t, y, xds_obj, i)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 
@@ -30,3 +26,8 @@ update_travel_eir(t, y, xds_obj, i)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[travel_eir](https://dd-harp.github.io/ramp.xds/reference/travel_eir.md),
+[importation_dynamics](https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.md)

@@ -275,8 +275,8 @@ compute_kappa <- function(t, y, xds_obj){
 
 #' @title Compute the local fraction
 #' @description Compute the availability for the pathogen's hosts for blood feeding
-#' @param W availability of blood hosts
-#' @param Visitors availability of visitors
+#' @param W local human/host availability (\eqn{W_H})
+#' @param Visitors visitor availability (\eqn{W_V})
 #' @return the fraction of bites
 #' @export
 #' @keywords internal

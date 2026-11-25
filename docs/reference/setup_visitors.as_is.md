@@ -1,10 +1,13 @@
 # Set up visitors
 
-Pass pre-configured visitors. If it passes the checks, it replaces the
-current visitors.
+- `visitors` or \\(W_V\\):
 
-If called with `name = "as_is"`, the visitors must be at
-`options$visitors_asis`.
+  the availability of non-resident humans in each patch
+
+Visitor availability contributes to total availability for searching
+mosquitoes, alongside resident hosts, other blood hosts, and blood
+traps. In transmission, it is used with resident-host availability to
+compute the local fraction.
 
 ## Usage
 
@@ -34,3 +37,19 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+Pass pre-configured visitors. If it passes the checks, it replaces the
+current visitors.
+
+If called with `name = "as_is"`, the visitors must be at
+`options$visitors_asis`.
+
+## See also
+
+[visitor_availability](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md),
+[get_visitors](https://dd-harp.github.io/ramp.xds/reference/get_visitors.md),
+[change_visitors](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md),
+[update_visitors](https://dd-harp.github.io/ramp.xds/reference/update_visitors.md)

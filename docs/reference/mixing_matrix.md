@@ -13,12 +13,12 @@ weights and time at risk as
 
 For a host species, the mixing matrix is an `nStrata` \\(\times\\)
 `nPatches` matrix: \$\$\beta = \mbox{diag}(w(1-\delta)) \cdot \Psi^T
-\cdot \mbox{diag}(1/W)\$\$ The product \\(w(1-\delta)\\) is
+\cdot \mbox{diag}(1/W_H)\$\$ The product \\(w(1-\delta)\\) is
 element-wise, with \\(\delta\\) denoting the fraction of time away for
-each stratum. Here, \\(W\\) is total local host availability, summed
+each stratum. Here, \\(W_H\\) is total local host availability, summed
 over host species.
 [F_beta](https://dd-harp.github.io/ramp.xds/reference/F_beta.md)
-replaces zero entries of \\(W\\) with one before dividing, to avoid
+replaces zero entries of \\(W_H\\) with one before dividing, to avoid
 division by zero.
 
 For one host species, the fraction of bites on local hosts in patch

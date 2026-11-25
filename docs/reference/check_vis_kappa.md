@@ -4,6 +4,8 @@ Check that
 
 - all elements are non-negative
 
+- all elements are less than or equal to one
+
 - `length(vis_kappa) == nP`
 
 ## Usage
