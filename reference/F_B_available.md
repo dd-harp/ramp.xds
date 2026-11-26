@@ -12,19 +12,19 @@ F_B_available(W, visitors, other_blood, traps)
 
 - W:
 
-  local human/host availability
+  local human/host availability (\\W_H\\)
 
 - visitors:
 
-  visitor availability
+  visitor availability (\\W_V\\)
 
 - other_blood:
 
-  availability of other vertebrate hosts
+  availability of other vertebrate hosts (\\W_O\\)
 
 - traps:
 
-  blood trap availability
+  blood trap availability (\\W_T\\)
 
 ## Value
 
@@ -33,7 +33,7 @@ a numeric vector of total availability, one value per patch
 ## Details
 
 Total availability sums local human/host availability, visitors, other
-blood hosts, and blood traps: \$\$B = W + V + O + T.\$\$
+blood hosts, and blood traps: \$\$B = W_H + W_V + W_O + W_T.\$\$
 
 ## References
 

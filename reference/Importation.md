@@ -7,7 +7,7 @@ infectiousness.
 ## Usage
 
 ``` r
-Importation(t, y, xds_obj)
+Importation(t, xds_obj)
 ```
 
 ## Arguments
@@ -15,10 +15,6 @@ Importation(t, y, xds_obj)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 

@@ -8,7 +8,7 @@
 
   the fraction of blood meals on the modeled hosts and visitors
 
-- \\W\\:
+- \\W_H\\:
 
   local host availability
 
@@ -20,7 +20,7 @@
 
   the mixing matrix
 
-## Blood Feeding
+## Blood Hosts
 
 **Hosts in Patches** — The population densities in strata are computed
 by the **XH** component function
@@ -31,29 +31,30 @@ weights and time at risk determine local host availability (see
 **Other Hosts and Traps** — Local hosts compete with visitors, other
 blood hosts, and blood traps for mosquito blood-seeking activity:
 
-- \\W\\ — local host availability
+- \\W_H\\ — local host availability
 
-- \\V\\ — visitor availability
+- \\W_V\\ — visitor availability
 
-- \\O\\ — other blood host availability
+- \\W_O\\ — other blood host availability
 
-- \\T\\ — blood trap availability
+- \\W_T\\ — blood trap availability
 
-\$\$B = W + V + O + T\$\$
+\$\$B = W_H + W_V + W_O + W_T\$\$
 
 **Mosquito Bionomics** — Blood-feeding rates and other mosquito bionomic
 parameters can be modeled as functional responses to availability. For
 example: \$\$f = F_f(B, \ldots)\$\$ For positive total availability, an
-availability-based host fraction is: \$\$q = \frac{W+V}{B}\$\$ This is a
-modeling relationship, not a constraint automatically imposed on every
-**MY** module. Directly assigned bionomic parameters need not satisfy
-it.
+availability-based host fraction is: \$\$q = \frac{W_H+W_V}{B}\$\$ This
+is a modeling relationship, not a constraint automatically imposed on
+every **MY** module. Directly assigned bionomic parameters need not
+satisfy it.
 
 **Bites on Local Hosts** — The local fraction separates bites on local
-hosts from bites on visitors: \$\$\ell = \frac{W}{W+V}\$\$
+hosts from bites on visitors: \$\$\ell = \frac{W_H}{W_H+W_V}\$\$
 [F_local_frac](https://dd-harp.github.io/ramp.xds/reference/F_local_frac.md)
-sets this fraction to one when \\W+V=0\\. For a single vector species,
-the human/host biting rate and daily local EIR are computed using the
+sets this fraction to one when \\W_H+W_V=0\\. For a single vector
+species, the human/host biting rate and daily local EIR are computed
+using the
 [mixing_matrix](https://dd-harp.github.io/ramp.xds/reference/mixing_matrix.md):
 \$\$\mbox{HBR} = \beta \cdot (\ell f q M)\$\$ \$\$\mbox{EIR} = \beta
 \cdot (\ell f q Z)\$\$ Products within the parentheses are element-wise.

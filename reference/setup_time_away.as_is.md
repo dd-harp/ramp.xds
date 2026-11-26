@@ -1,10 +1,12 @@
 # Set up time away
 
-Pass a pre-configured time away vector. If it passes the checks, it
-replaces the current time_away.
+- `time_away` or \\\delta\\:
 
-If called with `name = "as_is"`, the time away vector must be at
-`options$time_away`.
+  the fraction of time spent outside the modeled area
+
+Time away weights travel exposure in
+[travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)
+and is used to calculate the availability of resident hosts.
 
 ## Usage
 
@@ -34,3 +36,20 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+Pass a pre-configured time away vector. If it passes the checks, it
+replaces the current time_away.
+
+If called with `name = "as_is"`, the time away vector must be at
+`options$time_away`.
+
+## See also
+
+[time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md),
+[get_time_away](https://dd-harp.github.io/ramp.xds/reference/get_time_away.md),
+[change_time_away](https://dd-harp.github.io/ramp.xds/reference/change_time_away.md),
+[travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md),
+[update_time_away](https://dd-harp.github.io/ramp.xds/reference/update_time_away.md)

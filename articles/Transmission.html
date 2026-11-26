@@ -152,28 +152,28 @@ humans in strata.</p>
 distribution matrix, <span class="math inline">\(\beta\)</span>,
 allocates bites per member of each population stratum, accounting for
 absence while traveling. The infective biting density per unit of local
-host availability in each patch is <span class="math inline">\(fqZ/W.\)</span> In the formula, angle brackets
+host availability in each patch is <span class="math inline">\(fqZ/W_H.\)</span> In the formula, angle brackets
 denote a diagonal matrix. Bites are allocated using search weights, time
 at risk, and the fraction of time not traveling.</p>
 <ul>
-<li><p>The vector of local host availability, <span class="math inline">\(W,\)</span> has length <code>nPatches</code> and
+<li><p>The vector of local host availability, <span class="math inline">\(W_H,\)</span> has length <code>nPatches</code> and
 is computed as part of <a href="BloodFeeding.html">Blood
 Feeding</a>.</p></li>
-<li><p>The density of residents who are not traveling is <span class="math inline">\((1-\zeta) H\)</span>.</p></li>
-<li><p>The function that computes <span class="math inline">\(\beta\)</span> replaces zero entries of <span class="math inline">\(W\)</span> with one before dividing, to avoid
+<li><p>The density of residents who are not traveling is <span class="math inline">\((1-\delta) H\)</span>.</p></li>
+<li><p>The function that computes <span class="math inline">\(\beta\)</span> replaces zero entries of <span class="math inline">\(W_H\)</span> with one before dividing, to avoid
 division-by-zero errors.</p></li>
 </ul>
 </li>
 <li><p><span class="math inline">\(\vartheta\)</span> — Bites are
 allocated by availability. The availability of visitors in each patch
-<span class="math inline">\(V\)</span> is a variable that can be set by
-<a href="https://dd-harp.github.io/ramp.xds/reference/setup_visitors.html">setup_visitors</a>.
-If <span class="math inline">\(W+V=0\)</span>, the implementation sets
-the local fraction to one by convention.</p></li>
+<span class="math inline">\(W_V\)</span> is a variable that can be set
+by <a href="https://dd-harp.github.io/ramp.xds/reference/setup_visitors.html">setup_visitors</a>.
+If <span class="math inline">\(W_H+W_V=0\)</span>, the implementation
+sets the local fraction to one by convention.</p></li>
 </ul>
 <p>The bite distribution matrix is:</p>
-<p><span class="math display">\[\beta = \left&lt;w (1-\zeta)\right&gt;
-\cdot \Psi^T \cdot \left&lt; \frac{1}W \right&gt; \]</span></p>
+<p><span class="math display">\[\beta = \left&lt;w (1-\delta)\right&gt;
+\cdot \Psi^T \cdot \left&lt; \frac{1}{W_H} \right&gt; \]</span></p>
 <p><strong>The EIR</strong></p>
 <ul>
 <li><p><span class="math inline">\(fqZ\)</span> — The net infective

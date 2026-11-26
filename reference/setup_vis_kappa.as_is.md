@@ -1,10 +1,11 @@
 # Set up visitor net infectiousness
 
-Pass a pre-configured vis_kappa. If it passes the checks, it replaces
-the current vis_kappa.
+- `vis_kappa` or \\\kappa_V\\:
 
-If called with `name = "as_is"`, the vis_kappa must be at
-`options$vis_kappa_asis`.
+  the net infectiousness of visitors to mosquitoes
+
+Visitor infectiousness represents the probability that a mosquito
+becomes infected after blood feeding on a visitor.
 
 ## Usage
 
@@ -34,3 +35,19 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+Pass a pre-configured vis_kappa. If it passes the checks, it replaces
+the current vis_kappa.
+
+If called with `name = "as_is"`, the vis_kappa must be at
+`options$vis_kappa_asis`.
+
+## See also
+
+[visitor_infectiousness](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md),
+[get_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/get_vis_kappa.md),
+[change_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/change_vis_kappa.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md),
+[update_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/update_vis_kappa.md)

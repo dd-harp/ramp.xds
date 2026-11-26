@@ -25,3 +25,10 @@ change_visitors(visitors, xds_obj, s = 1)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[visitor_availability](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md),
+[setup_visitors](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.md),
+[get_visitors](https://dd-harp.github.io/ramp.xds/reference/get_visitors.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)

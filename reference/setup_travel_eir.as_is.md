@@ -1,10 +1,9 @@
 # Set up a travel eir
 
-Pass a pre-configured travel eir vector. If it passes the checks, it
-replaces the current travel_eir.
+- `travel_eir` or \\E\_\delta\\:
 
-If called with `name = "as_is"`, the travel eir must be at
-`options$travel_eir`.
+  the average daily EIR experienced during travel by each population
+  stratum
 
 ## Usage
 
@@ -34,3 +33,20 @@ setup_travel_eir(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+Pass a pre-configured travel eir vector. If it passes the checks, it
+replaces the current travel_eir.
+
+If called with `name = "as_is"`, the travel eir must be at
+`options$travel_eir`.
+
+## See also
+
+[travel_eir](https://dd-harp.github.io/ramp.xds/reference/travel_eir.md),
+[get_travel_eir](https://dd-harp.github.io/ramp.xds/reference/get_travel_eir.md),
+[change_travel_eir](https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.md),
+[travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md),
+[update_travel_eir](https://dd-harp.github.io/ramp.xds/reference/update_travel_eir.md)

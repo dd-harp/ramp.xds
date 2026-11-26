@@ -1,9 +1,13 @@
 # Set up visitors
 
-Implements the "random" case for
-[setup_visitors](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.md).
-See
-[make_visitors_random](https://dd-harp.github.io/ramp.xds/reference/make_visitors_random.md).
+- `visitors` or \\W_V\\:
+
+  the availability of non-resident humans in each patch
+
+Visitor availability contributes to total availability for searching
+mosquitoes, alongside resident hosts, other blood hosts, and blood
+traps. In transmission, it is used with resident-host availability to
+compute the local fraction.
 
 ## Usage
 
@@ -33,3 +37,18 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Details
+
+Implements the "random" case for
+[setup_visitors](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.md).
+See
+[make_visitors_random](https://dd-harp.github.io/ramp.xds/reference/make_visitors_random.md).
+
+## See also
+
+[visitor_availability](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md),
+[get_visitors](https://dd-harp.github.io/ramp.xds/reference/get_visitors.md),
+[change_visitors](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md),
+[update_visitors](https://dd-harp.github.io/ramp.xds/reference/update_visitors.md)

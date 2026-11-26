@@ -5,7 +5,7 @@ Port function to compute the net infectiousness of visitors.
 ## Usage
 
 ``` r
-update_vis_kappa(t, y, xds_obj, s)
+update_vis_kappa(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -13,10 +13,6 @@ update_vis_kappa(t, y, xds_obj, s)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 
@@ -33,3 +29,8 @@ an **`xds`** model object
 ## Note
 
 Dispatches on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
+
+## See also
+
+[visitor_infectiousness](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md),
+[importation_dynamics](https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.md)

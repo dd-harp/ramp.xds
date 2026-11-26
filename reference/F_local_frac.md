@@ -12,11 +12,11 @@ F_local_frac(W, Visitors)
 
 - W:
 
-  availability of blood hosts
+  local human/host availability (\\W_H\\)
 
 - Visitors:
 
-  availability of visitors
+  visitor availability (\\W_V\\)
 
 ## Value
 

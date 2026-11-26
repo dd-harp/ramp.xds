@@ -27,7 +27,7 @@ per person would be negatively binomially distributed. For more, see
 
 Travel malaria is defined by exposure to malaria while spending time
 outside of the spatial domain represented by the patches. See
-[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md).
+[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md).
 
 ## Pre-Erythrocytic Immunity
 
@@ -38,4 +38,4 @@ probability of infection per infectious bite.
 
 [xds_info_environmental_heterogeneity](https://dd-harp.github.io/ramp.xds/reference/xds_info_environmental_heterogeneity.md)
 \|
-[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
+[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)

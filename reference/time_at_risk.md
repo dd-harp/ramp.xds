@@ -24,7 +24,7 @@ Both \\\Theta\\ and \\\Psi\\ have dimensions `nPatches` \\\times\\
 `nStrata` for a host species. Time at risk is computed for each
 vector-host species pair. By default, \\F_c(t)=1\\, so \\\Psi=\Theta\\.
 
-The time-at-risk matrix is used to compute human availability \\(W)\\
+The time-at-risk matrix is used to compute human availability \\(W_H)\\
 and the biting distribution matrix \\(\beta)\\.
 
 ## See also

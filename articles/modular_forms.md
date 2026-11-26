@@ -222,7 +222,7 @@ getS3method("dXHdt", "SIS")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x60b0ae4186b8>
+    ## <bytecode: 0x624321b15038>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -251,7 +251,7 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x60b0ae5f6638>
+    ## <bytecode: 0x6243223b4d78>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the forcing function
@@ -277,5 +277,5 @@ getS3method("F_emerge", "trivialL")
     ##             F_shock(t, V_k))
     ##     })
     ## }
-    ## <bytecode: 0x60b0ae7cf1d0>
+    ## <bytecode: 0x624322583940>
     ## <environment: namespace:ramp.xds>

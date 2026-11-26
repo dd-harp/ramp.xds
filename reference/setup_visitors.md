@@ -1,6 +1,13 @@
 # Set up visitors
 
-Set up visitors
+- `visitors` or \\W_V\\:
+
+  the availability of non-resident humans in each patch
+
+Visitor availability contributes to total availability for searching
+mosquitoes, alongside resident hosts, other blood hosts, and blood
+traps. In transmission, it is used with resident-host availability to
+compute the local fraction.
 
 ## Usage
 
@@ -29,3 +36,26 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** model object
+
+## Note
+
+Visitor availability is stored in `xds_obj$patches$visitors[[s]]`. Setup
+methods call
+[change_visitors](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md)
+to validate the value and update the static port values. This change
+function is intended for use by setup methods, not for direct use.
+
+## Setup methods
+
+- `as_is` uses a supplied visitor availability vector.
+
+- `random` generates a random visitor availability vector for each
+  patch.
+
+## See also
+
+[visitor_availability](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md),
+[get_visitors](https://dd-harp.github.io/ramp.xds/reference/get_visitors.md),
+[change_visitors](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md),
+[update_visitors](https://dd-harp.github.io/ramp.xds/reference/update_visitors.md)

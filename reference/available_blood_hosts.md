@@ -1,6 +1,6 @@
 # Available Blood Hosts
 
-- \\W\\:
+- \\W_H\\:
 
   local human/host availability in patches
 
@@ -11,17 +11,17 @@
 ## Note
 
 For one host species, \\\left\|w\right\|=\left\|H\right\|=\\`nStrata`
-and \\\Psi\\ has dimensions `nPatches` \\\times\\ `nStrata`. Both \\W\\
-and \\B\\ have length `nPatches`.
+and \\\Psi\\ has dimensions `nPatches` \\\times\\ `nStrata`. Both
+\\W_H\\ and \\B\\ have length `nPatches`.
 
 ## Total Blood Host Availability
 
-Local human/host availability \\(W)\\ is computed as described in
+Local human/host availability \\(W_H)\\ is computed as described in
 [human_availability](https://dd-harp.github.io/ramp.xds/reference/human_availability.md).
 Visitors, other blood hosts, and blood traps also attract blood-seeking
-mosquitoes. Total availability in each patch is: \$\$B = W + V + O +
-T\$\$ where \\V\\ is visitor availability, \\O\\ is other blood host
-availability, and \\T\\ is blood trap availability.
+mosquitoes. Total availability in each patch is: \$\$B = W_H + W_V +
+W_O + W_T\$\$ where \\W_V\\ is visitor availability, \\W_O\\ is other
+blood host availability, and \\W_T\\ is blood trap availability.
 
 ## See also
 

@@ -7,7 +7,7 @@
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Available Blood Hosts — available_blood_hosts"><meta name="description" content="
 
-\(W\)
+\(W_H\)
 local human/host availability in patches
 
 \(B\)
@@ -17,7 +17,7 @@ total availability to blood-seeking mosquitoes in patches
 
 "><meta property="og:description" content="
 
-\(W\)
+\(W_H\)
 local human/host availability in patches
 
 \(B\)
@@ -108,7 +108,7 @@ total availability to blood-seeking mosquitoes in patches
 
     <div class="ref-description section level2">
 
-<dl><dt>\(W\)</dt>
+<dl><dt>\(W_H\)</dt>
 <dd><p>local human/host availability in patches</p></dd>
 
 <dt>\(B\)</dt>
@@ -122,18 +122,18 @@ total availability to blood-seeking mosquitoes in patches
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>For one host species, \(\left|w\right|=\left|H\right|=\)<code>nStrata</code>
 and \(\Psi\) has dimensions <code>nPatches</code> \(\times\) <code>nStrata</code>.
-Both \(W\) and \(B\) have length <code>nPatches</code>.</p>
+Both \(W_H\) and \(B\) have length <code>nPatches</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="total-blood-host-availability">Total Blood Host Availability<a class="anchor" aria-label="anchor" href="#total-blood-host-availability"></a></h2>
 
 
-<p>Local human/host availability \((W)\) is computed as described in
+<p>Local human/host availability \((W_H)\) is computed as described in
 <a href="human_availability.html">human_availability</a>. Visitors, other blood hosts, and blood traps also
 attract blood-seeking mosquitoes. Total availability in each patch is:
-$$B = W + V + O + T$$
-where \(V\) is visitor availability, \(O\) is other blood host
-availability, and \(T\) is blood trap availability.</p>
+$$B = W_H + W_V + W_O + W_T$$
+where \(W_V\) is visitor availability, \(W_O\) is other blood host
+availability, and \(W_T\) is blood trap availability.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

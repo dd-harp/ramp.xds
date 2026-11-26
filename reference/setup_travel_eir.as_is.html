@@ -5,13 +5,21 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up a travel eir — setup_travel_eir.as_is"><meta name="description" content="Pass a pre-configured travel eir vector. If it passes
-the checks, it replaces the current travel_eir.
-If called with name = &quot;as_is&quot;, the travel eir
-must be at options$travel_eir."><meta property="og:description" content="Pass a pre-configured travel eir vector. If it passes
-the checks, it replaces the current travel_eir.
-If called with name = &quot;as_is&quot;, the travel eir
-must be at options$travel_eir."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up a travel eir — setup_travel_eir.as_is"><meta name="description" content="
+
+travel_eir or \(E_\delta\)
+the average daily EIR experienced during travel by each population stratum
+
+
+
+"><meta property="og:description" content="
+
+travel_eir or \(E_\delta\)
+the average daily EIR experienced during travel by each population stratum
+
+
+
+"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -93,11 +101,12 @@ must be at options$travel_eir."></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>Pass a pre-configured travel eir vector. If it passes
-the checks, it replaces the current travel_eir.</p>
-<p>If called with <code>name = "as_is"</code>, the travel eir
-must be at <code>options$travel_eir</code>.</p>
-    </div>
+
+<dl><dt><code>travel_eir</code> or \(E_\delta\)</dt>
+<dd><p>the average daily EIR experienced during travel by each population stratum</p></dd>
+
+
+</dl></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
@@ -128,6 +137,18 @@ must be at <code>options$travel_eir</code>.</p>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>an <strong><code>xds</code></strong> model object</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Pass a pre-configured travel eir vector. If it passes
+the checks, it replaces the current travel_eir.</p>
+<p>If called with <code>name = "as_is"</code>, the travel eir
+must be at <code>options$travel_eir</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="travel_eir.html">travel_eir</a>, <a href="get_travel_eir.html">get_travel_eir</a>, <a href="change_travel_EIR.html">change_travel_eir</a>,
+<a href="travel_malaria.html">travel_malaria</a>, <a href="malaria_importation.html">malaria_importation</a>, <a href="update_travel_eir.html">update_travel_eir</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

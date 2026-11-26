@@ -196,13 +196,13 @@ for all strata</p></li>
 </ul>
 </li>
 <li>
-<p><span class="math inline">\(\zeta\)</span> — Humans sometimes
+<p><span class="math inline">\(\delta\)</span> — Humans sometimes
 <em>travel.</em> In this model, it means they spend some time outside
 the <em>spatial domain</em> that is represented by the patches.</p>
 <ul>
 <li><p>By default, time away for all the strata is set to 0.</p></li>
 <li><p>Time away can be changed by <code>setup_time_away</code></p></li>
-<li><p>The density of humans who are present, or not traveling, is <span class="math display">\[(1-\zeta)H\]</span></p></li>
+<li><p>The density of humans who are present, or not traveling, is <span class="math display">\[(1-\delta)H\]</span></p></li>
 </ul>
 </li>
 <li>
@@ -220,7 +220,7 @@ as the residence matrix.</p></li>
 </li>
 </ul>
 <p><strong>Ambient Population Density</strong> (not residency) is the
-average population density in the patches: <span class="math display">\[A = \Theta \cdot (1-\zeta) H \]</span></p>
+average population density in the patches: <span class="math display">\[A = \Theta \cdot (1-\delta) H \]</span></p>
 <p><strong>Mosquitoes</strong> search for blood hosts, and there is a
 daily activity pattern.</p>
 <ul>
@@ -241,9 +241,9 @@ relative rate of mosquito blood feeding evaluated at simulation time
 <span class="math inline">\(t\)</span>: <span class="math display">\[\Psi = F_c(t) \Theta\]</span></p>
 <p><strong>Availability</strong> is a measure of population density
 weighted by search weights, time at risk, and the fraction of time not
-traveling: <span class="math display">\[W = \Psi \cdot w  H
-\left(1-\zeta\right)\]</span></p>
-<p>Products of stratum vectors, such as <span class="math inline">\(wH(1-\zeta)\)</span>, are element-wise;
+traveling: <span class="math display">\[W_H = \Psi \cdot w  H
+\left(1-\delta\right)\]</span></p>
+<p>Products of stratum vectors, such as <span class="math inline">\(wH(1-\delta)\)</span>, are element-wise;
 multiplication by <span class="math inline">\(\Theta\)</span> or <span class="math inline">\(\Psi\)</span> is a matrix-vector product.</p>
 </div>
 <div class="section level2">
@@ -253,7 +253,7 @@ multiplication by <span class="math inline">\(\Theta\)</span> or <span class="ma
 isn’t a resident human:</p>
 <ul>
 <li>
-<p><span class="math inline">\(O\)</span> — Other blood hosts</p>
+<p><span class="math inline">\(W_O\)</span> — Other blood hosts</p>
 <ul>
 <li><p>The availability of other blood hosts is set to 0.</p></li>
 <li><p>Other values can be configured using
@@ -261,8 +261,8 @@ isn’t a resident human:</p>
 </ul>
 </li>
 <li>
-<p><span class="math inline">\(T\)</span> — Traps that capture blood
-feeding mosquitoes</p>
+<p><span class="math inline">\(W_T\)</span> — Traps that capture
+blood feeding mosquitoes</p>
 <ul>
 <li><p>The availability of blood traps is set to 0.</p></li>
 <li><p>Other values can be configured using
@@ -270,7 +270,7 @@ feeding mosquitoes</p>
 </ul>
 </li>
 <li>
-<p><span class="math inline">\(V\)</span> — Human visitors or
+<p><span class="math inline">\(W_V\)</span> — Human visitors or
 non-resident humans</p>
 <ul>
 <li><p>The availability of visitors is set to 0.</p></li>
@@ -280,9 +280,9 @@ non-resident humans</p>
 </li>
 </ul>
 <p>The total availability of all resources that would attract blood
-feeding mosquitoes is <span class="math display">\[B= W + O + T +
-V\]</span></p>
-<p>The fraction of bites on resident humans is: <span class="math display">\[\frac{W}{B}\]</span></p>
+feeding mosquitoes is <span class="math display">\[B= W_H + W_O + W_T +
+W_V\]</span></p>
+<p>The fraction of bites on resident humans is: <span class="math display">\[\frac{W_H}{B}\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="bionomics">Bionomics<a class="anchor" aria-label="anchor" href="#bionomics"></a>
@@ -299,7 +299,7 @@ available resources. We call these <em>functional responses.</em></p>
 <li><p>The blood feeding rate is a function of the total available blood
 <span class="math display">\[f = F_f(B, ...)\]</span></p></li>
 <li><p>The human fraction is <span class="math display">\[q = F_q(t,
-V(t), W(t), B(t))= \frac{V+W}{B}\]</span></p></li>
+W_V(t), W_H(t), B(t))= \frac{W_V+W_H}{B}\]</span></p></li>
 <li><p>Emigration is a result of searching for resources, including
 blood: <span class="math display">\[\sigma = F_\sigma(t,
 B(t),...)\]</span></p></li>

@@ -35,29 +35,29 @@ interface](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md).
 - \\\beta\\ — The bite distribution matrix, \\\beta\\, allocates bites
   per member of each population stratum, accounting for absence while
   traveling. The infective biting density per unit of local host
-  availability in each patch is \\fqZ/W.\\ In the formula, angle
+  availability in each patch is \\fqZ/W_H.\\ In the formula, angle
   brackets denote a diagonal matrix. Bites are allocated using search
   weights, time at risk, and the fraction of time not traveling.
 
-  - The vector of local host availability, \\W,\\ has length `nPatches`
-    and is computed as part of [Blood
+  - The vector of local host availability, \\W_H,\\ has length
+    `nPatches` and is computed as part of [Blood
     Feeding](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md).
 
-  - The density of residents who are not traveling is \\(1-\zeta) H\\.
+  - The density of residents who are not traveling is \\(1-\delta) H\\.
 
-  - The function that computes \\\beta\\ replaces zero entries of \\W\\
-    with one before dividing, to avoid division-by-zero errors.
+  - The function that computes \\\beta\\ replaces zero entries of
+    \\W_H\\ with one before dividing, to avoid division-by-zero errors.
 
 - \\\vartheta\\ — Bites are allocated by availability. The availability
-  of visitors in each patch \\V\\ is a variable that can be set by
+  of visitors in each patch \\W_V\\ is a variable that can be set by
   [setup_visitors](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.html).
-  If \\W+V=0\\, the implementation sets the local fraction to one by
+  If \\W_H+W_V=0\\, the implementation sets the local fraction to one by
   convention.
 
 The bite distribution matrix is:
 
-\\\beta = \left\<w (1-\zeta)\right\> \cdot \Psi^T \cdot \left\<
-\frac{1}W \right\> \\
+\\\beta = \left\<w (1-\delta)\right\> \cdot \Psi^T \cdot \left\<
+\frac{1}{W_H} \right\> \\
 
 **The EIR**
 

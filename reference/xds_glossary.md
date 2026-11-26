@@ -110,22 +110,36 @@ pages and functions that provide fuller explanations.
   Time spent when not traveling, weighted by mosquito activity. See
   [time_at_risk](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md).
 
-- Time away:
+- Time away (\\\delta\\):
 
-  The fraction of time spent outside the spatial domain represented by
-  the patches. See
-  [xds_port_time_away](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.md).
+  The fraction of time spent outside the modeled spatial domain. See
+  [time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md).
+
+- Travel EIR (\\E\_\delta\\):
+
+  The average daily EIR experienced while traveling. See
+  [travel_eir](https://dd-harp.github.io/ramp.xds/reference/travel_eir.md).
 
 - Travel malaria:
 
   Exposure to malaria outside the modeled spatial domain. See
-  [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md).
+  [travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md).
 
-- Visitor:
+- Malaria importation:
 
-  A non-resident host whose availability and infectiousness contribute
-  to blood feeding and transmission in patches. See
-  [xds_info_visitors](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md).
+  Importation through resident travel or infectious visitors. See
+  [malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md).
+
+- Visitor availability (\\W_V\\):
+
+  The availability of non-resident humans to searching mosquitoes. See
+  [visitor_availability](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md).
+
+- Visitor infectiousness (\\\kappa_V\\):
+
+  The probability a mosquito becomes infected after blood feeding on a
+  visitor. See
+  [visitor_infectiousness](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md).
 
 - Local fraction:
 

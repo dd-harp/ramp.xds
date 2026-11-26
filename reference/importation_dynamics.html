@@ -92,7 +92,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">importation_dynamics</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">importation_dynamics</span><span class="op">(</span><span class="va">t</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -103,10 +103,6 @@
 <dd><p>time</p></dd>
 
 
-<dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p>dependent variables</p></dd>
-
-
 <dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
 <dd><p>an <strong><code>xds</code></strong> model object</p></dd>
 
@@ -114,6 +110,31 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>an <strong><code>xds</code></strong> model object</p>
+    </div>
+    <div class="section level2">
+    <h2 id="importation">Importation<a class="anchor" aria-label="anchor" href="#importation"></a></h2>
+
+
+
+<p>For each host species, this function calls four ports at time <code>t</code>:</p><ul><li><p><a href="update_visitors.html">update_visitors</a> updates the availability of non-resident hosts.</p></li>
+<li><p><a href="update_vis_kappa.html">update_vis_kappa</a> updates the net infectiousness of those visitors.</p></li>
+<li><p><a href="update_time_away.html">update_time_away</a> updates the fraction of time resident hosts spend away.</p></li>
+<li><p><a href="update_travel_eir.html">update_travel_eir</a> updates their EIR while traveling.</p></li>
+</ul><p>Each port returns an updated <code>xds_obj</code>, which is passed to the next port.
+Static ports leave the model unchanged.
+These inputs are used by the blood-feeding and transmission interfaces
+to account for visitors and by <a href="Exposure.html">Exposure</a> to account for infection risk
+while traveling. This function updates the inputs; it does not itself
+compute new infections or change the dependent variables.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="malaria_importation.html">malaria_importation</a>, <a href="time_away.html">time_away</a>, <a href="travel_eir.html">travel_eir</a>,
+<a href="visitor_availability.html">visitor_availability</a>, <a href="visitor_infectiousness.html">visitor_infectiousness</a>,
+<a href="setup_visitors.html">setup_visitors</a>, <a href="setup_vis_kappa.html">setup_vis_kappa</a>, <a href="setup_time_away.html">setup_time_away</a>,
+<a href="setup_travel_eir.html">setup_travel_eir</a>, <a href="get_visitors.html">get_visitors</a>, <a href="change_visitors.html">change_visitors</a>,
+<a href="get_vis_kappa.html">get_vis_kappa</a>, <a href="change_vis_kappa.html">change_vis_kappa</a>, <a href="get_time_away.html">get_time_away</a>,
+<a href="change_time_away.html">change_time_away</a>, <a href="get_travel_eir.html">get_travel_eir</a>, <a href="change_travel_EIR.html">change_travel_eir</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -1,31 +1,15 @@
-# travel eir
+# Travel EIR
 
-Compute and store a travel eir
+- `travel_eir` or \\E\_\delta\\:
 
-## Usage
+  the average daily EIR experienced during travel by each population
+  stratum
 
-``` r
-travel_eir(t, y, xds_obj, i)
-```
+## See also
 
-## Arguments
-
-- t:
-
-  the time
-
-- y:
-
-  the state variables
-
-- xds_obj:
-
-  an **`xds`** model object
-
-- i:
-
-  the species index
-
-## Value
-
-an **`xds`** object
+[setup_travel_eir](https://dd-harp.github.io/ramp.xds/reference/setup_travel_eir.md),
+[get_travel_eir](https://dd-harp.github.io/ramp.xds/reference/get_travel_eir.md),
+[change_travel_eir](https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.md),
+[time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md),
+[travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
