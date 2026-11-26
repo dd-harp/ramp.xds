@@ -43,6 +43,9 @@ change_travel_eir = function(travel_eir, xds_obj, i=1){
 #'
 #' @inherit travel_eir description
 #' @note Travel EIR is stored in `xds_obj$XH_obj[[i]]$travel_eir`.
+#'   Setup methods call [change_travel_eir] to validate the value and update
+#'   the static port values. This change function is intended for use by setup
+#'   methods, not for direct use.
 #'
 #' @param name a setup function name
 #' @param xds_obj an **`xds`** model object

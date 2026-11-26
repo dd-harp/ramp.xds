@@ -49,6 +49,9 @@ change_visitors = function(visitors, xds_obj, s=1){
 #'
 #' @inherit visitor_availability description
 #' @note Visitor availability is stored in `xds_obj$patches$visitors[[s]]`.
+#'   Setup methods call [change_visitors] to validate the value and update the
+#'   static port values. This change function is intended for use by setup
+#'   methods, not for direct use.
 #' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options

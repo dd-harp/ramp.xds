@@ -64,6 +64,9 @@ change_time_away = function(time_away, xds_obj, i=1){
 #'
 #' @inherit time_away description
 #' @note Time away is stored in `xds_obj$XH_obj[[i]]$time_away`.
+#'   Setup methods call [change_time_away] to validate the value and update the
+#'   static port values. This change function is intended for use by setup
+#'   methods, not for direct use.
 #' @param name a setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index

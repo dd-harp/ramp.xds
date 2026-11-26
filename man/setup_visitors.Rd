@@ -29,6 +29,9 @@ it is used with resident-host availability to compute the local fraction.
 }
 \note{
 Visitor availability is stored in \code{xds_obj$patches$visitors[[s]]}.
+Setup methods call \link{change_visitors} to validate the value and update the
+static port values. This change function is intended for use by setup
+methods, not for direct use.
 }
 \section{Setup methods}{
 

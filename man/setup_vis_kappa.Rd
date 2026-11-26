@@ -28,6 +28,9 @@ infected after blood feeding on a visitor.
 }
 \note{
 Visitor net infectiousness is stored in \code{xds_obj$patches$vis_kappa[[s]]}.
+Setup methods call \link{change_vis_kappa} to validate the value and update the
+static port values. This change function is intended for use by setup
+methods, not for direct use.
 }
 \section{Setup methods}{
 

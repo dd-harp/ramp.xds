@@ -28,6 +28,9 @@ calculate the availability of resident hosts.
 }
 \note{
 Time away is stored in \code{xds_obj$XH_obj[[i]]$time_away}.
+Setup methods call \link{change_time_away} to validate the value and update the
+static port values. This change function is intended for use by setup
+methods, not for direct use.
 }
 \section{Setup methods}{
 

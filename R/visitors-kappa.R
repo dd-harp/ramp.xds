@@ -48,6 +48,9 @@ change_vis_kappa = function(vis_kappa, xds_obj, s=1){
 #'
 #' @inherit visitor_infectiousness description
 #' @note Visitor net infectiousness is stored in `xds_obj$patches$vis_kappa[[s]]`.
+#'   Setup methods call [change_vis_kappa] to validate the value and update the
+#'   static port values. This change function is intended for use by setup
+#'   methods, not for direct use.
 #' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options

@@ -25,6 +25,9 @@ an \strong{\code{xds}} model object
 }
 \note{
 Travel EIR is stored in \code{xds_obj$XH_obj[[i]]$travel_eir}.
+Setup methods call \link{change_travel_eir} to validate the value and update
+the static port values. This change function is intended for use by setup
+methods, not for direct use.
 }
 \section{Setup methods}{
 
