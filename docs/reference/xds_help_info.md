@@ -72,7 +72,7 @@ for a vocabulary guide.
 - [xds_info_local_fraction](https://dd-harp.github.io/ramp.xds/reference/xds_info_local_fraction.md)
   – the local fraction
 
-- [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
+- [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)
   – travel malaria
 
 - [xds_info_heterogeneity](https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneity.md)
@@ -146,16 +146,16 @@ for a vocabulary guide.
 
 **Malaria Importation**
 
-- [xds_info_importation](https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.md)
+- [xds_info_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
   – malaria importation junction
 
-- [xds_info_malaria_importation](https://dd-harp.github.io/ramp.xds/reference/xds_info_malaria_importation.md)
+- [xds_info_malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
   – malaria importation
 
-- [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
+- [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)
   – travel malaria
 
-- [xds_info_visitors](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md)
+- [xds_info_visitors](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md)
   – visitors
 
 **Malaria Control**

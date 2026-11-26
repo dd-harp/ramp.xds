@@ -6,7 +6,7 @@ Check `trivialXH` (**XH**)
 
 ``` r
 # S3 method for class 'trivialXH'
-check_XH(xds_obj, i)
+check_XH(xds_obj, t = 0, i)
 ```
 
 ## Arguments
@@ -14,6 +14,10 @@ check_XH(xds_obj, i)
 - xds_obj:
 
   an **`xds`** model object
+
+- t:
+
+  a vector of times
 
 - i:
 

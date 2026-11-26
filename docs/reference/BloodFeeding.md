@@ -1,6 +1,6 @@
 # Blood feeding
 
-Compute and store host available, \\(W\\), total blood host available,
+Compute and store host available, \\(W_H\\), total blood host available,
 \\(B\\), the time spent matrix \\(\Theta\\), and the time-at-risk matrix
 \\(\Psi\\),
 

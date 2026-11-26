@@ -20,3 +20,7 @@ an \strong{\code{xds}} model object
 Update time away for the \eqn{i^{th}} host species, and
 trigger updates for the \code{XY} interface.
 }
+\seealso{
+\link{time_away}, \link{setup_time_away}, \link{get_time_away},
+\link{travel_malaria}, \link{malaria_importation}
+}

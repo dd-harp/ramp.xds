@@ -3,28 +3,17 @@
 \name{time_away}
 \alias{time_away}
 \alias{xds_info_time_away}
+\alias{xds_port_time_away}
 \title{Time Away}
 \description{
 \describe{
-\item{\eqn{\delta}}{time away}
+\item{\code{time_away} or \eqn{\delta}}{the fraction of time spent outside the modeled area}
 }
 
-Time away is defined by travel, or time spent
-outside the patches. Time away
-is used to model travel malaria in \link{Exposure}, and it is used
-to compute host availability.
-
-\strong{Travel Malaria}
-
-The risk of malaria while traveling is computed in \link{Exposure} as
-the product of time away and the travel EIR \eqn{(E_\delta)}. Daily travel
-risk is \deqn{\delta E_\delta}
-
-\strong{Host Availability}
-
-If human population density is \eqn{H}, but since a fraction \eqn{\delta} is traveling,
-the expected density of humans at any point in time is \deqn{(1-\delta)H.}
+Time away weights travel exposure in \link{travel_malaria} and is used to
+calculate the availability of resident hosts.
 }
 \seealso{
-\link{setup_time_away}, \link{human_availability}
+\link{setup_time_away}, \link{get_time_away}, \link{change_time_away},
+\link{travel_malaria}, \link{malaria_importation}, \link{travel_eir}
 }

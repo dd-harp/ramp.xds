@@ -15,6 +15,7 @@ check_vis_kappa(vis_kappa, nP)
 Check that
 \itemize{
 \item all elements are non-negative
+\item all elements are less than or equal to one
 \item \code{length(vis_kappa) == nP}
 }
 }

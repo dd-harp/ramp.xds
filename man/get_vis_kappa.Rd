@@ -17,3 +17,10 @@ a \link{vector}
 \description{
 Get net infectiousness of visitors
 }
+\note{
+Visitor net infectiousness is stored in \code{xds_obj$patches$vis_kappa[[s]]}.
+}
+\seealso{
+\link{visitor_infectiousness}, \link{setup_vis_kappa},
+\link{change_vis_kappa}, \link{malaria_importation}
+}

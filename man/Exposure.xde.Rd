@@ -28,8 +28,8 @@ per infectious bite, \eqn{b} (called from \eqn{F_infectivity},
 as defined by an \eqn{\cal X} model).
 The total FoI is a weighted sum of the local FoI and
 exposure to malaria while traveling,
-computed from the travel EIR, \eqn{E_T}:
-\deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
+computed from the travel EIR, \eqn{E_\delta}:
+\deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_\delta, b,t)}
 }
 \seealso{
 Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{xds_info_travel_malaria}

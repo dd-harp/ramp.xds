@@ -167,6 +167,24 @@ bionomic parameters, listed below
   resident (non-travelling) humans, as opposed to visitors. Used to
   partition the EIR between local exposure and travel-related exposure.
 
+- **\\(\delta\\) — time away**: The fraction of time a population
+  stratum spends outside the spatial domain represented by the patches.
+
+- **\\(E\_\delta\\) — travel EIR**: The average daily EIR experienced by
+  a population stratum while traveling.
+
+- **travel malaria**: Exposure to malaria acquired outside the modeled
+  area, represented by time away and travel EIR.
+
+- **malaria importation**: Importation through resident travel or
+  through infectious visitors who are bitten by mosquitoes.
+
+- **\\(W_V\\) — visitor availability**: The availability of non-resident
+  humans to searching mosquitoes.
+
+- **\\(\kappa_V\\) — visitor infectiousness**: The probability that a
+  mosquito becomes infected after blood feeding on a visitor.
+
 ------------------------------------------------------------------------
 
 ## Epidemiology

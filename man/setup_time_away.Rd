@@ -19,8 +19,28 @@ setup_time_away(name, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up time away
+\describe{
+\item{\code{time_away} or \eqn{\delta}}{the fraction of time spent outside the modeled area}
 }
+
+Time away weights travel exposure in \link{travel_malaria} and is used to
+calculate the availability of resident hosts.
+}
+\note{
+Time away is stored in \code{xds_obj$XH_obj[[i]]$time_away}.
+Setup methods call \link{change_time_away} to validate the value and update the
+static port values. This change function is intended for use by setup
+methods, not for direct use.
+}
+\section{Setup methods}{
+
+\itemize{
+\item \code{as_is} uses a supplied time-away vector.
+\item \code{random} generates a random time-away value for each population stratum.
+}
+}
+
 \seealso{
-\link{time_away}
+\link{time_away}, \link{get_time_away}, \link{change_time_away},
+\link{travel_malaria}, \link{malaria_importation}, \link{update_time_away}
 }

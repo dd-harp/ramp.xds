@@ -4,12 +4,10 @@
 \alias{update_travel_eir.static}
 \title{Update travel_eir}
 \usage{
-\method{update_travel_eir}{static}(t, y, xds_obj, i)
+\method{update_travel_eir}{static}(t, xds_obj, i)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

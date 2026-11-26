@@ -17,3 +17,10 @@ a \link{vector}
 \description{
 Get availability of visitors
 }
+\note{
+Visitor availability is stored in \code{xds_obj$patches$visitors[[s]]}.
+}
+\seealso{
+\link{visitor_availability}, \link{setup_visitors}, \link{change_visitors},
+\link{malaria_importation}
+}

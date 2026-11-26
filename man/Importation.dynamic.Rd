@@ -4,12 +4,10 @@
 \alias{Importation.dynamic}
 \title{Importation}
 \usage{
-\method{Importation}{dynamic}(t, y, xds_obj)
+\method{Importation}{dynamic}(t, xds_obj)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }

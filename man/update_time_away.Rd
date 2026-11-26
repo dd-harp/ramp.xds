@@ -4,12 +4,10 @@
 \alias{update_time_away}
 \title{Update time away}
 \usage{
-update_time_away(t, y, xds_obj, i)
+update_time_away(t, xds_obj, i)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -21,5 +19,8 @@ an \strong{\code{xds}} model object
 \description{
 Port function for time away.
 Dispatches on \code{class(xds_obj$XH_obj[[i]]$time_away_obj)}.
+}
+\seealso{
+\link{time_away}, \link{importation_dynamics}
 }
 \keyword{internal}

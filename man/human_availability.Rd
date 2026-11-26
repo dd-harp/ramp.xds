@@ -7,7 +7,7 @@
 \title{Human Availability}
 \description{
 \describe{
-\item{\eqn{W}}{local human/host availability in patches}
+\item{\eqn{W_H}}{local human/host availability in patches}
 }
 }
 \section{Human Availability}{
@@ -26,7 +26,7 @@ where vector multiplication is element-wise.
 The time-at-risk matrix \eqn{(\Psi)} weights time spent by relative
 mosquito activity over the day (see \link{time_at_risk}). Human availability
 in patches is
-\deqn{W = \Psi \cdot (w(1-\delta)H),}
+\deqn{W_H = \Psi \cdot (w(1-\delta)H),}
 where the product inside the parentheses is element-wise. Search weights
 are specific to host species and shared across vector species. Availability
 can differ by vector species because each can have a different

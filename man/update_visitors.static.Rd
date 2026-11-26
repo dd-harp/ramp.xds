@@ -4,12 +4,10 @@
 \alias{update_visitors.static}
 \title{Update visitors}
 \usage{
-\method{update_visitors}{static}(t, y, xds_obj, s)
+\method{update_visitors}{static}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

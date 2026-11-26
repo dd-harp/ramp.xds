@@ -72,7 +72,7 @@ The order is designed to handle dependencies and minimize conflicts.
 
     - **Compute Availability:** 
         
-        - `available_hosts` --- $W$ 
+        - `available_hosts` --- $W_H$
         
         - `available_blood_hosts` --- $B$  
 
@@ -122,5 +122,4 @@ The order is designed to handle dependencies and minimize conflicts.
 ![**Ports** --- The design of a port and junction includes default setup of an object during `xds_setup` on the relevant object with parameter values set to have no effect; an advanced setup function `setup_port` that replaces the old default parameter, evaluates the port function and checks the returned value, and then rebuilds and replaces the port object; and  a function `update_port,` called by a `Junction`, that evalutes the function and stores the updated value. ](Ports.drawio.png){width=100%}
 
 ***
-
 

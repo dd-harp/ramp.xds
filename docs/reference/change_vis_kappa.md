@@ -26,3 +26,10 @@ change_vis_kappa(vis_kappa, xds_obj, s = 1)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[visitor_infectiousness](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md),
+[setup_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/setup_vis_kappa.md),
+[get_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/get_vis_kappa.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)

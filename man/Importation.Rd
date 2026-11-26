@@ -4,12 +4,10 @@
 \alias{Importation}
 \title{Importation Junction}
 \usage{
-Importation(t, y, xds_obj)
+Importation(t, xds_obj)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }

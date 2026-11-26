@@ -19,3 +19,7 @@ an \strong{\code{xds}} model object
 \description{
 Update the travel eir for the \eqn{i^{th}} host species
 }
+\seealso{
+\link{travel_eir}, \link{setup_travel_eir}, \link{get_travel_eir},
+\link{malaria_importation}
+}

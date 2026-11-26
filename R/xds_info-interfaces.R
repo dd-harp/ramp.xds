@@ -34,7 +34,7 @@
 #' - [Exposure] (see the [Exposure vignette](https://dd-harp.github.io/ramp.xds/articles/Exposure.html)) -- handles mosquito blood feeding from the human or host perspective. The function
 #'    computes the force of infection (FoI) for all the population strata from:
 #'    - the local daily EIR (\eqn{E})
-#'    - the travel EIR (\eqn{\delta})
+#'    - the travel EIR (\eqn{E_\delta})
 #'    - an assumption about the distribution of the expectation
 #'    - a model of partial immunity (\eqn{b}) from the **X** component
 #'

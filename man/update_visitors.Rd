@@ -4,12 +4,10 @@
 \alias{update_visitors}
 \title{Update visitors}
 \usage{
-update_visitors(t, y, xds_obj, s)
+update_visitors(t, xds_obj, s)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -20,5 +18,8 @@ an \strong{\code{xds}} model object
 }
 \description{
 Port function to compute the availability of visitors.
+}
+\seealso{
+\link{visitor_availability}, \link{importation_dynamics}
 }
 \keyword{internal}

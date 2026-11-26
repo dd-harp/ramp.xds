@@ -58,7 +58,7 @@ NULL
 #'
 #' @description
 #' \describe{
-#'   \item{\eqn{W}}{local human/host availability in patches}
+#'   \item{\eqn{W_H}}{local human/host availability in patches}
 #' }
 #'
 #' @section Human Availability:
@@ -76,7 +76,7 @@ NULL
 #' The time-at-risk matrix \eqn{(\Psi)} weights time spent by relative
 #' mosquito activity over the day (see [time_at_risk]). Human availability
 #' in patches is
-#' \deqn{W = \Psi \cdot (w(1-\delta)H),}
+#' \deqn{W_H = \Psi \cdot (w(1-\delta)H),}
 #' where the product inside the parentheses is element-wise. Search weights
 #' are specific to host species and shared across vector species. Availability
 #' can differ by vector species because each can have a different
@@ -93,22 +93,22 @@ NULL
 #'
 #' @description
 #' \describe{
-#'   \item{\eqn{W}}{local human/host availability in patches}
+#'   \item{\eqn{W_H}}{local human/host availability in patches}
 #'   \item{\eqn{B}}{total availability to blood-seeking mosquitoes in patches}
 #' }
 #' 
 #' @section Total Blood Host Availability:
-#' Local human/host availability \eqn{(W)} is computed as described in
+#' Local human/host availability \eqn{(W_H)} is computed as described in
 #' [human_availability]. Visitors, other blood hosts, and blood traps also
 #' attract blood-seeking mosquitoes. Total availability in each patch is:
-#' \deqn{B = W + V + O + T}
-#' where \eqn{V} is visitor availability, \eqn{O} is other blood host
-#' availability, and \eqn{T} is blood trap availability.
+#' \deqn{B = W_H + W_V + W_O + W_T}
+#' where \eqn{W_V} is visitor availability, \eqn{W_O} is other blood host
+#' availability, and \eqn{W_T} is blood trap availability.
 #'
 #' @note
 #' For one host species, \eqn{\left|w\right|=\left|H\right|=}`nStrata`
 #' and \eqn{\Psi} has dimensions `nPatches` \eqn{\times} `nStrata`.
-#' Both \eqn{W} and \eqn{B} have length `nPatches`.
+#' Both \eqn{W_H} and \eqn{B} have length `nPatches`.
 #'
 #' @seealso [human_availability], [time_spent_matrix], [time_at_risk],
 #' [xds_info_search_weights_blood], [mixing_matrix]
@@ -119,13 +119,18 @@ NULL
 #' @title Other Blood Hosts
 #'
 #' @description
+#' \describe{
+#'   \item{`other_blood_hosts` or \eqn{W_O}}{the availability of other vertebrate hosts}
+#'   \item{`blood_traps` or \eqn{W_T}}{the availability of traps that attact and catch blood feeding mosquitoes}
+#' }
+#'
 #' Availability of vertebrate hosts that are not represented by an **XH**
 #' module or by visitors.
 #'
 #' @section Other Blood Host Availability:
 #' Other blood hosts attract blood-seeking mosquitoes and contribute to total
 #' blood host availability \eqn{(B)}, but not to local human/host availability
-#' \eqn{(W)}. The availability vector is initialized to zero and configured
+#' \eqn{(W_H)}. The availability vector is initialized to zero and configured
 #' by vector species using [setup_other_blood_hosts].
 #'
 #' @seealso [available_blood_hosts], [update_other_blood_hosts]
@@ -148,11 +153,11 @@ NULL
 #' For a host species, the mixing matrix is an `nStrata` \eqn{\times}
 #' `nPatches` matrix:
 #' \deqn{\beta =
-#' \mbox{diag}(w(1-\delta)) \cdot \Psi^T \cdot \mbox{diag}(1/W)}
+#' \mbox{diag}(w(1-\delta)) \cdot \Psi^T \cdot \mbox{diag}(1/W_H)}
 #' The product \eqn{w(1-\delta)} is element-wise, with \eqn{\delta}
 #' denoting the fraction of time away for each stratum.
-#' Here, \eqn{W} is total local host availability, summed over host species.
-#' [F_beta] replaces zero entries of \eqn{W} with one before dividing,
+#' Here, \eqn{W_H} is total local host availability, summed over host species.
+#' [F_beta] replaces zero entries of \eqn{W_H} with one before dividing,
 #' to avoid division by zero.
 #'
 #' For one host species, the fraction of bites on local hosts in patch
@@ -177,39 +182,39 @@ NULL
 #' \describe{
 #'   \item{\eqn{f}}{the blood-feeding rate per mosquito}
 #'   \item{\eqn{q}}{the fraction of blood meals on the modeled hosts and visitors}
-#'   \item{\eqn{W}}{local host availability}
+#'   \item{\eqn{W_H}}{local host availability}
 #'   \item{\eqn{B}}{total availability to blood-seeking mosquitoes}
 #'   \item{\eqn{\beta}}{the mixing matrix}
 #' }
 #'
-#' @section Blood Feeding:
+#' @section Blood Hosts:
 #' **Hosts in Patches** --- The population densities in strata are computed
 #' by the **XH** component function [F_H]. Search weights and time at risk
 #' determine local host availability (see [available_blood_hosts]).
 #'
 #' **Other Hosts and Traps** --- Local hosts compete with visitors, other
 #' blood hosts, and blood traps for mosquito blood-seeking activity:
-#' + \eqn{W} --- local host availability
-#' + \eqn{V} --- visitor availability
-#' + \eqn{O} --- other blood host availability
-#' + \eqn{T} --- blood trap availability
+#' + \eqn{W_H} --- local host availability
+#' + \eqn{W_V} --- visitor availability
+#' + \eqn{W_O} --- other blood host availability
+#' + \eqn{W_T} --- blood trap availability
 #'
-#' \deqn{B = W + V + O + T}
+#' \deqn{B = W_H + W_V + W_O + W_T}
 #'
 #' **Mosquito Bionomics** --- Blood-feeding rates and other mosquito
 #' bionomic parameters can be modeled as functional responses to availability.
 #' For example:
 #' \deqn{f = F_f(B, \ldots)}
 #' For positive total availability, an availability-based host fraction is:
-#' \deqn{q = \frac{W+V}{B}}
+#' \deqn{q = \frac{W_H+W_V}{B}}
 #' This is a modeling relationship, not a constraint automatically imposed
 #' on every **MY** module. Directly assigned bionomic parameters need not
 #' satisfy it.
 #'
 #' **Bites on Local Hosts** --- The local fraction separates bites on local
 #' hosts from bites on visitors:
-#' \deqn{\ell = \frac{W}{W+V}}
-#' [F_local_frac] sets this fraction to one when \eqn{W+V=0}.
+#' \deqn{\ell = \frac{W_H}{W_H+W_V}}
+#' [F_local_frac] sets this fraction to one when \eqn{W_H+W_V=0}.
 #' For a single vector species, the human/host biting rate and daily local EIR
 #' are computed using the [mixing_matrix]:
 #' \deqn{\mbox{HBR} = \beta \cdot (\ell f q M)}

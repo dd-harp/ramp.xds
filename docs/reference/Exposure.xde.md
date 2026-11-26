@@ -34,8 +34,8 @@ daily entomological inoculation rate (dEIR or \\(E\\)) under a model for
 the probability of infection per infectious bite, \\(b\\) (called from
 \\(F_infectivity\\), as defined by an \\(\cal X\\) model). The total FoI
 is a weighted sum of the local FoI and exposure to malaria while
-traveling, computed from the travel EIR, \\(E_T\\): \$\$h = (1-\delta)
-\\; F_h(E, b) + \delta\\; F_h(E_T, b,t)\$\$
+traveling, computed from the travel EIR, \\(E\_\delta\\): \$\$h =
+(1-\delta) \\; F_h(E, b) + \delta\\; F_h(E\_\delta, b,t)\$\$
 
 ## See also
 
@@ -43,4 +43,4 @@ Related:
 [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md) &
 [F_foi.pois](https://dd-harp.github.io/ramp.xds/reference/F_foi.pois.md)
 & [F_foi.nb](https://dd-harp.github.io/ramp.xds/reference/F_foi.nb.md) &
-[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
+[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)

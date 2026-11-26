@@ -46,7 +46,7 @@ XY interface has three parts:
 
   - the local daily EIR (\\(E\\))
 
-  - the travel EIR (\\(\delta\\))
+  - the travel EIR (\\(E\_\delta\\))
 
   - an assumption about the distribution of the expectation
 

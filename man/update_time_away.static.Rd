@@ -4,12 +4,10 @@
 \alias{update_time_away.static}
 \title{Update time_away}
 \usage{
-\method{update_time_away}{static}(t, y, xds_obj, i)
+\method{update_time_away}{static}(t, xds_obj, i)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

@@ -84,7 +84,7 @@ The order is designed to handle dependencies and minimize conflicts.
 
   - **Compute Availability:**
 
-    - `available_hosts` — \\(W\\)
+    - `available_hosts` — \\(W_H\\)
 
     - `available_blood_hosts` — \\(B\\)
 

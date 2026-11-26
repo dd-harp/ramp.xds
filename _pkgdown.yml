@@ -640,14 +640,14 @@ reference:
   desc: |
     Functions to model travel & visitors
   contents:
-  - xds_info_importation
-  - xds_info_malaria_importation
-  - xds_info_travel_malaria 
+  - malaria_importation
+  - travel_malaria
+  - importation_dynamics
+  - setup_importation_obj
 - subtitle: Time Away
   desc: |
     Time spent traveling
   contents:
-  - xds_port_time_away
   - time_away
   - setup_time_away
   - change_time_away
@@ -658,7 +658,7 @@ reference:
   desc: |
     Exposure while traveling
   contents:
-  - xds_port_travel_eir
+  - travel_eir
   - setup_travel_eir
   - change_travel_eir
   - check_travel_eir
@@ -668,8 +668,7 @@ reference:
   desc: |
     Blood Feeding on non-Residents 
   contents:
-  - xds_port_visitors
-  - xds_info_visitors
+  - visitor_availability
   - setup_visitors
   - change_visitors
   - check_visitors
@@ -678,8 +677,7 @@ reference:
   desc: |
     Infectiousness of Visitors
   contents:
-  - xds_port_visitor_kappa
-  - setup_vis_kappa
+  - visitor_infectiousness
   - setup_vis_kappa
   - change_vis_kappa
   - check_vis_kappa

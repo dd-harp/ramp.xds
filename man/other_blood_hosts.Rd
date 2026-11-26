@@ -5,6 +5,11 @@
 \alias{xds_port_other_blood_hosts}
 \title{Other Blood Hosts}
 \description{
+\describe{
+\item{\code{other_blood_hosts} or \eqn{W_O}}{the availability of other vertebrate hosts}
+\item{\code{blood_traps} or \eqn{W_T}}{the availability of traps that attact and catch blood feeding mosquitoes}
+}
+
 Availability of vertebrate hosts that are not represented by an \strong{XH}
 module or by visitors.
 }
@@ -12,7 +17,7 @@ module or by visitors.
 
 Other blood hosts attract blood-seeking mosquitoes and contribute to total
 blood host availability \eqn{(B)}, but not to local human/host availability
-\eqn{(W)}. The availability vector is initialized to zero and configured
+\eqn{(W_H)}. The availability vector is initialized to zero and configured
 by vector species using \link{setup_other_blood_hosts}.
 }
 

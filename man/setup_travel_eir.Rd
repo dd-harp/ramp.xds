@@ -19,5 +19,25 @@ setup_travel_eir(name, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up travel eir
+\describe{
+\item{\code{travel_eir} or \eqn{E_\delta}}{the average daily EIR experienced during travel by each population stratum}
+}
+}
+\note{
+Travel EIR is stored in \code{xds_obj$XH_obj[[i]]$travel_eir}.
+Setup methods call \link{change_travel_eir} to validate the value and update
+the static port values. This change function is intended for use by setup
+methods, not for direct use.
+}
+\section{Setup methods}{
+
+\itemize{
+\item \code{as_is} uses a supplied travel EIR vector.
+\item \code{random} generates a random travel EIR value for each population stratum.
+}
+}
+
+\seealso{
+\link{travel_eir}, \link{get_travel_eir}, \link{change_travel_eir},
+\link{travel_malaria}, \link{malaria_importation}, \link{update_travel_eir}
 }

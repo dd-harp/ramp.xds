@@ -8,12 +8,12 @@
 \describe{
 \item{\eqn{f}}{the blood-feeding rate per mosquito}
 \item{\eqn{q}}{the fraction of blood meals on the modeled hosts and visitors}
-\item{\eqn{W}}{local host availability}
+\item{\eqn{W_H}}{local host availability}
 \item{\eqn{B}}{total availability to blood-seeking mosquitoes}
 \item{\eqn{\beta}}{the mixing matrix}
 }
 }
-\section{Blood Feeding}{
+\section{Blood Hosts}{
 
 \strong{Hosts in Patches} --- The population densities in strata are computed
 by the \strong{XH} component function \link{F_H}. Search weights and time at risk
@@ -22,28 +22,28 @@ determine local host availability (see \link{available_blood_hosts}).
 \strong{Other Hosts and Traps} --- Local hosts compete with visitors, other
 blood hosts, and blood traps for mosquito blood-seeking activity:
 \itemize{
-\item \eqn{W} --- local host availability
-\item \eqn{V} --- visitor availability
-\item \eqn{O} --- other blood host availability
-\item \eqn{T} --- blood trap availability
+\item \eqn{W_H} --- local host availability
+\item \eqn{W_V} --- visitor availability
+\item \eqn{W_O} --- other blood host availability
+\item \eqn{W_T} --- blood trap availability
 }
 
-\deqn{B = W + V + O + T}
+\deqn{B = W_H + W_V + W_O + W_T}
 
 \strong{Mosquito Bionomics} --- Blood-feeding rates and other mosquito
 bionomic parameters can be modeled as functional responses to availability.
 For example:
 \deqn{f = F_f(B, \ldots)}
 For positive total availability, an availability-based host fraction is:
-\deqn{q = \frac{W+V}{B}}
+\deqn{q = \frac{W_H+W_V}{B}}
 This is a modeling relationship, not a constraint automatically imposed
 on every \strong{MY} module. Directly assigned bionomic parameters need not
 satisfy it.
 
 \strong{Bites on Local Hosts} --- The local fraction separates bites on local
 hosts from bites on visitors:
-\deqn{\ell = \frac{W}{W+V}}
-\link{F_local_frac} sets this fraction to one when \eqn{W+V=0}.
+\deqn{\ell = \frac{W_H}{W_H+W_V}}
+\link{F_local_frac} sets this fraction to one when \eqn{W_H+W_V=0}.
 For a single vector species, the human/host biting rate and daily local EIR
 are computed using the \link{mixing_matrix}:
 \deqn{\mbox{HBR} = \beta \cdot (\ell f q M)}
