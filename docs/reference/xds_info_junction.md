@@ -22,7 +22,7 @@ handle one or more ports.
 - [xds_info_resources](https://dd-harp.github.io/ramp.xds/reference/xds_info_resources.md)
   – a junction to handle resource dynamics
 
-- [xds_info_importation](https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.md)
+- [xds_info_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)
   – a junction to handle importation
 
 ## See also

@@ -4,10 +4,12 @@
 \alias{check_XH.trivialXH}
 \title{Check \code{trivialXH} (\strong{XH})}
 \usage{
-\method{check_XH}{trivialXH}(xds_obj, i)
+\method{check_XH}{trivialXH}(xds_obj, t = 0, i)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{i}{host species index}
 }

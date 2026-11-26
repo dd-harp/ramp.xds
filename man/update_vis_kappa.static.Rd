@@ -4,12 +4,10 @@
 \alias{update_vis_kappa.static}
 \title{Update NI of visitors}
 \usage{
-\method{update_vis_kappa}{static}(t, y, xds_obj, s)
+\method{update_vis_kappa}{static}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

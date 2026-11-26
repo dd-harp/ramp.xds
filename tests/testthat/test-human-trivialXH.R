@@ -55,7 +55,7 @@ test_that("trivialXH preserves forcing and stateless behavior", {
   expect_equal(F_H(0, y, model, 1), c(100, 200))
   expect_equal(F_I(0, y, model, 1), c(10, 40))
   expect_equal(F_infectivity(y, model, 1), 1)
-  expect_identical(check_XH(model, 1), model)
+  expect_identical(check_XH(model, c(0, 2), 1), model)
   expect_identical(setup_XH_inits(model), model)
   expect_identical(setup_XH_ix(model, 1), model)
   expect_identical(dXHdt(0, y, model, 1), numeric())

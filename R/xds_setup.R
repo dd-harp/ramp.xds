@@ -652,7 +652,7 @@ xds_setup_eir = function(eir=1/365,
 #' @export
 update_interfaces = function(xds_obj){
   y <- as.vector(unlist(get_inits(xds_obj)))
-  xds_obj <- importation_dynamics(0, y, xds_obj)
+  xds_obj <- importation_dynamics(0, xds_obj)
   xds_obj <- egg_laying_dynamics(0, y, xds_obj)
   xds_obj <- blood_feeding_dynamics(0, y, xds_obj)
   xds_obj <- transmission_dynamics(0, y, xds_obj)

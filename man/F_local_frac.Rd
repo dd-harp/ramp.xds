@@ -7,9 +7,9 @@
 F_local_frac(W, Visitors)
 }
 \arguments{
-\item{W}{availability of blood hosts}
+\item{W}{local human/host availability (\eqn{W_H})}
 
-\item{Visitors}{availability of visitors}
+\item{Visitors}{visitor availability (\eqn{W_V})}
 }
 \value{
 the fraction of bites

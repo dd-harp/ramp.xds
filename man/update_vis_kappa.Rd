@@ -4,12 +4,10 @@
 \alias{update_vis_kappa}
 \title{Update NI of visitors}
 \usage{
-update_vis_kappa(t, y, xds_obj, s)
+update_vis_kappa(t, xds_obj, s)
 }
 \arguments{
 \item{t}{time}
-
-\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -23,5 +21,8 @@ Port function to compute the net infectiousness of visitors.
 }
 \note{
 Dispatches on \code{class(xds_obj$patches$vis_kappa_obj[[s]])}.
+}
+\seealso{
+\link{visitor_infectiousness}, \link{importation_dynamics}
 }
 \keyword{internal}

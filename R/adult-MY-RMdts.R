@@ -459,7 +459,7 @@ parse_MY_orbits.RMdts <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_MY.RMdts = function(xds_obj, s){
+check_MY.RMdts = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

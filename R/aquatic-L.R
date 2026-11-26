@@ -315,12 +315,13 @@ get_L_orbits = function(xds_obj, s=1){
 #' @title Check model (**L**)
 #'
 #' @param xds_obj an **`xds`** model object
+#' @param t a vector of times
 #' @param s the vector species index
 #'
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_L = function(xds_obj, s){
+check_L = function(xds_obj, t=0, s){
   UseMethod("check_L", xds_obj$L_obj[[s]])
 }
 #' @title Get the skill set (**L**)

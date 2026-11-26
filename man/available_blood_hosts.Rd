@@ -6,23 +6,23 @@
 \title{Available Blood Hosts}
 \description{
 \describe{
-\item{\eqn{W}}{local human/host availability in patches}
+\item{\eqn{W_H}}{local human/host availability in patches}
 \item{\eqn{B}}{total availability to blood-seeking mosquitoes in patches}
 }
 }
 \note{
 For one host species, \eqn{\left|w\right|=\left|H\right|=}\code{nStrata}
 and \eqn{\Psi} has dimensions \code{nPatches} \eqn{\times} \code{nStrata}.
-Both \eqn{W} and \eqn{B} have length \code{nPatches}.
+Both \eqn{W_H} and \eqn{B} have length \code{nPatches}.
 }
 \section{Total Blood Host Availability}{
 
-Local human/host availability \eqn{(W)} is computed as described in
+Local human/host availability \eqn{(W_H)} is computed as described in
 \link{human_availability}. Visitors, other blood hosts, and blood traps also
 attract blood-seeking mosquitoes. Total availability in each patch is:
-\deqn{B = W + V + O + T}
-where \eqn{V} is visitor availability, \eqn{O} is other blood host
-availability, and \eqn{T} is blood trap availability.
+\deqn{B = W_H + W_V + W_O + W_T}
+where \eqn{W_V} is visitor availability, \eqn{W_O} is other blood host
+availability, and \eqn{W_T} is blood trap availability.
 }
 
 \seealso{

@@ -114,18 +114,18 @@ pages and functions that provide fuller explanations.
 
   The fraction of time spent outside the spatial domain represented by
   the patches. See
-  [xds_port_time_away](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.md).
+  [xds_port_time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md).
 
 - Travel malaria:
 
   Exposure to malaria outside the modeled spatial domain. See
-  [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md).
+  [xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md).
 
 - Visitor:
 
   A non-resident host whose availability and infectiousness contribute
   to blood feeding and transmission in patches. See
-  [xds_info_visitors](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md).
+  [xds_info_visitors](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md).
 
 - Local fraction:
 

@@ -19,6 +19,11 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{travel_eir} or \eqn{E_\delta}}{the average daily EIR experienced during travel by each population stratum}
+}
+}
+\details{
 If an options list is passed
 as the first argument, then set
 \itemize{
@@ -26,5 +31,9 @@ as the first argument, then set
 \item \code{options = name}
 and call \code{setup_travel_eir(Teirname, xds_obj, options, i)}
 }
+}
+\seealso{
+\link{travel_eir}, \link{get_travel_eir}, \link{change_travel_eir},
+\link{travel_malaria}, \link{malaria_importation}, \link{update_travel_eir}
 }
 \keyword{internal}

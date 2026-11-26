@@ -7,13 +7,13 @@
 F_B_available(W, visitors, other_blood, traps)
 }
 \arguments{
-\item{W}{local human/host availability}
+\item{W}{local human/host availability (\eqn{W_H})}
 
-\item{visitors}{visitor availability}
+\item{visitors}{visitor availability (\eqn{W_V})}
 
-\item{other_blood}{availability of other vertebrate hosts}
+\item{other_blood}{availability of other vertebrate hosts (\eqn{W_O})}
 
-\item{traps}{blood trap availability}
+\item{traps}{blood trap availability (\eqn{W_T})}
 }
 \value{
 a numeric vector of total availability, one value per patch
@@ -23,7 +23,7 @@ Compute total availability to blood-seeking mosquitoes.
 }
 \details{
 Total availability sums local human/host availability, visitors,
-other blood hosts, and blood traps: \deqn{B = W + V + O + T.}
+other blood hosts, and blood traps: \deqn{B = W_H + W_V + W_O + W_T.}
 }
 \references{
 {\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}

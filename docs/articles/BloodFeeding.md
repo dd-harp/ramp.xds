@@ -78,7 +78,7 @@ based on a measure of weighted, ambient population.
   - The search weights can be modified using
     `setup_blood_search_weights`
 
-- \\(\zeta\\) — Humans sometimes *travel.* In this model, it means they
+- \\(\delta\\) — Humans sometimes *travel.* In this model, it means they
   spend some time outside the *spatial domain* that is represented by
   the patches.
 
@@ -87,7 +87,7 @@ based on a measure of weighted, ambient population.
   - Time away can be changed by `setup_time_away`
 
   - The density of humans who are present, or not traveling, is
-    \\\[(1-\zeta)H\\\]
+    \\\[(1-\delta)H\\\]
 
 - \\(\Theta\\) — A matrix that describes how humans spend their time.
   There is one column for each stratum. Each column should sum to a
@@ -101,7 +101,7 @@ based on a measure of weighted, ambient population.
   - Models for time spent are set up by `setup_timespent`
 
 **Ambient Population Density** (not residency) is the average population
-density in the patches: \\\[A = \Theta \cdot (1-\zeta) H\\\]
+density in the patches: \\\[A = \Theta \cdot (1-\delta) H\\\]
 
 **Mosquitoes** search for blood hosts, and there is a daily activity
 pattern.
@@ -120,10 +120,10 @@ mosquito blood feeding evaluated at simulation time \\(t\\): \\\[\Psi =
 F_c(t) \Theta\\\]
 
 **Availability** is a measure of population density weighted by search
-weights, time at risk, and the fraction of time not traveling: \\\[W =
-\Psi \cdot w H \left(1-\zeta\right)\\\]
+weights, time at risk, and the fraction of time not traveling: \\\[W_H =
+\Psi \cdot w H \left(1-\delta\right)\\\]
 
-Products of stratum vectors, such as \\(wH(1-\zeta)\\), are
+Products of stratum vectors, such as \\(wH(1-\delta)\\), are
 element-wise; multiplication by \\(\Theta\\) or \\(\Psi\\) is a
 matrix-vector product.
 
@@ -132,28 +132,28 @@ matrix-vector product.
 Mosquitoes searching for blood hosts can often find something that isn’t
 a resident human:
 
-- \\(O\\) — Other blood hosts
+- \\(W_O\\) — Other blood hosts
 
   - The availability of other blood hosts is set to 0.
 
   - Other values can be configured using `setup_other_blood_hosts`
 
-- \\(T\\) — Traps that capture blood feeding mosquitoes
+- \\(W_T\\) — Traps that capture blood feeding mosquitoes
 
   - The availability of blood traps is set to 0.
 
   - Other values can be configured using `setup_blood_traps`
 
-- \\(V\\) — Human visitors or non-resident humans
+- \\(W_V\\) — Human visitors or non-resident humans
 
   - The availability of visitors is set to 0.
 
   - Other values can be configured using `setup_visitors`
 
 The total availability of all resources that would attract blood feeding
-mosquitoes is \\\[B= W + O + T + V\\\]
+mosquitoes is \\\[B= W_H + W_O + W_T + W_V\\\]
 
-The fraction of bites on resident humans is: \\\[\frac{W}{B}\\\]
+The fraction of bites on resident humans is: \\\[\frac{W_H}{B}\\\]
 
 ## Bionomics
 
@@ -170,8 +170,8 @@ available resources. We call these *functional responses.*
 - The blood feeding rate is a function of the total available blood
   \\\[f = F_f(B, ...)\\\]
 
-- The human fraction is \\\[q = F_q(t, V(t), W(t), B(t))=
-  \frac{V+W}{B}\\\]
+- The human fraction is \\\[q = F_q(t, W_V(t), W_H(t), B(t))=
+  \frac{W_V+W_H}{B}\\\]
 
 - Emigration is a result of searching for resources, including blood:
   \\\[\sigma = F\_\sigma(t, B(t),...)\\\]

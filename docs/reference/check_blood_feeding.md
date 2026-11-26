@@ -6,7 +6,7 @@ performed.
 ## Usage
 
 ``` r
-check_blood_feeding(xds_obj)
+check_blood_feeding(xds_obj, t = 0)
 ```
 
 ## Arguments
@@ -14,6 +14,10 @@ check_blood_feeding(xds_obj)
 - xds_obj:
 
   an **`xds`** model object
+
+- t:
+
+  a vector of times
 
 ## Value
 

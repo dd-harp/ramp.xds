@@ -19,6 +19,14 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{vis_kappa} or \eqn{\kappa_V}}{the net infectiousness of visitors to mosquitoes}
+}
+
+Visitor infectiousness represents the probability that a mosquito becomes
+infected after blood feeding on a visitor.
+}
+\details{
 Set up the net infectiousness of visitors using an options list.
 }
 \note{
@@ -29,5 +37,9 @@ as the first argument, then set
 \item \code{options = name}
 and call \code{setup_vis_kappa(Vname, xds_obj, options, s)}.
 }
+}
+\seealso{
+\link{visitor_infectiousness}, \link{get_vis_kappa}, \link{change_vis_kappa},
+\link{malaria_importation}, \link{update_vis_kappa}
 }
 \keyword{internal}

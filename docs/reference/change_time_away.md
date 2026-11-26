@@ -26,3 +26,11 @@ change_time_away(time_away, xds_obj, i = 1)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[time_away](https://dd-harp.github.io/ramp.xds/reference/time_away.md),
+[setup_time_away](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.md),
+[get_time_away](https://dd-harp.github.io/ramp.xds/reference/get_time_away.md),
+[travel_malaria](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)

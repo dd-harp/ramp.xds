@@ -19,5 +19,28 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up visitor net infectiousness
+\describe{
+\item{\code{vis_kappa} or \eqn{\kappa_V}}{the net infectiousness of visitors to mosquitoes}
+}
+
+Visitor infectiousness represents the probability that a mosquito becomes
+infected after blood feeding on a visitor.
+}
+\note{
+Visitor net infectiousness is stored in \code{xds_obj$patches$vis_kappa[[s]]}.
+Setup methods call \link{change_vis_kappa} to validate the value and update the
+static port values. This change function is intended for use by setup
+methods, not for direct use.
+}
+\section{Setup methods}{
+
+\itemize{
+\item \code{as_is} uses a supplied visitor net infectiousness vector.
+\item \code{random} generates a random visitor net infectiousness vector for each patch.
+}
+}
+
+\seealso{
+\link{visitor_infectiousness}, \link{get_vis_kappa}, \link{change_vis_kappa},
+\link{malaria_importation}, \link{update_vis_kappa}
 }

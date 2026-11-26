@@ -41,7 +41,7 @@ xds_solve_cohort = function(xds_obj, birthday=0, eir = c(), Amax=365, da=1, ages
   if(length(eir)>0) xds_obj$EIR_obj$eir = eir
   xds_obj$EIR_obj$bday = birthday
   times <- make_ages(xds_obj, Amax, da, ages) + birthday
-
+  
   xds_obj <- xds_solve(xds_obj, times=times)
   return(xds_obj)
 }

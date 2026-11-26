@@ -454,7 +454,7 @@ parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_L.basicL = function(xds_obj, s){
+check_L.basicL = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

@@ -60,8 +60,8 @@ transmission dynamics and control:
   (FoI), the rate of infection by stratum (called \\(h\\) or `foi`)
 
   - The local EIR is transformed into a measure of the total EIR using
-    the concepts of *time away* \\((\zeta)\\) and *travel EIR*
-    \\((E\_\zeta)\\);
+    the concepts of *time away* \\((\delta)\\) and *travel EIR*
+    \\((E\_\delta)\\);
 
   - The total EIR is modified by a function that computes the expected
     number of infections per infectious bite (\\(b\\)) using a function

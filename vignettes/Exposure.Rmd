@@ -39,7 +39,7 @@ The number of mosquito bites or blood meals per person is highly heterogeneous a
 
 + In `Exposure`, the model comptues and stores the force of infection (FoI), the rate of infection by stratum (called $h$ or `foi`)
 
-    + The local EIR is transformed into a measure of the total EIR using the concepts of *time away* $(\zeta)$ and *travel EIR* $(E_\zeta)$;  
+    + The local EIR is transformed into a measure of the total EIR using the concepts of *time away* $(\delta)$ and *travel EIR* $(E_\delta)$;
       
     + The total EIR is modified by a function that computes the expected number of infections per infectious bite ($b$) using a function ($F_b$ or `F_infectivity`) from the **XH** component. In some modules, this quantity is a function of *pre-erythrocytic* immunity. 
 
@@ -56,6 +56,5 @@ The number of mosquito bites or blood meals per person is highly heterogeneous a
 *** 
 
 ![](xds_exposure.png){width=100%}
-
 
 

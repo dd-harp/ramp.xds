@@ -4,13 +4,6 @@
 
 
 
-#' @title Get the Time Away Vector
-#'
-#' @param xds_obj an **`xds`** model object
-#' @param i the host species index
-#'
-#' @return a [numeric] vector of length `nStrata`
-#' @export
 get_time_away = function(xds_obj, i=1){
   return(xds_obj$XH_obj[[i]]$time_away)
 }

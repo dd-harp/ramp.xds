@@ -19,10 +19,22 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{vis_kappa} or \eqn{\kappa_V}}{the net infectiousness of visitors to mosquitoes}
+}
+
+Visitor infectiousness represents the probability that a mosquito becomes
+infected after blood feeding on a visitor.
+}
+\details{
 Pass a pre-configured vis_kappa. If it passes
 the checks, it replaces the current vis_kappa.
 
 If called with \code{name = "as_is"}, the vis_kappa
 must be at \code{options$vis_kappa_asis}.
+}
+\seealso{
+\link{visitor_infectiousness}, \link{get_vis_kappa}, \link{change_vis_kappa},
+\link{malaria_importation}, \link{update_vis_kappa}
 }
 \keyword{internal}

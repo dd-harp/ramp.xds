@@ -5,7 +5,7 @@ Port function to compute the availability of visitors.
 ## Usage
 
 ``` r
-update_visitors(t, y, xds_obj, s)
+update_visitors(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -13,10 +13,6 @@ update_visitors(t, y, xds_obj, s)
 - t:
 
   time
-
-- y:
-
-  dependent variables
 
 - xds_obj:
 
@@ -29,3 +25,8 @@ update_visitors(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[visitor_availability](https://dd-harp.github.io/ramp.xds/reference/visitor_availability.md),
+[importation_dynamics](https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.md)

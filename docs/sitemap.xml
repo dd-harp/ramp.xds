@@ -530,6 +530,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.trivialL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L_bionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_ML_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_MY.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_MY.GeRM.html</loc></url>
@@ -540,6 +541,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_MY.macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_MY.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_MY.trivialMY.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_MY_bionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_XH.SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_XH.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_XH.html</loc></url>
@@ -557,7 +559,12 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_f.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_g.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_habitat_search_weights.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.aquatic.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.eir.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.full.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.human.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.mosy.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_mu.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_nu.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_other_blood_hosts.html</loc></url>
@@ -950,6 +957,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_type2.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_val.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_zero.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/malaria_importation.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/mixing_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/mosquito_bionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/mosquito_demography.html</loc></url>
@@ -1215,6 +1223,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_health_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_human_frac.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_importation.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_importation_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_importation_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_mass_treatment.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_mortality_matrix.default.html</loc></url>
@@ -1427,7 +1436,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/view_residency_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/vis_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/vis_kappa.static.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/visitor_availability.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/visitor_dynamics.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.full.html</loc></url>
@@ -1466,11 +1477,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneity.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneous_biting_rates.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_interfaces.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_local_fraction.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_malaria_importation.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.html</loc></url>
@@ -1487,10 +1496,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_strata.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent_here.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_transmission.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_vector_control.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_interfaces.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_junction_forcing.html</loc></url>
@@ -1519,9 +1526,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_Z.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_Z_fracs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_blood_traps.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors_kappa.html</loc></url>

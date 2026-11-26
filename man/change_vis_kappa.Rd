@@ -20,3 +20,7 @@ an \strong{\code{xds}} model object
 Update the vis_kappa for the \eqn{s^{th}} vector species, and
 trigger updates for the \code{XY} interface.
 }
+\seealso{
+\link{visitor_infectiousness}, \link{setup_vis_kappa}, \link{get_vis_kappa},
+\link{malaria_importation}
+}

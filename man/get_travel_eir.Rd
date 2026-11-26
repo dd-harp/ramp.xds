@@ -17,3 +17,10 @@ the travel eir, a vector of length nStrata
 \description{
 Get the travel eir
 }
+\note{
+Travel EIR is stored in \code{xds_obj$XH_obj[[i]]$travel_eir}.
+}
+\seealso{
+\link{travel_eir}, \link{setup_travel_eir}, \link{change_travel_eir},
+\link{travel_malaria}, \link{malaria_importation}
+}

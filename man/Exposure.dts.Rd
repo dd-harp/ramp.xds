@@ -29,8 +29,8 @@ a model for the probability of infection
 per infectious bite, \eqn{b} (from \eqn{F_infectivity},
 as defined by an \eqn{\cal X} model).
 The total attack rates are computed from the time-weighted local and travel
-FoI, using the travel EIR, \eqn{E_T}:
-\deqn{\alpha = 1-\exp(-((1-\delta) F_h(E,b) + \delta F_h(E_T,b)))}
+FoI, using the travel EIR, \eqn{E_\delta}:
+\deqn{\alpha = 1-\exp(-((1-\delta) F_h(E,b) + \delta F_h(E_\delta,b)))}
 }
 \seealso{
 Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{xds_info_travel_malaria}

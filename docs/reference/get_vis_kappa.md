@@ -21,3 +21,15 @@ get_vis_kappa(xds_obj, s = 1)
 ## Value
 
 a [vector](https://rdrr.io/r/base/vector.html)
+
+## Note
+
+Visitor net infectiousness is stored in
+`xds_obj$patches$vis_kappa[[s]]`.
+
+## See also
+
+[visitor_infectiousness](https://dd-harp.github.io/ramp.xds/reference/visitor_infectiousness.md),
+[setup_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/setup_vis_kappa.md),
+[change_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/change_vis_kappa.md),
+[malaria_importation](https://dd-harp.github.io/ramp.xds/reference/malaria_importation.md)

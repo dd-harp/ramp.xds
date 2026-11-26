@@ -4,10 +4,12 @@
 \alias{check_MY.macdonald}
 \title{Check \code{macdonald} (\strong{MY})}
 \usage{
-\method{check_MY}{macdonald}(xds_obj, s)
+\method{check_MY}{macdonald}(xds_obj, t = 0, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{s}{the vector species index}
 }

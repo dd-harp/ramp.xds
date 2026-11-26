@@ -45,11 +45,11 @@ element-wise.
 The time-at-risk matrix \\((\Psi)\\) weights time spent by relative
 mosquito activity over the day (see
 [time_at_risk](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md)).
-Human availability in patches is \$\$W = \Psi \cdot (w(1-\delta)H),\$\$
-where the product inside the parentheses is element-wise. Search weights
-are specific to host species and shared across vector species.
-Availability can differ by vector species because each can have a
-different time-at-risk matrix.
+Human availability in patches is \$\$W_H = \Psi \cdot
+(w(1-\delta)H),\$\$ where the product inside the parentheses is
+element-wise. Search weights are specific to host species and shared
+across vector species. Availability can differ by vector species because
+each can have a different time-at-risk matrix.
 
 ## References
 

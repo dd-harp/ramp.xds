@@ -27,6 +27,8 @@ check_visitors = function(visitors, nP){
 #' @param visitors the availability of visitors
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#' @seealso [visitor_availability], [setup_visitors], [get_visitors],
+#'   [malaria_importation]
 #'
 #' @return an **`xds`** model object
 #' 
@@ -45,12 +47,23 @@ change_visitors = function(visitors, xds_obj, s=1){
 
 #' @title Set up visitors
 #'
+#' @inherit visitor_availability description
+#' @note Visitor availability is stored in `xds_obj$patches$visitors[[s]]`.
+#'   Setup methods call [change_visitors] to validate the value and update the
+#'   static port values. This change function is intended for use by setup
+#'   methods, not for direct use.
 #' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
 #'
 #' @return an **`xds`** model object
+#' @seealso [visitor_availability], [get_visitors], [change_visitors],
+#'   [malaria_importation], [update_visitors]
+#'
+#' @section Setup methods:
+#' + `as_is` uses a supplied visitor availability vector.
+#' + `random` generates a random visitor availability vector for each patch.
 #'
 #' @export
 setup_visitors = function(name, xds_obj, options = list(), s=1){
@@ -61,7 +74,7 @@ setup_visitors = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up visitors
 #'
-#' @description Set up visitors using an options list.
+#' @details Set up visitors using an options list.
 #'
 #' @note If an options list is passed
 #' as the first argument, then set 
@@ -69,7 +82,7 @@ setup_visitors = function(name, xds_obj, options = list(), s=1){
 #' + `options = name`
 #' and call `setup_visitors(Vname, xds_obj, options, s)`.
 #'
-#' @inheritParams setup_visitors
+#' @inherit setup_visitors description params seealso
 #'
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -83,8 +96,8 @@ setup_visitors.list = function(name, xds_obj, options=list(), s=1){
 }
 
 #' @title Set up no visitors 
-#' @description Don't change anything.
-#' @inheritParams setup_visitors
+#' @details Don't change anything.
+#' @inherit setup_visitors description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -94,9 +107,9 @@ setup_visitors.no_setup = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up visitors
 #' 
-#' @description Implements the "random" case for [setup_visitors]. See [make_visitors_random].
+#' @details Implements the "random" case for [setup_visitors]. See [make_visitors_random].
 #' 
-#' @inheritParams setup_visitors
+#' @inherit setup_visitors description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -123,14 +136,14 @@ make_visitors_random = function(nPatches, options=list(), f_rand = stats::rlnorm
 })}
 
 #' @title Set up visitors
-#' @description 
+#' @details
 #' Pass pre-configured visitors. If it passes
 #' the checks, it replaces the current visitors.
 #' 
 #' If called with `name = "as_is"`, the visitors
 #' must be at `options$visitors_asis`.
 #' 
-#' @inheritParams setup_visitors
+#' @inherit setup_visitors description params seealso
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -149,16 +162,16 @@ setup_visitors.as_is = function(name, xds_obj, options=list(), s=1){
 #' @title Update visitors
 #' 
 #' @description Port function to compute the availability of visitors.
+#' @seealso [visitor_availability], [importation_dynamics]
 #' 
 #' @param t time
-#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
-update_visitors <- function(t, y, xds_obj, s){
+update_visitors <- function(t, xds_obj, s){
   UseMethod("update_visitors",  xds_obj$patches$visitors_obj[[s]])
 }
 
@@ -168,9 +181,13 @@ update_visitors <- function(t, y, xds_obj, s){
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
-update_visitors.static <- function(t, y, xds_obj, s) { return(xds_obj) }
+update_visitors.static <- function(t, xds_obj, s) { return(xds_obj) }
 
 #' @title Get availability of visitors
+#'
+#' @seealso [visitor_availability], [setup_visitors], [change_visitors],
+#'   [malaria_importation]
+#' @note Visitor availability is stored in `xds_obj$patches$visitors[[s]]`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index

@@ -4,10 +4,12 @@
 \alias{check_XH.SIS}
 \title{Check \code{SIS} (\strong{XH})}
 \usage{
-\method{check_XH}{SIS}(xds_obj, i)
+\method{check_XH}{SIS}(xds_obj, t = 0, i)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{t}{a vector of times}
 
 \item{i}{host species index}
 }

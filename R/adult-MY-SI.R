@@ -768,7 +768,7 @@ parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
 #' @seealso [SI]
 #' @keywords internal
 #' @export
-check_MY.SI = function(xds_obj, s){
+check_MY.SI = function(xds_obj, t=0, s){
   return(xds_obj)
 }
 

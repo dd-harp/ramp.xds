@@ -95,8 +95,8 @@ Exposure <- function(t, y, xds_obj){
 #' as defined by an \eqn{\cal X} model).
 #' The total FoI is a weighted sum of the local FoI and
 #' exposure to malaria while traveling,
-#' computed from the travel EIR, \eqn{E_T}:
-#' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
+#' computed from the travel EIR, \eqn{E_\delta}:
+#' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_\delta, b,t)}
 #' @inheritParams Exposure
 #' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [xds_info_travel_malaria] 
 #' @return an **`xds`** model object
@@ -104,7 +104,7 @@ Exposure <- function(t, y, xds_obj){
 #' @keywords internal
 Exposure.xde <- function(t, y, xds_obj){
   for(i in 1:xds_obj$nHostSpecies){
-    xds_obj <- update_travel_eir(t, y, xds_obj, i) 
+    xds_obj <- update_travel_eir(t, xds_obj, i)
     b = as.vector(F_infectivity(y, xds_obj, i))
     eir = xds_obj$terms$EIR[[i]]
     away = get_time_away(xds_obj, i)
@@ -129,8 +129,8 @@ Exposure.xde <- function(t, y, xds_obj){
 #' per infectious bite, \eqn{b} (from \eqn{F_infectivity},
 #' as defined by an \eqn{\cal X} model).
 #' The total attack rates are computed from the time-weighted local and travel
-#' FoI, using the travel EIR, \eqn{E_T}:
-#' \deqn{\alpha = 1-\exp(-((1-\delta) F_h(E,b) + \delta F_h(E_T,b)))}
+#' FoI, using the travel EIR, \eqn{E_\delta}:
+#' \deqn{\alpha = 1-\exp(-((1-\delta) F_h(E,b) + \delta F_h(E_\delta,b)))}
 #' @inheritParams Exposure
 #' @return an **`xds`** model object
 #' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [xds_info_travel_malaria]
@@ -138,7 +138,7 @@ Exposure.xde <- function(t, y, xds_obj){
 #' @keywords internal
 Exposure.dts <- function(t, y, xds_obj){
   for(i in 1:xds_obj$nHostSpecies){
-    xds_obj <- update_travel_eir(t, y, xds_obj, i) 
+    xds_obj <- update_travel_eir(t, xds_obj, i)
     b = as.vector(F_infectivity(y, xds_obj, i))
     eir = xds_obj$terms$EIR[[i]]
     away = get_time_away(xds_obj, i)

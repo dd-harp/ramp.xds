@@ -19,6 +19,18 @@
 an \strong{\code{xds}} model object
 }
 \description{
+\describe{
+\item{\code{vis_kappa} or \eqn{\kappa_V}}{the net infectiousness of visitors to mosquitoes}
+}
+
+Visitor infectiousness represents the probability that a mosquito becomes
+infected after blood feeding on a visitor.
+}
+\details{
 Implements the "random" case for \link{setup_vis_kappa}. See \link{make_vis_kappa_random}.
+}
+\seealso{
+\link{visitor_infectiousness}, \link{get_vis_kappa}, \link{change_vis_kappa},
+\link{malaria_importation}, \link{update_vis_kappa}
 }
 \keyword{internal}

@@ -28,11 +28,11 @@ It uses the same search weights and time at risk as \link{available_blood_hosts}
 For a host species, the mixing matrix is an \code{nStrata} \eqn{\times}
 \code{nPatches} matrix:
 \deqn{\beta =
-\mbox{diag}(w(1-\delta)) \cdot \Psi^T \cdot \mbox{diag}(1/W)}
+\mbox{diag}(w(1-\delta)) \cdot \Psi^T \cdot \mbox{diag}(1/W_H)}
 The product \eqn{w(1-\delta)} is element-wise, with \eqn{\delta}
 denoting the fraction of time away for each stratum.
-Here, \eqn{W} is total local host availability, summed over host species.
-\link{F_beta} replaces zero entries of \eqn{W} with one before dividing,
+Here, \eqn{W_H} is total local host availability, summed over host species.
+\link{F_beta} replaces zero entries of \eqn{W_H} with one before dividing,
 to avoid division by zero.
 
 For one host species, the fraction of bites on local hosts in patch
